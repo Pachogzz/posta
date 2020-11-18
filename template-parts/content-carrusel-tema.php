@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package posta
+ * @package postamx
  * 
  * 
  */
@@ -13,19 +13,19 @@
 $theme_id = get_sub_field('notas_tema');
 $mostrar_descripcion = get_sub_field('mostrar_descripcion');
 
-$tema= get_term_by('id', $theme_id, 'theme');
+$tema = get_term_by('id', $theme_id, 'theme');
 $taxonomy_name = $tema->taxonomy;
 $taxonomy_term = $tema->name;
 $tema_description = $tema->description;
 $GLOBALS['carrusel_tema'] = $tema;
 $tipo_de_carrusel_tema = get_sub_field('tipo_de_carrusel_tema'); // Tipo de slider
 $GLOBALS['tipo_de_carrusel_2'] = $tipo_de_carrusel_tema;
-$category_link  = get_category_link($theme_id); // Link de la sección
-$category_description  = category_description($theme_id); // Descripción de la sección*/
+$category_link = get_category_link($theme_id); // Link de la sección
+$category_description = category_description($theme_id); // Descripción de la sección*/
 ?>
 
 <!-- Contenedor de carusel -->
-<div class="container mt-6 toto3 container-lg<<<">
+<div class="container mt-6 container-lg<<<">
 	<div class="row">
 		<div class="col">
 
@@ -36,14 +36,14 @@ $category_description  = category_description($theme_id); // Descripción de la 
 				</h2>
 				<?php if($mostrar_descripcion){?>
 					<p class="encabezado-descripcion"><?php echo $tema_description; ?></p>
-				<?php }?>
+				<?php } ?>
 			</div>
 			
 			<!-- CARRUSEL TEMA -->
 			<div id="carousel-<?php echo $theme_id; ?>" class="owl-carousel <?php echo $tipo_de_carrusel_tema; ?>">
 				<?php
 				$output = 'objects';
-				$args = array ( 
+				$args = array (
 					'suppress_filters' => true,
 					'post_type' => 'post',
 					'tax_query' => array(
@@ -54,11 +54,11 @@ $category_description  = category_description($theme_id); // Descripción de la 
 						),
 					),
 					'post_status' => array(
-						'publish', 
+						'publish',
 					),
 					'posts_per_page' => 6,
-					'orderby' => 'date', 
-					'order' => 'DESC' 
+					'orderby' => 'date',
+					'order' => 'DESC'
 				);
 				
 				$the_query = new WP_Query( $args, $output );
@@ -86,7 +86,7 @@ $category_description  = category_description($theme_id); // Descripción de la 
 						</div>
 					</a>
 				</div>
-			</div>	
+			</div>
 		</div>
 	</div>
 </div>

@@ -15,8 +15,6 @@ $(window).on('load', function() {
         $('.contenedor-carrusel-portada').addClass('embed-responsive');
         $('.contenedor-carrusel-portada').css('height', $(window).height() - 266);
     } else {
-        //$('.contenedor-carrusel-portada').addClass('embed-responsive embed-responsive-16by9');
-        //$('.contenedor-carrusel-portada > .fat-img').addClass('embed-responsive-item');
         $('.contenedor-carrusel-portada > .fat-img').removeClass('hidden');
     }
 });
@@ -117,8 +115,7 @@ $('.btnsf').click(function() {
     excerpt = $(this).data('excerpt');
     link = $(this).data('link');
     img = $(this).data('img');
-    // var url = "https://www.facebook.com/dialog/share?"+"app_id=379171302612930"+"&quote="+encodeURIComponent(excerpt)+"&href="+encodeURIComponent(link)+"&picture="+encodeURIComponent(img);
-    var url = "https://www.facebook.com/dialog/share?" + "app_id=388347495415603" + "&quote=" + encodeURIComponent(excerpt) + "&href=" + encodeURIComponent(link) + "&picture=" + encodeURIComponent(img);
+    var url = "https://www.facebook.com/dialog/share?" + "app_id=1223449614698305" + "&quote=" + encodeURIComponent(excerpt) + "&href=" + encodeURIComponent(link) + "&picture=" + encodeURIComponent(img);
     window.open(url, "_blank", "width=550, height=450");
 });
 $('.btnst').click(function() {
@@ -141,7 +138,7 @@ $('.media_file').click(function() {
     $('#mediaFileTypesModal').modal('show');
 });
 
-//show the modal and add  the reprodoctur of jwplayer
+// Show the modal and add the player
 $('.media_file_jw').click(function() {
     $('.titulo_jw').html($(this).data('titulo'));
     $('#mediaFileTypesModal_jw').modal('show');
@@ -154,7 +151,6 @@ $('.media_file_jw').click(function() {
         autostart: "viewable",
         mute: false,
     });
-
     /*const bumpIt = () => {
         const vol = player.getVolume();
         player.setVolume(vol + 10);
@@ -360,30 +356,6 @@ $('.carrusel-tipo-tres').owlCarousel({ //antes .carousel-style-four
         },
         992: {
             items: 3
-        }
-    }
-});
-
-
-
-// :::
-$('.carousel-style-two').owlCarousel({
-    mouseDrag: false,
-
-    loop: false,
-    dots: false,
-    nav: true,
-    navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
-    margin: 20,
-    responsiveClass: true,
-    center: true,
-    startPosition: 1,
-    responsive: {
-        0: {
-            items: 1
-        },
-        768: {
-            items: 2
         }
     }
 });

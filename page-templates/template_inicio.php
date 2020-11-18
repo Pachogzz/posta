@@ -6,49 +6,53 @@
 
 <?php 
 require get_template_directory() . '/inc/color_categories.php'; 
-$cont_layout =0; //Varible para ver el numero de layouts
+$cont_layout = 0; //Varible para ver el numero de layouts
+
+if( have_rows( 'notas_principales' ) ):
+	while( have_rows ( 'notas_principales' ) ) : the_row();
+		if ( get_row_layout() == 'slider_de_ancho_completo' ):
+			get_template_part( 'template-parts/content', 'slider-de-ancho-completo' );
+		elseif ( get_row_layout() == 'slider_de_tres_posts_verticales' ):
+			get_template_part( 'template-parts/content', 'slider-de-tres-posts-verticales' );
+		elseif ( get_row_layout() == 'slider_de_tres_posts_cuadriculado' ):
+			get_template_part( 'template-parts/content', 'slider-de-tres-posts-cuadriculado' );
+		else:
+			// nothing to show here ...
+		endif;
+	endwhile;
+endif;
 
 if( have_rows('contenido_de_inicio')){
   	while ( have_rows('contenido_de_inicio')) {
 		the_row();
-		if(get_row_layout() == 'top_stories'){ ?>
-			<?php get_template_part('template-parts/content', 'top-stories'); ?>
-			<?php
+		if(get_row_layout() == 'top_stories'){ 
+			 get_template_part('template-parts/content', 'top-stories'); 
 			if(have_rows('historias_del_dia')){
-				while(have_rows('historias_del_dia')){ the_row();?>
-				<?php get_template_part('template-parts/content', 'historias-dia');?>
-				<?php	wp_reset_postdata();
+				while(have_rows('historias_del_dia')){ the_row();
+				 get_template_part('template-parts/content', 'historias-dia');
+					wp_reset_postdata();
 				}
 			}
-		}elseif(get_row_layout() == 'carrusel_portada'){ ?>
-			<?php get_template_part('template-parts/content', 'carrusel-portada');?>
-		<?php
-		}elseif(get_row_layout() == 'carrusel_opinion'){?>
-			<?php get_template_part('template-parts/content', 'bloque-opinion');?>
-		<?php
-		}elseif(get_row_layout() == 'bloque_secciones_modulo_notas'){?>
-			<?php get_template_part('template-parts/content', 'bloque-secciones-modulo-notas'); ?>
-			<?php
-		}elseif(get_row_layout() == 'bloque_temas_modulo_notas'){?>
-			<?php get_template_part('template-parts/content', 'bloque-temas-modulo-notas'); ?>
-			<?php
-		}elseif(get_row_layout() == 'carrusel_coleccion'){   //Evalua si el layout es para el carrusel de coleccion
+		} elseif (get_row_layout() == 'carrusel_portada'){ 
+			 get_template_part('template-parts/content', 'carrusel-portada');
+		} elseif (get_row_layout() == 'carrusel_opinion'){
+			 get_template_part('template-parts/content', 'bloque-opinion');
+		} elseif (get_row_layout() == 'bloque_secciones_modulo_notas'){
+			 get_template_part('template-parts/content', 'bloque-secciones-modulo-notas'); 
+		} elseif (get_row_layout() == 'bloque_temas_modulo_notas'){
+			 get_template_part('template-parts/content', 'bloque-temas-modulo-notas'); 
+		} elseif (get_row_layout() == 'carrusel_coleccion'){
 			get_template_part('template-parts/content', 'carrusel-coleccion');
-		}elseif(get_row_layout() == 'carrusel_imagenes'){ ?>
-			<?php get_template_part('template-parts/content', 'carrusel-imagenes'); ?>
-		<?php
-		}elseif(get_row_layout() == 'bloque_modulo_notas_banner_custom'){ ?>
-			<?php get_template_part('template-parts/content', 'bloque-notas-banner-custom'); ?>
-		<?php
-		}elseif(get_row_layout()== 'banner_custom'){ ?>
-			<?php get_template_part('template-parts/content', 'banner-custom'); ?>
-		<?php
-		}elseif(get_row_layout() == 'carrusel_tema'){  //Evalua si el  layout es para el carrusel de tema?>
-			<?php get_template_part('template-parts/content', 'carrusel-tema'); ?>
-		<?php
-		}elseif(get_row_layout() == 'carrusel_seccion'){ //Evalua si el  layout es para el carrusel de seccion?>
-			<?php get_template_part('template-parts/content', 'carrusel-seccion'); ?>
-		<?php
+		} elseif (get_row_layout() == 'carrusel_imagenes'){ 
+			 get_template_part('template-parts/content', 'carrusel-imagenes'); 
+		} elseif (get_row_layout() == 'bloque_modulo_notas_banner_custom'){ 
+			 get_template_part('template-parts/content', 'bloque-notas-banner-custom'); 
+		} elseif (get_row_layout()== 'banner_custom'){ 
+			 get_template_part('template-parts/content', 'banner-custom'); 
+		} elseif (get_row_layout() == 'carrusel_tema'){
+			 get_template_part('template-parts/content', 'carrusel-tema'); 
+		} elseif (get_row_layout() == 'carrusel_seccion'){
+			 get_template_part('template-parts/content', 'carrusel-seccion'); 
 		}
 
 		// Bloque para colocar el script de la publicidad
@@ -66,10 +70,10 @@ if( have_rows('contenido_de_inicio')){
 				</div>
 			</div>
 			<?php 
-			$cont_layout=0; 
+			$cont_layout = 0; 
 		}
   	}
 }	
-// echo 'totales: '.$cont_layout;
+echo 'totales: '. $cont_layout;
 ?>
 <?php get_footer(); ?>

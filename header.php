@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package posta
+ * @package postamx
  */
 
 ?>
@@ -16,11 +16,12 @@
   <meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="profile" href="https://gmpg.org/xfn/11">
-  <meta name="description" content="">
-  <meta name="author" content="Posta">
+  <meta name="description" content="El color de la información">
+  <meta name="author" content="Código Magenta">
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Open+Sans:wght@400;700&family=Roboto+Slab:wght@700&family=Rubik:wght@400;500;700&display=swap" />
+  <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Open+Sans:wght@400;700&family=Roboto+Slab:wght@700&family=Rubik:wght@400;500;700&display=swap" media="print" onload="this.media='all'" />
 
   <!-- Bootstrap -->
   <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/assets/css/bootstrap-custom.min.css">
@@ -34,7 +35,7 @@
   <!-- Galería -->
   <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/assets/css/lightgallery.min.css">
   <!-- Estilos tema -->
-  <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/assets/css/posta.css">
+  <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/assets/css/postamx.css">
 
   <?php wp_head(); ?>
 
@@ -57,7 +58,11 @@
 </head>
 
 <body <?php body_class(); ?>>
-<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Ir directamente al contenido ', 'posta' ); ?></a>
+
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v8.0&appId=1223449614698305" nonce="05RPmOoo"></script>
+
+  <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Ir directamente al contenido ', 'postamx' ); ?></a>
 
 	<div id="page" class="site d-flex flex-column justify-content-between" style="height: 100vh;">
 
@@ -98,8 +103,8 @@
             <div class="row justify-content-between justify-content-md-center align-items-center">
               <div class="col-auto col-md-12 order-md-last mt-md-2">
                 <div class="lista-iconos justify-content-center">
-                  <?php if( get_theme_mod('social_media_link_fb') != '' ){ ?>
-                    <a class="icono icono-negro" href="<?php echo get_theme_mod('social_media_link_fb'); ?>" target="_blank" id="fb">
+                  <?php if( get_theme_mod('posta_facebook_link') != '' ){ ?>
+                    <a class="icono icono-negro" href="<?php echo get_theme_mod('posta_facebook_link'); ?>" target="_blank" id="fb">
                       <i class="fab fa-facebook-f"></i>
                     </a>
                   <?php } ?>
@@ -133,7 +138,7 @@
 
       <nav class="navbar navbar-expand navbar-dark bg-dark" role="navigation">
         <div class="container-xl">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="<?php esc_attr_e( 'Menú', 'posta' ); ?>">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="<?php esc_attr_e( 'Menú', 'postamx' ); ?>">
               <span class="navbar-toggler-icon"></span>
           </button>
           <?php

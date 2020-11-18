@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package posta
+ * @package postamx
  * 
  * Este template part es usado para mostrar las secciones mediante carruseles que se encuentran en home
  * 
@@ -26,7 +26,7 @@ if ($mobile_browser > 0) {
 	if(!empty($GLOBALS['tipo_de_carrusel'])){
 		$tipo_de_carrusel = $GLOBALS['tipo_de_carrusel'];
 		if($tipo_de_carrusel == 'carrusel-tipo-uno'){
-			$featured_img_url = $featured_img_url_small_retina;	
+			$featured_img_url = $featured_img_url_small_retina;
 		}elseif($tipo_de_carrusel == 'carrusel-tipo-dos'){
 			$featured_img_url = $featured_img_url_small_retina;	
 		}
@@ -37,11 +37,11 @@ if ($mobile_browser > 0) {
 	if(!empty($GLOBALS['tipo_de_carrusel_2'])){
 		$tipo_de_carrusel = $GLOBALS['tipo_de_carrusel_2'];
 		if($tipo_de_carrusel == 'carrusel-tipo-uno'){
-			$featured_img_url = $featured_img_url_medium_retina;	
+			$featured_img_url = $featured_img_url_small_retina;
 		}elseif($tipo_de_carrusel == 'carrusel-tipo-dos'){
-			$featured_img_url = $featured_img_url_medium;	
+			$featured_img_url = $featured_img_url_small_retina;
 		}elseif($tipo_de_carrusel == 'carrusel-tipo-tres'){
-			$featured_img_url = $featured_img_url_small_retina;	
+			$featured_img_url = $featured_img_url_small_retina;
 		}
 		$tipo_de_carrusel = "";
 	}
@@ -52,9 +52,9 @@ if ($mobile_browser > 0) {
 	if(!empty($GLOBALS['tipo_de_carrusel'])){
 		$tipo_de_carrusel = $GLOBALS['tipo_de_carrusel'];
 		if($tipo_de_carrusel == 'carrusel-tipo-uno'){
-			$featured_img_url = $featured_img_url_medium_retina;	
+			$featured_img_url = $featured_img_url_medium_retina;
 		}elseif($tipo_de_carrusel == 'carrusel-tipo-dos'){
-			$featured_img_url = $featured_img_url_small_retina;	
+			$featured_img_url = $featured_img_url_small_retina;
 		}
 		$tipo_de_carrusel = "";
 	}
@@ -63,9 +63,9 @@ if ($mobile_browser > 0) {
 	if(!empty($GLOBALS['tipo_de_carrusel_2'])){
 		$tipo_de_carrusel = $GLOBALS['tipo_de_carrusel_2'];
 		if($tipo_de_carrusel == 'carrusel-tipo-uno'){
-			$featured_img_url = $featured_img_url_medium_retina;		
+			$featured_img_url = $featured_img_url_medium_retina;
 		}elseif($tipo_de_carrusel == 'carrusel-tipo-dos'){
-			$featured_img_url = $featured_img_url_medium;		
+			$featured_img_url = $featured_img_url_small_retina;
 		}elseif($tipo_de_carrusel == 'carrusel-tipo-tres'){
 			$featured_img_url = $featured_img_url_small_retina;	
 		}
@@ -75,12 +75,12 @@ if ($mobile_browser > 0) {
 }else {
 	//print 'is desktop';
 	//condicional para los bloques secciones y temas
-	if(!empty($GLOBALS['tipo_de_carrusel'])){	
+	if(!empty($GLOBALS['tipo_de_carrusel'])){
 		$tipo_de_carrusel = $GLOBALS['tipo_de_carrusel'];
 		if($tipo_de_carrusel == 'carrusel-tipo-uno'){
-			$featured_img_url = $featured_img_url_small_retina;		
+			$featured_img_url = $featured_img_url_small_retina;
 		}elseif($tipo_de_carrusel == 'carrusel-tipo-dos'){
-			$featured_img_url = $featured_img_url_small;		
+			$featured_img_url = $featured_img_url_small;
 		}
 		$tipo_de_carrusel = "";
 	}
@@ -89,15 +89,15 @@ if ($mobile_browser > 0) {
 	if(!empty($GLOBALS['tipo_de_carrusel_2'])){
 		$tipo_de_carrusel = $GLOBALS['tipo_de_carrusel_2'];
 		if($tipo_de_carrusel == 'carrusel-tipo-uno'){
-			$featured_img_url = $featured_img_url_medium_retina;		
+			$featured_img_url = $featured_img_url_medium_retina;
 		}elseif($tipo_de_carrusel == 'carrusel-tipo-dos'){
-			$featured_img_url = $featured_img_url_medium;		
+			$featured_img_url = $featured_img_url_medium;
 		}elseif($tipo_de_carrusel == 'carrusel-tipo-tres'){
-			$featured_img_url = $featured_img_url_small_retina;	
+			$featured_img_url = $featured_img_url_small;
 		}
 		$tipo_de_carrusel = "";
 	}
-} 
+}
 
 // Si no hay Imagen destacada hace fallback a la imagen definida en opciones del tema
 if (empty($featured_img_url)){
@@ -106,17 +106,17 @@ if (empty($featured_img_url)){
 
 //
 if(!empty($GLOBALS['carrusel_tema'])){
-	$categorias = get_the_category(); 
+	$categorias = get_the_category();
 	$name = $categorias[0]->name;
 	$category_id = $categorias[0]->term_id;
 	$category_link = get_category_link($category_id); // Link de la sección
 }
 if(!empty($GLOBALS['carrusel_seccion'])){
 	$taxonomy_object = get_the_taxonomies();
-	$name_tax =  $taxonomy_object["theme"];
+	$name_tax = $taxonomy_object["theme"];
 	$name = substr($name_tax,6);
-	$name_taxonomy=  trim($name,".");
-	$tema= get_term_by('name', $name_taxonomy, 'theme');
+	$name_taxonomy = trim($name,".");
+	$tema = get_term_by('name', $name_taxonomy, 'theme');
 	$name = $tema->name;
 	$category_id = $tema->term_id;
 	$category_link = get_category_link($category_id); // Link de la sección
@@ -124,7 +124,7 @@ if(!empty($GLOBALS['carrusel_seccion'])){
 ?>
 
 <div id="post-<?php the_ID(); ?>">
-	<div class="position-relative toto5">
+	<div class="position-relative">
 	<!-- IMAGEN DE NOTA -->
 		<div class="contenedor-media d-flex justify-content-center align-items-center" style="background-image: url( <?php echo $featured_img_url; ?> );">
 			<!-- Icono tipo de contenido -->
@@ -191,6 +191,8 @@ if(!empty($GLOBALS['carrusel_seccion'])){
 			</h4>
 		</div>
 	</div>
-	<!-- MODAL ICONOS COMPARTIR -->
-	<?php require get_template_directory() . '/inc/modal-compartir.php'; ?>
+	<!-- ICONOS COMPARTIR -->
+	<div class="d-sm-none">
+		<?php require get_template_directory() . '/inc/iconos-compartir.php'; ?>
+	</div>
 </div>

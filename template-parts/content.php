@@ -4,14 +4,14 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package posta
+ * @package postamx
  * 
  * Accedes a el si existe una llamada de un get_template_part y esta funcion no encuentra el template part.
  * 
  */
   
 // Imagen destacada
-$featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '360x202');
+$featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '720x405');
 if (empty($featured_img_url)){
   $featured_img_url = get_theme_mod('default_news_image');
 }
@@ -80,12 +80,12 @@ if (empty($featured_img_url)){
     </div>
     <!-- ENCABEZADO DE NOTA -->
     <div class="encabezado-nota mt-2">
-      <h4 class="titulo-de-nota">
+      <h5 class="titulo-de-nota">
         <a class="stretched-link" href="<?php the_permalink(); ?>" title="<?php echo esc_html(get_the_title()); ?>"><?php echo esc_html(get_the_title()); ?></a>
-      </h4>
+      </h5>
     </div>
   </div>
-  <!-- Modal iconos compartir -->
-  <?php require get_template_directory() . '/inc/modal-compartir.php'; ?>
+  <!-- ICONOS COMPARTIR -->
+  <?php require get_template_directory() . '/inc/iconos-compartir.php'; ?>
 
 </div>

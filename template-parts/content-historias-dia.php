@@ -4,13 +4,20 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package posta
+ * @package postamx
  * 
  * 
  */?>
 
 <?php
+require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
+
+
+
 	$titulo_carrusel_historias_del_dia = get_sub_field('titulo_carrusel_historias_del_dia');
+	if(!empty($titulo_carrusel_historias_del_dia)){
+		$titulo = '<h2 class="encabezado-titulo flecha">'.$titulo_carrusel_historias_del_dia.'</h2>';
+	}
 	$notas_historias_del_dia = get_sub_field('notas_historias_del_dia');
 	$mostrar_descripcion = get_sub_field('mostrar_descripcion');
 	if($mostrar_descripcion){
@@ -19,21 +26,20 @@
 	}
 
 	if ( $notas_historias_del_dia ) { ?>
-		<div class="container mt-6 toto1 container-lg">
+		<div class="container mt-6 container-lg">
 			<div class="row">
 				<div class="col">
-
 					<!-- ENCABEZADO DE CARRUSEL -->
 					<div class="encabezado">
-						<h2 class="encabezado-titulo flecha"><?php echo $titulo_carrusel_historias_del_dia; ?></h2>
+						<?php echo $titulo?>
 						<?php echo $descripcion_carrusel; ?>
 					</div>
 					<!-- CARRUSEL NOTAS DEL DÍA -->
-					<div class="owl-carousel owl-carousel-style-four carrusel-tipo-tres">
+					<div class="owl-carousel carrusel-tipo-tres">
 						<?php
 						foreach ($notas_historias_del_dia as $post) {
 						setup_postdata($post); 
-						$featured_img_url_small = get_the_post_thumbnail_url(get_the_ID(), '360x202');
+							$featured_img_url_small = get_the_post_thumbnail_url(get_the_ID(), '360x202');
 							$featured_img_url_small_retina = get_the_post_thumbnail_url(get_the_ID(), '720x405');
 							$featured_img_url_medium = get_the_post_thumbnail_url(get_the_ID(), '550x309');
 							$featured_img_url_medium_retina = get_the_post_thumbnail_url(get_the_ID(), '1100x618');
@@ -43,20 +49,35 @@
 							// De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
 							if ($mobile_browser > 0) {
 								//print 'is mobile';
-								$featured_img_url = $featured_img_url_medium;		
+								$featured_img_url = $featured_img_url_small_retina;
 							}elseif ($tablet_browser > 0) {
 								//print 'is tablet';
-								$featured_img_url = $featured_img_url_medium_retina;	
+								$featured_img_url = $featured_img_url_small_retina;
 							}else {
 								//print 'is desktop';
-								$featured_img_url = $featured_img_url_small_retina;		
-							} 
+								$featured_img_url = $featured_img_url_small;
+							}
+							
+							//obtiene obtiene la categoria principal
+							$categoria = get_primary_category(get_the_ID(), 'category');
+							// categoria principal con el yoast
+							if($categoria){
+								$category_name = $categoria->name;
+								$category_id = $categoria->term_id;
+							}
+							//la categoria  seleccionado  sin el yoast
+							if(empty($category_name)){
+								$category_name = $categoria[0]->name;
+								$category_id = $categoria[0]->term_id;
+							}
+							$category_link = get_category_link($category_id);
+							$category_description  = category_description($category_id);
+
 							?>
 							<div class="c-item">
 								<div class="position-relative">
-
 									<!-- IMAGEN DE NOTA -->
-									<div class="contenedor-media d-flex justify-content-center align-items-center toto5" style="background-image: url(<?php echo $featured_img_url ?>);">
+									<div class="contenedor-media d-flex justify-content-center align-items-center" style="background-image: url(<?php echo $featured_img_url ?>);">
 
 										<!-- Icono tipo de contenido -->
 										<div>
@@ -113,15 +134,10 @@
 											?>
 										</div>
 									</div>
-
 									<!-- ENCABEZADO DE NOTA -->
 									<div class="encabezado-nota mt-2">
 										<!-- Sección de nota -->
 										<div class="categoria">
-											<?php $category_object = get_the_category();
-											$category_id = $category_object[0]->term_id;
-											$category_name = $category_object[0]->name; //nombre de la sección
-											$category_link = get_category_link($category_id); // Link de la sección ?>
 											<a href="<?php echo $category_link; ?>"><?php echo $category_name ?></a>
 										</div>
 										<!-- Título de nota -->
@@ -129,10 +145,11 @@
 											<a class="stretched-link" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php echo esc_html(get_the_title()); ?></a>
 										</h4>
 									</div>
-
 								</div>
-								<!-- Modal iconos compartir -->
-								<?php require get_template_directory() . '/inc/modal-compartir.php'; ?>
+								<!-- ICONOS COMPARTIR -->
+								<div class="d-sm-none">
+									<?php require get_template_directory() . '/inc/iconos-compartir.php'; ?>
+								</div>
 							</div>
 						<?php }
 						wp_reset_postdata();

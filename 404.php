@@ -4,23 +4,24 @@
  *
  * @link https://codex.wordpress.org/Creating_an_Error_404_Page
  *
- * @package posta
+ * @package postamx
  */
 
 get_header();
 ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main py-7 py-md-10">
+		<main id="main" class="site-main py-7 pt-md-10 pb-md-8">
 
-			<div class="container container-lg<<<">
+			<div class="container container-lg">
 				<div class="row">
 					<div class="col text-center">
-						<h2><?php esc_html_e( 'Esta página no puede ser encontrada.', 'posta' ); ?></h2>
-						<p><?php esc_html_e( 'Parece que no se encontró nada en esta ubicación.', 'posta' ); ?></p>
+						<h1 class="display-3">404</h1>
+						<h2 class="mt-5">No se encontró la página</h2>
+						<p class="text-muted">No hay nada en esta ubicación</p>
 					</div>
 				</div>
-			</div><!-- .error-404 -->
+			</div>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

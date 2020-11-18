@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package posta
+ * @package postamx
  * 
  * 
  */
@@ -14,13 +14,13 @@ $mostrar_descripcion = get_sub_field('mostrar_descripcion');
 $section_name = get_term_by('id', $category_id, 'category');//
 //$GLOBALS['carrusel_seccion'] = $section_name;
 $slider_type = get_sub_field('tipo_de_carrusel_seccion'); // Tipo de slider
-$GLOBALS['tipo_de_carrusel_2'] = $slider_type;	
+$GLOBALS['tipo_de_carrusel_2'] = $slider_type;
 $category_link = get_category_link($category_id); // Link de la sección
 $category_description = category_description($category_id); // Descripción de la sección*/
 
 ?>
 <!-- Contenedor de carusel -->
-<div class="container mt-6 toto5 container-lg<<<">
+<div class="container mt-6 container-lg<<<">
 	<div class="row">
 		<div class="col">
 
@@ -38,15 +38,15 @@ $category_description = category_description($category_id); // Descripción de l
 			<div id="carousel-<?php echo $category_id; ?>" class="owl-carousel owl-<?php echo $slider_type; ?> <?php echo $slider_type; ?>">
 				<?php
 					$output = 'objects';
-					$args = array ( 
-						'post_type' => 'post', 
-						'cat' => $category_id,
+					$args = array (
+						'post_type'      => 'post',
+						'cat'            => $category_id,
 						'posts_per_page' => 6,
-						'orderby' => 'date', 
-						'order' => 'DESC' 
+						'orderby'        => 'date',
+						'order'          => 'DESC'
 					);
-					$the_query = new WP_Query( $args, $output );				
-					if ( $the_query->have_posts() ) :	
+					$the_query = new WP_Query( $args, $output );
+					if ( $the_query->have_posts() ) :
 						while ( $the_query->have_posts() ) :
 							$the_query->the_post(); ?>
 							<div class="c-item">

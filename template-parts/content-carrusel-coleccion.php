@@ -4,12 +4,12 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package posta
+ * @package postamx
  * 
  * 
  */
 require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
-$titulo_del_carrusel = get_sub_field('titulo_del_carrusel');;
+$titulo_del_carrusel = get_sub_field('titulo_del_carrusel');
 $notas_coleccion = get_sub_field('notas_coleccion');
 $tipo_de_carrusel_coleccion = get_sub_field('tipo_de_carrusel_coleccion');
 $estilo_de_carrusel_coleccion = get_sub_field('estilo_de_carrusel_coleccion');
@@ -17,26 +17,24 @@ $imagen_de_fondo_coleccion = get_sub_field('imagen_de_fondo_coleccion');
 $color_de_fondo_coleccion = get_sub_field('color_de_fondo_coleccion');
 $color_de_texto_coleccion = get_sub_field('color_de_texto_coleccion');
 $mostrar_descripcion = get_sub_field('mostrar_descripcion');
+
+if($titulo_del_carrusel){
+	$titulo ='<h2 class="encabezado-titulo flecha">'.$titulo_del_carrusel.'</h2>';
+}
 if($mostrar_descripcion){
 	$descripcion_del_carrusel_coleccion = get_sub_field('descripcion_del_carrusel');
 	$descripcion_del_carrusel = '<p class="encabezado-descripcion">'.$descripcion_del_carrusel_coleccion.'</p>';
 }
-
-
 if ( $notas_coleccion ) { ?>
-
-	<div class="<?php echo $estilo_de_carrusel_coleccion; ?> <?php echo $color_de_texto_coleccion; ?> mt-6 toto5" style="background-image: url( <?php echo $imagen_de_fondo_coleccion; ?> ); background-color: <?php echo $color_de_fondo_coleccion; ?>;">
-
-		<div class="container container-lg<<< toto3">
+	<div class="<?php echo $estilo_de_carrusel_coleccion; ?> <?php echo $color_de_texto_coleccion; ?> mt-6" style="background-image: url( <?php echo $imagen_de_fondo_coleccion; ?> ); background-color: <?php echo $color_de_fondo_coleccion; ?>;">
+		<div class="container container-lg<<<">
 			<div class="row">
 				<div class="col">
-
 					<!-- ENCABEZADO DE CARRUSEL -->
 					<div class="encabezado">
-						<h2 class="encabezado-titulo flecha"><?php echo $titulo_del_carrusel; ?></h2>
+						<?php echo $titulo; ?>
 						<?php echo $descripcion_del_carrusel; ?>
 					</div>
-
 					<!-- CARRUSEL COLECCIÓN -->
 					<div class="owl-carousel owl-<?php echo $tipo_de_carrusel_coleccion; ?> <?php echo $tipo_de_carrusel_coleccion; ?>">
 						<?php
@@ -54,11 +52,11 @@ if ( $notas_coleccion ) { ?>
 								//print 'is mobile';
 								if($tipo_de_carrusel_coleccion){
 									if($tipo_de_carrusel_coleccion == 'carrusel-tipo-uno'){
-										$featured_img_url = $featured_img_url_medium_retina;	
+										$featured_img_url = $featured_img_url_small_retina;
 									}elseif($tipo_de_carrusel_coleccion == 'carrusel-tipo-dos'){
-										$featured_img_url = $featured_img_url_small_retina;	
+										$featured_img_url = $featured_img_url_small_retina;
 									}elseif($tipo_de_carrusel_coleccion == 'carrusel-tipo-tres'){
-										$featured_img_url = $featured_img_url_small;	
+										$featured_img_url = $featured_img_url_small_retina;
 									}
 									$tipo_de_carrusel = "";
 								}
@@ -66,11 +64,11 @@ if ( $notas_coleccion ) { ?>
 								//print 'is tablet';
 								if($tipo_de_carrusel_coleccion){
 									if($tipo_de_carrusel_coleccion == 'carrusel-tipo-uno'){
-										$featured_img_url = $featured_img_url_medium_retina;	
+										$featured_img_url = $featured_img_url_large;
 									}elseif($tipo_de_carrusel_coleccion == 'carrusel-tipo-dos'){
-										$featured_img_url = $featured_img_url_small_retina;	
+										$featured_img_url = $featured_img_url_small_retina;
 									}elseif($tipo_de_carrusel_coleccion == 'carrusel-tipo-tres'){
-										$featured_img_url = $featured_img_url_small;	
+										$featured_img_url = $featured_img_url_small_retina;
 									}
 									$tipo_de_carrusel = "";
 								}
@@ -79,16 +77,30 @@ if ( $notas_coleccion ) { ?>
 								//print 'is desktop';
 								if($tipo_de_carrusel_coleccion){
 									if($tipo_de_carrusel_coleccion == 'carrusel-tipo-uno'){
-										$featured_img_url = $featured_img_url_medium_retina;	
+										$featured_img_url = $featured_img_url_medium_retina;
 									}elseif($tipo_de_carrusel_coleccion == 'carrusel-tipo-dos'){
-										$featured_img_url = $featured_img_url_small_retina;	
+										$featured_img_url = $featured_img_url_medium;
 									}elseif($tipo_de_carrusel_coleccion == 'carrusel-tipo-tres'){
-										$featured_img_url = $featured_img_url_small;	
+										$featured_img_url = $featured_img_url_small;
 									}
 									$tipo_de_carrusel = "";
 								}
-							} 
+							}
 
+							//obtiene obtiene la categoria principal
+							$categoria = get_primary_category(get_the_ID(), 'category');
+							// categoria principal con el yoast
+							if($categoria){
+								$category_name = $categoria->name;
+								$category_id = $categoria->term_id;
+							}
+							//la categoria  seleccionado  sin el yoast
+							if(empty($category_name)){
+								$category_name = $categoria[0]->name;
+								$category_id = $categoria[0]->term_id;
+							}
+							$category_link = get_category_link($category_id);
+							$category_description  = category_description($category_id);
 							?>
 
 							<div class="c-item">
@@ -154,10 +166,6 @@ if ( $notas_coleccion ) { ?>
 									<div class="encabezado-nota mt-2">
 										<!-- Sección de nota -->
 										<div class="categoria">
-											<?php $category_object = get_the_category();
-											$category_id = $category_object[0]->term_id;
-											$category_name = $category_object[0]->name; //nombre de la sección
-											$category_link = get_category_link($category_id); // Link de la sección ?>
 											<a href="<?php echo $category_link; ?>"><?php echo $category_name ?></a>
 										</div>
 										<!-- Título de nota -->
@@ -166,8 +174,10 @@ if ( $notas_coleccion ) { ?>
 										</h4>
 									</div>
 								</div>
-								<!-- Modal iconos compartir -->
-								<?php require get_template_directory() . '/inc/modal-compartir.php'; ?>
+								<!-- ICONOS COMPARTIR -->
+								<div class="d-sm-none">
+									<?php require get_template_directory() . '/inc/iconos-compartir.php'; ?>
+								</div>
 							</div>
 						<?php }
 						wp_reset_postdata();

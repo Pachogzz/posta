@@ -1,10 +1,10 @@
 <?php
 /**
- * posta functions and definitions
+ * postamx functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package posta
+ * @package postamx
  */
 
 /****************************************************************
@@ -13,7 +13,7 @@
 *																*
 ****************************************************************/
 
-if ( ! function_exists( 'posta_setup' ) ) :
+if ( ! function_exists( 'punto_u_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -21,7 +21,7 @@ if ( ! function_exists( 'posta_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function posta_setup() {
+	function punto_u_setup() {
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
 
@@ -49,9 +49,9 @@ if ( ! function_exists( 'posta_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in 3 locations.
 		register_nav_menus( array(
-      'menu-principal' => esc_html__( 'Menú principal', 'posta' ),
-      'menu-2' => esc_html__( 'Menú 2', 'posta' ),
-      'menu-pie-de-pagina' => esc_html__( 'Menú pie de página', 'posta' )
+      'menu-principal' => esc_html__( 'Menú principal', 'postamx' ),
+      'menu-2' => esc_html__( 'Menú 2', 'postamx' ),
+      'menu-pie-de-pagina' => esc_html__( 'Menú pie de página', 'postamx' )
 		) );
 
 		/*
@@ -99,7 +99,8 @@ if ( ! function_exists( 'posta_setup' ) ) :
 		) );
 	}
 endif;
-add_action( 'after_setup_theme', 'posta_setup' );
+add_action( 'after_setup_theme', 'punto_u_setup' );
+
 
 /****************************************************************
 *																*
@@ -122,30 +123,14 @@ add_image_size( '3840x2160', 3840, 2160, true, array( 'center', 'center' ) ); //
 // add_image_size( 'full', 1920, 0 );
 
 /**
- * Calculate image sizes
- */
-// function posta_content_image_sizes_attr($sizes, $size) {
-//   $width = $size[0];
-//   if ($width > 910) {
-//     return '(max-width: 768px) 92vw, (max-width: 992px) 690px, (max-width: 1200px) 910px, 1110px';
-//   }
-//   if ($width < 910 && $width > 690) {
-//     return '(max-width: 768px) 360px, (max-width: 992px) 550px, 1920px';
-//   }
-//   return '(max-width: ' . $width . 'px) 92vw, ' . $width . 'px';
-// }
-// add_filter('wp_calculate_image_sizes', 'posta_content_image_sizes_attr', 10 , 2);
-
-
-/**
  * big_image_size_threshold
  */
 add_filter( 'big_image_size_threshold', '__return_false' );
 
-// function posta_big_image_size_threshold( $threshold ) {
+// function magentawp_big_image_size_threshold( $threshold ) {
 //   return 1920; // new threshold
 // }
-// add_filter('big_image_size_threshold', 'posta_big_image_size_threshold', 999, 1);
+// add_filter('big_image_size_threshold', 'magentawp_big_image_size_threshold', 999, 1);
 
 /**
  * Remove max srcset image width
@@ -157,12 +142,11 @@ function remove_max_srcset_image_width( $max_width ) {
 }
 
 /**
- * Disable default generated image sizes
+ * Disable some default generated image sizes
  */
 function remove_default_image_sizes( $sizes ) {
   
   /* Default WordPress */
-  // unset( $sizes[ 'thumbnail' ]);
   unset( $sizes[ 'medium_large' ]);
   unset( $sizes[ 'medium' ]);
   unset( $sizes[ 'large' ]);
@@ -211,43 +195,34 @@ function punto_u_content_width() {
 }
 add_action( 'after_setup_theme', 'punto_u_content_width', 0 );
 
+
 /****************************************************************
 *																*
 *                            WIDGETS                            *
 *																*
 ****************************************************************/
 
-function punto_u_widgets_init() {
+function codmag_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Publicidad', 'posta' ),
+		'name'          => esc_html__( 'Sidebar 1', 'postamx' ),
 		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Agrega imagenes de publicidad aquí', 'posta' ),
+		'description'   => esc_html__( 'Agrega tus widgets para Sidebar 1', 'postamx' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="hidden">',
 		'after_title'   => '</h2>',
 	) );
 }
-add_action( 'widgets_init', 'punto_u_widgets_init' );
+add_action( 'widgets_init', 'codmag_widgets_init' );
 
 function unregister_default_wp_widgets(){
-  unregister_widget('WP_Widget_Archives');
-  unregister_widget('WP_Widget_Media_Audio');
-  unregister_widget('WP_Widget_Search');
-  unregister_widget('WP_Widget_Recent_Posts');
-  unregister_widget('WP_Widget_Media_Gallery');
-  unregister_widget('WP_Nav_Menu_Widget');
-  unregister_widget('WP_Widget_Meta');
   unregister_widget('WP_Widget_Tag_Cloud');
   unregister_widget('WP_Widget_RSS');
-  unregister_widget('WP_Widget_Text');
-  unregister_widget('WP_Widget_Media_Video');
   unregister_widget('WP_Widget_Calendar');
-  unregister_widget('WP_Widget_Categories');
   unregister_widget('WP_Widget_Recent_Comments');
-  unregister_widget('WP_Widget_Pages');
 }
 add_action('widgets_init', 'unregister_default_wp_widgets' );
+
 
 /****************************************************************
 *																*
@@ -256,17 +231,18 @@ add_action('widgets_init', 'unregister_default_wp_widgets' );
 ****************************************************************/
       
 function punto_u_scripts() {
-	wp_enqueue_style( 'posta-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'postamx-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'posta-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_script( 'postamx-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
-	wp_enqueue_script( 'posta-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'postamx-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'punto_u_scripts' );
+
 
 /****************************************************************
 *																*
@@ -290,16 +266,17 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer/customizer-theme.php';
+
 
 /****************************************************************
 *																*
@@ -307,7 +284,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 *																*
 ****************************************************************/
 
-require_once 'inc/customizer.php';
+require_once 'inc/customizer/customizer-theme.php';
 
 // Hidden the options that will be not used in customizer section
 function theme_option_remove( $wp_customize ) {
@@ -319,6 +296,7 @@ function theme_option_remove( $wp_customize ) {
 
 // Hidden the options that will be not used in customizer section
 add_action( 'customize_register', 'theme_option_remove', 15 );
+
 
 /****************************************************************
 *																*
@@ -334,38 +312,11 @@ add_action('admin_bar_menu', 'remove_from_admin_bar', 999);
 
 // Function to remove default admin menu links
 function remove_menus() { 
-	// remove_menu_page('edit.php');
   remove_menu_page('edit-comments.php');
 }
 // Removing some default admin menu links
 add_action( 'admin_menu', 'remove_menus' );
 
-// Menu for "accesos directos" in admin bar
-function accesos_directos($wp_admin_bar){
-
-  $args = array(
-    'id'     => 'accesos_directos',
-    'title' =>  'Accesos directos',
-    'meta'   => array( 'class' => 'first-toolbar-group' ),
-  );
-  $wp_admin_bar->add_node( $args );
-
-  // add child items
-  $args = array();
-
-  array_push($args,array(
-    'id'        =>  'personalizarinicio',
-    'title'     =>  'Personalizar Inicio',
-    'href'      =>  get_site_url() . '/wp-admin/post.php?post=2&action=edit',
-    'parent'    =>  'accesos_directos',
-  ));
-
-  foreach( $args as $each_arg){
-    $wp_admin_bar->add_node($each_arg);
-  }
-
-}
-add_action( 'admin_bar_menu', 'accesos_directos', 900 );
 
 /****************************************************************
 *																*
@@ -386,6 +337,7 @@ function remove_comments_column_in_pages($column) {
   return $column;
 }
 add_filter('manage_pages_columns', 'remove_comments_column_in_pages');
+
 
 /****************************************************************
 *																*
@@ -434,6 +386,7 @@ function remove_post_format_filter($post_type){
 }
 add_action( 'restrict_manage_posts', 'remove_post_format_filter', 10, 2);
 
+
 /****************************************************************
 *																*
 *                          TAXONOMIES                           *
@@ -476,7 +429,7 @@ function rename_default_taxonomy() {
 }
 add_action( 'init', 'rename_default_taxonomy' );
 
-// Register own taxonomy for "Temas"
+// Register taxonomy "Temas"
 add_action( 'init', 'create_theme_taxonomy' );
 function create_theme_taxonomy() {
   $labels = array(
@@ -512,6 +465,7 @@ function create_theme_taxonomy() {
   flush_rewrite_rules();
 }
 
+
 /****************************************************************
 *																*
 *                          POST TYPES                           *
@@ -536,475 +490,6 @@ function cp_change_post_object() {
     $labels->add_new = 'Agregar noticia';
 }
 
-/****************************************************************
-*																*
-*                         AJAX FUNCTIONS                        *
-*																*
-****************************************************************/
-
-
-// Method used to add the load more script and generate a global var
-function my_theme_enqueue_scripts() {
-  // Calling new js for the load more button in posts category
-  wp_enqueue_script  ( 'custom_js', get_template_directory_uri().'/assets/js/custom-ajax.js', array('jquery'), '', true );
-  wp_localize_script ( 'custom_js', 'ajax_posts', array(
-    'ajaxurl' => admin_url( 'admin-ajax.php' ),
-    'noposts' => __('No older posts found', 'divi'),
-    'baseUrl' => get_bloginfo('url'),
-  ));
-}
-add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
-
-// Method used for loading more post in category section
-function more_post_ajax(){
-    $taxonomy = ( isset($_POST['taxonomy']) ) ? $_POST['taxonomy'] : '';
-  	$cat   = ( isset($_POST['cat']) ) ? $_POST['cat'] : '';
-  	$ppp   = ( isset($_POST["ppp"]) ) ? $_POST["ppp"] : 9;
-  	//$ppp = 9;
-  	$pst   = ( isset($_POST['pst']) ) ? $_POST['pst'] : 'post';
-  	$fpt   = ( isset($_POST['fpt']) ) ? $_POST['fpt'] : 'recent_added';
-  	$page  = ( isset($_POST['pageNumber']) ) ? $_POST['pageNumber'] : 0;
-
-  	header("Content-Type: text/html");
-
-  	if ($taxonomy == "theme" || $taxonomy == "post_tag"){
-    	$args = array (
-		'suppress_filters' => true,
-		'post_type'        => $pst,
-		'posts_per_page'   => $ppp,
-		'tax_query' => array(
-			array(
-			'taxonomy' => $taxonomy,
-			'field'    => 'name',
-			'terms'    => $cat,
-			),
-		),
-		'paged'            => $page,
-		'orderby'          => 'date',
-		'order'            => 'DESC'
-    	);
-	}else if ($taxonomy == "category"){
-		$args = array (
-		'suppress_filters' => true,
-		'post_type'        => $pst,
-		'posts_per_page'   => $ppp,
-		'cat'              => $cat,
-		'paged'            => $page,
-		'orderby'          => 'date',
-		'order'            => 'DESC'
-		);
-	}else{
-		$args = array ();
-	}
-	
-
-	$loop = new WP_Query($args);
-
-	if ( $loop->have_posts() ) :
-		$totalp = count($loop->posts);
-		while ( $loop->have_posts() ) : $loop->the_post();
-		get_template_part( 'template-parts/content', 'content' );
-		endwhile;
-		wp_reset_postdata();
-	else:
-		echo 'no hay posts';
-	endif;
-	wp_reset_postdata();
-}
-add_action('wp_ajax_nopriv_more_post_ajax', 'more_post_ajax');
-add_action('wp_ajax_more_post_ajax', 'more_post_ajax');
-
-// Method used for loading more viewed posts
-function filter_post_ajax(){
-  $cat   = ( isset($_POST['cat']) ) ? $_POST['cat'] : '';
-  $ppp   = ( isset($_POST["ppp"]) ) ? $_POST["ppp"] : 6;
-  $pst   = ( isset($_POST['pst']) ) ? $_POST['pst'] : 'post';
-  $fpt   = ( isset($_POST['fpt']) ) ? $_POST['fpt'] : 'recent_added';
-  $cpt   = ( isset($_POST['cpt']) ) ? $_POST['cpt'] : '';
-  $page  = ( isset($_POST['pageNumber']) ) ? $_POST['pageNumber'] : 0;
-  $category_link  = get_category_link($cat);
-
-  $outarr = array();
-  $outhtm = '';
-
-  if ( $pst != 'post' ) {
-    // arg for post types(noticias or eventos)
-    if ( $fpt=='recent_added' ) {
-      // arg for recent added posts by post type
-      $args = array(
-        'suppress_filters' => true,
-        'post_type'      => $pst,
-        'posts_per_page' => $ppp,
-        'paged'          => $page,
-        'orderby'        => 'date',
-        'order'          => 'DESC'
-      );
-    } else {
-      // arg for more viewed posts by post type
-      $args = array(
-        'suppress_filters' => true,
-        'post_type'        => $pst,
-        'meta_key'         => 'post_views_count',
-        'posts_per_page'   => $ppp,
-        'paged'            => $page,
-        'orderby'          => 'meta_value_num',
-        'order'            => 'DESC'
-      );
-    }
-  } else {
-    // arg for post by category(default)
-    if ( $fpt=='recent_added' ) {
-      // arg for recent added posts by category
-      $args = array (
-        'suppress_filters' => true,
-        'post_type'        => $pst,
-        'posts_per_page'   => $ppp,
-        'cat'              => $cat,
-        'paged'            => $page,
-        'orderby'          => 'date',
-        'order'            => 'DESC'
-      );
-    } else {
-      // arg for more viewed posts by category
-      $args = array (
-        'suppress_filters' => true,
-        'post_type'        => $pst,
-        'meta_key'         => 'post_views_count',
-        'posts_per_page'   => $ppp,
-        'cat'              => $cat,
-        'paged'            => $page,
-        'orderby'          => 'meta_value_num',
-        'order'            => 'DESC'
-    );
-    }
-  }
-
-  $loop = new WP_Query($args);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ------------------------------------
-// ------------------------------------
-// ------------------------------------
-// ------------------------------------
-// ------------------------------------
-// ------------------------------------
-  if ( $loop->have_posts() ) {
-    $totalp = count($loop->posts);
-    while ( $loop->have_posts() ) {
-      $loop->the_post();
-      $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-      if (empty($featured_img_url)){
-        $featured_img_url = get_theme_mod('default_news_image');
-      }
-
-      if ( $cpt=='carousel-style-one' ) {
-        $outhtm = '
-        <div class="c-item toto2">
-          <div class="contenedor-media d-flex justify-content-start align-items-start p-2 slider-style-1-b" style="background-image: url('.$featured_img_url.');">
-              <a class="link-a-nota" href="'.get_the_permalink().'"></a>
-              <img class="slider-style-media-1 hidden" src="'.$featured_img_url.'" alt="">
-          </div>';
-        if ( get_field( 'content_type', get_the_ID() ) == 'video' ) {
-          if ( get_field( 'video_news', get_the_ID() ) ) {
-            $video_iframe = get_field( 'video_news', get_the_ID() );
-                /*Autoplay Functionallity*/
-                if ( preg_match('/src="(.+?)"/', $video_iframe, $matches) ) {
-                  // Video source URL
-                  $src = $matches[1];
-                  // Add option to hide controls, enable HD, and do autoplay -- depending on provider
-                  $params = array(
-                    'autoplay' => 1
-                  );
-                  $new_src = add_query_arg($params, $src);
-                  $video_iframe = str_replace($src, $new_src, $video_iframe);
-                  // add extra attributes to iframe html
-                  $attributes = 'frameborder="0"';
-                  $video_iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $video_iframe);
-                }
-                /*Autoplay Functionallity*/
-            $video = '<div class="contenedor-media">'.$video_iframe.'</div>';
-          } else {
-            $video = 'No se puede mostrar el contenido.';
-          }
-          $clear = "'".$video."'";
-          $outhtm .= '<i class="fas fa-play media_file media-type-icon media-type-icon-top-left pl-1" data-media='.$clear.' data-toggle="tooltip" data-placement="right" title="Video"></i>';
-        } else if ( get_field( 'content_type', get_the_ID() ) == 'gif' ) {
-          if ( get_field( 'gif_news', get_the_ID() ) ) {
-            $gif_url = get_field('gif_news',get_the_ID());
-            $gifim = '<div class="contenedor-media"><img class="contenedor-media-item" src="'.$gif_url.'"></div>';
-          } else {
-            $gifim = 'No se puede mostrar el contenido.';
-          }
-          $clear = "'".$gifim."'";
-          $outhtm .= '<i class="fas fa-spinner media_file media-type-icon media-type-icon-top-left" data-media='.$clear.' data-toggle="tooltip" data-placement="right" title="Gif"></i>';
-        } else if ( get_field( 'content_type', get_the_ID() ) == 'audio' ) {
-          if ( get_field( 'audio_news', get_the_ID() ) ) {
-            $audio_iframe = get_field( 'audio_news', get_the_ID() );
-            $sound = '<div class="contenedor-media sound-iframe">'.$audio_iframe.'</div>';
-          } else {
-            $sound = 'No se puede mostrar el contenido.';
-          }
-          $clear = "'".$sound."'";
-          $outhtm .= '<i class="fas fa-volume-up media_file media-type-icon media-type-icon-top-left" data-media='.$clear.' data-toggle="tooltip" data-placement="right" title="Audio"></i>';
-        }
-        $outhtm .= '
-          <i class="fas fa-share-alt share-from-modal share-icon" data-title="'.esc_html(get_the_title()).'" data-excerpt="" data-link="'.get_the_permalink().'" data-img="'.$featured_img_url.'" data-toggle="tooltip" data-placement="left" title="Compartir"></i>
-          <div class="encabezado-nota">
-            <h4 class="titulo-de-nota">
-              <a class="texto-blanco" href="'.get_the_permalink().'">'.esc_html(get_the_title()).'</a>
-            </h4>
-            <div>[tags de la nota]</div>
-          </div>
-        </div>';
-        array_push($outarr, $outhtm);
-
-      } else if ( $cpt=='carousel-style-two' ) {
-        $outhtm = '
-        <div class="c-item toto2">
-          <div class="contenedor-media d-flex justify-content-start align-items-start p-2 slider-style-2-b" style="background-image: url('.$featured_img_url.');">
-            <a class="link-a-nota" href="'.get_the_permalink().'"></a>
-            <img class="slider-style-media-1 hidden" src="'.$featured_img_url.'" alt="">
-          </div>';
-        if ( get_field( 'content_type', get_the_ID() ) == 'video' ) {
-          if ( get_field( 'video_news', get_the_ID() ) ) {
-            $video_iframe = get_field( 'video_news', get_the_ID() );
-                /*Autoplay Functionallity*/
-                if ( preg_match('/src="(.+?)"/', $video_iframe, $matches) ) {
-                  // Video source URL
-                  $src = $matches[1];
-                  // Add option to hide controls, enable HD, and do autoplay -- depending on provider
-                  $params = array(
-                    'autoplay' => 1
-                  );
-                  $new_src = add_query_arg($params, $src);
-                  $video_iframe = str_replace($src, $new_src, $video_iframe);
-                  // add extra attributes to iframe html
-                  $attributes = 'frameborder="0"';
-                  $video_iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $video_iframe);
-                }
-                /*Autoplay Functionallity*/
-            $video = '<div class="contenedor-media">'.$video_iframe.'</div>';
-          } else {
-            $video = 'No se puede mostrar el contenido.';
-          }
-          $clear = "'".$video."'";
-          $outhtm .= '<i class="fas fa-play media_file media-type-icon media-type-icon-top-left pl-1" data-media='.$clear.' data-toggle="tooltip" data-placement="right" title="Video"></i>';
-        } else if ( get_field( 'content_type', get_the_ID() ) == 'gif' ) {
-          if ( get_field( 'gif_news', get_the_ID() ) ) {
-            $gif_url = get_field('gif_news',get_the_ID());
-            $gifim = '<div class="contenedor-media"><img class="contenedor-media-item" src="'.$gif_url.'"></div>';
-          } else {
-            $gifim = 'No se puede mostrar el contenido.';
-          }
-          $clear = "'".$gifim."'";
-          $outhtm .= '<i class="fas fa-spinner media_file media-type-icon media-type-icon-top-left" data-media='.$clear.' data-toggle="tooltip" data-placement="right" title="Gif"></i>';
-        } else if ( get_field( 'content_type', get_the_ID() ) == 'audio' ) {
-          if ( get_field( 'audio_news', get_the_ID() ) ) {
-            $audio_iframe = get_field( 'audio_news', get_the_ID() );
-            $sound = '<div class="contenedor-media sound-iframe">'.$audio_iframe.'</div>';
-          } else {
-            $sound = 'No se puede mostrar el contenido.';
-          }
-          $clear = "'".$sound."'";
-          $outhtm .= '<i class="fas fa-volume-up media_file media-type-icon media-type-icon-top-left" data-media='.$clear.' data-toggle="tooltip" data-placement="right" title="Audio"></i>';
-        }
-        $outhtm .= '
-          <i class="fas fa-share-alt share-from-modal share-icon" data-title="'.esc_html(get_the_title()).'" data-excerpt="" data-link="'.get_the_permalink().'" data-img="'.$featured_img_url.'" data-toggle="tooltip" data-placement="left" title="Compartir"></i>
-          <div class="encabezado-nota">
-            <h4 class="titulo-de-nota">
-              <a class="texto-blanco" href="'.get_the_permalink().'">'.esc_html(get_the_title()).'</a>
-            </h4>
-            <div>[tags de la nota]</div>
-          </div>
-        </div>';
-        array_push($outarr, $outhtm);
-
-      } else if ( $cpt=='carousel-style-three' ) {
-        $outhtm = '
-        <div class="c-item toto2">
-          <div class="contenedor-media d-flex justify-content-start align-items-start p-2 slider-style-3-b" style="background-image: url('.$featured_img_url.');">
-            <a class="link-a-nota" href="'.get_the_permalink().'"></a>
-            <img class="slider-style-media-1 hidden" src="'.$featured_img_url.'" alt="">
-          </div>';
-          if ( get_field( 'content_type', get_the_ID() ) == 'video' ) {
-            if ( get_field( 'video_news', get_the_ID() ) ) {
-              $video_iframe = get_field( 'video_news', get_the_ID() );
-                /*Autoplay Functionallity*/
-                if ( preg_match('/src="(.+?)"/', $video_iframe, $matches) ) {
-                  // Video source URL
-                  $src = $matches[1];
-                  // Add option to hide controls, enable HD, and do autoplay -- depending on provider
-                  $params = array(
-                    'autoplay' => 1
-                  );
-                  $new_src = add_query_arg($params, $src);
-                  $video_iframe = str_replace($src, $new_src, $video_iframe);
-                  // add extra attributes to iframe html
-                  $attributes = 'frameborder="0"';
-                  $video_iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $video_iframe);
-                }
-                /*Autoplay Functionallity*/
-              $video = '<div class="contenedor-media">'.$video_iframe.'</div>';
-            } else {
-              $video = 'No se puede mostrar el contenido.';
-            }
-            $clear = "'".$video."'";
-            $outhtm .= '<i class="fas fa-play media_file media-type-icon media-type-icon-top-left pl-1" data-media='.$clear.' data-toggle="tooltip" data-placement="right" title="Video"></i>';
-          } else if ( get_field( 'content_type', get_the_ID() ) == 'gif' ) {
-            if ( get_field( 'gif_news', get_the_ID() ) ) {
-              $gif_url = get_field('gif_news',get_the_ID());
-              $gifim = '<div class="contenedor-media"><img class="contenedor-media-item" src="'.$gif_url.'"></div>';
-            } else {
-              $gifim = 'No se puede mostrar el contenido.';
-            }
-            $clear = "'".$gifim."'";
-            $outhtm .= '<i class="fas fa-spinner media_file media-type-icon media-type-icon-top-left" data-media='.$clear.' data-toggle="tooltip" data-placement="right" title="Gif"></i>';
-          } else if ( get_field( 'content_type', get_the_ID() ) == 'audio' ) {
-            if ( get_field( 'audio_news', get_the_ID() ) ) {
-              $audio_iframe = get_field( 'audio_news', get_the_ID() );
-              $sound = '<div class="contenedor-media sound-iframe">'.$audio_iframe.'</div>';
-            } else {
-              $sound = 'No se puede mostrar el contenido.';
-            }
-            $clear = "'".$sound."'";
-            $outhtm .= '<i class="fas fa-volume-up media_file media-type-icon media-type-icon-top-left" data-media='.$clear.' data-toggle="tooltip" data-placement="right" title="Audio"></i>';
-          }
-          $outhtm .= '
-            <i class="fas fa-share-alt share-from-modal share-icon" data-title="'.esc_html(get_the_title()).'" data-excerpt="" data-link="'.get_the_permalink().'" data-img="'.$featured_img_url.'" data-toggle="tooltip" data-placement="left" title="Compartir"></i>
-            <div class="encabezado-nota">
-              <h4 class="titulo-de-nota">
-                <a class="texto-blanco" href="'.get_the_permalink().'">'.esc_html(get_the_title()).'</a>
-              </h4>
-              <div>[tags de la nota]</div>
-            </div>
-            <div class="encabezado-nota-bg"></div>
-          </div>';
-          array_push($outarr, $outhtm);
-
-      } else if ( $cpt=='carousel-style-four' ) {
-        $outhtm = '
-        <div class="c-item toto2">
-          <div class="contenedor-media d-flex justify-content-start align-items-start p-2 slider-style-4-b" style="background-image: url('.$featured_img_url.');">
-            <a class="link-a-nota" href="'.get_the_permalink().'"></a>
-            <img class="slider-style-media-1 hidden" src="'.$featured_img_url.'" alt="">
-          </div>';
-          if ( get_field( 'content_type', get_the_ID() ) == 'video' ) {
-            if ( get_field( 'video_news', get_the_ID() ) ) {
-              $video_iframe = get_field( 'video_news', get_the_ID() );
-                /*Autoplay Functionallity*/
-                if ( preg_match('/src="(.+?)"/', $video_iframe, $matches) ) {
-                  // Video source URL
-                  $src = $matches[1];
-                  // Add option to hide controls, enable HD, and do autoplay -- depending on provider
-                  $params = array(
-                    'autoplay' => 1
-                  );
-                  $new_src = add_query_arg($params, $src);
-                  $video_iframe = str_replace($src, $new_src, $video_iframe);
-                  // add extra attributes to iframe html
-                  $attributes = 'frameborder="0"';
-                  $video_iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $video_iframe);
-                }
-                /*Autoplay Functionallity*/
-              $video = '<div class="contenedor-media">'.$video_iframe.'</div>';
-            } else {
-              $video = 'No se puede mostrar el contenido.';
-            }
-            $clear = "'".$video."'";
-            $outhtm .= '<i class="fas fa-play media_file media-type-icon media-type-icon-top-left pl-1" data-media='.$clear.' data-toggle="tooltip" data-placement="right" title="Video"></i>';
-          } else if ( get_field( 'content_type', get_the_ID() ) == 'gif' ) {
-            if ( get_field( 'gif_news', get_the_ID() ) ) {
-              $gif_url = get_field('gif_news',get_the_ID());
-              $gifim = '<div class="contenedor-media"><img class="contenedor-media-item" src="'.$gif_url.'"></div>';
-            } else {
-              $gifim = 'No se puede mostrar el contenido.';
-            }
-            $clear = "'".$gifim."'";
-            $outhtm .= '<i class="fas fa-spinner media_file media-type-icon media-type-icon-top-left" data-media='.$clear.' data-toggle="tooltip" data-placement="right" title="Gif"></i>';
-          } elseif ( get_field( 'content_type', get_the_ID() ) == 'audio' ) {
-            if ( get_field( 'audio_news', get_the_ID() ) ) {
-              $audio_iframe = get_field( 'audio_news', get_the_ID() );
-              $sound = '<div class="contenedor-media sound-iframe">'.$audio_iframe.'</div>';
-            } else {
-              $sound = 'No se puede mostrar el contenido.';
-            }
-            $clear = "'".$sound."'";
-            $outhtm .= '<i class="fas fa-volume-up media_file media-type-icon media-type-icon-top-left" data-media='.$clear.' data-toggle="tooltip" data-placement="right" title="Audio"></i>';
-          }
-          $outhtm .= '
-            <i class="fas fa-share-alt share-from-modal share-icon" data-title="'.esc_html(get_the_title()).'" data-excerpt="" data-link="'.get_the_permalink().'" data-img="'.$featured_img_url.'" data-toggle="tooltip" data-placement="left" title="Compartir"></i>
-            <div class="encabezado-nota">
-              <h4 class="titulo-de-nota">
-                <a class="texto-blanco" href="'.get_the_permalink().'">'.esc_html(get_the_title()).'</a>
-              </h4>
-              <div>[tags de la nota]</div>
-            </div>
-          </div>';
-          array_push($outarr, $outhtm);
-      }
-    } //Endwhile
-    $outhtml .= '
-    <div class="c-item background-amarillo p-2">
-      <a class="texto-blanco text-center text-uppercase" href="'.esc_url($category_link).'" title="Ver más notas">
-        <div class="contenedor-media">
-          <div class="contenedor-media-item item-ver-mas">
-            <h4 class="m-0">Ver más notas</h4>
-          </div>
-        </div>
-      </a>
-    </div>';
-    array_push($outarr, $outhtml);
-  } //Endif
-// ------------------------------------
-// ------------------------------------
-// ------------------------------------
-// ------------------------------------
-// ------------------------------------
-// ------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  wp_reset_postdata();
-  die(json_encode($outarr));
-}
-add_action('wp_ajax_nopriv_filter_post_ajax', 'filter_post_ajax');
-add_action('wp_ajax_filter_post_ajax', 'filter_post_ajax');
 
 /****************************************************************
 *																*
@@ -1025,6 +510,7 @@ function wpbsearchform( $form ) {
     return $form;
 }
 add_shortcode('wpbsearch', 'wpbsearchform');
+
 
 /****************************************************************
 *																*
@@ -1092,6 +578,7 @@ function post_custom_column_views($column_name, $id){
 }
 add_action('manage_posts_custom_column', 'post_custom_column_views',10,2);
 
+
 /****************************************************************
 *																*
 *                            EXCERPT                            *
@@ -1130,6 +617,7 @@ function oz_add_excerpt_meta_box( $post_type ) {
     }
 }
 add_action( 'add_meta_boxes', 'oz_add_excerpt_meta_box' );
+
 
 /****************************************************************
 *																*
@@ -1211,6 +699,7 @@ add_shortcode('puntou_boton', 'puntou_boton_parametros');
 *                           PAGINATION                         *
 *																*
 ****************************************************************/
+
 function pagination() {
     global $wp_query;
     $big = 999999999; // necesita un número entero improbable
@@ -1220,10 +709,10 @@ function pagination() {
 		'current' => max( 1, get_query_var('paged') ),
 		'total' => $wp_query->max_num_pages,
 		'prev_next' => false,
-		'type'  => 'array',
-		'prev_next'   => TRUE,
-		'prev_text'    => __('Anterior'),
-		'next_text'    => __('Siguiente'),
+		'type' => 'array',
+		'prev_next' => TRUE,
+		'prev_text' => __('Anterior'),
+		'next_text' => __('Siguiente'),
 	) );
 	if( is_array( $pages ) ) {
 		$paged = ( get_query_var('paged') == 0 ) ? 1 : get_query_var('paged');
@@ -1239,4 +728,35 @@ function pagination() {
 	}
 }
 
+
+/****************************************************************
+*																*
+*                             OTROS                             *
+*																*
+****************************************************************/
+
 require_once 'categoriaprincipal.php';
+
+/****************************************************************
+*																*
+*                      GET PRIMARY CATEGORY  TO YOAST           *
+*																*
+****************************************************************/
+
+function get_primary_category($post_id, $custom_tax){
+
+	$categories = get_the_terms( $post_id, $custom_tax );
+	if ( ! $categories ){
+		return false;
+	}
+
+	if ( class_exists( 'WPSEO_Primary_Term' ) ){
+		$wpseo_primary_term = new WPSEO_Primary_Term( $custom_tax, $post_id );
+		$term = get_term( $wpseo_primary_term->get_primary_term() );
+		if ( ! is_wp_error( $term ) && isset( $term ) ) {
+			return $term;
+		}
+	}
+	
+	return $categories;
+}

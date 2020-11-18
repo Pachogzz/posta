@@ -10,7 +10,7 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function punto_u_customize_register( $wp_customize ) {
+function posta_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
@@ -18,22 +18,22 @@ function punto_u_customize_register( $wp_customize ) {
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial( 'blogname', array(
 			'selector'        => '.site-title a',
-			'render_callback' => 'punto_u_customize_partial_blogname',
+			'render_callback' => 'posta_customize_partial_blogname',
 		) );
 		$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
 			'selector'        => '.site-description',
-			'render_callback' => 'punto_u_customize_partial_blogdescription',
+			'render_callback' => 'posta_customize_partial_blogdescription',
 		) );
 	}
 }
-add_action( 'customize_register', 'punto_u_customize_register' );
+add_action( 'customize_register', 'posta_customize_register' );
 
 /**
  * Render the site title for the selective refresh partial.
  *
  * @return void
  */
-function punto_u_customize_partial_blogname() {
+function posta_customize_partial_blogname() {
 	bloginfo( 'name' );
 }
 
@@ -42,20 +42,20 @@ function punto_u_customize_partial_blogname() {
  *
  * @return void
  */
-function punto_u_customize_partial_blogdescription() {
+function posta_customize_partial_blogdescription() {
 	bloginfo( 'description' );
 }
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function punto_u_customize_preview_js() {
+function posta_customize_preview_js() {
 	wp_enqueue_script( 'posta-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
 }
-add_action( 'customize_preview_init', 'punto_u_customize_preview_js' );
+add_action( 'customize_preview_init', 'posta_customize_preview_js' );
 
 // Opciones para las noticias
-function punto_u_news_customize_register($wp_customize){
+function posta_news_customize_register($wp_customize){
 
   $wp_customize->add_section('news_settings', array(
 		'title' => 'Opciones para las noticias',
@@ -81,10 +81,10 @@ function punto_u_news_customize_register($wp_customize){
 	);
 
 }
-add_action('customize_register', 'punto_u_news_customize_register');
+add_action('customize_register', 'posta_news_customize_register');
 
 // Add customatization for the social media links
-function uanl_social_media_links_customize_register($wp_customize){
+function posta_social_media_links_customize_register($wp_customize){
 	$wp_customize->add_section('main_settings_social_icons', array(
 		'title'       => 'Enlaces a redes sociales',
 		'priority'    => 2,
@@ -139,11 +139,11 @@ function uanl_social_media_links_customize_register($wp_customize){
 		'type'    => 'text'
 	));
 }
-// Add customatization for site title
-add_action('customize_register', 'uanl_social_media_links_customize_register');
+// Add customatization for social media links
+add_action('customize_register', 'posta_social_media_links_customize_register');
 
 // Adding customatization for the footer sections
-function uanl_footer_customize_register($wp_customize){
+function posta_footer_customize_register($wp_customize){
 	$wp_customize->add_section('footer_settings', array(
 		'title' => 'Opciones para el pie de página',
 		'priority' => 3
@@ -252,4 +252,4 @@ function uanl_footer_customize_register($wp_customize){
 
 }
 // Add customatization for site title
-add_action('customize_register', 'uanl_footer_customize_register');
+add_action('customize_register', 'posta_footer_customize_register');

@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package posta
+ * @package postamx
  * 
  * 
  */?>
@@ -13,7 +13,7 @@
 <div class="container mt-6 container-lg<<<">
 	<div class="row justify-content-center">
 	
-		<div class="col-lg-8 contenedor-carruseles toto1">
+		<div class="col-lg-8 contenedor-carruseles">
 			<?php 
 			if(have_rows('secciones')){
 				while(have_rows('secciones')){ the_row();
@@ -29,7 +29,7 @@
 						$category_description = $category->description;
 						?>
 
-						<div class="carrusel-seccion mb-5 toto4">						
+						<div class="carrusel-seccion mb-5">						
 
 							<!-- ENCABEZADO DE CARRUSEL -->
 							<div class="encabezado">
@@ -45,12 +45,12 @@
 							<div id="carousel-<?php echo $seccion_id; ?>" class="owl-carousel <?php echo $tipo_de_carrusel; ?>">
 								<?php
 								$output = 'objects';
-								$args = array ( 
-									'post_type' => 'post', 
-									'cat' => $seccion_id,
+								$args = array (
+									'post_type'      => 'post',
+									'cat'            => $seccion_id,
 									'posts_per_page' => 6,
-									'orderby' => 'date', 
-									'order' => 'DESC' 
+									'orderby'        => 'date',
+									'order'          => 'DESC'
 								);
 								$the_query = new WP_Query( $args, $output );
 								if ( $the_query->have_posts() ) :
@@ -83,47 +83,50 @@
 						<?php 
 						unset($GLOBALS['tipo_de_carrusel']);
 					}
-					wp_reset_postdata(); 
+					wp_reset_postdata();
 						
 				}//endwhile
 			}//endif?>
 		</div>
 
-		<div class="col-md-8 mt-6 col-lg-4 mt-lg-0 toto1">
+		<div class="col-md-8 mt-6 col-lg-4 mt-lg-0">
 
 			<!-- MÓDULO DE NOTAS -->
 			<div class="modulo-corchete">
-				<?php 
+				<?php
 				if(have_rows('modulo_notas_1')){
 					while(have_rows('modulo_notas_1')){ the_row();
-						$titulo_modulo_1  = get_sub_field('titulo_modulo_1');
-						$notas_modulo_1 =  get_sub_field('notas_modulo_1');?>
+						$titulo_modulo_1 = get_sub_field('titulo_modulo_1');
+						if(!empty($titulo_modulo_1)){
+							$titulo = '<h4 class="encabezado-titulo flecha text-break position-relative mt-3 mb-5">'.$titulo_modulo_1.'</h4>';
+						}
+						$notas_modulo_1 = get_sub_field('notas_modulo_1');?>
 						<?php 
 						if($notas_modulo_1){ ?>
 
 							<!-- ENCABEZADO DE MÓDULO -->
-							<h4 class="encabezado-titulo flecha text-break position-relative mt-3 mb-5"><?php echo $titulo_modulo_1; ?></h4>
+								<?php echo $titulo;?>
 							<!-- NOTAS EN MÓDULO -->
 							<?php
 							foreach ($notas_modulo_1 as $post) {
 								setup_postdata($post);
-
 								$featured_img_url_small = get_the_post_thumbnail_url(get_the_ID(), '360x202');
 								$featured_img_url_small_retina = get_the_post_thumbnail_url(get_the_ID(), '720x405');
 								$featured_img_url_medium = get_the_post_thumbnail_url(get_the_ID(), '550x309');
 								$featured_img_url_medium_retina = get_the_post_thumbnail_url(get_the_ID(), '1100x618');
 								$featured_img_url_large = get_the_post_thumbnail_url(get_the_ID(), '1920x1080');
 								$featured_img_url_large_retina = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
+
 								// De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
 								if ($mobile_browser > 0) {
 									//print 'is mobile';
-									$featured_img_url = $featured_img_url_medium;		
+									$featured_img_url = $featured_img_url_small_retina;
 								}elseif ($tablet_browser > 0) {
 									//print 'is tablet';
-									$featured_img_url = $featured_img_url_medium_retina;	
+									$featured_img_url = $featured_img_url_small_retina;
 								}else {
 									//print 'is desktop';
-									$featured_img_url = $featured_img_url_small;		
+									$featured_img_url = $featured_img_url_small;
 								} ?>
 
 								<div class="position-relative">
@@ -187,22 +190,25 @@
 										</div>
 									</div>
 								</div>
-								<div class="borde my-4"></div>
+								<div class="separador my-4"></div>
 
-								<?php 
+								<?php
 							}
 							wp_reset_postdata();
 						}
 						wp_reset_postdata();?>
-						<?php 
-					} //endwhile	
+						<?php
+					} //endwhile
 				}//endif?>
 			</div>
 
 			<!-- PUBLICIDAD -->
-			<div class="modulo-publicidad mx-auto mt-6" style="width: 302px;">
-				<img class="img-fluid" src="https://via.placeholder.com/300x250?text=box%20banner" alt="">
-				<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
+			<div style="border: 1px dotted red;">
+				<div class="modulo-publicidad mx-auto mt-6" style="width: 302px;">
+					<?php if (function_exists ('adinserter')) echo adinserter (9); ?>
+					<!-- <img class="img-fluid" src="https://via.placeholder.com/300x250?text=box%20banner"> -->
+					<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
+				</div>
 			</div>
 		</div>
 

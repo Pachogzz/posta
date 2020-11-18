@@ -1,2 +1,2 @@
-# POSTA
-Tema principal para el portal digital POSTA
+# postamx
+Tema principal para el portal digital Código Magenta

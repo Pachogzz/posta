@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
- * @package posta
+ * @package postamx
  */
 
 get_header();
@@ -21,7 +21,7 @@ get_header();
             <h2>
               <?php
 								// translators: %s: search query.
-								printf( esc_html__( 'Lista de resultados para: %s', 'posta' ), '<br><span class="texto-amarillo">' . get_search_query() . '</span>' );
+								printf( esc_html__( 'Lista de resultados para: %s', 'postamx' ), '<br><span class="texto-amarillo">' . get_search_query() . '</span>' );
 							?>
             </h2>
           </div>

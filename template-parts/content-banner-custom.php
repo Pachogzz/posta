@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package posta
+ * @package postamx
  * 
  * 
  */
@@ -14,22 +14,23 @@ $enlace_banner_custom = get_sub_field('enlace_banner_custom');
 $imagen_banner_custom = get_sub_field('imagen_banner_custom');
 $target = get_sub_field('target');
 $mostrar_descripcion = get_sub_field('mostrar_descripcion');
+if(!empty($titulo_banner_custom)){
+	$titulo_banner = '<h4 class="encabezado-titulo flecha position-relative text-center">'.strip_tags($titulo_banner_custom).'</h4>';
+}
 if($mostrar_descripcion){
 	$descripcion_del_banner = get_sub_field('descripcion_del_banner');
-	$descripcion_bc= '<p class="encabezado-descripcion text-center">'.$descripcion_del_banner.'</p>';
+	$descripcion_bc = '<p class="encabezado-descripcion text-center">'.$descripcion_del_banner.'</p>';
 }
 
 if($imagen_banner_custom){ ?>
-	<div class="container mt-6 toto5 container-lg<<<">
+	<div class="container mt-6 container-lg<<<">
 		<div class="row">
 			<div class="col">
-				<?php if( !empty($titulo_banner_custom)) { ?>
-					<!-- ENCABEZADO DE BANNER CUSTOM -->
-					<div class="encabezado mb-3">
-						<h4 class="encabezado-titulo flecha position-relative text-center"><?php echo strip_tags($titulo_banner_custom); ?></h4>
-						<?php echo $descripcion_bc; ?>
-					</div>
-				<?php } ?>
+				<!-- ENCABEZADO DE BANNER CUSTOM -->
+				<div class="encabezado mb-3">
+					<?php echo $titulo_banner; ?>
+					<?php echo $descripcion_bc; ?>
+				</div>
 				<!-- IMAGEN BANNER CUSTOM -->
 				<div>
 				<?php if(empty($enlace_banner_custom)){ ?>
@@ -37,7 +38,7 @@ if($imagen_banner_custom){ ?>
 				<?php }else{ ?>
 					<a href="<?php echo $enlace_banner_custom; ?>" target="<?php echo $target; ?>">
 						<img class="img-fluid d-block mx-auto" src="<?php echo esc_url($imagen_banner_custom); ?>" alt="<?php echo esc_attr($titulo_banner_custom); ?>"></a>
-				<?php } ?>	
+				<?php } ?>
 				</div>
 			</div>
 		</div>

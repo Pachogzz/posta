@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1 class="h2 mb-6"><?php the_title(); ?></h1>
+          <h1 class="titulo-pagina mb-6"><?php the_title(); ?></h1>
           <?php
             /* Start the Loop */
             while( have_posts() ) : the_post();

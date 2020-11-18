@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package posta
+ * @package postamx
  */
 
 ?>
@@ -94,18 +94,18 @@
 		</div><!-- Termina #content -->
 
 		<!-- FOOTER -->
-		<footer id="colophon" class="footer py-6 mt-6<<<">
+		<footer id="colophon" class="footer py-6 mt-6">
 			<div class="container">
 
 				<div class="row justify-content-center align-items-center">
 
-					<div class="col-md-auto text-center toto2">
+					<div class="col-md-auto text-center">
 						<?php if( get_theme_mod('footer_logo') != '' ) { ?>
 							<img class="img-fluid" style="max-height: <?php if( get_theme_mod('footer_logo_height') != '' ) { echo get_theme_mod('footer_logo_height'); } ?>" src="<?php echo get_theme_mod('footer_logo'); ?>" alt="">
 						<?php } ?>
 					</div>
 					
-					<div class="col-md col-xl-auto text-center px-5 mt-5 mt-md-0 toto2">
+					<div class="col-md col-xl-auto text-center px-5 mt-5 mt-md-0">
 						<?php
 						wp_nav_menu( array(
 							'theme_location'    => 'menu-pie-de-pagina',
@@ -130,7 +130,7 @@
 						<?php } ?>
 					</div>
 					
-					<div class="col-md-auto text-center pl-5< mt-5 mt-md-0 toto2">
+					<div class="col-md-auto text-center pl-5< mt-5 mt-md-0">
 						<div class="lista-iconos justify-content-center">
 							<?php if( get_theme_mod('social_media_link_fb') != '' ){ ?>
 								<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_fb'); ?>" target="_blank" id="fb">
