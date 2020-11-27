@@ -59,7 +59,7 @@ function posta_news_customize_register($wp_customize){
 
   $wp_customize->add_section('news_settings', array(
 		'title' => 'Opciones para las noticias',
-		'priority' => 1
+		'priority' => 60
   ));
   
   // Agregar imagen por defecto en noticias
@@ -79,7 +79,6 @@ function posta_news_customize_register($wp_customize){
 			'settings'    => 'default_news_image',
 		) )
 	);
-
 }
 add_action('customize_register', 'posta_news_customize_register');
 
@@ -87,7 +86,7 @@ add_action('customize_register', 'posta_news_customize_register');
 function posta_social_media_links_customize_register($wp_customize){
 	$wp_customize->add_section('main_settings_social_icons', array(
 		'title'       => 'Enlaces a redes sociales',
-		'priority'    => 2,
+		'priority'    => 60,
 		'description' => 'Esta sección permite ingresar las URL de las redes sociales. Las redes sociales se mostrarán en el encabezado y pie de página del sitio.'
 	));
 	
@@ -138,16 +137,70 @@ function posta_social_media_links_customize_register($wp_customize){
 		'label'   => 'URL de YouTube',
 		'type'    => 'text'
 	));
+
+	// Adding option for letting the user insert the Tumblr link
+	$wp_customize->add_setting('social_media_link_tb', array(
+		'default'   => '',
+		'transport' => 'refresh',
+		'type'      => 'theme_mod',
+	));
+	$wp_customize->add_control('social_media_link_tb', array(
+		'section' => 'main_settings_social_icons',
+		'label'   => 'URL de Tumblr',
+		'type'    => 'text'
+	));
+
+	// Adding option for letting the user insert the LinkedIn link
+	$wp_customize->add_setting('social_media_link_lin', array(
+		'default'   => '',
+		'transport' => 'refresh',
+		'type'      => 'theme_mod',
+	));
+	$wp_customize->add_control('social_media_link_lin', array(
+		'section' => 'main_settings_social_icons',
+		'label'   => 'URL de LinkedIn',
+		'type'    => 'text'
+	));
 }
-// Add customatization for social media links
 add_action('customize_register', 'posta_social_media_links_customize_register');
+
+function posta_header_customizer_register($wp_customize){
+	$wp_customize->add_section('header_settings', array(
+		'title' => 'Encabezado del portal',
+		'priority' => 50
+	));
+	$wp_customize->add_setting('header_bg_color', array(
+		'default'           => '#f20e00',
+		'sanitize_callback' => 'sanitize_hex_color',
+		'capability'        => 'edit_theme_options',
+		'type'           	=> 'theme_mod',
+	));
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'link_color', array(
+        'label'    => 'Color de fondo de encabezado',
+        'section'  => 'header_settings',
+        'settings' => 'header_bg_color',
+    )));
+}
+add_action('customize_register', 'posta_header_customizer_register');
 
 // Adding customatization for the footer sections
 function posta_footer_customize_register($wp_customize){
 	$wp_customize->add_section('footer_settings', array(
-		'title' => 'Opciones para el pie de página',
-		'priority' => 3
+		'title' => 'Pie del portal',
+		'priority' => 50
 	));
+
+	$wp_customize->add_setting('footer_bg_color', array(
+		'default'           => '#f20e00',
+		'sanitize_callback' => 'sanitize_hex_color',
+		'capability'        => 'edit_theme_options',
+		'type'           	=> 'theme_mod',
+	));
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'link_color', array(
+        'label'    => 'Color de fondo de encabezado',
+        'section'  => 'footer_settings',
+        'settings' => 'footer_bg_color',
+    )));
 
 	// Imagen footer
 	$wp_customize->add_setting('imagen_footer', array(
@@ -249,7 +302,5 @@ function posta_footer_customize_register($wp_customize){
 		'description' => 'Este texto se mostrará en el pie de página.',
 		'type'        => 'text'
 	));
-
 }
-// Add customatization for site title
 add_action('customize_register', 'posta_footer_customize_register');

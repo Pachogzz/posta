@@ -22,6 +22,14 @@ if( have_rows( 'notas_principales' ) ):
 	endwhile;
 endif;
 
+// Bloques de notasç
+require get_template_directory() . '/layouts/bcn_7_bb.html'; 
+require get_template_directory() . '/layouts/bcn_6_hp.html'; 
+require get_template_directory() . '/layouts/bcn_5_billb.html'; 
+require get_template_directory() . '/layouts/bcn_2-1_5_bb.html'; 
+require get_template_directory() . '/layouts/bcn_2-1_4_hp.html'; 
+// Bloques de notas
+
 if( have_rows('contenido_de_inicio')){
   	while ( have_rows('contenido_de_inicio')) {
 		the_row();

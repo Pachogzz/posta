@@ -72,7 +72,7 @@
     </div>
     
     <!-- Encabezado -->
-    <header class="bg-white">
+    <header id="siteHEader" style="background-color: <?php echo get_theme_mod( 'header_bg_color' ) ?>;">
 
       <div class="container-xl py-3">
 				<div class="row justify-content-between align-items-center">
@@ -103,8 +103,8 @@
             <div class="row justify-content-between justify-content-md-center align-items-center">
               <div class="col-auto col-md-12 order-md-last mt-md-2">
                 <div class="lista-iconos justify-content-center">
-                  <?php if( get_theme_mod('posta_facebook_link') != '' ){ ?>
-                    <a class="icono icono-negro" href="<?php echo get_theme_mod('posta_facebook_link'); ?>" target="_blank" id="fb">
+                  <?php if( get_theme_mod('social_media_link_fb') != '' ){ ?>
+                    <a class="icono icono-negro" href="<?php echo get_theme_mod('social_media_link_fb'); ?>" target="_blank" id="fb">
                       <i class="fab fa-facebook-f"></i>
                     </a>
                   <?php } ?>
@@ -121,6 +121,16 @@
                   <?php if( get_theme_mod('social_media_link_yt') != '' ){ ?>
                     <a class="icono icono-negro" href="<?php echo get_theme_mod('social_media_link_yt'); ?>" target="_blank" id="yt">
                       <i class="fab fa-youtube"></i>
+                    </a>
+                  <?php } ?>
+                  <?php if( get_theme_mod('social_media_link_lin') != '' ){ ?>
+                    <a class="icono icono-negro" href="<?php echo get_theme_mod('social_media_link_lin'); ?>" target="_blank" id="yt">
+                      <i class="fab fa-linkedin"></i>
+                    </a>
+                  <?php } ?>
+                  <?php if( get_theme_mod('social_media_link_tb') != '' ){ ?>
+                    <a class="icono icono-negro" href="<?php echo get_theme_mod('social_media_link_tb'); ?>" target="_blank" id="yt">
+                      <i class="fab fa-tumblr"></i>
                     </a>
                   <?php } ?>
                 </div>

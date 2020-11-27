@@ -94,7 +94,7 @@
 		</div><!-- Termina #content -->
 
 		<!-- FOOTER -->
-		<footer id="colophon" class="footer py-6 mt-6">
+		<footer id="colophon" class="footer py-6 mt-6" style="background-color:  <?php echo get_theme_mod( 'footer_bg_color' ) ?>;">
 			<div class="container">
 
 				<div class="row justify-content-center align-items-center">
@@ -150,6 +150,16 @@
 							<?php if( get_theme_mod('social_media_link_yt') != '' ){ ?>
 								<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_yt'); ?>" target="_blank" id="yt">
 									<i class="fab fa-youtube"></i>
+								</a>
+							<?php } ?>
+							<?php if( get_theme_mod('social_media_link_lin') != '' ){ ?>
+								<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_lin'); ?>" target="_blank" id="yt">
+									<i class="fab fa-linkedin"></i>
+								</a>
+							<?php } ?>
+							<?php if( get_theme_mod('social_media_link_tb') != '' ){ ?>
+								<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_tb'); ?>" target="_blank" id="yt">
+									<i class="fab fa-tumblr"></i>
 								</a>
 							<?php } ?>
 						</div>
