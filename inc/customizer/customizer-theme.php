@@ -164,6 +164,7 @@ function posta_social_media_links_customize_register($wp_customize){
 }
 add_action('customize_register', 'posta_social_media_links_customize_register');
 
+// Adding customatization for the header sections
 function posta_header_customizer_register($wp_customize){
 	$wp_customize->add_section('header_settings', array(
 		'title' => 'Encabezado del portal',
@@ -172,10 +173,9 @@ function posta_header_customizer_register($wp_customize){
 	$wp_customize->add_setting('header_bg_color', array(
 		'default'           => '#f20e00',
 		'sanitize_callback' => 'sanitize_hex_color',
-		'capability'        => 'edit_theme_options',
 		'type'           	=> 'theme_mod',
 	));
-	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'link_color', array(
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'header_bg_color', array(
         'label'    => 'Color de fondo de encabezado',
         'section'  => 'header_settings',
         'settings' => 'header_bg_color',
@@ -193,10 +193,9 @@ function posta_footer_customize_register($wp_customize){
 	$wp_customize->add_setting('footer_bg_color', array(
 		'default'           => '#f20e00',
 		'sanitize_callback' => 'sanitize_hex_color',
-		'capability'        => 'edit_theme_options',
 		'type'           	=> 'theme_mod',
 	));
-	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'link_color', array(
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'footer_bg_color', array(
         'label'    => 'Color de fondo de encabezado',
         'section'  => 'footer_settings',
         'settings' => 'footer_bg_color',
@@ -275,6 +274,66 @@ function posta_footer_customize_register($wp_customize){
 		'label'       => 'Texto a mostrar en el pie página',
 		'description' => 'Este texto se mostrará en el pie de página.',
 		'type'        => 'textarea'
+	));
+
+	// Imagen Google Play Store
+	$wp_customize->add_setting('appstore_android_image', array(
+		'default'   => '',
+		'transport' => 'refresh',
+		'type'      => 'theme_mod',
+	));
+	$wp_customize->add_control(
+		new WP_Customize_Upload_Control(
+		$wp_customize,
+		'appstore_android_image',
+		array(
+			'label'       => 'Imágen para "Disponible en Play Store"',
+			'description' => 'El archivo de imagen que se seleccione se mostrará en el pie de página.',
+			'section'     => 'footer_settings',
+			'settings'    => 'appstore_android_image',
+		) )
+	);
+	// Link Google Play Store
+	$wp_customize->add_setting('appstore_android_link', array(
+		'default'   => '',
+		'transport' => 'refresh',
+		'type'      => 'theme_mod',
+	));
+	$wp_customize->add_control('appstore_android_link', array(
+		'section'     => 'footer_settings',
+		'label'       => 'URL para Google Play Store',
+		// 'description' => '',
+		'type'        => 'text'
+	));
+
+	// Imagen AppStore
+	$wp_customize->add_setting('appstore_apple_image', array(
+		'default'   => '',
+		'transport' => 'refresh',
+		'type'      => 'theme_mod',
+	));
+	$wp_customize->add_control(
+		new WP_Customize_Upload_Control(
+		$wp_customize,
+		'appstore_apple_image',
+		array(
+			'label'       => 'Imágen para "Disponible en AppStore"',
+			'description' => 'El archivo de imagen que se seleccione se mostrará en el pie de página.',
+			'section'     => 'footer_settings',
+			'settings'    => 'appstore_apple_image',
+		) )
+	);
+	// Link Google Play Store
+	$wp_customize->add_setting('appstore_apple_link', array(
+		'default'   => '',
+		'transport' => 'refresh',
+		'type'      => 'theme_mod',
+	));
+	$wp_customize->add_control('appstore_apple_link', array(
+		'section'     => 'footer_settings',
+		'label'       => 'URL para AppStore',
+		// 'description' => '',
+		'type'        => 'text'
 	));
 	
 	// Copyright text

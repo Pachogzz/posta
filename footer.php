@@ -94,7 +94,7 @@
 		</div><!-- Termina #content -->
 
 		<!-- FOOTER -->
-		<footer id="colophon" class="footer py-6 mt-6" style="background-color:  <?php echo get_theme_mod( 'footer_bg_color' ) ?>;">
+		<footer id="colophon" class="footer py-6 mt-6" style="background-color:  <?php echo get_theme_mod( 'footer_bg_color' ); ?>;">
 			<div class="container">
 
 				<div class="row justify-content-center align-items-center">
@@ -224,6 +224,19 @@
 			jQuery('#mediaFileTypesModal iframe').attr("src", "");
 		});
 	</script>
+
+	<script>
+	function openNav() {
+	  document.getElementById("mySidenav").style.width = "250px";
+	  document.getElementById("page").style.marginLeft = "250px";
+	}
+
+	function closeNav() {
+	  document.getElementById("mySidenav").style.width = "0";
+	  document.getElementById("page").style.marginLeft= "0";
+	}
+	</script>
+
   <?php
 	$gallery = $GLOBALS['gallery'];
     for ($i=1; $i<=count($gallery); $i++){ ?>

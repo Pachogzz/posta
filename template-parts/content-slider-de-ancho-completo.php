@@ -1,7 +1,13 @@
-<div class="container my-6">
-	<div class="row">
-		<div class="col">
-			<img src="http://fakeimg.pl/350x200/00CED1/FFF/?text=Slider+ancho+completo">
+<div class="container-fluid mb-6 px-0">
+	<div class="owl-carousel carrusel-portada">
+		<div>
+			<img src="http://fakeimg.pl/1980x1080/ccc/eee/?text=Slide+1" class="d-block w-100" alt="...">
+		</div>
+		<div>
+			<img src="http://fakeimg.pl/1980x1080/ccc/eee/?text=Slide+2" class="d-block w-100" alt="...">
+		</div>
+		<div>
+			<img src="http://fakeimg.pl/1980x1080/ccc/eee/?text=Slide+3" class="d-block w-100" alt="...">
 		</div>
 	</div>
 </div>

@@ -16,8 +16,8 @@
   <meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="profile" href="https://gmpg.org/xfn/11">
-  <meta name="description" content="El color de la información">
-  <meta name="author" content="Código Magenta">
+  <meta name="description" content="SABER / ACTUAR">
+  <meta name="author" content="MINDS MX">
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Open+Sans:wght@400;700&family=Roboto+Slab:wght@700&family=Rubik:wght@400;500;700&display=swap" />
@@ -54,7 +54,59 @@
   <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/jwplayer/jwplayer.js"></script>
   <script src='https://cdn.jwplayer.com/libraries/2LuFt05J.js'></script>
   <script>jwplayer.key='gUSA7bc0RGA/BmzlZln6KngeAc8tLUB0ZPYTUQ==';</script>
+  <style>
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
 
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    #page {
+        transition: margin-left .5s;                                                             
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+    }.outerNav {
+        display:none;
+        position:fixed;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        overflow:hidden;
+        background-color:transparent;
+    }
+  </style>
 </head>
 
 <body <?php body_class(); ?>>
@@ -64,6 +116,14 @@
 
   <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Ir directamente al contenido ', 'postamx' ); ?></a>
 
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+
 	<div id="page" class="site d-flex flex-column justify-content-between" style="height: 100vh;">
 
     <!-- Publicidad -->
@@ -72,36 +132,16 @@
     </div>
     
     <!-- Encabezado -->
-    <header id="siteHEader" style="background-color: <?php echo get_theme_mod( 'header_bg_color' ) ?>;">
+    <header id="siteHEader" style="background-color: <?php echo get_theme_mod( 'header_bg_color' ); ?>;">
 
       <div class="container-xl py-3">
 				<div class="row justify-content-between align-items-center">
           
-          <div class="d-none d-xl-block col-xl-2">
-            <!-- ... -->
-          </div>
-					<div class="col-md-8 col-xl-8">
-            <div class="logotipo-sitio">
-              <?php if( has_custom_logo() ):  ?>
-                <?php 
-                  $custom_logo_id = get_theme_mod( 'custom_logo' );
-                  $custom_logo_data = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-                  $custom_logo_url = $custom_logo_data[0];
-                ?>
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>"
-                  title="Ir al inicio"
-                  rel="home">
-                  <img class="img-fluid no-lazy-load" width="638" height="90" src="<?php echo esc_url( $custom_logo_url ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"/>
-                </a>
-              <?php else: ?>
-                <?php bloginfo( 'name' ); ?>
-              <?php endif; ?>
-            </div>
-          </div>
-					<div class="col-md-4 col-xl-2 mt-2 mt-md-0">
-
+          <!-- <div class="d-none d-xl-block col-xl-2"> -->
+          <div class="col-md-4">
+            <span style="font-size:30px;cursor:pointer;color:#fff;" onclick="openNav()">&#9776;</span>
             <div class="row justify-content-between justify-content-md-center align-items-center">
-              <div class="col-auto col-md-12 order-md-last mt-md-2">
+              <div class="col-auto col-md-12">
                 <div class="lista-iconos justify-content-center">
                   <?php if( get_theme_mod('social_media_link_fb') != '' ){ ?>
                     <a class="icono icono-negro" href="<?php echo get_theme_mod('social_media_link_fb'); ?>" target="_blank" id="fb">
@@ -135,13 +175,36 @@
                   <?php } ?>
                 </div>
               </div>
-              <div class="col-auto col-md-12">
+              <div class="col-auto col-md-12 order-md-last">
                 <div class="fecha-sitio">
                   <?php echo date_i18n( get_option('date_format') ); ?>
                 </div>
               </div>
             </div>
-
+          </div>
+					<div class="col-md-4">
+            <div class="logotipo-sitio">
+              <?php if( has_custom_logo() ):  ?>
+                <?php 
+                  $custom_logo_id = get_theme_mod( 'custom_logo' );
+                  $custom_logo_data = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+                  $custom_logo_url = $custom_logo_data[0];
+                ?>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>"
+                  title="Ir al inicio"
+                  rel="home">
+                  <img class="img-fluid no-lazy-load" width="638" height="90" src="<?php echo esc_url( $custom_logo_url ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"/>
+                </a>
+              <?php else: ?>
+                <?php bloginfo( 'name' ); ?>
+              <?php endif; ?>
+            </div>
+            <?php if ( get_bloginfo( 'description' )  !== '' ) { ?>
+                <span class="h4 d-block text-light text-center"><?php bloginfo( 'description' ); ?></span>
+            <?php } ?>
+          </div>
+					<div class="col-md-4">
+            <?php get_search_form(); ?>
 					</div>
 				</div>
       </div>

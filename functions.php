@@ -127,10 +127,10 @@ add_image_size( '3840x2160', 3840, 2160, true, array( 'center', 'center' ) ); //
  */
 add_filter( 'big_image_size_threshold', '__return_false' );
 
-// function magentawp_big_image_size_threshold( $threshold ) {
+// function posta_big_image_size_threshold( $threshold ) {
 //   return 1920; // new threshold
 // }
-// add_filter('big_image_size_threshold', 'magentawp_big_image_size_threshold', 999, 1);
+// add_filter('big_image_size_threshold', 'posta_big_image_size_threshold', 999, 1);
 
 /**
  * Remove max srcset image width
