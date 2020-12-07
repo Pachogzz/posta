@@ -736,6 +736,7 @@ function pagination() {
 ****************************************************************/
 
 require_once 'categoriaprincipal.php';
+require_once 'options/theme.php';
 
 /****************************************************************
 *																*
