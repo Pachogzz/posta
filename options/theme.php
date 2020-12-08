@@ -12,36 +12,40 @@ function posta_app_add_admin_page () {
 add_action( 'admin_menu', 'posta_app_add_admin_page' );
 
 /**
- *  Register all the settings field and sections
+ *  Registrar las configuraciones para la section
  */
 function settings() {
+
+    // Block 1 - Categories
     add_settings_section("block_one_section", "Block 1", null, "blockone");
-    add_settings_field("block-one", "Categoria", "form_message", "blockone", "block_one_section");  
-    register_setting("block_one_section", "block-one");
+    add_settings_field("block-one-category", "Categoria", "form_block_one", "blockone", "block_one_section");  
+    register_setting("block_one_section", "block-one-category");
+
+    // Block 2
 }
 
 /**
  *  Input for the section's field
  */
-function form_message() {
+function form_block_one() {
+
+    $categories = get_terms( 'category', array(
+        'orderby'    => 'count',
+        'hide_empty' => 0,
+    ));
+
     ?>
-    <select name="block-one">
-      <option value="qscutter" <?php selected(get_option('block-one'), "qscutter"); ?>>QScutter</option>
-      <option value="qnimate" <?php selected(get_option('block-one'), "qnimate"); ?>>QNimate</option>
-      <option value="qidea" <?php selected(get_option('block-one'), "qidea"); ?>>QIdea</option>
-      <option value="qtrack" <?php selected(get_option('block-one'), "qtrack"); ?>>QTrack</option>
+
+    <select name="block-one-category">
+        <?php foreach($categories as $c): ?>
+            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('block-one-category'), $c->term_id); ?>><?php echo $c->name; ?></option>
+        <?php endforeach ?>
     </select>
 <?php
 }
 
-function example_message() {
-  // Mensaje para separar
-  echo "<hr/>";
-
-}
-
 /**
- *  Template where itll be show the form
+ *  Template del form
  */
 function page() {
         
@@ -49,8 +53,10 @@ function page() {
 
     ?>
     <div class="wrap">
-       <h1>Configuraciones Home para la app posta</h1>
 
+
+
+       <h1>Configuraciones Home para la app posta</h1>
        <form method="post" action="options.php">
           <?php
              settings_fields("block_one_section");
