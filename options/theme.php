@@ -25,9 +25,6 @@ add_action('admin_enqueue_scripts', 'admin_style');
  *  Registrar las configuraciones para la section
  */
 function settings() {
-    register_setting( 'post-app-configuration', 'new_option_name' );
-	register_setting( 'post-app-configuration', 'some_other_option' );
-	register_setting( 'post-app-configuration', 'option_etc' );
 	register_setting( 'post-app-configuration', 'slider_nota' );
 }
 
@@ -38,6 +35,14 @@ function settings() {
 function page() {
 
     settings_errors();
+
+    $posts = get_posts( array(
+        'numberposts'    => 20,
+        'post_type'      => 'post',
+        'post_status'    => 'publish',
+        'order'          => 'DESC',
+        'orderby'        => 'post_date'
+    ));
 
     $categories = get_terms( 'category', array(
         'orderby'    => 'count',
@@ -70,9 +75,9 @@ function page() {
                 <div class="form-group">
                     <label for="slider_categoria">Noticia 1</label>
                     <select name="slider_nota[]">
-                        <option value="">Selecciona una categoria</option>
-                        <?php foreach($categories as $c): ?>
-                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('slider_nota')[0], $c->term_id); ?>><?php echo $c->name; ?></option>
+                        <option value="">Selecciona noticia 1</option>
+                        <?php foreach($posts as $post): ?>
+                            <option value="<?php echo $post->ID; ?>" <?php selected(get_option('slider_nota')[0], $post->ID); ?>><?php echo $post->post_title; ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
@@ -80,9 +85,9 @@ function page() {
                 <div class="form-group">
                     <label for="slider_categoria">Noticia 2</label>
                     <select name="slider_nota[]">
-                        <option value="">Selecciona una categoria</option>
-                        <?php foreach($categories as $c): ?>
-                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('slider_nota')[1], $c->term_id); ?>><?php echo $c->name; ?></option>
+                        <option value="">Selecciona noticia 2</option>
+                        <?php foreach($posts as $post): ?>
+                            <option value="<?php echo $post->ID; ?>" <?php selected(get_option('slider_nota')[1], $post->ID); ?>><?php echo $post->post_title; ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
@@ -90,9 +95,9 @@ function page() {
                 <div class="form-group">
                     <label for="slider_categoria">Noticia 3</label>
                     <select name="slider_nota[]">
-                        <option value="">Selecciona una categoria</option>
-                        <?php foreach($categories as $c): ?>
-                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('slider_nota')[2], $c->term_id); ?>><?php echo $c->name; ?></option>
+                        <option value="">Selecciona noticia 3</option>
+                        <?php foreach($posts as $post): ?>
+                            <option value="<?php echo $post->ID; ?>" <?php selected(get_option('slider_nota')[2], $post->ID); ?>><?php echo $post->post_title; ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
@@ -100,15 +105,15 @@ function page() {
                 <div class="form-group">
                     <label for="slider_categoria">Noticia 4</label>
                     <select name="slider_nota[]">
-                        <option value="">Selecciona una categoria</option>
-                        <?php foreach($categories as $c): ?>
-                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('slider_nota')[3], $c->term_id); ?>><?php echo $c->name; ?></option>
+                        <option value="">Selecciona noticia 4</option>
+                        <?php foreach($posts as $post): ?>
+                            <option value="<?php echo $post->ID; ?>" <?php selected(get_option('slider_nota')[3], $post->ID); ?>><?php echo $post->post_title; ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
                 
             </div>
-                        
+
     
             <?php submit_button(); ?>
        </form>
