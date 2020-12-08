@@ -2,37 +2,36 @@
 /**
  * Archivo para generar todos los menu en el panel de Administrador
 */
-function example_add_admin_page () {
+function posta_app_add_admin_page () {
   // Primer paso...agregar la opción en el menú de la izquierda
-  add_menu_page( 'App Posta', 'App Posta', 'manage_options', 'example-options-theme', 'example_create_page', 'dashicons-align-wide', 60 );
+  add_menu_page( 'Posta App', 'Posta App', 'manage_options', 'posta-app-options', 'page', 'dashicons-align-wide', 60 );
   // Activa los settings para el menú
-  add_action( 'admin_init', 'example_custom_settings' );
+  add_action( 'admin_init', 'settings' );
 	
 }
-add_action( 'admin_menu', 'example_add_admin_page' );
+add_action( 'admin_menu', 'posta_app_add_admin_page' );
 
 /**
  *  Register all the settings field and sections
  */
-function example_custom_settings() {
-  // Segundo paso...registrar las secciones y campos para que WP los reconozca
-  register_setting( 'example-settings-group', 'footer_message' );
-  // Seccion de mensajes que mostrará como cabecera encima de la sección como mensaje
-  add_settings_section( 'example-message-options', 'Mensaje para el footer', '
-  ', 'example-options-theme' );
-  // El campo con su name específico
-  add_settings_field( 'footer_message', 'Contenido del Mensaje:', 'example_form_message', 'example-options-theme', 'example-message-options' );
-
+function settings() {
+    add_settings_section("block_one_section", "Block 1", null, "blockone");
+    add_settings_field("block-one", "Categoria", "form_message", "blockone", "block_one_section");  
+    register_setting("block_one_section", "block-one");
 }
 
 /**
  *  Input for the section's field
  */
-function example_form_message() {
-  // Tercer paso...se optiene el valor de la opción y se obtiene el input también
-  $message_footer = esc_attr( get_option( 'footer_message' ) );
-  echo '<input type="text" name="footer_message" value="' . $message_footer . '" />';
-	
+function form_message() {
+    ?>
+    <select name="block-one">
+      <option value="qscutter" <?php selected(get_option('block-one'), "qscutter"); ?>>QScutter</option>
+      <option value="qnimate" <?php selected(get_option('block-one'), "qnimate"); ?>>QNimate</option>
+      <option value="qidea" <?php selected(get_option('block-one'), "qidea"); ?>>QIdea</option>
+      <option value="qtrack" <?php selected(get_option('block-one'), "qtrack"); ?>>QTrack</option>
+    </select>
+<?php
 }
 
 function example_message() {
@@ -44,7 +43,22 @@ function example_message() {
 /**
  *  Template where itll be show the form
  */
-function example_create_page() {
-  // Cuarto paso...donde sera mostrado el formulario con sus fields
-  require_once( get_template_directory() . '/options/view.php' );
+function page() {
+        
+    settings_errors();
+
+    ?>
+    <div class="wrap">
+       <h1>Configuraciones Home para la app posta</h1>
+
+       <form method="post" action="options.php">
+          <?php
+             settings_fields("block_one_section");
+             do_settings_sections("blockone");
+             submit_button();
+          ?>
+       </form>
+    </div>
+ <?php
+	
 }
