@@ -28,7 +28,7 @@ function settings() {
     register_setting( 'post-app-configuration', 'new_option_name' );
 	register_setting( 'post-app-configuration', 'some_other_option' );
 	register_setting( 'post-app-configuration', 'option_etc' );
-	register_setting( 'post-app-configuration', 'slider_categoria' );
+	register_setting( 'post-app-configuration', 'slider_nota' );
 }
 
 
@@ -46,45 +46,69 @@ function page() {
 
     ?>
 
-    <div class="wrap">
+    <div class="container">
 
-        <h1>Configuraciones Home para la app posta</h1>
+        <!-- <div id="dashboard-widgets-wrap">
+            <div id="dashboard-widgets" class="metabox-holder">
+                <div class="postbox-container" style="width: 49%;">...</div>
+                <div class="postbox-container" style="width: 49%;">...</div>
+            </div>
+        </div> -->
+
+        <h1 class="logo-admin">
+            <img src="<?php echo get_template_directory_uri() . '/assets/img/posta-admin-app.png' ?>" alt="">
+        </h1>
 
         <form method="post" action="options.php">
             <?php settings_fields( 'post-app-configuration' ); ?>
             <?php do_settings_sections( 'post-app-configuration' ); ?>
 
             <div class="card">
-                <div class="card-header">
-                    <h2>Slider Principal</h2>
-                </div>
-                <div class="card-body">
-                    <label for="">Categorias</label>
-                    <select name="slider_categoria">
+                <h1>Slider Principal</h1>
+                <hr>
+
+                <div class="form-group">
+                    <label for="slider_categoria">Noticia 1</label>
+                    <select name="slider_nota[]">
                         <option value="">Selecciona una categoria</option>
                         <?php foreach($categories as $c): ?>
-                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('slider_categoria'), $c->term_id); ?>><?php echo $c->name; ?></option>
+                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('slider_nota')[0], $c->term_id); ?>><?php echo $c->name; ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="slider_categoria">Noticia 2</label>
+                    <select name="slider_nota[]">
+                        <option value="">Selecciona una categoria</option>
+                        <?php foreach($categories as $c): ?>
+                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('slider_nota')[1], $c->term_id); ?>><?php echo $c->name; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="slider_categoria">Noticia 3</label>
+                    <select name="slider_nota[]">
+                        <option value="">Selecciona una categoria</option>
+                        <?php foreach($categories as $c): ?>
+                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('slider_nota')[2], $c->term_id); ?>><?php echo $c->name; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="slider_categoria">Noticia 4</label>
+                    <select name="slider_nota[]">
+                        <option value="">Selecciona una categoria</option>
+                        <?php foreach($categories as $c): ?>
+                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('slider_nota')[3], $c->term_id); ?>><?php echo $c->name; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+                
             </div>
-
-            <table class="form-table">
-                <tr valign="top">
-                    <th scope="row">New Option Name</th>
-                    <td><input type="text" name="new_option_name" value="<?php echo esc_attr( get_option('new_option_name') ); ?>" /></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">Some Other Option</th>
-                    <td><input type="text" name="some_other_option" value="<?php echo esc_attr( get_option('some_other_option') ); ?>" /></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">Options, Etc.</th>
-                    <td><input type="text" name="option_etc" value="<?php echo esc_attr( get_option('option_etc') ); ?>" /></td>
-                </tr>
-            </table>
-
-            
+                        
     
             <?php submit_button(); ?>
        </form>
