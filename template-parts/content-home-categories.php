@@ -184,7 +184,7 @@ if(!empty($GLOBALS['carrusel_seccion'])){
 		</div>
 		<!-- ENCABEZADO DE NOTA -->
 		<div class="encabezado-nota mt-2">
-			<!-- <a href="<?php// echo $category_link; ?>"><?php// echo $name ?></a> -->
+			<!-- <a href="<?php echo $category_link; ?>"><?php echo $name ?></a> -->
 			<!-- Título de nota -->
 			<h4 class="titulo-de-nota">
 				<a class="stretched-link" href="<?php the_permalink(); ?>" title="<?php echo the_title(); ?>"><?php the_title(); ?></a>
