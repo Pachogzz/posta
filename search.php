@@ -1,5 +1,7 @@
 <?php
 /**
+ * Template Name: Search Page 
+ *
  * The template for displaying search results pages
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
@@ -16,17 +18,17 @@ get_header();
 			<div class="container container-lg">
 
 				<!-- Título de página -->
-        <div class="row">
-          <div class="col text-center">
-            <h2>
-              <?php
-								// translators: %s: search query.
-								printf( esc_html__( 'Lista de resultados para: %s', 'postamx' ), '<br><span class="texto-amarillo">' . get_search_query() . '</span>' );
-							?>
-            </h2>
-          </div>
-        </div>
-				
+		        <div class="row">
+		          <div class="col text-center">
+		            <h2>
+		              <?php
+							// translators: %s: search query.
+							printf( esc_html__( 'Lista de resultados para: %s', 'postamx' ), '<br><span class="texto-amarillo">' . get_search_query() . '</span>' );
+						?>
+		            </h2>
+		          </div>
+		        </div>
+						
 				<div id="ajax-posts" class="row category-<?php echo esc_html($category_slug); ?>  mt-7">
 					<?php
 						if ( have_posts() ) :
@@ -46,15 +48,15 @@ get_header();
 				</div>
 
 				<!-- *botón cargar notas por ajax -->
-        <!-- <div class="row mt-3">
-          <div class="col text-center">
-            <button id="more_posts" class="btn btn-secondary in-line" data-category="<?php echo $cat_id; ?>">
-              Cargar mas notas
-            </button>
-            <div class="ajax-response-failed"></div>
-            <i class="fas fa-circle-notch fa-spin hidden spinner load-<?php echo $category_id; ?>"></i>
-          </div>
-        </div> -->
+		        <!-- <div class="row mt-3">
+		          <div class="col text-center">
+		            <button id="more_posts" class="btn btn-secondary in-line" data-category="<?php echo $cat_id; ?>">
+		              Cargar mas notas
+		            </button>
+		            <div class="ajax-response-failed"></div>
+		            <i class="fas fa-circle-notch fa-spin hidden spinner load-<?php echo $category_id; ?>"></i>
+		          </div>
+		        </div> -->
 
 			</div>
 

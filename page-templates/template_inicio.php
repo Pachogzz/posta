@@ -8,39 +8,18 @@
 require get_template_directory() . '/inc/color_categories.php'; 
 $cont_layout = 0; //Varible para ver el numero de layouts
 
-if( have_rows( 'notas_principales' ) ):
-	while( have_rows ( 'notas_principales' ) ) : the_row();
-		if ( get_row_layout() == 'slider_de_ancho_completo' ):
-			get_template_part( 'template-parts/content', 'slider-de-ancho-completo' );
-		elseif ( get_row_layout() == 'slider_de_tres_posts_verticales' ):
-			get_template_part( 'template-parts/content', 'slider-de-tres-posts-verticales' );
-		elseif ( get_row_layout() == 'slider_de_tres_posts_cuadriculado' ):
-			get_template_part( 'template-parts/content', 'slider-de-tres-posts-cuadriculado' );
-		else:
-			// nothing to show here ...
-		endif;
-	endwhile;
-endif;
-
-// Bloques de notasç
-require get_template_directory() . '/layouts/bcn_7_bb.html'; 
-require get_template_directory() . '/layouts/bcn_6_hp.html'; 
-require get_template_directory() . '/layouts/bcn_5_billb.html'; 
-require get_template_directory() . '/layouts/bcn_2-1_5_bb.html'; 
-require get_template_directory() . '/layouts/bcn_2-1_4_hp.html'; 
-require get_template_directory() . '/layouts/bcn_1-3_5.html'; 
-require get_template_directory() . '/layouts/bcn_1-4_4.html'; 
-require get_template_directory() . '/layouts/bcn_1-4_2.html'; 
-require get_template_directory() . '/layouts/bcn_1-4_3-bb-r.html'; 
-require get_template_directory() . '/layouts/bcn_1-4_3-bb-l.html'; 
-require get_template_directory() . '/layouts/bcn_1-4_2-bb.html'; 
-require get_template_directory() . '/layouts/bcn_1-4_2-v-r.html'; 
-require get_template_directory() . '/layouts/bcn_1-4_2-v-l.html'; 
-require get_template_directory() . '/layouts/bcn_2-4.html'; 
-require get_template_directory() . '/layouts/bcn_1-6_2.html'; 
-require get_template_directory() . '/layouts/bcn_1-6_hp.html'; 
-require get_template_directory() . '/layouts/bcn_1-8.html'; 
-// Bloques de notas
+if( get_field('layout_select') == '0' ) {
+    // Do something.
+}
+elseif ( get_field('layout_select') == '1'){
+	get_template_part( 'template-parts/content', 'slider-de-ancho-completo' );
+}
+elseif ( get_field('layout_select') == '2'){
+	get_template_part( 'template-parts/content', 'slider-de-tres-posts-verticales' );
+}
+elseif ( get_field('layout_select') == '3'){
+	get_template_part( 'template-parts/content', 'slider-de-tres-posts-cuadriculado' );
+}
 
 if( have_rows('contenido_de_inicio')){
   	while ( have_rows('contenido_de_inicio')) {
@@ -94,6 +73,27 @@ if( have_rows('contenido_de_inicio')){
 		}
   	}
 }	
+
+// Bloques de notasç
+require get_template_directory() . '/layouts/bcn_7_bb.html'; 
+require get_template_directory() . '/layouts/bcn_6_hp.html'; 
+require get_template_directory() . '/layouts/bcn_5_billb.html'; 
+require get_template_directory() . '/layouts/bcn_2-1_5_bb.html'; 
+require get_template_directory() . '/layouts/bcn_2-1_4_hp.html'; 
+require get_template_directory() . '/layouts/bcn_1-3_5.html'; 
+require get_template_directory() . '/layouts/bcn_1-4_4.html'; 
+require get_template_directory() . '/layouts/bcn_1-4_2.html'; 
+require get_template_directory() . '/layouts/bcn_1-4_3-bb-r.html'; 
+require get_template_directory() . '/layouts/bcn_1-4_3-bb-l.html'; 
+require get_template_directory() . '/layouts/bcn_1-4_2-bb.html'; 
+require get_template_directory() . '/layouts/bcn_1-4_2-v-r.html'; 
+require get_template_directory() . '/layouts/bcn_1-4_2-v-l.html'; 
+require get_template_directory() . '/layouts/bcn_2-4.html'; 
+require get_template_directory() . '/layouts/bcn_1-6_2.html'; 
+require get_template_directory() . '/layouts/bcn_1-6_hp.html'; 
+require get_template_directory() . '/layouts/bcn_1-8.html'; 
+
+// Totales de publicidad
 echo 'totales: '. $cont_layout;
 ?>
 <?php get_footer(); ?>

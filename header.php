@@ -50,63 +50,10 @@
       googletag.enableServices();
     });
   </script>
-  <!--Integración del reproductor JW Player Magenta 2.0-->
+  <!--Integración del reproductor JW Player 2.0-->
   <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/jwplayer/jwplayer.js"></script>
   <script src='https://cdn.jwplayer.com/libraries/2LuFt05J.js'></script>
   <script>jwplayer.key='gUSA7bc0RGA/BmzlZln6KngeAc8tLUB0ZPYTUQ==';</script>
-  <style>
-    .sidenav {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        background-color: #111;
-        overflow-x: hidden;
-        transition: 0.5s;
-        padding-top: 60px;
-    }
-
-    .sidenav a {
-        padding: 8px 8px 8px 32px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-        transition: 0.3s;
-    }
-
-    .sidenav a:hover {
-        color: #f1f1f1;
-    }
-
-    .sidenav .closebtn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-        margin-left: 50px;
-    }
-
-    #page {
-        transition: margin-left .5s;                                                             
-    }
-
-    @media screen and (max-height: 450px) {
-        .sidenav {padding-top: 15px;}
-        .sidenav a {font-size: 18px;}
-    }.outerNav {
-        display:none;
-        position:fixed;
-        left:0;
-        top:0;
-        width:100%;
-        height:100%;
-        overflow:hidden;
-        background-color:transparent;
-    }
-  </style>
 </head>
 
 <body <?php body_class(); ?>>
@@ -116,13 +63,47 @@
 
   <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Ir directamente al contenido ', 'postamx' ); ?></a>
 
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+  <?php if ( has_nav_menu( 'menu-vertical-oculto' ) ): ?>
+  <div id="outerNav" class="outerNav">
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <?php 
+          wp_nav_menu( array(
+            'theme_location'    => 'menu-vertical-oculto',
+            'container'         => 'div',
+            'depth'             => 2,
+            'container_id'      => 'menu-vertical-oculto',
+            // 'container_class'   => 'collapse navbar-collapse',
+            'menu_class'        => 'nav flex-column',
+            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+            'walker'            => new WP_Bootstrap_Navwalker(),
+            // 'items_wrap'        => my_nav_wrap(),
+          ) );
+        ?>
+    </div>
   </div>
+    <script>
+  window.onclick = function(event){
+    if(event.target == document.getElementById('outerNav')){
+      closeNav();
+    }
+  };
+
+  function openNav() {
+    document.getElementById("outerNav").style.display = "block";
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("page").style.marginLeft = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("page").style.marginLeft= "0";
+    setTimeout(function(){
+        document.getElementById("outerNav").style.display = "none";
+    },500);
+  }
+  </script>
+  <?php endif; ?>
 
 	<div id="page" class="site d-flex flex-column justify-content-between" style="height: 100vh;">
 
@@ -134,12 +115,14 @@
     <!-- Encabezado -->
     <header id="siteHEader" style="background-color: <?php echo get_theme_mod( 'header_bg_color' ); ?>;">
 
-      <div class="container-xl py-3">
+      <div id="headerArrow" class="container-xl py-3">
 				<div class="row justify-content-between align-items-center">
           
           <!-- <div class="d-none d-xl-block col-xl-2"> -->
           <div class="col-md-4">
+            <?php if ( has_nav_menu( 'menu-vertical-oculto' ) ): ?>
             <span style="font-size:30px;cursor:pointer;color:#fff;" onclick="openNav()">&#9776;</span>
+            <?php endif; ?>
             <div class="row justify-content-between justify-content-md-center align-items-center">
               <div class="col-auto col-md-12">
                 <div class="lista-iconos justify-content-center">
@@ -209,6 +192,7 @@
 				</div>
       </div>
 
+      <?php if ( has_nav_menu( 'menu-principal' ) ): ?>
       <nav class="navbar navbar-expand navbar-dark bg-dark" role="navigation">
         <div class="container-xl">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="<?php esc_attr_e( 'Menú', 'postamx' ); ?>">
@@ -241,6 +225,7 @@
           ?>
         </div>
       </nav>
+      <?php endif; ?>
 			
     </header>
 

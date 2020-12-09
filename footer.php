@@ -224,19 +224,6 @@
 			jQuery('#mediaFileTypesModal iframe').attr("src", "");
 		});
 	</script>
-
-	<script>
-	function openNav() {
-	  document.getElementById("mySidenav").style.width = "250px";
-	  document.getElementById("page").style.marginLeft = "250px";
-	}
-
-	function closeNav() {
-	  document.getElementById("mySidenav").style.width = "0";
-	  document.getElementById("page").style.marginLeft= "0";
-	}
-	</script>
-
   <?php
 	$gallery = $GLOBALS['gallery'];
     for ($i=1; $i<=count($gallery); $i++){ ?>

@@ -13,7 +13,7 @@
 *																*
 ****************************************************************/
 
-if ( ! function_exists( 'punto_u_setup' ) ) :
+if ( ! function_exists( 'posta_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -21,7 +21,7 @@ if ( ! function_exists( 'punto_u_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function punto_u_setup() {
+	function posta_setup() {
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
 
@@ -99,7 +99,7 @@ if ( ! function_exists( 'punto_u_setup' ) ) :
 		) );
 	}
 endif;
-add_action( 'after_setup_theme', 'punto_u_setup' );
+add_action( 'after_setup_theme', 'posta_setup' );
 
 
 /****************************************************************
@@ -173,6 +173,24 @@ function register_navwalker(){
 }
 add_action( 'after_setup_theme', 'register_navwalker' );
 
+/****************************************************************
+*                               *
+*                           NEW MENUS                           *
+*                               *
+****************************************************************/
+
+/**
+ * Register Custom Navigation Areas
+ */
+function register_new_menus() {
+  register_nav_menus(
+    array(
+      'menu-vertical-oculto' => esc_html__( 'Menu Vertical Oculto', 'postamx' ),
+     )
+   );
+  }
+add_action( 'init', 'register_new_menus' );
+
 
 /****************************************************************
 *																*
@@ -187,13 +205,13 @@ add_action( 'after_setup_theme', 'register_navwalker' );
  *
  * @global int $content_width
  */
-function punto_u_content_width() {
+function posta_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'punto_u_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'posta_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'punto_u_content_width', 0 );
+add_action( 'after_setup_theme', 'posta_content_width', 0 );
 
 
 /****************************************************************
@@ -230,7 +248,7 @@ add_action('widgets_init', 'unregister_default_wp_widgets' );
 *																*
 ****************************************************************/
       
-function punto_u_scripts() {
+function posta_scripts() {
 	wp_enqueue_style( 'postamx-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'postamx-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
@@ -241,7 +259,7 @@ function punto_u_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'punto_u_scripts' );
+add_action( 'wp_enqueue_scripts', 'posta_scripts' );
 
 
 /****************************************************************
