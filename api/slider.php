@@ -18,7 +18,7 @@ add_action( 'rest_api_init', function () {
         $posts = get_posts($args);
     
         if (empty($posts)) {
-            return new WP_Error( 'empty_category', 'there is no post in this category', array('status' => 404) );
+            return new WP_Error( 'empty_notas_slider', 'no hay publicaciones', array('status' => 404) );
         }
     
         $response = new WP_REST_Response($posts);
@@ -29,5 +29,3 @@ add_action( 'rest_api_init', function () {
 
 
 });
-
-
