@@ -26,6 +26,11 @@ add_action('admin_enqueue_scripts', 'admin_style');
  */
 function settings() {
 	register_setting( 'post-app-configuration', 'slider_nota' );
+	register_setting( 'post-app-configuration', 'b1_categoria' );
+	register_setting( 'post-app-configuration', 'b2_categoria' );
+	register_setting( 'post-app-configuration', 'b3_categoria' );
+	register_setting( 'post-app-configuration', 'b4_categoria' );
+	register_setting( 'post-app-configuration', 'b5_categoria' );
 }
 
 
@@ -112,6 +117,76 @@ function page() {
                     </select>
                 </div>
                 
+            </div>
+
+            <div class="card">
+                <h1>Block 1</h1>
+                <hr>
+                <div class="form-group">
+                    <label for="">Categoria</label>
+                    <select name="b1_categoria" id="">
+                        <option value="">Selecciona una categoria</option>
+                        <?php foreach($categories as $c): ?>
+                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('b1_categoria'), $c->term_id); ?> ><?php echo $c->name; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card">
+                <h1>Block 2</h1>
+                <hr>
+                <div class="form-group">
+                    <label for="">Categoria</label>
+                    <select name="b2_categoria" id="">
+                        <option value="">Selecciona una categoria</option>
+                        <?php foreach($categories as $c): ?>
+                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('b2_categoria'), $c->term_id); ?> ><?php echo $c->name; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card">
+                <h1>Block 3</h1>
+                <hr>
+                <div class="form-group">
+                    <label for="">Categoria</label>
+                    <select name="b3_categoria" id="">
+                        <option value="">Selecciona una categoria</option>
+                        <?php foreach($categories as $c): ?>
+                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('b3_categoria'), $c->term_id); ?> ><?php echo $c->name; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card">
+                <h1>Block 4</h1>
+                <hr>
+                <div class="form-group">
+                    <label for="">Categoria</label>
+                    <select name="b4_categoria" id="">
+                        <option value="">Selecciona una categoria</option>
+                        <?php foreach($categories as $c): ?>
+                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('b4_categoria'), $c->term_id); ?> ><?php echo $c->name; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card">
+                <h1>Block 5</h1>
+                <hr>
+                <div class="form-group">
+                    <label for="">Categoria</label>
+                    <select name="b5_categoria" id="">
+                        <option value="">Selecciona una categoria</option>
+                        <?php foreach($categories as $c): ?>
+                            <option value="<?php echo $c->term_id; ?>" <?php selected(get_option('b5_categoria'), $c->term_id); ?> ><?php echo $c->name; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
             </div>
 
     
