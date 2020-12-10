@@ -20,8 +20,24 @@ add_action( 'rest_api_init', function () {
         if (empty($posts)) {
             return new WP_Error( 'empty_notas_slider', 'no hay publicaciones', array('status' => 404) );
         }
+
+        $data = array();
+        $i = 0;
+
+        foreach ($posts as $post) {
+
+            $categoria = get_the_terms($post->ID, 'category')[0];
+
+            $data[$i]['id'] = $post->ID;
+            $data[$i]['titulo'] = $post->post_title;
+            $data[$i]['categoria'] = $categoria->name;
+            $data[$i]['categoria_id'] = $categoria->term_id;
+
+            $i++;
+        }
+
     
-        $response = new WP_REST_Response($posts);
+        $response = new WP_REST_Response($data);
         $response->set_status(200);
     
         return $response;
