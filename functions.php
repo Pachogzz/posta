@@ -759,6 +759,10 @@ require_once 'options/theme.php';
 // API
 require_once 'api/slider.php';
 require_once 'api/blockone.php';
+require_once 'api/blocktwo.php';
+require_once 'api/blockthree.php';
+require_once 'api/blockfour.php';
+require_once 'api/blockfive.php';
 
 /****************************************************************
 *																*

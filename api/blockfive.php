@@ -1,16 +1,16 @@
 <?php
 add_action( 'rest_api_init', function () {
     
-    register_rest_route( 'api', '/blockone', array(
+    register_rest_route( 'api', '/blockfive', array(
         'methods' => 'GET',
-        'callback' => 'blockOne',
+        'callback' => 'blockFive',
     ));
 
 
-    function blockOne() {
+    function blockFive() {
 
         $args = array(
-            'category'   => get_option('b1_categoria'),
+            'category'   => get_option('b5_categoria'),
             'post_type'      => 'post',
             'post_status'    => 'publish',
             'numberposts'    => 4,
@@ -21,7 +21,7 @@ add_action( 'rest_api_init', function () {
         $posts = get_posts($args);
     
         if (empty($posts)) {
-            return new WP_Error( 'empty_notas_categoria_blockone', 'no hay publicaciones', array('status' => 404) );
+            return new WP_Error( 'empty_notas_categoria_blockfive', 'no hay publicaciones', array('status' => 404) );
         }
 
         $data = array();
