@@ -32,6 +32,8 @@ add_action( 'rest_api_init', function () {
             $data[$i]['titulo'] = $post->post_title;
             $data[$i]['categoria'] = $categoria->name;
             $data[$i]['categoria_id'] = $categoria->term_id;
+            $data[$i]['imagen'] = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
+            $data[$i]['fecha'] = date("d-m-Y", strtotime($post->post_date));
 
             $i++;
         }
