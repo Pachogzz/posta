@@ -758,6 +758,7 @@ require_once 'options/theme.php';
 
 // API
 require_once 'api/slider.php';
+require_once 'api/blockone.php';
 
 /****************************************************************
 *																*
