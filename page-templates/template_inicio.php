@@ -1,4 +1,5 @@
 <?php
+
   /* Template Name: Template Inicio */
   get_header();
 ?>
@@ -8,18 +9,18 @@
 require get_template_directory() . '/inc/color_categories.php'; 
 $cont_layout = 0; //Varible para ver el numero de layouts
 
-if( get_field('layout_select') == '0' ) {
-    // Do something.
-}
-elseif ( get_field('layout_select') == '1'){
-	get_template_part( 'template-parts/content', 'slider-de-ancho-completo' );
-}
-elseif ( get_field('layout_select') == '2'){
-	get_template_part( 'template-parts/content', 'slider-de-tres-posts-verticales' );
-}
-elseif ( get_field('layout_select') == '3'){
-	get_template_part( 'template-parts/content', 'slider-de-tres-posts-cuadriculado' );
-}
+// if( get_field('layout_select') == '0' ) {
+//     // Do something.
+// }
+// elseif ( get_field('layout_select') == '1'){
+// 	get_template_part( 'template-parts/content', 'slider-de-ancho-completo' );
+// }
+// elseif ( get_field('layout_select') == '2'){
+// 	get_template_part( 'template-parts/content', 'slider-de-tres-posts-verticales' );
+// }
+// elseif ( get_field('layout_select') == '3'){
+// 	get_template_part( 'template-parts/content', 'slider-de-tres-posts-cuadriculado' );
+// }
 
 if( have_rows('contenido_de_inicio')){
   	while ( have_rows('contenido_de_inicio')) {

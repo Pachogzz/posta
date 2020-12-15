@@ -186,8 +186,8 @@
                 <span class="h4 d-block text-light text-center"><?php bloginfo( 'description' ); ?></span>
             <?php } ?>
           </div>
-					<div class="col-md-4">
-            <?php get_search_form(); ?>
+					<div class="col-md-4 text-center">
+            <a class="icono icono-negro" href="#" data-toggle="modal" data-target="#searchModal"><i class="fas fa-search"></i></a>
 					</div>
 				</div>
       </div>

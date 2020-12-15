@@ -518,13 +518,15 @@ function cp_change_post_object() {
 // Custom search form
 function wpbsearchform( $form ) {
     $form = '<form role="search" method="get" id="searchform" action="'.home_url('').'" >
-			     <div class="input-group">
-				     <input type="text" name="s" id="s" class="form-control" value="'.get_search_query().'">
-					 <span class="input-group-btn">
-					     <button id="searchsubmit" type="submit" class="btn btn-info btn-lg bg-dark custom-btn-src"><i class="fa fa-search"></i></button>
-					 </span>
-				 </div>
-			 </form>';
+              <div class="input-group">
+                <input type="text" name="s" id="s" class="form-control" value="'.get_search_query().'">
+                <span class="input-group-btn">
+                  <button id="searchsubmit" type="submit" class="btn btn-info btn-lg bg-dark custom-btn-src">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </form>';
     return $form;
 }
 add_shortcode('wpbsearch', 'wpbsearchform');

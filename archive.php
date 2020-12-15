@@ -94,6 +94,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					$output = 'objects';
 
 					$the_query = new WP_Query( $args, $output );
+
 					if ( $the_query->have_posts() ) :
 						?>
 						<div id="ajax-posts" class="row category">
