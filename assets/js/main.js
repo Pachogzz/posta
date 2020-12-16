@@ -77,7 +77,13 @@ $(document).ready(function() {
 });
 
 // ---------------------------------------------------------------
-
+/*
+ * Target first element of Archive page loop to change the classes
+ **/
+jQuery(document).ready(function() {
+    $( "#ajax-posts .bloque-nota-archivo" ).first().removeClass('col-md-6 col-lg-4').addClass('col-12');
+});
+// ---------------------------------------------------------------
 /*
  * Function to change classes in default WordPress page to Bootstrap classes
  **/
@@ -312,7 +318,7 @@ $('.carrusel-imagenes').owlCarousel({
     autoplay: false,
     items: 1
 });
-$('.carrusel-tipo-uno').owlCarousel({ //antes .carousel-style-three
+$('.carrusel-tipo-uno').owlCarousel({ //antes .carousel-style-one
     mouseDrag: false,
     loop: false,
     dots: false,
@@ -322,7 +328,7 @@ $('.carrusel-tipo-uno').owlCarousel({ //antes .carousel-style-three
     responsiveClass: true,
     items: 1
 });
-$('.carrusel-tipo-dos').owlCarousel({ //antes .carousel-style-one
+$('.carrusel-tipo-dos').owlCarousel({ //antes .carousel-style-two
     mouseDrag: false,
     loop: false,
     dots: false,
@@ -339,7 +345,7 @@ $('.carrusel-tipo-dos').owlCarousel({ //antes .carousel-style-one
         }
     }
 });
-$('.carrusel-tipo-tres').owlCarousel({ //antes .carousel-style-four
+$('.carrusel-tipo-tres').owlCarousel({ //antes .carousel-style-three
     mouseDrag: false,
     loop: false,
     dots: false,
@@ -356,6 +362,29 @@ $('.carrusel-tipo-tres').owlCarousel({ //antes .carousel-style-four
         },
         992: {
             items: 3
+        }
+    }
+});
+$('.carrusel-tipo-cuatro').owlCarousel({ //antes .carousel-style-four
+    mouseDrag: false,
+    loop: false,
+    dots: false,
+    nav: true,
+    navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
+    margin: 20,
+    responsiveClass: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+        468: {
+            items: 2
+        },
+        768: {
+            items: 3
+        },
+        992: {
+            items: 4
         }
     }
 });

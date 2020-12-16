@@ -239,7 +239,7 @@ $GLOBALS['gallery']=  $gallery;
 					<!-- ENCABEZADO DE CARRUSEL -->
 					<div class="encabezado">
 						<h3 class="encabezado-titulo">
-							Más contenido de <a href="<?php echo esc_url($category_link); ?>"><?php echo $category_name;?></a>
+							Contenido relacionado en <a href="<?php echo esc_url($category_link); ?>"><?php echo $category_name;?></a>
 						</h3>
 						<?php if(!empty($category_description)){ echo '<p class="encabezado-descripcion">'.$category_description.'</p>'; } ?>
 					</div>
@@ -367,16 +367,16 @@ $GLOBALS['gallery']=  $gallery;
 							}
 						} ?>
 						<!-- Link ver más notas -->
-						<div class="c-item">
-							<a class="item-ver-mas" href="<?php echo esc_url($category_link); ?>" title="Ver más noticias de <?php echo $category_name;?>">
+						<!-- <div class="c-item">
+							<a class="item-ver-mas" href="</?php echo esc_url($category_link); ?>" title="Ver más noticias de </?php echo $category_name;?>">
 								<div class="contenedor-media">
 									<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center">
 										<p class="h5 m-0">Ver más noticias de</p>
-										<h4 class="encabezado-titulo flecha"><?php echo $category_name;?></h4>
+										<h4 class="encabezado-titulo flecha"></?php echo $category_name;?></h4>
 									</div>
 								</div>
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

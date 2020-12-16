@@ -16,10 +16,11 @@ if (empty($featured_img_url)){
   $featured_img_url = get_theme_mod('default_news_image');
 }
 $themes = get_the_terms(get_the_ID(), 'theme');
+$sections = get_the_category(get_the_ID(), 'category');
 ?>
 
 <!-- Item (nota) dentro del grid  -->
-<div id="post-<?php the_ID(); ?>" class="col-md-6 col-lg-4 mb-5">
+<div id="post-<?php the_ID(); ?>" class="bloque-nota-archivo col-md-6 col-lg-4 mb-5">
 	<!-- Post related themes -->
 	<div class="d-block w-100 mb-0 meta">
 			<!-- Nombre del tema -->
@@ -29,9 +30,14 @@ $themes = get_the_terms(get_the_ID(), 'theme');
 					$theme_link  = get_category_link($themes[$i]->term_id);
 					echo $theme_name = '<a class="text-white p-0 mr-1" href="'.esc_url($theme_link).'"><small>'.$themes[$i]->name.'</small></a>';
 				}
+				for ($i=0; $i<count($sections) ; $i++) {
+					$section_link  = get_category_link($sections[$i]->term_id);
+					echo $theme_name = '<a class="text-white p-0 mr-1" href="'.esc_url($section_link).'"><small>'.$sections[$i]->name.'</small></a>';
+				}
 				echo "</div>";
 			} else {
-				echo "&nbsp";
+				// echo "<div class='categoria'>";
+				// echo "</div>";
 			}?>
 	</div>
 
@@ -101,6 +107,6 @@ $themes = get_the_terms(get_the_ID(), 'theme');
     </div>
   </div>
   <!-- ICONOS COMPARTIR -->
-  <?php require get_template_directory() . '/inc/iconos-compartir.php'; ?>
+  <!-- </?php require get_template_directory() . '/inc/iconos-compartir.php'; ?> -->
 
 </div>

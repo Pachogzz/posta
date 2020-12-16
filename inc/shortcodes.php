@@ -68,7 +68,7 @@
 
       $shortcode_html = '';
       $shortcode_html .= '
-      <div class="galeria p-3 my-5 single-post-gallery">';
+      <div class="galeria p-3 pt-6 my-5 single-post-gallery">';
       if(!empty($gallery_title)){
          $shortcode_html .= '<h4 class="encabezado-titulo mb-2">'.$gallery_title.'</h4>'; 
       }
@@ -82,7 +82,7 @@
             <div class="col-6 col-md-4" data-src="'.$gallery_image['imagen_galeria'].'">
               <div class="galeria-item">
                 <a href="'.$gallery_image['imagen_galeria'].'" class="contenedor-media d-flex justify-content-start align-items-end p-2" style="background-image: url('.$gallery_image['imagen_galeria'].'); background-size:cover;" title="Ver imagen">
-                  <i class="fas fa-plus"></i>
+                  <i class="fas fa-search-plus"></i>
                   <img class="d-none" src="'.$gallery_image['imagen_galeria'].'">
                 </a>
               </div>
@@ -119,14 +119,14 @@
 
       $shortcode_html = '';
       $shortcode_html .= '
-      <div class="ficha-perfil my-5 p-4">
+      <div class="ficha-perfil my-5 p-4 pt-6">
+        <h4 class="mb-2">'.$card_profile[$card_profile_counter]['card_title'].'</h4>
         <div class="row">
           <div class="col-auto">
             <div class="ficha-perfil-imagen" style="background-image: url('.$card_profile[$card_profile_counter]['card_image'].');"></div>
           </div>
           <div class="col-sm mt-3 mt-sm-0">
             <div class="ficha-perfil-contenido">
-              <h4 class="mb-2">'.$card_profile[$card_profile_counter]['card_title'].'</h4>
               '.$card_profile[$card_profile_counter]['card_description'];
               if(!empty($card_profile[$card_profile_counter]['card_link'])){
                 $shortcode_html .= '<a href="'.$card_profile[$card_profile_counter]['card_link'].'" target="'.$card_profile[$card_profile_counter]['target'].'">Ver más</a>';
@@ -210,7 +210,7 @@
       $shortcode_html .= '
         <div class="mt-5 metrica-destacada">';
           if(!empty($metrics[$metrics_counter]['important_metrics_title'])){
-              $shortcode_html .= '<h4 class="encabezado-titulo flecha mb-4">'.$metrics[$metrics_counter]['important_metrics_title'].'</h4>';
+              $shortcode_html .= '<h4 class="encabezado-titulo mb-4">'.$metrics[$metrics_counter]['important_metrics_title'].'</h4>';
           }
   
           $shortcode_html .= '<div class="row align-items-stretch">';
