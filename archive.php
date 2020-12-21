@@ -12,8 +12,8 @@ get_header();
 // Obtener el color de la taxonomia
 global $wp_query;
 $taxonomy_object = $wp_query->get_queried_object();
-require get_template_directory() . '/inc/color_categories.php';
-$category_name = get_color_taxonomy($taxonomy_object);
+// require get_template_directory() . '/inc/color_categories.php';
+// $category_name = get_color_taxonomy($taxonomy_object);
 
 $category = get_category( $taxonomy_object );
 $category_name = $category->name;
@@ -29,8 +29,11 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 			<div class="row">
 				<div class="col">
 					<div class="encabezado text-center m-0">
-						<h2 class="encabezado-titulo flecha"><?php echo $category_name; ?></h2>
-						<p class="encabezado-descripcion"><?php echo $category_description; ?></p>
+						<h2 class="encabezado-titulo">
+							<span class="nombre-sitio">POSTA</span>
+							<span class="nombre-taxonomia"><?php echo $category_name; ?></span>
+						</h2>
+						<!-- <p class="encabezado-descripcion"></?php echo $category_description; ?></p> -->
 					</div>
 				</div>
 			</div>
@@ -39,10 +42,9 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		<!-- GRID -->
 		<div class="container-fluid grid-notas px-6 mt-6">
 			<div class="row">
-				<div class="col-lg-auto px-0 d-none d-xl-block" style="width: 170px;">
+				<div class="col-lg-auto px-0 d-none d-xl-block" style="max-width: 185px;">
 					<div style="border: 1px dotted red;">
-						<?php if (function_exists ('adinserter')) echo adinserter (3); ?>
-						<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600"> -->
+						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600">
 						<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
 					</div>
 				</div>
@@ -55,7 +57,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 						$args = array(
 							'suppress_filters' => true,
 							'post_type' => 'post',
-							'posts_per_page' => 12,
+							'posts_per_page' => 13,
 							'post_status' => array(
 								'publish',
 							),
@@ -72,7 +74,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 						$args = array(
 							'suppress_filters' => true,
 							'post_type' => 'post',
-							'posts_per_page' => 12,
+							'posts_per_page' => 13,
 							'tax_query' => array(
 							array(
 								'taxonomy' => $taxonomy_name,
@@ -94,6 +96,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					$output = 'objects';
 
 					$the_query = new WP_Query( $args, $output );
+
 					if ( $the_query->have_posts() ) :
 						?>
 						<div id="ajax-posts" class="row category">
@@ -116,10 +119,9 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					endif;
 					?>
 				</div>
-				<div class="col-lg-auto px-0 d-none d-xl-block" style="width: 170px;">
+				<div class="col-lg-auto px-0 d-none d-xl-block" style="max-width: 185px;">
 					<div style="border: 1px dotted red;">
-						<?php if (function_exists ('adinserter')) echo adinserter (2); ?>
-						<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600"> -->
+						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600">
 						<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
 					</div>
 				</div>
@@ -141,5 +143,6 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
 	</main><!-- #main -->
 </div><!-- #primary -->
+
 <?php
 get_footer();

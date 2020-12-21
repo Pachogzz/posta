@@ -19,7 +19,7 @@ $color_de_texto_coleccion = get_sub_field('color_de_texto_coleccion');
 $mostrar_descripcion = get_sub_field('mostrar_descripcion');
 
 if($titulo_del_carrusel){
-	$titulo ='<h2 class="encabezado-titulo flecha">'.$titulo_del_carrusel.'</h2>';
+	$titulo ='<h2 class="encabezado-titulo"><span class="nombre-sitio">POSTA</span><span class="nombre-taxonomia">'.$titulo_del_carrusel.'</span></h2>';
 }
 if($mostrar_descripcion){
 	$descripcion_del_carrusel_coleccion = get_sub_field('descripcion_del_carrusel');
@@ -104,6 +104,12 @@ if ( $notas_coleccion ) { ?>
 							?>
 
 							<div class="c-item">
+								<div class="d-block w-100 mb-0 meta">
+									<!-- Sección de nota -->
+									<div class="categoria">
+										<a href="<?php echo $category_link; ?>"><?php echo $category_name ?></a>
+									</div>
+								</div>
 								<div class="position-relative">
 									<!-- IMAGEN DE NOTA -->
 									<div class="contenedor-media d-flex justify-content-center align-items-center" style="background-image: url(<?php echo $featured_img_url ?>);">
@@ -164,10 +170,6 @@ if ( $notas_coleccion ) { ?>
 									</div>
 									<!-- ENCABEZADO DE NOTA -->
 									<div class="encabezado-nota mt-2">
-										<!-- Sección de nota -->
-										<div class="categoria">
-											<a href="<?php echo $category_link; ?>"><?php echo $category_name ?></a>
-										</div>
 										<!-- Título de nota -->
 										<h4 class="titulo-de-nota mt-1">
 											<a class="stretched-link" href="<?php the_permalink(); ?>" title="<?php echo the_title(); ?>"><?php echo esc_html(get_the_title()); ?></a>

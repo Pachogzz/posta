@@ -41,7 +41,7 @@ $GLOBALS['gallery']=  $gallery;
 <div id="primary" class="content-area">
 	<main id="main" class="site-main">
 		<!-- IMAGEN DE NOTA / ICONO DE TIPO DE CONTENIDO -->
-		<div class="container-fluid">
+		<div class="container">
 			<div class="row">
 				<div class="col p-0">
 					<div class="contenedor-media contenedor-media-imagen-nota d-flex justify-content-center align-items-center" style="background-image: url(<?php echo $featured_img_url; ?>);">
@@ -99,6 +99,10 @@ $GLOBALS['gallery']=  $gallery;
 							?>
 						</div>
 					</div>
+					<!-- Título de la nota -->
+					<h1 class="titulo-principal-nota mt-3 display-4 d-block bg-dark text-light text-center p-3">
+						<?php echo get_the_title(); ?>
+					</h1>
 				</div>
 			</div>
 		</div>
@@ -108,25 +112,6 @@ $GLOBALS['gallery']=  $gallery;
 			<div class="row justify-content-center align-items-start">
 				<!-- Contenido principal -->
 				<div class="col-lg px-4 pl-lg-3 pr-lg-6">
-					<!-- Fecha de publicación -->
-					<p class="fecha-publicacion"><?php echo get_the_date(); ?></p>
-					<!-- Nombre de la sección o categoría principal seleccionada -->
-					<h4 class="encabezado-titulo flecha">
-						<?php
-							echo $category_name;
-						?>
-					</h4>
-					<!-- Título de la nota -->
-					<h1 class="mt-3 display-4"><?php echo get_the_title(); ?></h1>
-					<!-- Nombre del tema -->
-					<?php if($themes){
-							for ($i=0; $i<count($themes) ; $i++) {
-								$theme_link  = get_category_link($themes[$i]->term_id);
-								echo $theme_name = '<h6 class="tema-de-nota mt-3"><a href="'.esc_url($theme_link).'">'.$themes[$i]->name.'</a></h6>';
-							}
-						}?>
-					<!-- Extracto -->
-					<p class="lead extracto-de-nota mt-3"><?php echo get_the_excerpt() ?></p>
 					<!-- Autor de la nota -->
 					<p class="autor-de-nota">
 						Por
@@ -135,15 +120,27 @@ $GLOBALS['gallery']=  $gallery;
 							echo $author_name;
 						?>
 					</p>
+					<!-- Fecha de publicación -->
+					<p class="fecha-publicacion"><small><?php echo get_the_date( 'l j F Y - g:i a' ); ?></small></p>
+					<!-- Nombre de la sección o categoría principal seleccionada -->
+					<!-- <h4 class="encabezado-titulo flecha">
+						</?php
+							echo $category_name;
+						?>
+					</h4> -->
+					<!-- Nombre del tema -->
+					<?php if($themes){
+						echo "Temas: ";
+							for ($i=0; $i<count($themes) ; $i++) {
+								$theme_link  = get_category_link($themes[$i]->term_id);
+								echo $theme_name = '<h6 class="tema-de-nota text-primary mt-3"><a href="'.esc_url($theme_link).'">'.$themes[$i]->name.'</a></h6>';
+							}
+						}?>
+					<!-- Extracto -->
+					<p class="lead extracto-de-nota mt-3"><?php echo get_the_excerpt() ?></p>
+
 					<div class="separador"></div>
-					<!-- Iconos de compartir -->
-					<h6 class="text-muted">COMPARTE ESTA HISTORIA</h6>
-					<div class="lista-iconos">
-						<i class="fas fa-share-alt icono icono-borde-posta mr-2"></i>
-						<a href="javascript:void(0)" class="btnsf icono icono-posta" data-title="<?php the_title(); ?>" data-excerpt="" data-link="<?php the_permalink(); ?>" data-img="<?php echo get_the_post_thumbnail_url(get_the_ID(),'full'); ?>"><i class="fab fa-facebook-f"></i></a>
-						<a href="javascript:void(0)" class="btnst icono icono-posta" data-title="<?php the_title(); ?>" data-link="<?php the_permalink(); ?>"><i class="fab fa-twitter"></i></a>
-						<a href="https://api.whatsapp.com/send?text=<?php the_permalink(); ?>" class="btnsw icono icono-posta" target="_blank"><i class="fab fa-whatsapp"></i></a>
-					</div>
+
 					<!-- Contenido de la nota -->
 					<div class="row contenido-nota mt-5">
 						<div class="col">
@@ -156,6 +153,17 @@ $GLOBALS['gallery']=  $gallery;
 							?>
 						</div>
 					</div>
+
+					<div class="separador"></div>
+
+					<!-- Iconos de compartir -->
+					<!-- <h6 class="text-muted">COMPARTE ESTA HISTORIA</h6> -->
+					<div class="lista-iconos">
+						<i class="fas fa-share-alt icono icono-borde-posta mr-2"></i>
+						<a href="javascript:void(0)" class="btnsf icono icono-posta" data-title="<?php the_title(); ?>" data-excerpt="" data-link="<?php the_permalink(); ?>" data-img="<?php echo get_the_post_thumbnail_url(get_the_ID(),'full'); ?>"><i class="fab fa-facebook-f"></i></a>
+						<a href="javascript:void(0)" class="btnst icono icono-posta" data-title="<?php the_title(); ?>" data-link="<?php the_permalink(); ?>"><i class="fab fa-twitter"></i></a>
+						<a href="https://api.whatsapp.com/send?text=<?php the_permalink(); ?>" class="btnsw icono icono-posta" target="_blank"><i class="fab fa-whatsapp"></i></a>
+					</div>
 				</div>
 
 				<!-- Sidebar -->
@@ -165,6 +173,7 @@ $GLOBALS['gallery']=  $gallery;
 						<?php if (function_exists ('adinserter')) echo adinserter (1); ?>
 						<span>Publicidad</span>
 					</div>
+					<?php get_sidebar('sidebar-1') ?>
 					<!-- PUBLICIDAD -->
 					<div class="modulo-publicidad mx-auto mt-4" style="width: 302px; border:1px dotted red;">
 						<?php if (function_exists ('adinserter')) echo adinserter (4); ?>
@@ -172,8 +181,8 @@ $GLOBALS['gallery']=  $gallery;
 						<span>Publicidad</span>
 					</div>
 					<!-- HASHTAGS -->
-					<div class="contenedor-hashtags mt-6">
-						<?php
+					<!-- <div class="contenedor-hashtags mt-6">
+						</?php
 							$hashtags = get_the_tags();
 							if ($hashtags){
 								foreach($hashtags as $hashtag){
@@ -181,7 +190,7 @@ $GLOBALS['gallery']=  $gallery;
 								}
 							}
 						?>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -230,7 +239,7 @@ $GLOBALS['gallery']=  $gallery;
 					<!-- ENCABEZADO DE CARRUSEL -->
 					<div class="encabezado">
 						<h3 class="encabezado-titulo">
-							Más contenido de <a href="<?php echo esc_url($category_link); ?>"><?php echo $category_name;?></a>
+							Contenido relacionado en <a href="<?php echo esc_url($category_link); ?>"><?php echo $category_name;?></a>
 						</h3>
 						<?php if(!empty($category_description)){ echo '<p class="encabezado-descripcion">'.$category_description.'</p>'; } ?>
 					</div>
@@ -358,29 +367,29 @@ $GLOBALS['gallery']=  $gallery;
 							}
 						} ?>
 						<!-- Link ver más notas -->
-						<div class="c-item">
-							<a class="item-ver-mas" href="<?php echo esc_url($category_link); ?>" title="Ver más noticias de <?php echo $category_name;?>">
+						<!-- <div class="c-item">
+							<a class="item-ver-mas" href="</?php echo esc_url($category_link); ?>" title="Ver más noticias de </?php echo $category_name;?>">
 								<div class="contenedor-media">
 									<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center">
 										<p class="h5 m-0">Ver más noticias de</p>
-										<h4 class="encabezado-titulo flecha"><?php echo $category_name;?></h4>
+										<h4 class="encabezado-titulo flecha"></?php echo $category_name;?></h4>
 									</div>
 								</div>
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- COMENTARIOS FACEBOOK -->
-		<div class="container mt-8 mb-4">
+		<!-- <div class="container mt-8 mb-4">
 			<div class="row">
 				<div class="col-12">
 					<div class="fb-comments" data-href="<?php $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; echo $url;?>" data-numposts="5" data-width="100%" data-lazy="true"></div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 	</main>
 </div>

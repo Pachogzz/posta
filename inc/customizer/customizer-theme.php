@@ -323,7 +323,7 @@ function posta_footer_customize_register($wp_customize){
 			'settings'    => 'appstore_apple_image',
 		) )
 	);
-	// Link Google Play Store
+	// Link AppStore
 	$wp_customize->add_setting('appstore_apple_link', array(
 		'default'   => '',
 		'transport' => 'refresh',

@@ -94,8 +94,8 @@
 		</div><!-- Termina #content -->
 
 		<!-- FOOTER -->
-		<footer id="colophon" class="footer py-6 mt-6" style="background-color:  <?php echo get_theme_mod( 'footer_bg_color' ); ?>;">
-			<div class="container">
+		<footer id="colophon" class="footer pt-6 mt-6" style="background-color:  <?php echo get_theme_mod( 'footer_bg_color' ); ?>;">
+			<div class="container pb-6">
 
 				<div class="row justify-content-center align-items-center">
 
@@ -119,12 +119,6 @@
 							'items_wrap'        => my_nav_wrap(),
 						) );
 						?>
-						<?php if( get_theme_mod('copy_right_text') != '' ) { ?>
-							<p class="mb-0 pl-2"><?php echo get_theme_mod('copy_right_text'); ?></p>
-						<?php } ?>
-						<?php if( get_theme_mod('copy_right_text_two') != '' ) { ?>
-							<p class="pl-2"><?php echo get_theme_mod('copy_right_text_two'); ?></p>
-						<?php } ?>
 						<?php if( get_theme_mod('footer_text') != '' ) { ?>
 							<p class="pl-2"><?php echo get_theme_mod('footer_text'); ?></p>
 						<?php } ?>
@@ -163,23 +157,48 @@
 								</a>
 							<?php } ?>
 						</div>
+						<div class="row mt-3">
+							<div class="col">
+								<?php if( get_theme_mod('appstore_apple_image') != '' ) { ?>
+									<a href="<?php echo get_theme_mod('appstore_apple_link'); ?>" target="_blank">
+										<img class="img-fluid d-block" src="<?php echo get_theme_mod('appstore_apple_image'); ?>" style="max-height: 50px;">
+									</a>
+								<?php } ?>
+								</div>
+							<div class="col">
+								<?php if( get_theme_mod('appstore_android_image') != '' ) { ?>
+									<a href="<?php echo get_theme_mod('appstore_android_link'); ?>" target="_blank">
+										<img class="img-fluid d-block" src="<?php echo get_theme_mod('appstore_android_image'); ?>" style="max-height: 50px;">
+									</a>
+								<?php } ?>
+								</div>
+						</div>
 					</div>
 
 				</div>
 
 				<div class="row justify-content-center mt-6">
 					<div class="col-auto">
-						<?php
-							if( get_theme_mod('imagen_footer') != '' ) {
-						?>
+						<?php if( get_theme_mod('imagen_footer') != '' ) { ?>
 						<img class="img-fluid" style="max-height: <?php if( get_theme_mod('imagen_footer_height') != '' ) { echo get_theme_mod('imagen_footer_height'); } ?>" src="<?php echo get_theme_mod('imagen_footer'); ?>">
-						<?php
-							}
-						?>
+						<?php } ?>
 					</div>
 				</div>
-				
 			</div><!-- .site-info -->
+
+			<section class="bg-dark text-white">
+				<div class="container">
+					<div class="row justify-content-center pt-3">
+						<?php if( get_theme_mod('copy_right_text') != '' ) { ?>
+							<p class="mb-0 pl-2"><?php echo get_theme_mod('copy_right_text'); ?></p>
+						<?php } ?>
+						<?php if( get_theme_mod('copy_right_text_two') != '' ) { ?>
+							<p class="pl-2"><?php echo get_theme_mod('copy_right_text_two'); ?></p>
+						<?php } ?>					
+					</div>
+				</div>
+			</section> <!-- .site-copyright -->
+
 		</footer><!-- #colophon -->
 
 	</div><!-- #page -->
