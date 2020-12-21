@@ -14,24 +14,16 @@ if(have_rows('bloque_de_contenidos')):
 		the_row();
 
 		if( get_sub_field('cuadricula_de_notas_a_utilizar') == '7_bb' ) {
-			// get_template_part( 'template-parts/content', 'bloque-bcn-7_bb' );
-			// echo "7 BB";
-			require get_template_directory() . '/layouts/bcn_7_bb.html'; 
+			get_template_part( 'template-parts/content', 'bloque-7-bb' );
 		}
 		elseif ( get_sub_field('cuadricula_de_notas_a_utilizar') == '6_hb'){
-			// get_template_part( 'template-parts/content', 'bloque-bcn-6_hp' );
-			// echo "6 HP";
-			require get_template_directory() . '/layouts/bcn_6_hp.html'; 
+			get_template_part( 'template-parts/content', 'bloque-6-hp' );
 		}
 		elseif ( get_sub_field('cuadricula_de_notas_a_utilizar') == '2-1_5_bb'){
-			// get_template_part( 'template-parts/content', 'bloque-bcn-5_bb' );
-			// echo "2 1 5 bb";
-			require get_template_directory() . '/layouts/bcn_2-1_5_bb.html'; 
+			get_template_part( 'template-parts/content', 'bloque-2-1-5-bb' );
 		}
 		elseif ( get_sub_field('cuadricula_de_notas_a_utilizar') == '2-1_4_hp'){
-			// get_template_part( 'template-parts/content', 'bloque-bcn-4_hp' );
-			// echo "2 1 4 hp";
-			require get_template_directory() . '/layouts/bcn_2-1_4_hp.html'; 
+			get_template_part( 'template-parts/content', 'bloque-2-1-4-hp' );
 		}
 	endwhile;
 endif;
