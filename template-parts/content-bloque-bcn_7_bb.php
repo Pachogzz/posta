@@ -1,3 +1,14 @@
+<?php 
+/**
+ * Template part for displaying 11 notes and 1 box banner
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package postamx
+ * 
+ * 
+ */
+?>
 <!-- Bloques de notas 7 - BB -->
 <section class="bloque_notas--7_bb mt-6 mb-6">
 	<div class="container">

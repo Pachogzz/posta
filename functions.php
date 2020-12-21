@@ -220,7 +220,7 @@ add_action( 'after_setup_theme', 'posta_content_width', 0 );
 *																*
 ****************************************************************/
 
-function codmag_widgets_init() {
+function posta_widgets_init() {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Sidebar 1', 'postamx' ),
 		'id'            => 'sidebar-1',
@@ -231,7 +231,7 @@ function codmag_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 }
-add_action( 'widgets_init', 'codmag_widgets_init' );
+add_action( 'widgets_init', 'posta_widgets_init' );
 
 function unregister_default_wp_widgets(){
   unregister_widget('WP_Widget_Tag_Cloud');
