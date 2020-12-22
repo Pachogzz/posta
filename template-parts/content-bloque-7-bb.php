@@ -89,7 +89,7 @@ if ( have_rows ('bloque_7_bb') ){
 				if ($seccion_tema_o_hashtag == 'seccion') {
 					$args = array (
 						'post_type'      => 'post',
-						'cat'		=> $section_id->term_id,
+						'category' 		=> $section_id->term_id,
 						// 'posts_per_page' => 6,
 						'orderby'        => 'date',
 						'order'          => 'DESC'
@@ -98,7 +98,7 @@ if ( have_rows ('bloque_7_bb') ){
 				if ($seccion_tema_o_hashtag == 'tema') {
 					$args = array (
 						'post_type'      => 'post',
-						'cat'		=> $theme_id->term_id,
+						'category' 		=> $theme_id->term_id,
 						// 'posts_per_page' => 6,
 						'orderby'        => 'date',
 						'order'          => 'DESC'
@@ -107,7 +107,7 @@ if ( have_rows ('bloque_7_bb') ){
 				if ($seccion_tema_o_hashtag == 'hashtag') {
 					$args = array (
 						'post_type'      => 'post',
-						'cat'		=> $hashtag_id->term_id,
+						'category' 		=> $hashtag_id->term_id,
 						// 'posts_per_page' => 6,
 						'orderby'        => 'date',
 						'order'          => 'DESC'
