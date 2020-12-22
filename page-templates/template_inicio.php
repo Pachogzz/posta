@@ -9,6 +9,7 @@
 require get_template_directory() . '/inc/color_categories.php'; 
 $cont_layout = 0; //Varible para ver el numero de layouts
 
+
 if(have_rows('bloque_de_contenidos')):
 	while(have_rows('bloque_de_contenidos')):
 		the_row();

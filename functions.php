@@ -765,6 +765,7 @@ require_once 'api/blocktwo.php';
 require_once 'api/blockthree.php';
 require_once 'api/blockfour.php';
 require_once 'api/blockfive.php';
+require_once 'api/custom-rest-api.php';
 
 /****************************************************************
 *																*
