@@ -14,6 +14,9 @@ if(have_rows('bloque_de_contenidos')):
 	while(have_rows('bloque_de_contenidos')):
 		the_row();
 
+		echo get_sub_field('tipo_block');
+
+
 		if( get_sub_field('cuadricula_de_notas_a_utilizar') == '7_bb' ) {
 			get_template_part( 'template-parts/content', 'bloque-7-bb' );
 		}
@@ -32,6 +35,16 @@ endif;
 if( have_rows('contenido_de_inicio')){
   	while ( have_rows('contenido_de_inicio')) {
 		the_row();
+		
+		// Bloque de contenido
+		if (get_sub_field('tipo_block')) {
+			get_template_part( 'template-parts/content', get_sub_field('tipo_block'));
+		}
+
+
+
+
+
 		if(get_row_layout() == 'top_stories'){ 
 			 get_template_part('template-parts/content', 'top-stories'); 
 			if(have_rows('historias_del_dia')){
