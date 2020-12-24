@@ -9,32 +9,32 @@
  */
 
 
-$color = get_sub_field('color_del_titulo');
-$tipo = get_sub_field('tipo');
-$tipoTitulo = get_sub_field('titulo_de_seccion');
-$tituloPerso = get_sub_field('titulo_personalizado');
-$mostraDescr = get_sub_field('mostrar_descripcion');
+    $color = get_sub_field('color_del_titulo');
+    $tipo = get_sub_field('tipo');
+    $tipoTitulo = get_sub_field('titulo_de_seccion');
+    $tituloPerso = get_sub_field('titulo_personalizado');
+    $mostraDescr = get_sub_field('mostrar_descripcion');
 
-switch ($tipo) {
-    case 'seccion':
-        $id = get_sub_field('elegir_seccion');
-        $tipo = 'category';
-    break;
+    switch ($tipo) {
+        case 'seccion':
+            $id = get_sub_field('elegir_seccion');
+            $tipo = 'category';
+        break;
 
-    case 'tema':
-        $id = get_sub_field('elegir_tema');
-        $tipo = 'theme';
-    break;
+        case 'tema':
+            $id = get_sub_field('elegir_tema');
+            $tipo = 'theme';
+        break;
 
-    case 'hashtag':
-        $id = get_sub_field('elegir_hashtag');
-        $tipo = 'post_tag';
-    break;
-}
+        case 'hashtag':
+            $id = get_sub_field('elegir_hashtag');
+            $tipo = 'post_tag';
+        break;
+    }
 
-$categoria = get_term_by('id', $id, $tipo);
-$descripcion = category_description($categoria->term_id);
-$link = get_category_link($categoria->term_id);
+    $categoria = get_term_by('id', $id, $tipo);
+    $descripcion = category_description($categoria->term_id);
+    $link = get_category_link($categoria->term_id);
 
 ?>
 <!-- Bloques de notas 7 - BB -->

@@ -36,6 +36,8 @@ if( have_rows('contenido_de_inicio')){
   	while ( have_rows('contenido_de_inicio')) {
 		the_row();
 		
+		echo get_sub_field('tipo_block');
+
 		// Bloque de contenido
 		if (get_sub_field('tipo_block')) {
 			get_template_part( 'template-parts/content', get_sub_field('tipo_block'));
