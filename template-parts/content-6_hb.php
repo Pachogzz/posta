@@ -28,11 +28,8 @@
     $link = get_category_link($categoria->term_id);
 
 ?>
-
-<!-- Bloques de notas 6 - HP -->
 <section class="bloque_notas--6_hp mb-6">
     <div class="container">
-        its active!! 6_bb
         <div class="row">
             <div class="col-12">
                 <div class="encabezado">

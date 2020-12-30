@@ -9,10 +9,24 @@
  * 
  */
 $portada = get_sub_field('notas_portada');
+$estilo_carusel = get_sub_field('estilo_de_carusel');
+switch ($estilo_carusel) {
+    case 'estilo_de_carusel':
+        $estilo_carusel = 'simple';
+    break;
+
+    case 'estilo_de_carusel':
+        $estilo_carusel = 'cuadricula';
+    break;
+
+    case 'estilo_de_carusel':
+        $estilo_carusel = 'verticales';
+    break;
+}
 
  if($portada){?>
 	<div class="container-fluid p-0 mt-6 indicador-elemento">
-		<div class="owl-carousel carrusel-portada">
+		<div class="owl-carousel carrusel-portada<?php echo "-" . $estilo_carusel; ?>">
 			<?php
 			foreach ($portada as $post) {
 				setup_postdata($post);
@@ -22,7 +36,6 @@ $portada = get_sub_field('notas_portada');
 				$featured_img_url_medium_retina = get_the_post_thumbnail_url(get_the_ID(), '1100x618');
 				$featured_img_url_large = get_the_post_thumbnail_url(get_the_ID(), '1920x1080');
 				$featured_img_url_large_retina = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
-				
 				// De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
 				if ($mobile_browser > 0) {
 					//print 'is mobile';
@@ -48,7 +61,6 @@ $portada = get_sub_field('notas_portada');
 						}
 						$tipo_de_carrusel = "";
 					}
-
 				}else {
 					//print 'is desktop';
 					if($tipo_de_carrusel_coleccion){
@@ -62,7 +74,6 @@ $portada = get_sub_field('notas_portada');
 						$tipo_de_carrusel = "";
 					}
 				}
-
 				//obtiene obtiene la categoria principal
 				$categoria = get_primary_category(get_the_ID(), 'category');
 				// categoria principal con el yoast
@@ -83,9 +94,10 @@ $portada = get_sub_field('notas_portada');
 					<div class="contenedor-media d-flex justify-content-center align-items-center" style="background-image: url( <?php echo get_the_post_thumbnail_url(get_the_ID(),'1920x1080'); ?> );">
 						<a class="link-a-nota" href="<?php the_permalink(); ?>" title="<?php echo the_title(); ?>"></a>
 						<!-- ENCABEZADO NOTA -->
-						<div class="container encabezado-nota position-relative mt-sm-n5 mt-md-n6">
-							<div class="row justify-content-center">
-								<div class="col-md-10 col-lg bg-white px-3 pt-3 px-md-4 pt-md-4">
+						<div class="container-fluid encabezado-nota position-relative align-self-end py-6">
+							<div class="container row mx-auto">
+							<!-- <div class="row justify-content-center"> -->
+								<div class="col-md-10 col-lg px-3 px-md-4">
 									<!-- Icono tipo de contenido -->
 									<div>
 										<?php
@@ -148,11 +160,11 @@ $portada = get_sub_field('notas_portada');
 									<div class="d-block w-100 mb-0 meta">
 										<!-- Sección de nota -->
 										<div class="categoria">
-											<a href="<?php echo $category_link; ?>"><?php echo $category_name ?></a>
+											<a class="text-white" href="<?php echo $category_link; ?>"><?php echo $category_name ?></a>
 										</div>
 									</div>
 									<h1 class="titulo-de-nota h3 pr-8 pr-sm-0">
-										<a href="<?php the_permalink(); ?>" title="<?php echo the_title(); ?>"><?php echo get_the_title(); ?></a>
+										<a class="text-white" href="<?php the_permalink(); ?>" title="<?php echo the_title(); ?>"><?php echo get_the_title(); ?></a>
 									</h1>
 									<!-- Extracto de nota -->
 									<!-- <p class="lead m-0 d-none d-lg-block"></?php echo get_the_excerpt(); ?></p> -->

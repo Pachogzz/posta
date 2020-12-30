@@ -7,8 +7,6 @@
  * @package postamx
  * 
  */
-
-
     $color = get_sub_field('color_del_titulo');
     $tipo = get_sub_field('tipo');
     $tipoTitulo = get_sub_field('titulo_de_seccion');
@@ -37,10 +35,6 @@
     $link = get_category_link($categoria->term_id);
 
 ?>
-<!-- Bloques de notas 7 - BB -->
-<span class="mute"><small>11 bloques 1 box banner</small></span>
-
-
 <section class="bloque_notas--7_bb mt-6 mb-6">
     <div class="container">
         <div class="row">
@@ -115,7 +109,7 @@
             ?>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3 nota">
+            <!-- <div class="col-12 col-md-6 col-lg-3 nota">
                 <div class="row meta">
                     <div class="col categoria">
                         <small>Categoría</small>
@@ -129,7 +123,7 @@
             </div>
             <div class="col-12 col-md-6 col-lg-3 nota">
                 <img src="http://fakeimg.pl/300x300/333/ccc/?text=BoxBanner" class="img-fluid d-block imagen-nota" alt="Publicidad...">
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
