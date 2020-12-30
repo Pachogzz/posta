@@ -9,37 +9,9 @@
 require get_template_directory() . '/inc/color_categories.php'; 
 $cont_layout = 0; //Varible para ver el numero de layouts
 
-
-if(have_rows('bloque_de_contenidos')):
-	while(have_rows('bloque_de_contenidos')):
-		the_row();
-
-		echo get_sub_field('tipo_block');
-
-
-		if( get_sub_field('cuadricula_de_notas_a_utilizar') == '7_bb' ) {
-			get_template_part( 'template-parts/content', 'bloque-7-bb' );
-		}
-		elseif ( get_sub_field('cuadricula_de_notas_a_utilizar') == '6_hb'){
-			get_template_part( 'template-parts/content', 'bloque-6-hp' );
-		}
-		elseif ( get_sub_field('cuadricula_de_notas_a_utilizar') == '2-1_5_bb'){
-			get_template_part( 'template-parts/content', 'bloque-2-1-5-bb' );
-		}
-		elseif ( get_sub_field('cuadricula_de_notas_a_utilizar') == '2-1_4_hp'){
-			get_template_part( 'template-parts/content', 'bloque-2-1-4-hp' );
-		}
-	endwhile;
-endif;
-
 if( have_rows('contenido_de_inicio')){
   	while ( have_rows('contenido_de_inicio')) {
 		the_row();
-		echo get_sub_field('tipo_block');
-		// Bloque de contenido
-		if (get_sub_field('tipo_block')) {
-			get_template_part( 'template-parts/content', get_sub_field('tipo_block'));
-		}
 		if(get_row_layout() == 'top_stories'){ 
 			 get_template_part('template-parts/content', 'top-stories'); 
 			if(have_rows('historias_del_dia')){
@@ -68,6 +40,8 @@ if( have_rows('contenido_de_inicio')){
 			 get_template_part('template-parts/content', 'carrusel-tema'); 
 		} elseif (get_row_layout() == 'carrusel_seccion'){
 			 get_template_part('template-parts/content', 'carrusel-seccion'); 
+		} elseif (get_sub_field('tipo_block')) {
+			get_template_part( 'template-parts/content', get_sub_field('tipo_block'));
 		}
 
 		// Bloque para colocar el script de la publicidad
@@ -91,8 +65,8 @@ if( have_rows('contenido_de_inicio')){
 }	
 
 // Bloques de notas
-require get_template_directory() . '/layouts/bcn_7_bb.html'; 
-require get_template_directory() . '/layouts/bcn_6_hp.html'; 
+// require get_template_directory() . '/layouts/bcn_7_bb.html'; 
+// require get_template_directory() . '/layouts/bcn_6_hp.html'; 
 require get_template_directory() . '/layouts/bcn_2-1_5_bb.html'; 
 require get_template_directory() . '/layouts/bcn_2-1_4_hp.html'; 
 require get_template_directory() . '/layouts/bcn_5_billb.html'; 

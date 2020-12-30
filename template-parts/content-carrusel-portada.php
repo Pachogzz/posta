@@ -157,7 +157,7 @@ switch ($estilo_carusel) {
 										?>
 									</div>
 									<!-- Título de nota -->
-									<div class="d-block w-100 mb-0 meta">
+									<div class="d-block w-100 mb-3 meta">
 										<!-- Sección de nota -->
 										<div class="categoria">
 											<a class="text-white" href="<?php echo $category_link; ?>"><?php echo $category_name ?></a>

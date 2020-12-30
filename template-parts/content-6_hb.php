@@ -1,5 +1,12 @@
 <?php 
-
+/**
+ * Template part for displaying 10 notes and 1 half page banner
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package postamx
+ * 
+ */
     $color = get_sub_field('color_del_titulo');
     $tipo = get_sub_field('tipo');
     $tipoTitulo = get_sub_field('titulo_de_seccion');
@@ -85,15 +92,16 @@
                     ?>
                                 <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-4 nota">
                                     <div class="row meta">
-                                        <div class="col categoria">
+                                        <div class="col-12 col-md-6 categoria">
                                             <small><?php echo $categoria->name; ?></small>
                                         </div>
-                                        <div class="col hora text-right">
+                                        <!-- <div class="col hora text-right">
                                             <small>Hace 1 hora <i class="fas fa-clock"></i></small>
-                                        </div>
+                                        </div> -->
                                     </div>
-                                    <img src="<?php echo $featured_img_url; ?>" class="img-fluid d-block" alt="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
-                                    <h5 class="title"><?php the_title(); ?></h5>
+                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                    <!-- <img src="<?php echo $featured_img_url; ?>" class="img-fluid d-block" alt="Lorem ipsum dolor sit amet consectetur adipisicing elit."> -->
+                                    <h5 class="titulo-nota"><?php the_title(); ?></h5>
                                 </div>
                                 <?php
                                 $ids[$i] = get_the_ID();
@@ -142,14 +150,15 @@
             ?>
                          <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
                             <div class="row meta">
-                                <div class="col categoria">
+                                <div class="col-12 col-md-6 categoria">
                                     <small><?php echo $categoria->name; ?></small>
                                 </div>
-                                <div class="col hora text-right">
+                                <!-- <div class="col hora text-right">
                                     <small>Hace 1 hora <i class="fas fa-clock"></i></small>
-                                </div>
+                                </div> -->
                             </div>
-                            <img src="<?php echo $featured_img_url; ?>" class="img-fluid d-block imagen-nota" alt="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
+                            <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                            <!-- <img src="<?php echo $featured_img_url; ?>" class="img-fluid d-block imagen-nota" alt="Lorem ipsum dolor sit amet consectetur adipisicing elit."> -->
                             <h5 class="titulo-nota"><?php the_title(); ?></h5>
                         </div>
             <?php

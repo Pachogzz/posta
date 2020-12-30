@@ -56,7 +56,7 @@
                 </div>
             </div>
             
-            <div class="row">
+            <div class="row align-self-stretch">
             <?php
                 
                 $args = array (
@@ -89,15 +89,16 @@
             ?>
                         <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
                             <div class="row meta">
-                                <div class="col categoria">
+                                <div class="col-12 col-md-6 categoria">
                                     <small><?php echo $categoria->name; ?></small>
                                 </div>
-                                <div class="col hora text-right">
+                                <!-- <div class="col hora text-right">
                                     <small>Hace 1 hora <i class="fas fa-clock"></i></small>
-                                </div>
+                                </div> -->
                             </div>
                             <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                <img src="<?php echo $featured_img_url; ?>" class="img-fluid d-block imagen-nota" alt="<?php the_title(); ?>">
+                                <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                <!-- <img src="<?php echo $featured_img_url; ?>" class="img-fluid d-block imagen-nota" alt="<?php the_title(); ?>"> -->
                                 <h5 class="titulo-nota"><?php the_title(); ?></h5>
                             </a>
                         </div>
@@ -108,22 +109,6 @@
                 //unset($GLOBALS['carrusel_seccion']);
             ?>
             </div>
-
-            <!-- <div class="col-12 col-md-6 col-lg-3 nota">
-                <div class="row meta">
-                    <div class="col categoria">
-                        <small>Categoría</small>
-                    </div>
-                    <div class="col hora text-right">
-                        <small>Hace 1 hora <i class="fas fa-clock"></i></small>
-                    </div>
-                </div>
-                <img src="http://fakeimg.pl/350x200/ccc/333/?text=placeholder" class="img-fluid d-block imagen-nota" alt="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
-                <h5 class="titulo-nota">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h5>
-            </div>
-            <div class="col-12 col-md-6 col-lg-3 nota">
-                <img src="http://fakeimg.pl/300x300/333/ccc/?text=BoxBanner" class="img-fluid d-block imagen-nota" alt="Publicidad...">
-            </div> -->
         </div>
     </div>
 </section>

@@ -98,47 +98,49 @@
 				<div class="row justify-content-between align-items-center">
 					
 					<!-- <div class="d-none d-xl-block col-xl-2"> -->
-					<div class="col-md-4">
+					<div class="col-md-4 align-items-center">
 						<?php if ( has_nav_menu( 'menu-vertical-oculto' ) ): ?>
-						<span style="font-size:30px;cursor:pointer;color:#fff;" onclick="openNav()">&#9776;</span>
+						<span class="mt-6" id="openSideNav" onclick="openNav()">
+							<i class="fas fa-bars fa-2x text-white"></i>
+						</span>
 						<?php endif; ?>
 						<div class="row justify-content-between justify-content-md-center align-items-center">
 							<div class="col-auto col-md-12">
 								<div class="lista-iconos justify-content-center">
 									<?php if( get_theme_mod('social_media_link_fb') != '' ){ ?>
-										<a class="icono icono-negro" href="<?php echo get_theme_mod('social_media_link_fb'); ?>" target="_blank" id="fb">
+										<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_fb'); ?>" target="_blank" id="fb">
 											<i class="fab fa-facebook-f"></i>
 										</a>
 									<?php } ?>
 									<?php if( get_theme_mod('social_media_link_tw') != '' ){ ?>
-										<a class="icono icono-negro" href="<?php echo get_theme_mod('social_media_link_tw'); ?>" target="_blank" id="tw">
+										<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_tw'); ?>" target="_blank" id="tw">
 											<i class="fab fa-twitter"></i>
 										</a>
 									<?php } ?>
 									<?php if( get_theme_mod('social_media_link_in') != '' ){ ?>
-										<a class="icono icono-negro" href="<?php echo get_theme_mod('social_media_link_in'); ?>" target="_blank" id="in">
+										<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_in'); ?>" target="_blank" id="in">
 											<i class="fab fa-instagram"></i>
 										</a>
 									<?php } ?>
 									<?php if( get_theme_mod('social_media_link_yt') != '' ){ ?>
-										<a class="icono icono-negro" href="<?php echo get_theme_mod('social_media_link_yt'); ?>" target="_blank" id="yt">
+										<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_yt'); ?>" target="_blank" id="yt">
 											<i class="fab fa-youtube"></i>
 										</a>
 									<?php } ?>
 									<?php if( get_theme_mod('social_media_link_lin') != '' ){ ?>
-										<a class="icono icono-negro" href="<?php echo get_theme_mod('social_media_link_lin'); ?>" target="_blank" id="yt">
+										<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_lin'); ?>" target="_blank" id="yt">
 											<i class="fab fa-linkedin"></i>
 										</a>
 									<?php } ?>
 									<?php if( get_theme_mod('social_media_link_tb') != '' ){ ?>
-										<a class="icono icono-negro" href="<?php echo get_theme_mod('social_media_link_tb'); ?>" target="_blank" id="yt">
+										<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_tb'); ?>" target="_blank" id="yt">
 											<i class="fab fa-tumblr"></i>
 										</a>
 									<?php } ?>
 								</div>
 							</div>
 							<div class="col-auto col-md-12 order-md-last">
-								<div class="fecha-sitio">
+								<div class="fecha-sitio text-white mt-3">
 									<?php echo date_i18n( get_option('date_format') ); ?>
 								</div>
 							</div>
@@ -165,8 +167,9 @@
 								<span class="h4 d-block text-light text-center"><?php bloginfo( 'description' ); ?></span>
 						<?php } ?>
 					</div>
-					<div class="col-md-4 text-center">
-						<a class="icono icono-negro" href="#" data-toggle="modal" data-target="#searchModal"><i class="fas fa-search"></i></a>
+					<div class="col-md-3 offset-md-1">
+						<?php get_search_form(); ?>
+						<!-- <a class="icono icono-blanco" href="#" data-toggle="modal" data-target="#searchModal"><i class="fas fa-search"></i></a> -->
 					</div>
 				</div>
 			</div>
