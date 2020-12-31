@@ -35,7 +35,7 @@
     $link = get_category_link($categoria->term_id);
 
 ?>
-<section class="bloque_notas--7_bb mt-6 mb-6">
+<section class="bloque_notas--11_bb mt-6 mb-6">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -56,7 +56,7 @@
                 </div>
             </div>
             
-            <div class="row align-self-stretch">
+            <div class="row mx-0 align-self-stretch">
             <?php
                 
                 $args = array (
@@ -67,14 +67,22 @@
                     'order'          => 'DESC'
                 );
 
+                $contador = 0;
                 $the_query = new WP_Query( $args, 'objects');
                 if ( $the_query->have_posts() ) :
                     while ( $the_query->have_posts() ) :
                         $the_query->the_post(); 
                         
+                        $contador++;
+                        if ($contador = 4) {
+                            ?>
+                            <script>
+                                console.log("Contador its working 11 bb");
+                            </script>
+                            <?php
+                        }
+
                         require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
-
-
                         // De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
                         if ($mobile_browser > 0) {
                             //print 'is mobile';

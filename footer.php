@@ -213,6 +213,8 @@
 	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/owl.carousel.min.js"></script>
 	<!-- Main -->
 	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/main.js"></script>
+	<!-- Bloques de contenido cuadriculado -->
+	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/bloques-contenido.js"></script>
 	<!-- Coverflow -->
 	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/modernizr.custom.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/jquery.responsiveGallery.js"></script>

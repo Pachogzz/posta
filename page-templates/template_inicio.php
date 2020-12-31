@@ -41,6 +41,7 @@ if( have_rows('contenido_de_inicio')){
 		} elseif (get_row_layout() == 'carrusel_seccion'){
 			 get_template_part('template-parts/content', 'carrusel-seccion'); 
 		} elseif (get_sub_field('tipo_block')) {
+			// echo get_sub_field('tipo_block');
 			get_template_part( 'template-parts/content', get_sub_field('tipo_block'));
 		}
 
@@ -65,10 +66,10 @@ if( have_rows('contenido_de_inicio')){
 }	
 
 // Bloques de notas
-// require get_template_directory() . '/layouts/bcn_7_bb.html'; 
+require get_template_directory() . '/layouts/bcn_7_bb.html'; 
 // require get_template_directory() . '/layouts/bcn_6_hp.html'; 
-require get_template_directory() . '/layouts/bcn_2-1_5_bb.html'; 
-require get_template_directory() . '/layouts/bcn_2-1_4_hp.html'; 
+// require get_template_directory() . '/layouts/bcn_2-1_5_bb.html'; 
+// require get_template_directory() . '/layouts/bcn_2-1_4_hp.html'; 
 require get_template_directory() . '/layouts/bcn_5_billb.html'; 
 require get_template_directory() . '/layouts/bcn_1-3_5.html'; 
 require get_template_directory() . '/layouts/bcn_1-4_4.html'; 

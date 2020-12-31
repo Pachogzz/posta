@@ -533,6 +533,7 @@ transition: all 500ms ease; }
 [class*="bloque_notas--"] .nota.large .imagen-nota{ position: relative; margin-bottom: 0; }
 [class*="bloque_notas--"] .nota.large .titulo-nota{ position: absolute; bottom: 15px; left: 0; padding-left: 30px; padding-right: 30px; z-index: 9; }
 [class*="bloque_notas--"] .nota div.imagen-nota{ width: 100%; height: 210px; background-size: cover; background-position: center center; background-repeat: no-repeat; }
+[class*="bloque_notas--"] .nota.large div.imagen-nota{ height: 280px; }
 
 /* Search form */
 .search-form{ position: relative; }
@@ -544,6 +545,11 @@ transition: all 500ms ease; }
 /*Single Notas*/
 .titulo-principal-nota{ position: relative; width: 80%; margin: -60px auto 0 !important; }
 .titulo-principal-nota::after{ content: ""; display: block; position: absolute; bottom:-30px; left: 50%; margin-left: -50px; border-top: 30px solid #1e1e1e; border-left: 50px solid  ransparent; border-right: 50px solid transparent; border-bottom: none; }
+
+/* Bloques de contenido */
+.bloque_notas--2_bb_4_4 .nota:first-child{
+  border: 1px dashed red;
+}
 
 /* CSS classes Extensions */
 .vh-50{ height: 50vh !important; }

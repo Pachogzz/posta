@@ -35,7 +35,7 @@
     $link = get_category_link($categoria->term_id);
 
 ?>
-<section class="bloque_notas--6_hp mb-6">
+<section class="bloque_notas--10_hp mb-6">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -132,10 +132,7 @@
                 if ( $the_query->have_posts() ) :
                     while ( $the_query->have_posts() ) :
                         $the_query->the_post(); 
-                        
                         require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
-
-
                         // De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
                         if ($mobile_browser > 0) {
                             //print 'is mobile';

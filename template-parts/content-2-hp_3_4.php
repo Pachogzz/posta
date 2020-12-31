@@ -1,17 +1,59 @@
-<!-- Bloques de notas 2-HP 3 4 - Half Page -->
-<section class="bloque_notas--214_bb mb-6">
+<?php 
+/**
+ * Template part for displaying 9 notes - one at tho sizes - and 1 half page
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package postamx
+ * 
+ */
+    $color = get_sub_field('color_del_titulo');
+    $tipo = get_sub_field('tipo');
+    $tipoTitulo = get_sub_field('titulo_de_seccion');
+    $tituloPerso = get_sub_field('titulo_personalizado');
+    $mostraDescr = get_sub_field('mostrar_descripcion');
+
+    switch ($tipo) {
+        case 'seccion':
+            $id = get_sub_field('elegir_seccion');
+            $tipo = 'category';
+        break;
+
+        case 'tema':
+            $id = get_sub_field('elegir_tema');
+            $tipo = 'theme';
+        break;
+
+        case 'hashtag':
+            $id = get_sub_field('elegir_hashtag');
+            $tipo = 'post_tag';
+        break;
+    }
+
+    $categoria = get_term_by('id', $id, $tipo);
+    $descripcion = category_description($categoria->term_id);
+    $link = get_category_link($categoria->term_id);
+
+?>
+<section class="bloque_notas--4_hp_3_4 mb-6">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<div class="encabezado">
-					<h2 class="encabezado-titulo">
-						<a href="#">
-							<span class="nombre-sitio">POSTA</span>
-							<span class="nombre-taxonomia">12B 2-HP/3/4</span>
-						</a>
-					</h2>
-					<p class="encabezado-descripcion">Accusamus eveniet cumque, cupiditate asperiores. Doloribus, odio iusto a, pariatur blanditiis vel praesentium aspernatur sed!</p>
-				</div>
+                <div class="encabezado">
+                     <h2 class="encabezado-titulo" style="background-color:<?php echo $color; ?>;">
+                        <a href="<?php echo $link; ?>">
+                            <span class="nombre-sitio">POSTA</span>
+                            <?php if($tipoTitulo == 'por_defecto'): ?>
+                                <span class="nombre-taxonomia"><?php echo $categoria->name;?></span>
+                            <?php else: ?>
+                                <span class="nombre-taxonomia"><?php echo $tituloPerso;?></span>
+                            <?php endif ?>
+                        </a>
+                    </h2>
+                    <?php if ($mostraDescr): ?>
+                        <p class="encabezado-descripcion"><?php echo strip_tags($descripcion); ?></p>
+                    <?php endif ?>
+                </div>
 			</div>
 			<div class="col-12 col-lg-9">
 				<div class="row">
