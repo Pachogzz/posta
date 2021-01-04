@@ -1,6 +1,6 @@
 <?php 
 /**
- * Template part for displaying 10 notes and 1 half page banner
+ * Template part for displaying 6 notes two sizes no banner
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -35,7 +35,7 @@
     $link = get_category_link($categoria->term_id);
 
 ?>
-<section class="bloque_notas--6_hp mb-6">
+<section class="bloque_notas--2-4_4 mb-6">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -55,15 +55,15 @@
                     <?php endif ?>
                 </div>
             </div> 
-            <div class="col-12 col-lg-9">
-                <div class="row">
+            <!-- <div class="col-12 col-lg-6"> -->
+                <!-- <div class="row align-self-center"> -->
                     <?php
                         $ids = array();
                         $i = 0;
                         $args = array (
                             'post_type'      => 'post',
                             'category'      => $categoria->term_id,
-                            'posts_per_page' => 6,
+                            'posts_per_page' => 2,
                             'orderby'        => 'date',
                             'order'          => 'DESC'
                         );
@@ -85,18 +85,20 @@
                                     $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
                                 }
                     ?>
-                                <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-4 nota">
+                                <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 nota large doble">
                                     <div class="row meta">
                                         <div class="col-12 col-md-6 categoria">
-                                            <small><?php echo $categoria->name; ?></small>
+                                            <a href="<?php echo $link; ?>">
+                                                <small><?php echo $categoria->name; ?></small>
+                                            </a>
                                         </div>
                                         <!-- <div class="col hora text-right">
                                             <small>Hace 1 hora <i class="fas fa-clock"></i></small>
                                         </div> -->
                                     </div>
-                                    <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                        <div class='imagen-nota-container'>
-                                            <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                    <a class="" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                        <div class='imagen-nota-container '>
+                                            <div class="imagen-nota " style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
                                             <h5 class="titulo-nota"><?php the_title(); ?></h5>
                                         </div>
                                     </a>
@@ -108,60 +110,62 @@
                         endif;
                         wp_reset_postdata();
                     ?>
-                </div>
-            </div>
-            <div class="col-12 col-lg-3 nota modulo-publicidad">
-                <img src="http://fakeimg.pl/300x600/333/ccc/?text=HalfPage" class="img-fluid d-block mb-0" alt="Publicidad...">
-                <span>Publicidad</span>
-            </div>
-            <?php
-                $args = array (
-                    'post__not_in'      => $ids,
-                    'post_type'      => 'post',
-                    'category'      => $categoria->term_id,
-                    'posts_per_page' => 4,
-                    'orderby'        => 'date',
-                    'order'          => 'DESC'
-                );
+                <!-- </div> -->
+            <!-- </div> -->
+            <div class="col-12">
+                <div class="row align-self-stretch">
+                    <?php
+                        $args = array (
+                            'post__not_in'      => $ids,
+                            'post_type'      => 'post',
+                            'category'      => $categoria->term_id,
+                            'posts_per_page' => 4,
+                            'orderby'        => 'date',
+                            'order'          => 'DESC'
+                        );
 
-                $the_query = new WP_Query( $args, 'objects');
-                if ( $the_query->have_posts() ) :
-                    while ( $the_query->have_posts() ) :
-                        $the_query->the_post(); 
-                        require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
-                        // De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
-                        if ($mobile_browser > 0) {
-                            //print 'is mobile';
-                            $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '720x405');
-                        }elseif ($tablet_browser > 0) {
-                            //print 'is tablet';
-                            $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '1100x618');
-                        }else {
-                            //print 'is desktop';
-                            $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
-                        }
-            ?>
-            <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
-                <div class="row meta">
-                    <div class="col-12 col-md-6 categoria">
-                        <small><?php echo $categoria->name; ?></small>
-                    </div>
-                    <!-- <div class="col hora text-right">
-                        <small>Hace 1 hora <i class="fas fa-clock"></i></small>
-                    </div> -->
+                        $the_query = new WP_Query( $args, 'objects');
+                        if ( $the_query->have_posts() ) :
+                            while ( $the_query->have_posts() ) :
+                                $the_query->the_post(); 
+                                require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
+                                // De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
+                                if ($mobile_browser > 0) {
+                                    //print 'is mobile';
+                                    $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '720x405');
+                                }elseif ($tablet_browser > 0) {
+                                    //print 'is tablet';
+                                    $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '1100x618');
+                                }else {
+                                    //print 'is desktop';
+                                    $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
+                                }
+                    ?>
+                        <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
+                            <div class="row meta">
+                                <div class="col-12 col-md-6 categoria">
+                                    <a href="<?php echo $link; ?>">
+                                        <small><?php echo $categoria->name; ?></small>
+                                    </a>
+                                </div>
+                                <!-- <div class="col hora text-right">
+                                    <small>Hace 1 hora <i class="fas fa-clock"></i></small>
+                                </div> -->
+                            </div>
+                            <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                <div class='imagen-nota-container'>
+                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                    <h5 class="titulo-nota"><?php the_title(); ?></h5>
+                                </div>
+                            </a>
+                        </div>
+                    <?php
+                            endwhile;
+                        endif;
+                        wp_reset_postdata();
+                    ?>
                 </div>
-                <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                    <div class='imagen-nota-container'>
-                        <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                        <h5 class="titulo-nota"><?php the_title(); ?></h5>
-                    </div>
-                </a>
             </div>
-            <?php
-                    endwhile;
-                endif;
-                wp_reset_postdata();
-            ?>
            
         </div>
     </div>
