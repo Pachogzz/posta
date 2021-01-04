@@ -8,4 +8,4 @@ node_modules/
 *.sqlite
 
 # ignore this files
-_____sftp-config.json
+_sftp-config.json
