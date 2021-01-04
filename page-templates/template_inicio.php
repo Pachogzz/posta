@@ -83,7 +83,7 @@ if( have_rows('contenido_de_inicio')){
 // require get_template_directory() . '/layouts/bcn_1-6_hp.html'; 
 // require get_template_directory() . '/layouts/bcn_1-6_hp_2-2.html'; 
 // require get_template_directory() . '/layouts/bcn_1-8.html'; 
-require get_template_directory() . '/layouts/bcn_1-4_2-v-r.html'; 
+// require get_template_directory() . '/layouts/bcn_1-4_2-v-r.html'; 
 
 // Totales de publicidad
 // echo 'totales: '. $cont_layout;

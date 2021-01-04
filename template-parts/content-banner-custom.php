@@ -15,11 +15,11 @@ $imagen_banner_custom = get_sub_field('imagen_banner_custom');
 $target = get_sub_field('target');
 $mostrar_descripcion = get_sub_field('mostrar_descripcion');
 if(!empty($titulo_banner_custom)){
-	$titulo_banner = '<h4 class="encabezado-titulo flecha position-relative text-center">'.strip_tags($titulo_banner_custom).'</h4>';
+	$titulo_banner = '<h2 class="encabezado-titulo text-white"><span class="nombre-sitio">POSTA</span><span class="nombre-taxonomia">'.strip_tags($titulo_banner_custom).'</span></h2>';
 }
 if($mostrar_descripcion){
 	$descripcion_del_banner = get_sub_field('descripcion_del_banner');
-	$descripcion_bc = '<p class="encabezado-descripcion text-center">'.$descripcion_del_banner.'</p>';
+	$descripcion_bc = '<p class="encabezado-descripcion">'.$descripcion_del_banner.'</p>';
 }
 
 if($imagen_banner_custom){ ?>

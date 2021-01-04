@@ -85,7 +85,7 @@
                                     $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
                                 }
                     ?>
-                                <div id="post-<?php the_ID(); ?>" class="col-12 nota h-100">
+                                <div id="post-<?php the_ID(); ?>" class="col-12 nota large h-100">
                                     <div class="row meta">
                                         <div class="col-12 col-md-6 categoria">
                                             <a href="<?php echo $link; ?>">

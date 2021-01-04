@@ -32,5 +32,5 @@ jQuery(document).ready(function() {
 
 	// 2_2_bb_4
 	$( ".bloque_notas--2_2_bb_4 .nota" ).first().addClass('large');
-	$( ".bloque_notas--2_2_bb_4 .inner-row .nota" ).first().removeClass('col-md-6').addClass('large');
+	$( ".bloque_notas--2_2_bb_4 .inner-row .nota:nth-child(1)" ).first().removeClass('col-md-6').addClass('large');
 });

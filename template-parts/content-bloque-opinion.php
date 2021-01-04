@@ -22,7 +22,10 @@
 			<div class="modulo-corchete-lg">
 				<!-- ENCABEZADO DE CARRUSEL -->
 				<div class="encabezado mb-5 mt-n3">
-					<h2 class="encabezado-titulo flecha text-center">OPINIÓN</h2>
+					<h2 class="encabezado-titulo text-white">
+						<span class="nombre-sitio">POSTA</span>
+						<span class="nombre-taxonomia">PERSPECTIVAS</span>
+					</h2>
 					<?php echo $descripcion_del_carrusel; ?>
 				</div>
 				<!-- CARRUSEL OPINIÓN -->
@@ -36,16 +39,17 @@
 							$nombre_editorial = get_sub_field('nombre_editorial');?>
 							<div class="c-item">
 								<!-- Imagen editorialista -->
-								<img src="<?php echo $imagen_editorial['url'] ?>" class="img-fluid mb-3" alt="<?php echo $nombre_editor; ?>">
+								<div class="img-thumbnail rounded-pill" style="background-image: url('<?php echo $imagen_editorial['url'] ?>')"></div>
+								<!-- <img src="<?php echo $imagen_editorial['url'] ?>" class="img-fluid mb-3" alt="<?php echo $nombre_editor; ?>"> -->
+								<!-- <div class="separador-chico"></div> -->
+								<!-- Nombre editorialista -->
+								<h5 class="text-center text-uppercase name">
+									<?php echo esc_html($nombre_editor); ?>
+								</h5>
 								<!-- Nombre editorial -->
 								<h4 class="font-weight-normal text-center mb-3">
 									<a class="stretched-link" href="<?php echo $enlace_a_editorial; ?>" title="<?php echo strip_tags($nombre_editorial); ?>"><?php echo $nombre_editorial; ?></a>
 								</h4>
-								<div class="separador-chico"></div>
-								<!-- Nombre editorialista -->
-								<h5 class="text-center text-uppercase">
-									<?php echo esc_html($nombre_editor); ?>
-								</h5>
 							</div>
 							<?php 
 						}

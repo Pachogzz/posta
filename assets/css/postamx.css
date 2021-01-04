@@ -247,6 +247,27 @@ button:focus { outline: 0px dotted !important; outline: 0px auto -webkit-focus-r
 @media (min-width: 768px) { .contenedor-carrusel-portada { height: 430px; height: 42vh; } }
 .carrusel-opinion a { color: #f20e00; }
 .carrusel-opinion a:hover { color: #1e1e1e; }
+.carrusel-opinion .img-thumbnail{
+  width: 250px;
+  height: 220px;
+  margin: 0 auto 15px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.carrusel-opinion .name{
+  background: #f20e00;
+  color: #fff;
+  padding: 10px 0;
+  position: relative; 
+}
+.carrusel-opinion .name::before,
+.carrusel-opinion .name::after{
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+}
 
 .owl-carousel .owl-nav [class*=owl-] { font-size: 20px !important; color: #fff !important; background: #f20e00 !important; width: 30px; height: 40px; outline: none; line-height: 1 !important; margin: 0; position: absolute; border-radius: 0; }
 
@@ -556,6 +577,11 @@ transition: all 500ms ease; }
 
   /* 2_hp_3_4 */
   .bloque_notas--2_hp_3_4 .inner-row .nota:nth-child(1){
+    border: 1px solid crimson;
+  }
+
+  /* 2_2_bb_4 */
+  .bloque_notas--2_2_bb_4 .inner-row .nota:nth-child(1){
     border: 1px solid crimson;
   }
 
