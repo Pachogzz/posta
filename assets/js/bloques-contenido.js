@@ -31,6 +31,5 @@ jQuery(document).ready(function() {
 	$( ".bloque_notas--2_bb_3_4_l .inner-row .nota" ).first().addClass('large');
 
 	// 2_2_bb_4
-	$( ".bloque_notas--2_2_bb_4 .nota" ).first().addClass('large');
 	$( ".bloque_notas--2_2_bb_4 .inner-row .nota:nth-child(1)" ).first().removeClass('col-md-6').addClass('large');
 });

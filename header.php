@@ -98,12 +98,14 @@
 				<div class="row justify-content-between align-items-center">
 					
 					<!-- <div class="d-none d-xl-block col-xl-2"> -->
-					<div class="col-md-4 align-items-center">
+					<div class="col-md-1">
 						<?php if ( has_nav_menu( 'menu-vertical-oculto' ) ): ?>
 						<span class="mt-6" id="openSideNav" onclick="openNav()">
 							<i class="fas fa-bars fa-2x text-white"></i>
 						</span>
 						<?php endif; ?>
+					</div>
+					<div class="col-md-3 align-items-center">
 						<div class="row justify-content-between justify-content-md-center align-items-center">
 							<div class="col-auto col-md-12">
 								<div class="lista-iconos justify-content-center">
