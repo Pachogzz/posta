@@ -24,8 +24,18 @@ add_action( 'rest_api_init', function () {
             return new WP_Error( 'empty_notas_categoria_blockthree', 'no hay publicaciones', array('status' => 404) );
         }
 
-        $data = array();
+        $dataPosts = array();
         $i = 0;
+
+
+        $term = get_term( get_option('b3_categoria'), 'category' );
+        $color = get_term_meta( $term->id, 'category_color', true );
+
+        $category = array(
+            'nombre' => $term->name,
+            'color' => $color,
+        );
+
 
         foreach ($posts as $post) {
 
@@ -38,15 +48,21 @@ add_action( 'rest_api_init', function () {
                 $imagen = get_site_url() . '/wp-content/themes/posta/assets/img/sin-imagen.png'; 
             }
 
-            $data[$i]['id'] = $post->ID;
-            $data[$i]['titulo'] = $post->post_title;
-            $data[$i]['categoria'] = $categoria->name;
-            $data[$i]['categoria_id'] = $categoria->term_id;
-            $data[$i]['imagen'] = $imagen;
-            $data[$i]['fecha'] = date("d-m-Y", strtotime($post->post_date));
+            $dataPosts[$i]['id'] = $post->ID;
+            $dataPosts[$i]['titulo'] = $post->post_title;
+            $dataPosts[$i]['categoria'] = $categoria->name;
+            $dataPosts[$i]['categoria_id'] = $categoria->term_id;
+            $dataPosts[$i]['imagen'] = $imagen;
+            $dataPosts[$i]['fecha'] = date("d-m-Y", strtotime($post->post_date));
+            $dataPosts[$i]['color'] = NULL;
 
             $i++;
         }
+
+        $data = array(
+            'category' => $category,
+            'posts' => $dataPosts,
+        );
 
     
         $response = new WP_REST_Response($data);
