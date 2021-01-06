@@ -49,11 +49,13 @@ if( have_rows('contenido_de_inicio')){
 		$cont_layout = $cont_layout +1;
 		if($cont_layout == 2){ ?>
 			<!-- PUBLICIDAD -->
-			<div class="modulo-publicidad-2 mt-6">
+			<div class="modulo-publicidad-2 my-6">
 				<div class="container-fluid">
 					<div class="row"> 
 						<div class="col">
-							<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90" alt="publicidad">
+							<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90" alt="publicidad"> -->
+							<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90/333/ccc/?text=LeaderBoard" alt="publicidad">
+							<!-- <img class="img-fluid d-block mx-auto" src="http://fakeimg.pl/728x90/333/ccc/?text=LeaderBoard" alt="publicidad"> -->
 							<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
 						</div>
 					</div>
@@ -64,26 +66,6 @@ if( have_rows('contenido_de_inicio')){
 		}
   	}
 }	
-
-// Bloques de notas
-// require get_template_directory() . '/layouts/bcn_7_bb.html'; 
-// require get_template_directory() . '/layouts/bcn_6_hp.html'; DONE
-// require get_template_directory() . '/layouts/bcn_2-1_5_bb.html'; 
-// require get_template_directory() . '/layouts/bcn_2-1_4_hp.html'; 
-// require get_template_directory() . '/layouts/bcn_5_billb.html'; 
-// require get_template_directory() . '/layouts/bcn_1-3_5.html'; 
-// require get_template_directory() . '/layouts/bcn_1-4_4.html'; 
-// require get_template_directory() . '/layouts/bcn_1-4_2.html'; 
-// require get_template_directory() . '/layouts/bcn_1-4_3-bb-r.html'; 
-// require get_template_directory() . '/layouts/bcn_1-4_3-bb-l.html'; 
-// require get_template_directory() . '/layouts/bcn_1-4_2-bb.html'; 
-// require get_template_directory() . '/layouts/bcn_1-4_2-v-l.html'; 
-// require get_template_directory() . '/layouts/bcn_2-4.html'; 
-// require get_template_directory() . '/layouts/bcn_1-6_2.html'; 
-// require get_template_directory() . '/layouts/bcn_1-6_hp.html'; 
-// require get_template_directory() . '/layouts/bcn_1-6_hp_2-2.html'; 
-// require get_template_directory() . '/layouts/bcn_1-8.html'; 
-// require get_template_directory() . '/layouts/bcn_1-4_2-v-r.html'; 
 
 // Totales de publicidad
 // echo 'totales: '. $cont_layout;

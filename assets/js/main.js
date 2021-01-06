@@ -318,6 +318,18 @@ $('#shareModal').on('hidden.bs.modal', function(e) {
 /*
  * Parámetros para carruseles
  **/
+$('.movile-slider').owlCarousel({
+	mouseDrag: false,
+	loop: true,
+	dots: true,
+	// nav: true,
+	// navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
+	margin: 0,
+	responsiveClass: true,
+	// autoplay: false,
+	// autoplayTimeout: 12000,
+	items: 1,
+});
 $('.carrusel-portada').owlCarousel({
 	mouseDrag: false,
 	loop: true,
