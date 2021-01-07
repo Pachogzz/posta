@@ -29,7 +29,7 @@ function add_custom_fields() {
 
 		$datos = array(
 			'imagen' => $imagen, 
-			'fecha' => fecha($object['date']),
+			'fecha' => timeDate($object['date']),
 			'title' => $object['title']['raw']
 		);
 
