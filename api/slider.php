@@ -42,7 +42,7 @@ add_action( 'rest_api_init', function () {
             $data[$i]['categoria_id'] = $categoria->term_id;
             $data[$i]['color'] = $color;
             $data[$i]['imagen'] = $imagen;
-            $data[$i]['fecha'] = date("d-m-Y", strtotime($post->post_date));
+            $data[$i]['fecha'] = timeDate($post->post_date);
 
             $i++;
         }
