@@ -51,7 +51,7 @@ add_action( 'rest_api_init', function () {
             $dataPosts[$i]['id'] = $post->ID;
             $dataPosts[$i]['titulo'] = $post->post_title;
             $dataPosts[$i]['imagen'] = $imagen;
-            $dataPosts[$i]['fecha'] = date("d-m-Y", strtotime($post->post_date));
+            $dataPosts[$i]['fecha'] = timeDate($post->post_date);
 
             $i++;
         }
