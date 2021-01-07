@@ -43,6 +43,7 @@ add_action( 'rest_api_init', function () {
             $data[$i]['color'] = $color;
             $data[$i]['imagen'] = $imagen;
             $data[$i]['fecha'] = timeDate($post->post_date);
+            $data[$i]['url'] = get_permalink($post->ID);
 
             $i++;
         }

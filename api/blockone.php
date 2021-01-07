@@ -52,6 +52,7 @@ add_action( 'rest_api_init', function () {
             $dataPosts[$i]['titulo'] = $post->post_title;
             $dataPosts[$i]['imagen'] = $imagen;
             $dataPosts[$i]['fecha'] = timeDate($post->post_date);
+            $data[$i]['url'] = get_permalink($post->ID);
 
             $i++;
         }
