@@ -6,7 +6,6 @@
 <?php // Template del Home page con contenido flexible ?>
 
 <?php 
-require get_template_directory() . '/inc/color_categories.php'; 
 $cont_layout = 0; //Varible para ver el numero de layouts
 
 if( have_rows('contenido_de_inicio')){
@@ -49,13 +48,11 @@ if( have_rows('contenido_de_inicio')){
 		$cont_layout = $cont_layout +1;
 		if($cont_layout == 2){ ?>
 			<!-- PUBLICIDAD -->
-			<div class="modulo-publicidad-2 my-6">
+			<div class="modulo-publicidad-2 mt-6">
 				<div class="container-fluid">
 					<div class="row"> 
 						<div class="col">
-							<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90" alt="publicidad"> -->
-							<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90/333/ccc/?text=LeaderBoard" alt="publicidad">
-							<!-- <img class="img-fluid d-block mx-auto" src="http://fakeimg.pl/728x90/333/ccc/?text=LeaderBoard" alt="publicidad"> -->
+							<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90" alt="publicidad">
 							<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
 						</div>
 					</div>

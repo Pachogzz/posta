@@ -39,6 +39,9 @@
 
 	<?php wp_head(); ?>
 
+	<!-- Share This -->
+	<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5ff8b5b8aca127001328f8c7&product=inline-share-buttons" async="async"></script>
+
 	<!-- Ad Manager -->
 	<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
 	<script>

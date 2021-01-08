@@ -12,7 +12,6 @@ get_header();
 // Obtener el color de la taxonomia
 global $wp_query;
 $taxonomy_object = $wp_query->get_queried_object();
-// require get_template_directory() . '/inc/color_categories.php';
 // $category_name = get_color_taxonomy($taxonomy_object);
 
 $category = get_category( $taxonomy_object );

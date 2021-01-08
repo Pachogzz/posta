@@ -33,7 +33,7 @@
     $categoria = get_term_by('id', $id, $tipo);
     $descripcion = category_description($categoria->term_id);
     $link = get_category_link($categoria->term_id);
-    $tax_color = get_field('color_de_taxonomia');
+    $tax_color = get_term_meta( $categoria->term_id, 'category_color', true );
 
 ?>
 <section class="bloque_notas--11_bb py-6" style="background: ">
@@ -90,8 +90,11 @@
                 ?>
                     <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
                         <div class="row meta">
-                            <div class="col-12 col-md-6 categoria" style="background-color: <?php echo $tax_color; ?> !important;">
-                                <small><?php echo $categoria->name; ?></small>
+                            <div class="col-12 col-md-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                <a class="text-white" href="<?php echo $link; ?>">
+                                    <small><?php echo $categoria->name; ?></small>
+                                </a>
+                                <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                             </div>
                             <!-- <div class="col hora text-right">
                                 <small>Hace 1 hora <i class="fas fa-clock"></i></small>
@@ -148,8 +151,11 @@
                 ?>
                             <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
                                 <div class="row meta">
-                                    <div class="col-12 col-md-6 categoria">
-                                        <small><?php echo $categoria->name; ?></small>
+                                    <div class="col-12 col-md-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                        <a class="text-white" href="<?php echo $link; ?>">
+                                            <small><?php echo $categoria->name; ?></small>
+                                        </a>
+                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                     </div>
                                     <!-- <div class="col hora text-right">
                                         <small>Hace 1 hora <i class="fas fa-clock"></i></small>
@@ -225,7 +231,10 @@
                         <div id="post-<?php the_ID(); ?>" class="nota large">
                             <div class="row meta">
                                 <div class="col-12 col-md-6 categoria">
-                                    <small><?php echo $categoria->name; ?></small>
+                                    <a class="text-white" href="<?php echo $link; ?>">
+                                        <small><?php echo $categoria->name; ?></small>
+                                    </a>
+                                    <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                 </div>
                                 <!-- <div class="col hora text-right">
                                     <small>Hace 1 hora <i class="fas fa-clock"></i></small>
