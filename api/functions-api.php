@@ -1,44 +1,4 @@
-<?php 
-
-add_action( 'rest_api_init', 'add_custom_fields' );
-function add_custom_fields() {
-
-    date_default_timezone_set('America/Monterrey');
-
-    
-
-	register_rest_field(
-		'post', 
-		'datos', //New Field Name in JSON RESPONSEs
-		array(
-    		'get_callback'    => 'get_custom_fields', // custom function name 
-    		'update_callback' => null,
-    		'schema'          => null,
-     	)
-	);
-
-	function get_custom_fields($object){
-
-		$imagen = wp_get_attachment_image_src( get_post_thumbnail_id( $object['id'] ), 'full' )[0];
-
-        if($imagen){
-            $imagen = $imagen;
-        }else{
-            $imagen = get_site_url() . '/wp-content/themes/posta/assets/img/sin-imagen.png'; 
-        }
-
-		$datos = array(
-			'imagen' => $imagen, 
-			'fecha' => fecha($object['date']),
-			'title' => $object['title']['raw']
-		);
-
-		return $datos;
-	}
-
-}
-
-
+<?php
 
 function fecha($fecha) {
 
@@ -60,4 +20,26 @@ function fecha($fecha) {
     $nombreMes = str_replace($meses_EN, $meses_ES, $mes);
 
     return $nombredia." ".$numeroDia." de ".$nombreMes." de ".$anio;
+}
+
+
+function timeDate($date){
+
+   $timestamp = strtotime($date);       
+   
+   $strTime = array("segundo", "minuto", "hora", "dia", "mes", "año");
+   $length = array("60","60","24","30","12","10");
+
+   $currentTime = time();
+
+   if($currentTime >= $timestamp) {
+        $diff     = time()- $timestamp;
+
+        for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
+            $diff = $diff / $length[$i];
+        }
+
+        $diff = round($diff);
+        return "Hace " . $diff . " " . $strTime[$i] . "(s)";
+   }
 }
