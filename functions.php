@@ -518,29 +518,17 @@ function cp_change_post_object() {
     $labels->add_new = 'Agregar noticia';
 }
 
-
 /****************************************************************
-*																*
-*                       CUSTOM SEARCH FORM                      *
-*																*
+*                               *
+*                       POSTED TIME AGO                         *
+*                               *
 ****************************************************************/
+function time_ago( $type = 'post' ) {
+    $d = 'comment' == $type ? 'get_comment_time' : 'get_post_time';
 
-// Custom search form
-function wpbsearchform( $form ) {
-    $form = '<form role="search" method="get" id="searchform" action="'.home_url('').'" >
-              <div class="input-group">
-                <input type="text" name="s" id="s" class="form-control" value="'.get_search_query().'">
-                <span class="input-group-btn">
-                  <button id="searchsubmit" type="submit" class="btn btn-info btn-lg bg-dark custom-btn-src">
-                    <i class="fa fa-search"></i>
-                  </button>
-                </span>
-              </div>
-            </form>';
-    return $form;
+    return __('Hace') . " " . human_time_diff($d('U'), current_time('timestamp'));
+
 }
-add_shortcode('wpbsearch', 'wpbsearchform');
-
 
 /****************************************************************
 *																*
@@ -607,122 +595,6 @@ function post_custom_column_views($column_name, $id){
     }
 }
 add_action('manage_posts_custom_column', 'post_custom_column_views',10,2);
-
-
-/****************************************************************
-*																*
-*                            EXCERPT                            *
-*																*
-****************************************************************/
-
-/**
- * Removes the regular excerpt box. We're not getting rid
- * of it, we're just moving it above the wysiwyg editor
- *
- * @return null
- */
-function oz_remove_normal_excerpt() {
-    remove_meta_box( 'postexcerpt' , 'post' , 'normal' );
-}
-add_action( 'admin_menu' , 'oz_remove_normal_excerpt' );
-
-/**
- * Add the excerpt meta box back in with a custom screen location
- *
- * @param  string $post_type
- * @return null
- */
-function oz_add_excerpt_meta_box( $post_type ) {
-    $post = get_post();
-    $post_name = $post->post_name;
-    if ( in_array( $post_type, array( 'post', 'page' ) ) && $post_name != 'home' ) {
-        add_meta_box(
-            'oz_postexcerpt',
-            __( 'Extracto', 'thetab-theme' ),
-            'post_excerpt_meta_box',
-            $post_type,
-            'after_title',
-            'high'
-        );
-    }
-}
-add_action( 'add_meta_boxes', 'oz_add_excerpt_meta_box' );
-
-
-/****************************************************************
-*																*
-*                            META BOX                           *
-*																*
-****************************************************************/
- 
-/**
- * You can't actually add meta boxes after the title by default in WP so
- * we're being cheeky. We've registered our own meta box position
- * `after_title` onto which we've regiestered our new meta boxes and
- * are now calling them in the `edit_form_after_title` hook which is run
- * after the post tile box is displayed.
- *
- * @return null
- */
-function oz_run_after_title_meta_boxes() {
-    global $post, $wp_meta_boxes;
-    # Output the `below_title` meta boxes:
-    do_meta_boxes( get_current_screen(), 'after_title', $post );
-}
-add_action( 'edit_form_after_title', 'oz_run_after_title_meta_boxes' );
-
-
-/****************************************************************
-*																*
-*                           TESTING DE SHORTCODES                          *
-*																*
-****************************************************************/
-
-// Shortcode [puntou_cita]
-function shortcode_puntou_cita( $atts ){
-
-	$puntou_cita_parametros="";
-	extract(shortcode_atts(array(
-		'cita' => 'No especificado',
-		'autor' => 'No especificado',
-	), $atts));
-
-	// Display info
-	$puntou_cita_parametros = '<div class="cita"><blockquote>';
-	$puntou_cita_parametros .= '<p>Cita: ' .$cita. '</p>';
-	$puntou_cita_parametros .= '<p>Autor: ' .$autor. '</p>';
-	$puntou_cita_parametros .= '</blockquote></div>';
-	return $puntou_cita_parametros;
-}
-add_shortcode('puntou_cita', 'shortcode_puntou_cita');
-// add_action( 'init', 'register_shortcodes');
-
-
-// Shortcode [puntou_cita2]
-function puntou_cita2_parametros( $atts, $content = null ) {
-	// Genero los valores por defecto de los parámetros
-	$params = shortcode_atts( array(
-		'text-color'        => '#000000',
-		'background-color'  => '#ffffff',
-		'font-size'  		    => '20',
-	), $atts );
-	// Genero el string con estilos en línea
-	$style = "style= 'color:{$params['text-color']}; background-color:{$params['background-color']}; font-size:{$params['font-size']}px;'";
-	// Aplico el texto y el stilo a la etiqeta <p>
-	return "<div {$style}>{$content}</div>";
-}
-add_shortcode( 'puntou_cita2', 'puntou_cita2_parametros' );
-
-
-// Shortcode [puntou_boton]
-function puntou_boton_parametros( $atts, $content ) {
-	$atts = shortcode_atts( array(
-		'icono' => 'pencil'
-	), $atts );
-	return '<h1><span class="fab fa-' . $atts['icono'] . '"></span> ' . $content . '</h1>';
-}
-add_shortcode('puntou_boton', 'puntou_boton_parametros');
-
 
 /****************************************************************
 *																*

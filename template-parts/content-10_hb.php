@@ -90,12 +90,15 @@
                         ?>
                                     <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-4 nota">
                                         <div class="row meta">
-                                            <div class="col-12 col-md-6 categoria">
-                                                <small><?php echo $categoria->name; ?></small>
+                                            <div class="col-12 col-md-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                                <a class="text-white" href="<?php echo $link; ?>">
+                                                    <small><?php echo $categoria->name; ?></small>
+                                                </a>
+                                                <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                             </div>
-                                            <!-- <div class="col hora text-right">
-                                                <small>Hace 1 hora <i class="fas fa-clock"></i></small>
-                                            </div> -->
+                                            <div class="col hora text-right">
+                                                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+                                            </div>
                                         </div>
                                         <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                             <div class='imagen-nota-container'>
@@ -146,12 +149,15 @@
                 ?>
                 <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
                     <div class="row meta">
-                        <div class="col-12 col-md-6 categoria">
-                            <small><?php echo $categoria->name; ?></small>
+                        <div class="col-12 col-md-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                            <a class="text-white" href="<?php echo $link; ?>">
+                                <small style="background-color: <?php echo "#" . $tax_color; ?> !important;"><?php echo $categoria->name; ?></small>
+                            </a>
+                            <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                         </div>
-                        <!-- <div class="col hora text-right">
-                            <small>Hace 1 hora <i class="fas fa-clock"></i></small>
-                        </div> -->
+                        <div class="col hora text-right">
+                            <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+                        </div>
                     </div>
                     <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                         <div class='imagen-nota-container'>
@@ -176,7 +182,6 @@
                     <div class="encabezado">
                         <h2 class="encabezado-titulo" style="background-color:<?php echo $color; ?>;">
                             <a href="<?php echo $link; ?>">
-                                <span class="nombre-sitio">POSTA</span>
                                 <?php if($tipoTitulo == 'por_defecto'): ?>
                                     <span class="nombre-taxonomia"><?php echo $categoria->name;?></span>
                                 <?php else: ?>
@@ -219,15 +224,15 @@
                     ?>
                         <div id="post-<?php the_ID(); ?>" class="nota large">
                             <div class="row meta">
-                                <div class="col-12 col-md-6 categoria">
+                                <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                                     <a class="text-white" href="<?php echo $link; ?>">
-                                        <small><?php echo $categoria->name; ?></small>
+                                        <small style="background-color: <?php echo "#" . $tax_color; ?> !important;"><?php echo $categoria->name; ?></small>
                                     </a>
                                     <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                 </div>
-                                <!-- <div class="col hora text-right">
-                                    <small>Hace 1 hora <i class="fas fa-clock"></i></small>
-                                </div> -->
+                                <div class="col hora text-right">
+                                    <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+                                </div>
                             </div>
                             <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                 <div class='imagen-nota-container'>
@@ -300,11 +305,11 @@
                     endif;
                     wp_reset_postdata();
                     ?>
-                        <div class="col-12 nota modulo-publicidad">
-                            <img src="http://fakeimg.pl/300x300/333/ccc/?text=BoxBanner" class="img-fluid d-block mb-0" alt="Publicidad...">
-                            <span>Publicidad</span>
-                        </div>
                     </div>
+                </div>
+                <div class="col-12 nota modulo-publicidad">
+                    <img src="http://fakeimg.pl/300x600/333/ccc/?text=HalfPage" class="img-fluid d-block mb-0" alt="Publicidad...">
+                    <span>Publicidad</span>
                 </div>
             </div>
         </div>

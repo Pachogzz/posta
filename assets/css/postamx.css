@@ -520,7 +520,7 @@ transition: all 500ms ease; }
 [class*="bloque_notas--"] .meta .categoria,
 [class*="bloque_notas--"] .nota .meta .categoria{
   position: relative;
-  background-color: #f20e00;
+  /*background-color: #f20e00;*/
   padding-left: 0;
   padding-bottom: 5px;
 }
@@ -553,7 +553,7 @@ transition: all 500ms ease; }
 [class*="bloque_notas--"] .nota{ -webkit-transition: all 500ms ease; -moz-transition: all 500ms ease; -ms-transition: all 500ms ease; -o-transition: all 500ms ease; transition: all 500ms ease; }
 
 [class*="bloque_notas--"] .nota:hover{ opacity: .75; -webkit-transition: all 500ms ease; -moz-transition: all 500ms ease; -ms-transition: all 500ms ease; -o-transition: all 500ms ease; transition: all 500ms ease; }
-[class*="bloque_notas--"] .nota .meta .hora{}
+[class*="bloque_notas--"] .nota .meta .hora{ font-size: 14px; line-height: 24px; }
 [class*="bloque_notas--"] .nota .imagen-nota{
   margin-bottom: 15px;
 }
@@ -607,4 +607,80 @@ transition: all 500ms ease; }
 /* Calculated height */
 .h-100-20px{
   height: calc(100% - 25px);
+}
+
+/* CHECK RESOLUTIONS TO WORK WITH */
+/* Extra Small devices (portrait phones, 300px and up) */
+@media (min-width: 300px) {
+  html::before{
+    content: "XS";
+    display: block;
+    position: fixed;
+    background-color: yellow;
+    color: #000;
+    top: inherit;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 999;
+  }
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  html::before{
+    content: "SM";
+    display: block;
+    position: fixed;
+    background-color: yellow;
+    color: #000;
+    top: inherit;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 999;
+  }
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  html::before{
+    content: "MD";
+    display: block;
+    position: fixed;
+    background-color: yellow;
+    color: #000;
+    top: inherit;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 999;
+  }
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  html::before{
+    content: "LG";
+    display: block;
+    position: fixed;
+    background-color: yellow;
+    color: #000;
+    top: inherit;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 999;
+  }
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  html::before{
+    content: "XL";
+    display: block;
+    position: fixed;
+    background-color: yellow;
+    color: #000;
+    top: inherit;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 999;
+  }
 }

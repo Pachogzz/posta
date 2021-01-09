@@ -34,9 +34,15 @@
     $descripcion = category_description($categoria->term_id);
     $link = get_category_link($categoria->term_id);
     $tax_color = get_term_meta( $categoria->term_id, 'category_color', true );
+    // $show_time_ago = get_theme_mod('show_time_ago');
 
 ?>
 <section class="bloque_notas--11_bb py-6" style="background: ">
+<!--     <hr>
+    <pre>
+    <//?php print_r($show_time_ago); ?>
+    </pre>
+    <hr> -->
     <div class="container">
         <!-- Desktop block -->
         <div class="d-none d-sm-none d-md-block">
@@ -96,9 +102,9 @@
                                 </a>
                                 <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                             </div>
-                            <!-- <div class="col hora text-right">
-                                <small>Hace 1 hora <i class="fas fa-clock"></i></small>
-                            </div> -->
+                            <div class="col hora text-right">
+                                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+                            </div>
                         </div>
                         <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                             <div class='imagen-nota-container'>
@@ -157,9 +163,9 @@
                                         </a>
                                         <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                     </div>
-                                    <!-- <div class="col hora text-right">
-                                        <small>Hace 1 hora <i class="fas fa-clock"></i></small>
-                                    </div> -->
+                                    <div class="col hora text-right">
+                                        <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+                                    </div>
                                 </div>
                                 <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                     <div class='imagen-nota-container'>
@@ -187,7 +193,6 @@
                     <div class="encabezado">
                         <h2 class="encabezado-titulo" style="background-color:<?php echo $color; ?>;">
                             <a href="<?php echo $link; ?>">
-                                <span class="nombre-sitio">POSTA</span>
                                 <?php if($tipoTitulo == 'por_defecto'): ?>
                                     <span class="nombre-taxonomia"><?php echo $categoria->name;?></span>
                                 <?php else: ?>
@@ -230,15 +235,15 @@
                     ?>
                         <div id="post-<?php the_ID(); ?>" class="nota large">
                             <div class="row meta">
-                                <div class="col-12 col-md-6 categoria">
+                                <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                                     <a class="text-white" href="<?php echo $link; ?>">
                                         <small><?php echo $categoria->name; ?></small>
                                     </a>
                                     <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                 </div>
-                                <!-- <div class="col hora text-right">
-                                    <small>Hace 1 hora <i class="fas fa-clock"></i></small>
-                                </div> -->
+                                <div class="col hora text-right">
+                                    <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+                                </div>
                             </div>
                             <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                 <div class='imagen-nota-container'>

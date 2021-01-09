@@ -87,10 +87,11 @@
 	</div>
 	<?php endif; ?>
 
-	<div id="page" class="site d-flex flex-column justify-content-between" style="height: 100vh;">
+	<div id="page" class="site d-flex flex-column justify-content-between">
+	<!-- <div id="page" class="site d-flex flex-column justify-content-between" style="height: 100vh;"> -->
 
 		<!-- Publicidad -->
-		<div class="container-fluid bg-white pt-2">
+		<div class="container-fluid bg-white py-2">
 			<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/970x90?text=Superleaderboard">
 		</div>
 		
@@ -174,6 +175,7 @@
 					</div>
 					<div class="col-md-3 offset-md-1">
 						<?php get_search_form(); ?>
+						<!-- <//?php echo do_shotcode('wpbsearch'); ?> -->
 						<!-- <a class="icono icono-blanco" href="#" data-toggle="modal" data-target="#searchModal"><i class="fas fa-search"></i></a> -->
 					</div>
 				</div>

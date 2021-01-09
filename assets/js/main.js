@@ -319,16 +319,24 @@ $('#shareModal').on('hidden.bs.modal', function(e) {
  * Parámetros para carruseles
  **/
 $('.movile-slider').owlCarousel({
-	mouseDrag: false,
+	mouseDrag: true,
 	loop: true,
 	dots: true,
 	// nav: true,
 	// navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
-	margin: 0,
+	margin: 30,
 	responsiveClass: true,
 	// autoplay: false,
 	// autoplayTimeout: 12000,
-	items: 1,
+	// items: 1,
+	responsive: {
+		0: {
+			items: 1
+		},
+		992: {
+			items: 2
+		}
+	}
 });
 $('.carrusel-portada').owlCarousel({
 	mouseDrag: false,
