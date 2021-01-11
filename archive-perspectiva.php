@@ -49,7 +49,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 				</div>
 				<div class="col">
 					<?php
-					// Secciones
+					// Columnas
 					if (!empty(get_query_var('cat'))){
 						$taxonomy_term = get_query_var('cat');
 						$taxonomy_name = $taxonomy_object->taxonomy;
@@ -65,7 +65,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 							'order' => 'DESC',
 							'paged' => $paged
 						);
-					// Temas o hashtags
+					// Columnista
 					}else if ($taxonomy_object->taxonomy == "theme" || "post_tag"){
 						$taxonomy_term = $taxonomy_object->name;
 						$taxonomy_name = $taxonomy_object->taxonomy;
