@@ -40,7 +40,7 @@ if( have_rows('contenido_de_inicio')){
 		} elseif (get_row_layout() == 'carrusel_seccion'){
 			 get_template_part('template-parts/content', 'carrusel-seccion'); 
 		} elseif (get_sub_field('tipo_block')) {
-			// echo get_sub_field('tipo_block');
+			echo get_sub_field('tipo_block');
 			get_template_part( 'template-parts/content', get_sub_field('tipo_block'));
 		}
 
@@ -48,7 +48,7 @@ if( have_rows('contenido_de_inicio')){
 		$cont_layout = $cont_layout +1;
 		if($cont_layout == 2){ ?>
 			<!-- PUBLICIDAD -->
-			<div class="modulo-publicidad-2 mt-6">
+			<div class="modulo-publicidad my-6">
 				<div class="container-fluid">
 					<div class="row"> 
 						<div class="col">

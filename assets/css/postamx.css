@@ -1,10 +1,9 @@
 /* Generales */
+body{ background-color: #fafafa; }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{}
 
-.modulo-publicidad { border: 1px solid #cccccc; text-align: center; padding: 0; }
+.modulo-publicidad { /*border: 1px solid #cccccc;*/ text-align: center; }
 .modulo-publicidad span { font-size: 10px; color: #cccccc; text-transform: uppercase; display: inline-block; }
-
-.modulo-publicidad-2 { background-color: #eee; text-align: center; padding: 2rem 0 .5rem 0; }
 
 .publicidad-izquierda, .publicidad-derecha { display: none; }
 
@@ -14,13 +13,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{}
 
 .titulo-pagina { font-size: 1.8rem;  font-weight: 700; }
 
-.page-template-template_default .site-main a, .post-template-default .contenido-nota a { color: #242424; font-weight: 700; box-shadow: inset 0 -0.5em 0 0 #fbd4e4; }
-.page-template-template_default .site-main a:hover, .post-template-default .contenido-nota a:hover { color: #f20e00; box-shadow: inset 0 -0.5em 0 0 #eee; }
+.page-template-template_default .site-main a{ color: #242424; font-weight: 700; box-shadow: inset 0 -0.5em 0 0 #fbd4e4; }
+.post-template-default .contenido-nota a {  }
+.page-template-template_default .site-main a:hover{ color: #f20e00; box-shadow: inset 0 -0.5em 0 0 #eee; }
+.post-template-default .contenido-nota a:hover {  }
 
 @media (max-width: 768px) { .display-4 { font-size: 2.1rem; } }
 .skip-link { display: none; }
 
-.site-content > div.indicador-elemento:first-child, .site-content > div.carrusel_estilo_destacado:first-child { margin-top: 0 !important; }
+.site-content > div.indicador-elemento:first-child, 
+.site-content > div.carrusel_estilo_destacado:first-child { margin-top: 0 !important; }
 
 label { width: 100%; }
 
@@ -234,7 +236,7 @@ button:focus { outline: 0px dotted !important; outline: 0px auto -webkit-focus-r
 .carrusel_estilo_destacado.texto-blanco .encabezado-descripcion { color: #fff !important; }
 
 .carrusel_estilo_destacado.texto-negro { color: #1e1e1e !important; }
-.carrusel_estilo_destacado.texto-negro .titulo-de-nota a, .carrusel_estilo_destacado.texto-negro .categoria a { color: #1e1e1e !important; }
+.carrusel_estilo_destacado.texto-negro .titulo-de-nota a{ color: #1e1e1e !important; }
 .carrusel_estilo_destacado.texto-negro .titulo-de-nota a:hover, .carrusel_estilo_destacado.texto-negro .categoria a:hover { opacity: .75 !important; }
 .carrusel_estilo_destacado.texto-negro .encabezado-descripcion { color: #1e1e1e !important; }
 
@@ -452,11 +454,21 @@ button.owl-dot.active span { background: #f20e00 !important; }
 .galeria .galeria-item i { font-size: 20px; color: #fff; opacity: .75; }
 .galeria .galeria-item:hover i { opacity: 1; }
 
-.nota-relacionada{ position: relative; padding-left: 60px !important; }
+.nota-relacionada{ position: relative; padding-left: 60px !important; background-color: #f20e00; color: #fff; }
 .nota-relacionada::before{ content:""; display: block; position: absolute; left: 10px; top: 10px; width: 40px; height: 40px; background-image: url('../img/icono-POSTA-sin-fondo-blanco.png'); background-repeat: no-repeat; background-size: cover; background-position: center center; }
-.nota-relacionada::after{ content:""; display: block; position: absolute; right: -15px; top: 0; width: 1px; height: 100%;
-  border-top: 65px solid #f20e00;
-  border-right: 15px solid transparent; }
+.nota-relacionada span,
+.nota-relacionada a{
+  position: relative;
+  z-index: 1;
+}
+.nota-relacionada a,
+.nota-relacionada a:visited{
+  color: #fff;
+}
+.nota-relacionada a:hover{
+  color: #111;
+}
+
 
 .footer { background-color: #f20e00; color: #fff; }
 
@@ -495,7 +507,11 @@ transition: all 500ms ease; }
 .outerNav { display:none; position:absolute; left:0; top:0; width:100%; height:100%; overflow:hidden; background-color: rgba(0,0,0,.5); z-index: 9999; -webkit-transition: all 350ms ease-in-out !important; -moz-transition: all 350ms ease-in-out !important; -ms-transition: all 350ms ease-in-out !important; -o-transition: all 350ms ease-in-out !important; transition: all 350ms ease-in-out !important; }
 
 /* Home blocks */
-[class*="bloque_notas--"]{}
+[class*="bloque_notas--"]{
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 [class*="bloque_notas--"] .encabezado{}
 [class*="bloque_notas--"] .encabezado-titulo{}
 [class*="bloque_notas--"] .encabezado-descripcion{}
@@ -515,15 +531,18 @@ transition: all 500ms ease; }
   overflow: hidden;
 }
 [class*="carrusel-portada"] .encabezado-nota .meta .categoria,
+[class*="carrusel-portada"] .meta .categoria,
 .c-item .meta .categoria,
 .archive [id*="post-"] .meta .categoria,
 [class*="bloque_notas--"] .meta .categoria,
 [class*="bloque_notas--"] .nota .meta .categoria{
   position: relative;
-  /*background-color: #f20e00;*/
+  background-color: #f20e00;
   padding-left: 0;
   padding-bottom: 5px;
 }
+.nota-relacionada .side-triangle,
+.meta .categoria .side-triangle,
 .nota .meta .categoria .side-triangle{
   content: " ";
   position: absolute;
@@ -533,19 +552,37 @@ transition: all 500ms ease; }
   top: 0;
   left: 0;
   z-index: 0;
-
+  background-color: #f20e00;
   transform-origin: bottom left;
   -ms-transform: skew(-30deg, 0deg);
   -webkit-transform: skew(-30deg, 0deg);
   transform: skew(-30deg, 0deg);
 }
 
+.carrusel_estilo_destacado .meta .categoria a,
+.carrusel_estilo_destacado .meta .categoria a:visited,
+[class*="carrusel-tipo-"] .meta .categoria a,
+[class*="carrusel-tipo-"] .meta .categoria a:visited,
 [class*="carrusel-portada"] .encabezado-nota .meta .categoria a,
+[class*="carrusel-portada"] .encabezado-nota .meta .categoria a:visited,
+[class*="carrusel-portada"] .meta .categoria a,
+[class*="carrusel-portada"] .meta .categoria a:visited,
+[class*="bloque_notas--"] .meta .categoria a,
+[class*="bloque_notas--"] .meta .categoria a:visited,
 .c-item .meta .categoria a,
 .c-item .meta .categoria a:visited,
-[class*="bloque_notas--"] .meta .categoria a,
 .archive [id*="post-"] .meta .categoria a,
-.archive [id*="post-"] .meta .categoria a:visited{ position: relative; z-index: 1; display: inline-block; margin: 0; padding-left: 10px !important; }
+.archive [id*="post-"] .meta .categoria a:visited{ 
+  display: block; 
+  position: relative; 
+  width: 100%; 
+  font-size: 18px;
+  line-height: inherit; 
+  color: #fff;
+  margin: 0; 
+  padding-left: 10px !important; 
+  z-index: 1; 
+}
 
 .archive [id*="post-"] .meta .categoria a:hover,
 .archive [id*="post-"] .meta .categoria a:focus,

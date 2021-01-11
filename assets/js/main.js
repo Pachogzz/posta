@@ -322,8 +322,8 @@ $('.movile-slider').owlCarousel({
 	mouseDrag: true,
 	loop: true,
 	dots: true,
-	// nav: true,
-	// navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
+	nav: true,
+	navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
 	margin: 30,
 	responsiveClass: true,
 	// autoplay: false,
@@ -333,8 +333,11 @@ $('.movile-slider').owlCarousel({
 		0: {
 			items: 1
 		},
-		992: {
+		768: {
 			items: 2
+		},
+		992: {
+			items: 3
 		}
 	}
 });

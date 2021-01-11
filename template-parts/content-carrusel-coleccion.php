@@ -101,14 +101,22 @@ if ( $notas_coleccion ) { ?>
 							}
 							$category_link = get_category_link($category_id);
 							$category_description  = category_description($category_id);
+			    			// como extraer el color ?? ? ? 
+			    			$tax_color = get_term_meta( $categoria, 'category_color', true );
 							?>
 
 							<div class="c-item">
-								<div class="d-block w-100 mb-0 meta">
+								<div class="row mb-0 meta">
 									<!-- Sección de nota -->
-									<div class="categoria">
-										<a href="<?php echo $category_link; ?>"><?php echo $category_name ?></a>
+									<div class="col-6 categoria">
+										<a class="text-white" href="<?php echo $category_link; ?>" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+											<?php echo $category_name ?>
+										</a>
+			                            <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
 									</div>
+		                            <div class="col-6 hora text-right">
+		                                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+		                            </div>
 								</div>
 								<div class="position-relative">
 									<!-- IMAGEN DE NOTA -->

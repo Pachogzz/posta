@@ -125,6 +125,19 @@ if(!empty($GLOBALS['carrusel_seccion'])){
 
 <div id="post-<?php the_ID(); ?>">
 	<div class="position-relative">
+		<div class="row mb-0 meta">
+			<!-- <a href="<//?php echo $category_link; ?>"><//?php echo $name ?></a> -->
+			<!-- Sección de nota -->
+			<div class="col-6 categoria">
+				<a class="text-white" href="<?php echo $category_link; ?>" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+					<?php echo $name ?>
+				</a>
+                <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+			</div>
+            <div class="col-6 hora text-right">
+                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+            </div>
+		</div>
 	<!-- IMAGEN DE NOTA -->
 		<div class="contenedor-media d-flex justify-content-center align-items-center" style="background-image: url( <?php echo $featured_img_url; ?> );">
 			<!-- Icono tipo de contenido -->
@@ -184,7 +197,6 @@ if(!empty($GLOBALS['carrusel_seccion'])){
 		</div>
 		<!-- ENCABEZADO DE NOTA -->
 		<div class="encabezado-nota mt-2">
-			<!-- <a href="<?php echo $category_link; ?>"><?php echo $name ?></a> -->
 			<!-- Título de nota -->
 			<h4 class="titulo-de-nota">
 				<a class="stretched-link" href="<?php the_permalink(); ?>" title="<?php echo the_title(); ?>"><?php the_title(); ?></a>

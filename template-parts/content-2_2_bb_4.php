@@ -40,7 +40,7 @@
 <section class="bloque_notas--2_2_bb_4 mb-6">
     <div class="container">
         <!-- Desktop block -->
-        <div class="d-none d-sm-none d-md-block">
+        <div class="d-none d-sm-none d-md-none">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
@@ -238,7 +238,7 @@
         <!-- Desktop block -->
 
         <!-- Movile slide -->
-        <div class="d-sm-block d-md-none">
+        <div class="d-sm-block d-md-block">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">

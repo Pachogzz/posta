@@ -258,48 +258,6 @@
   }
 
   // -------------------------------
-  // Métrica destacada
-  // Shortcode ['metrica_destacada-'.$i]
-  // -------------------------------
-  $metrica_destacada = get_field('metrica_destacada', get_the_ID());
-  if (!empty($metrica_destacada)){
-    $counter = 0;
-
-    function shortcode_metrica_destacada($atts){
-      extract(shortcode_atts(array(
-        'metrica_destacada' => get_field('metrica_destacada', get_the_ID())
-      ), $atts));
-
-      global $counter;
-      
-      // $position = (float:left) o (float:right)
-      $position = $metrica_destacada[$counter]['metrica_destacada_style'];
-      $text = $metrica_destacada[$counter]['metrica_destacada'];
-
-      $shortcode_html = '';
-      if ($position == 'left') {
-        $shortcode_html .= '
-        <p>izquierda</p>';
-      } elseif ($position == 'right') {
-        $shortcode_html .= '
-        <p>derecha</p>';
-      } else {
-        $shortcode_html .= '
-        <p>centro</p>';
-      }
-
-      $counter++;
-    
-      return $shortcode_html;
-    }
-
-    for ($i=0; $i<count($metrica_destacada); $i++){
-      add_shortcode('metrica_destacada-'.($i+1), 'shortcode_important_text');
-    }
-
-  }
-
-  // -------------------------------
   // Cita textual
   // Shortcode ['cita-'.$i]
   // -------------------------------
@@ -340,6 +298,47 @@
 
     for ($i=0; $i<count($testimonials); $i++){
       add_shortcode('cita-'.($i+1), 'shortcode_testimonials');
+    }
+
+  }
+
+  // -------------------------------
+  // Nota de interés
+  // Shortcode ['te_puede_interesar-'.$i]
+  // -------------------------------
+  $te_puede_interesar = get_field('te_puede_interesar', get_the_ID());
+  if (!empty($te_puede_interesar)){
+
+    $te_puede_interesar_counter = 0;
+
+    function shortcode_te_puede_interesar($atts){
+      extract(shortcode_atts(array(
+        'te_puede_interesar' => get_field('te_puede_interesar', get_the_ID())
+      ), $atts));
+
+      global $te_puede_interesar_counter;
+      $nota_de_interes = $te_puede_interesar[$te_puede_interesar_counter][nota_propuesta];
+
+      $shortcode_html = '';
+      // $shortcode_html .= '<h3 class="text-warning">'. print_r($nota_de_interes).'</h3>';
+      $shortcode_html .= '<div class="nota-relacionada">
+                            <div class="row">
+                              <div class="col-12 position-relative py-3">
+                                <span class="d-inline-block text-white"><strong>Te puede interesar: </strong></span>
+                                <a class="d-inline-block" href="'.$nota_de_interes->guid.'"><strong>'.$nota_de_interes->post_title.'</strong></a>
+                                <span class="side-triangle"></span>
+                              </div>
+                            </div>
+                          </div>';
+
+      $te_puede_interesar_counter++;
+
+      return $shortcode_html;
+
+    }
+
+    for ($i=0; $i<count($te_puede_interesar); $i++){
+      add_shortcode('te_puede_interesar-'.($i+1), 'shortcode_te_puede_interesar');
     }
 
   }

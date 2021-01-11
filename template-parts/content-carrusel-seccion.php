@@ -27,7 +27,7 @@ $category_description = category_description($category_id); // Descripción de l
 			<!-- ENCABEZADO DE CARRUSEL -->
 			<div class="encabezado">
 				<h2 class="encabezado-titulo flecha">
-					<a href="<?php echo esc_url($category_link); ?>"><?php echo esc_html($section_name->name);?></a>
+					<a class="text-white" href="<?php echo esc_url($category_link); ?>"><?php echo esc_html($section_name->name);?></a>
 				</h2>
 				<?php if($mostrar_descripcion){ ?>
 					<p class="encabezado-descripcion"><?php echo strip_tags($category_description); ?></p>
