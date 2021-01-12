@@ -32,7 +32,7 @@ $category_description = category_description($theme_id); // Descripción de la s
 			<!-- ENCABEZADO DE CARRUSEL -->
 			<div class="encabezado">
 				<h2 class="encabezado-titulo flecha">
-					<a href="<?php echo esc_url($category_link); ?>"><?php echo $taxonomy_term;?></a>
+					<a class="text-white" href="<?php echo esc_url($category_link); ?>"><?php echo $taxonomy_term;?></a>
 				</h2>
 				<?php if($mostrar_descripcion){?>
 					<p class="encabezado-descripcion"><?php echo $tema_description; ?></p>
@@ -65,7 +65,7 @@ $category_description = category_description($theme_id); // Descripción de la s
 				if ( $the_query->have_posts() ) :
 					while ( $the_query->have_posts() ) :
 						$the_query->the_post(); ?>
-						<div class="c-item">
+						<div class="c-item ">
 							<?php get_template_part( 'template-parts/content', 'home-categories' ); ?>
 						</div>
 						<?php
@@ -77,6 +77,7 @@ $category_description = category_description($theme_id); // Descripción de la s
 				?>
 				<!-- Link ver más notas -->
 				<div class="c-item">
+					carousel tema
 					<a class="item-ver-mas" href="<?php echo esc_url($category_link); ?>" title="Ver más noticias de <?php echo $taxonomy_term;?>">
 						<div class="contenedor-media">
 							<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center p-5">

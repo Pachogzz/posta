@@ -300,6 +300,11 @@ require get_template_directory() . '/inc/customizer/customizer-theme.php';
  */
 require get_template_directory() . '/inc/cpt.php';
 
+/**
+ * Custom Fields for Taxonomies
+ */
+require get_template_directory() . '/inc/tax_custom_fields.php';
+
 
 /****************************************************************
 *																*
@@ -513,29 +518,17 @@ function cp_change_post_object() {
     $labels->add_new = 'Agregar noticia';
 }
 
-
 /****************************************************************
-*																*
-*                       CUSTOM SEARCH FORM                      *
-*																*
+*                               *
+*                       POSTED TIME AGO                         *
+*                               *
 ****************************************************************/
+function time_ago( $type = 'post' ) {
+    $d = 'comment' == $type ? 'get_comment_time' : 'get_post_time';
 
-// Custom search form
-function wpbsearchform( $form ) {
-    $form = '<form role="search" method="get" id="searchform" action="'.home_url('').'" >
-              <div class="input-group">
-                <input type="text" name="s" id="s" class="form-control" value="'.get_search_query().'">
-                <span class="input-group-btn">
-                  <button id="searchsubmit" type="submit" class="btn btn-info btn-lg bg-dark custom-btn-src">
-                    <i class="fa fa-search"></i>
-                  </button>
-                </span>
-              </div>
-            </form>';
-    return $form;
+    return __('Hace') . " " . human_time_diff($d('U'), current_time('timestamp'));
+
 }
-add_shortcode('wpbsearch', 'wpbsearchform');
-
 
 /****************************************************************
 *																*
@@ -602,122 +595,6 @@ function post_custom_column_views($column_name, $id){
     }
 }
 add_action('manage_posts_custom_column', 'post_custom_column_views',10,2);
-
-
-/****************************************************************
-*																*
-*                            EXCERPT                            *
-*																*
-****************************************************************/
-
-/**
- * Removes the regular excerpt box. We're not getting rid
- * of it, we're just moving it above the wysiwyg editor
- *
- * @return null
- */
-function oz_remove_normal_excerpt() {
-    remove_meta_box( 'postexcerpt' , 'post' , 'normal' );
-}
-add_action( 'admin_menu' , 'oz_remove_normal_excerpt' );
-
-/**
- * Add the excerpt meta box back in with a custom screen location
- *
- * @param  string $post_type
- * @return null
- */
-function oz_add_excerpt_meta_box( $post_type ) {
-    $post = get_post();
-    $post_name = $post->post_name;
-    if ( in_array( $post_type, array( 'post', 'page' ) ) && $post_name != 'home' ) {
-        add_meta_box(
-            'oz_postexcerpt',
-            __( 'Extracto', 'thetab-theme' ),
-            'post_excerpt_meta_box',
-            $post_type,
-            'after_title',
-            'high'
-        );
-    }
-}
-add_action( 'add_meta_boxes', 'oz_add_excerpt_meta_box' );
-
-
-/****************************************************************
-*																*
-*                            META BOX                           *
-*																*
-****************************************************************/
- 
-/**
- * You can't actually add meta boxes after the title by default in WP so
- * we're being cheeky. We've registered our own meta box position
- * `after_title` onto which we've regiestered our new meta boxes and
- * are now calling them in the `edit_form_after_title` hook which is run
- * after the post tile box is displayed.
- *
- * @return null
- */
-function oz_run_after_title_meta_boxes() {
-    global $post, $wp_meta_boxes;
-    # Output the `below_title` meta boxes:
-    do_meta_boxes( get_current_screen(), 'after_title', $post );
-}
-add_action( 'edit_form_after_title', 'oz_run_after_title_meta_boxes' );
-
-
-/****************************************************************
-*																*
-*                           TESTING DE SHORTCODES                          *
-*																*
-****************************************************************/
-
-// Shortcode [puntou_cita]
-function shortcode_puntou_cita( $atts ){
-
-	$puntou_cita_parametros="";
-	extract(shortcode_atts(array(
-		'cita' => 'No especificado',
-		'autor' => 'No especificado',
-	), $atts));
-
-	// Display info
-	$puntou_cita_parametros = '<div class="cita"><blockquote>';
-	$puntou_cita_parametros .= '<p>Cita: ' .$cita. '</p>';
-	$puntou_cita_parametros .= '<p>Autor: ' .$autor. '</p>';
-	$puntou_cita_parametros .= '</blockquote></div>';
-	return $puntou_cita_parametros;
-}
-add_shortcode('puntou_cita', 'shortcode_puntou_cita');
-// add_action( 'init', 'register_shortcodes');
-
-
-// Shortcode [puntou_cita2]
-function puntou_cita2_parametros( $atts, $content = null ) {
-	// Genero los valores por defecto de los parámetros
-	$params = shortcode_atts( array(
-		'text-color'        => '#000000',
-		'background-color'  => '#ffffff',
-		'font-size'  		    => '20',
-	), $atts );
-	// Genero el string con estilos en línea
-	$style = "style= 'color:{$params['text-color']}; background-color:{$params['background-color']}; font-size:{$params['font-size']}px;'";
-	// Aplico el texto y el stilo a la etiqeta <p>
-	return "<div {$style}>{$content}</div>";
-}
-add_shortcode( 'puntou_cita2', 'puntou_cita2_parametros' );
-
-
-// Shortcode [puntou_boton]
-function puntou_boton_parametros( $atts, $content ) {
-	$atts = shortcode_atts( array(
-		'icono' => 'pencil'
-	), $atts );
-	return '<h1><span class="fab fa-' . $atts['icono'] . '"></span> ' . $content . '</h1>';
-}
-add_shortcode('puntou_boton', 'puntou_boton_parametros');
-
 
 /****************************************************************
 *																*
@@ -797,138 +674,3 @@ function get_primary_category($post_id, $custom_tax){
 	
 	return $categories;
 }
-
-
-
-
-/**
-* Color Taxonomy 
-*/
-
-
-/**
- * Add new colorpicker field to "Add new Category" screen
- * - https://developer.wordpress.org/reference/hooks/taxonomy_add_form_fields/
- *
- * @param String $taxonomy
- *
- * @return void
- */
-function colorpicker_field_add_new_category( $taxonomy ) {
-
-  ?>
-
-    <div class="form-field term-colorpicker-wrap">
-        <label for="term-colorpicker">Color de Categoria</label>
-        <input name="category_color" value="#ffffff" class="colorpicker" id="term-colorpicker" />
-        <p>Asigna el color de fondo para la categoria, por defautl el color es blanco.</p>
-    </div>
-
-  <?php
-
-}
-add_action( 'category_add_form_fields', 'colorpicker_field_add_new_category' );  // Variable Hook Name
-
-
-/**
- * Add new colopicker field to "Edit Category" screen
- * - https://developer.wordpress.org/reference/hooks/taxonomy_add_form_fields/
- *
- * @param WP_Term_Object $term
- *
- * @return void
- */
-function colorpicker_field_edit_category( $term ) {
-
-    $color = get_term_meta( $term->term_id, 'category_color', true );
-    $color = ( ! empty( $color ) ) ? "#{$color}" : '#ffffff';
-
-  ?>
-
-    <tr class="form-field term-colorpicker-wrap">
-        <th scope="row"><label for="term-colorpicker">Color de categoria</label></th>
-        <td>
-            <input name="category_color" value="<?php echo $color; ?>" class="colorpicker" id="term-colorpicker" />
-            <p class="description">Asigna el color de fondo para la categoria, por defautl el color es blanco.</p>
-        </td>
-    </tr>
-
-  <?php
-
-
-}
-add_action( 'category_edit_form_fields', 'colorpicker_field_edit_category' );   // Variable Hook Name
-
-
-/**
- * Term Metadata - Save Created and Edited Term Metadata
- * - https://developer.wordpress.org/reference/hooks/created_taxonomy/
- * - https://developer.wordpress.org/reference/hooks/edited_taxonomy/
- *
- * @param Integer $term_id
- *
- * @return void
- */
-function save_termmeta( $term_id ) {
-
-    // Save term color if possible
-    if( isset( $_POST['category_color'] ) && ! empty( $_POST['category_color'] ) ) {
-        update_term_meta( $term_id, 'category_color', sanitize_hex_color_no_hash( $_POST['category_color'] ) );
-    } else {
-        delete_term_meta( $term_id, 'category_color' );
-    }
-
-}
-add_action( 'created_category', 'save_termmeta' );  // Variable Hook Name
-add_action( 'edited_category',  'save_termmeta' );  // Variable Hook Name
-
-
-
-/**
- * Enqueue colorpicker styles and scripts.
- * - https://developer.wordpress.org/reference/hooks/admin_enqueue_scripts/
- *
- * @return void
- */
-function category_colorpicker_enqueue( $taxonomy ) {
-
-    if( null !== ( $screen = get_current_screen() ) && 'edit-category' !== $screen->id ) {
-        return;
-    }
-
-    // Colorpicker Scripts
-    wp_enqueue_script( 'wp-color-picker' );
-
-    // Colorpicker Styles
-    wp_enqueue_style( 'wp-color-picker' );
-
-}
-add_action( 'admin_enqueue_scripts', 'category_colorpicker_enqueue' );
-
-
-/**
- * Print javascript to initialize the colorpicker
- * - https://developer.wordpress.org/reference/hooks/admin_print_scripts/
- *
- * @return void
- */
-function colorpicker_init_inline() {
-
-    if( null !== ( $screen = get_current_screen() ) && 'edit-category' !== $screen->id ) {
-        return;
-    }
-
-  ?>
-
-    <script>
-        jQuery( document ).ready( function( $ ) {
-
-            $( '.colorpicker' ).wpColorPicker();
-
-        } ); // End Document Ready JQuery
-    </script>
-
-  <?php
-
-}
-add_action( 'admin_print_scripts', 'colorpicker_init_inline', 20 );

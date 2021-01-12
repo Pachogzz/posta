@@ -79,6 +79,18 @@ function posta_news_customize_register($wp_customize){
 			'settings'    => 'default_news_image',
 		) )
 	);
+  	// Agregar opcion para habilitar o deshabilitar "Hace x tiempo en las notas"
+    $wp_customize->add_setting('show_time_ago', array(
+        'capability' => 'edit_theme_options',
+        'type'       => 'theme_mod',
+    ));
+  
+    $wp_customize->add_control('show_time_ago', array(
+        'label'    => __('Mostrar tiempo de posteo "Hace # tiempo"'),
+        'settings' => 'show_time_ago',
+        'section'  => 'news_settings',
+        'type'     => 'checkbox',
+    ));
 }
 add_action('customize_register', 'posta_news_customize_register');
 

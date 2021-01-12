@@ -1,11 +1,10 @@
 <?php 
 /*
-* Creating a function to create our CPT
+* Creating a function to create our CPTs
 */
  
 function custom_post_type() {
-// Set UI labels for Custom Post Type
-    $labels = array(
+    $labelsp = array(
         'name'                => __( 'Perspectivas', 'Post Type General Name', 'postamx' ),
         'singular_name'       => __( 'Perspectiva', 'Post Type Singular Name', 'postamx' ),
         'menu_name'           => __( 'Perspectivas', 'postamx' ),
@@ -20,16 +19,12 @@ function custom_post_type() {
         'not_found'           => __( 'No encontrado', 'postamx' ),
         'not_found_in_trash'  => __( 'No encontrado en la papelera', 'postamx' ),
     );
-    // Set other options for Custom Post Type 
-    $args = array(
-        'label'               => __( 'perspectivas', 'postamx' ),
+    $argsp = array(
+        'label'               => __( 'perspectiva', 'postamx' ),
         'description'         => __( '', 'postamx' ),
-        'labels'              => $labels,
-        // Features this CPT supports in Post Editor
+        'labels'              => $labelsp,
         'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields', ),
-        // You can associate this CPT with a taxonomy or custom taxonomy. 
-        'taxonomies'          => array( 'columna' ),
-        // A hierarchical CPT is like Pages and can have parent and child items. A non-hierarchical CPT is like Posts.
+        'taxonomies'          => array( 'columna', 'columnistas' ),
         'hierarchical'        => false,
         'public'              => true,
         'show_ui'             => true,
@@ -43,10 +38,50 @@ function custom_post_type() {
         'exclude_from_search' => false,
         'publicly_queryable'  => true,
         'capability_type'     => 'post',
-        'show_in_rest' => true,
+        'show_in_rest'        => true,
+        'query_var'           => true,
     );    
-// Registering your Custom Post Type
-    register_post_type( 'perspectivas', $args ); 
+    register_post_type( 'perspectiva', $argsp ); 
+
+    $labelsf = array(
+        'name'                => __( 'Fuentes', 'Post Type General Name', 'postamx' ),
+        'singular_name'       => __( 'Fuente', 'Post Type Singular Name', 'postamx' ),
+        'menu_name'           => __( 'Fuentes', 'postamx' ),
+        'parent_item_colon'   => __( 'Fuente padre', 'postamx' ),
+        'all_items'           => __( 'Todos los Fuentes', 'postamx' ),
+        'view_item'           => __( 'Ver Fuente', 'postamx' ),
+        'add_new_item'        => __( 'Agregar nuevo Fuente', 'postamx' ),
+        'add_new'             => __( 'Agregar nuevo', 'postamx' ),
+        'edit_item'           => __( 'Editar Fuente', 'postamx' ),
+        'update_item'         => __( 'Actualizar Fuente', 'postamx' ),
+        'search_items'        => __( 'Buscar Fuente', 'postamx' ),
+        'not_found'           => __( 'No encontrado', 'postamx' ),
+        'not_found_in_trash'  => __( 'No encontrado en la papelera', 'postamx' ),
+    );
+
+    $argsf = array(
+        'label'               => __( 'fuente', 'postamx' ),
+        'description'         => __( '', 'postamx' ),
+        'labels'              => $labelsf,
+        'supports'            => array( 'title', 'custom-fields', ),
+        'hierarchical'        => false,
+        'public'              => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'show_in_nav_menus'   => true,
+        'show_in_admin_bar'   => true,
+        'menu_position'       => 5,
+        'menu_icon'           => 'dashicons-format-chat',
+        'can_export'          => true,
+        'has_archive'         => true,
+        'exclude_from_search' => false,
+        'publicly_queryable'  => true,
+        'capability_type'     => 'post',
+        'show_in_rest'        => true,
+        'query_var'           => true,
+    );    
+    // Registering your Custom Post Type
+    register_post_type( 'fuente', $argsf ); 
 }
  
 /* Hook into the 'init' action so that the function
@@ -74,7 +109,7 @@ function taxonomy_columna() {
     // Now register the taxonomy
     register_taxonomy(
         'columna',
-        array('perspectivas'), 
+        array('perspectiva'), 
             array(
                 'hierarchical' => true,
                 'labels' => $labels,
@@ -109,7 +144,7 @@ function taxonomy_columnista() {
     // Now register the taxonomy
     register_taxonomy(
         'columnista',
-        array('perspectivas'), 
+        array('perspectiva'), 
             array(
                 'hierarchical' => true,
                 'labels' => $labels,

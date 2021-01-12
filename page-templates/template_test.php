@@ -5,7 +5,6 @@
 <?php
 // CODIGO DE CARUSELES DE SECCIONES ORIGINAL DEL TEMA DE PUNTO U:
   //$sliders = get_field('sliders');
- // require get_template_directory() . '/inc/color_categories.php';
 
   //if ( $sliders ) {
    // foreach ($sliders as $slider) {
@@ -115,7 +114,6 @@
 
 <?php // CODIGO DE CARUSELES DE COLECCION, TEMAS Y SECCION ?>
 <?php 
-require get_template_directory() . '/inc/color_categories.php'; 
 $cont_car =0; //Varible para ver el numero de carriseles- se usó para priebas
 $test = false;
 if($test  == true){

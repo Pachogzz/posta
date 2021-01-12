@@ -28,6 +28,7 @@ switch ($estilo_carusel) {
 	<div class="container-fluid p-0 mt-6 indicador-elemento">
 		<div class="owl-carousel carrusel-portada<?php echo "-" . $estilo_carusel; ?>">
 			<?php
+			require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
 			foreach ($portada as $post) {
 				setup_postdata($post);
 				$featured_img_url_small = get_the_post_thumbnail_url(get_the_ID(), '360x202');
@@ -88,6 +89,8 @@ switch ($estilo_carusel) {
 				}
 				$category_link = get_category_link($category_id);
 				$category_description  = category_description($category_id);
+    			// como extraer el color ?? ? ? 
+    			$tax_color = get_term_meta( $categoria, 'category_color', true );
 				?>
 				<div>
 					<!-- IMAGEN DE NOTA -->
@@ -97,7 +100,16 @@ switch ($estilo_carusel) {
 						<div class="container-fluid encabezado-nota position-relative align-self-end py-6">
 							<div class="container row mx-auto">
 							<!-- <div class="row justify-content-center"> -->
-								<div class="col-md-10 col-lg px-3 px-md-4">
+								<div class="col-md-12 col-lg-10 px-3 px-md-4">
+									<div class="w-100">
+										<pre class="text-white">
+										<?php 
+											print_r($categoria);
+											echo "<hr>";
+											echo $tax_color;
+										 ?>
+										</pre>
+									</div>
 									<!-- Icono tipo de contenido -->
 									<div>
 										<?php
@@ -157,12 +169,18 @@ switch ($estilo_carusel) {
 										?>
 									</div>
 									<!-- Título de nota -->
-									<div class="d-block w-100 mb-3 meta">
-										<!-- Sección de nota -->
-										<div class="categoria">
-											<a class="text-white" href="<?php echo $category_link; ?>"><?php echo $category_name ?></a>
-										</div>
+									<div class="row mb-3 meta">
+			                            <div class="col-6 col-md-4 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+			                                <a class="text-white" href="<?php echo $category_link; ?>">
+			                                    <small><?php echo $category_name; ?></small>
+			                                </a>
+			                                <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+			                            </div>
+			                            <div class="col-6 col-md-4 hora text-white text-right">
+			                                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+			                            </div>
 									</div>
+									<div class="clearfix"></div>
 									<h1 class="titulo-de-nota h3 pr-8 pr-sm-0">
 										<a class="text-white" href="<?php the_permalink(); ?>" title="<?php echo the_title(); ?>"><?php echo get_the_title(); ?></a>
 									</h1>

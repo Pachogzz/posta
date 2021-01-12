@@ -9,7 +9,6 @@
 get_header();
 //Obtiener información de los temas asociado a la nota
 $themes = get_the_terms(get_the_ID(), 'theme'); 
-
 $categoria = get_primary_category(get_the_ID(), 'category');
 //obtiene la categoria principal seleccionado  con el yoast
 if($categoria){
@@ -112,6 +111,9 @@ $GLOBALS['gallery']=  $gallery;
 			<div class="row justify-content-center align-items-start">
 				<!-- Contenido principal -->
 				<div class="col-lg px-4 pl-lg-3 pr-lg-6">
+					<!-- Share this -->
+					<div class="sharethis-inline-share-buttons mb-3"></div>
+
 					<!-- Autor de la nota -->
 					<p class="autor-de-nota">
 						Por
@@ -157,13 +159,15 @@ $GLOBALS['gallery']=  $gallery;
 					<div class="separador"></div>
 
 					<!-- Iconos de compartir -->
+					<!-- Share this -->
+					<div class="sharethis-inline-share-buttons mb-3"></div>
 					<!-- <h6 class="text-muted">COMPARTE ESTA HISTORIA</h6> -->
-					<div class="lista-iconos">
+					<!-- <div class="lista-iconos">
 						<i class="fas fa-share-alt icono icono-borde-posta mr-2"></i>
 						<a href="javascript:void(0)" class="btnsf icono icono-posta" data-title="<?php the_title(); ?>" data-excerpt="" data-link="<?php the_permalink(); ?>" data-img="<?php echo get_the_post_thumbnail_url(get_the_ID(),'full'); ?>"><i class="fab fa-facebook-f"></i></a>
 						<a href="javascript:void(0)" class="btnst icono icono-posta" data-title="<?php the_title(); ?>" data-link="<?php the_permalink(); ?>"><i class="fab fa-twitter"></i></a>
 						<a href="https://api.whatsapp.com/send?text=<?php the_permalink(); ?>" class="btnsw icono icono-posta" target="_blank"><i class="fab fa-whatsapp"></i></a>
-					</div>
+					</div> -->
 				</div>
 
 				<!-- Sidebar -->
