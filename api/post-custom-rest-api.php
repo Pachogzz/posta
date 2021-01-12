@@ -20,6 +20,8 @@ function add_custom_fields() {
 	function get_custom_fields($object){
 
 		$imagen = wp_get_attachment_image_src( get_post_thumbnail_id( $object['id'] ), 'full' )[0];
+        $term = get_term( $object['categories'], 'category' );
+        $color = get_term_meta( $term->term_id, 'category_color', true );
 
         if($imagen){
             $imagen = $imagen;
@@ -30,7 +32,9 @@ function add_custom_fields() {
 		$datos = array(
 			'imagen' => $imagen, 
 			'fecha' => timeDate($object['date']),
-			'title' => $object['title']['raw']
+			'title' => $object['title']['raw'],
+            'categoria' => $term->name,
+            'color' => $color,
 		);
 
 		return $datos;
