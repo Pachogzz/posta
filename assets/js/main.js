@@ -316,6 +316,11 @@ $('#shareModal').on('hidden.bs.modal', function(e) {
 // ---------------------------------------------------------------
 
 /*
+ * Add classes to taxonomy lists on archive templates
+ **/
+$('#term-list-filter .nav-item > a').addClass('badge badge-primary rounded-pill py-2 px-3');
+
+/*
  * Parámetros para carruseles
  **/
 $('.movile-slider').owlCarousel({

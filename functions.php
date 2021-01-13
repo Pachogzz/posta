@@ -482,11 +482,14 @@ function create_theme_taxonomy() {
     array(
       'labels' => $labels,
       'has_archive' => true,
-      'rewrite' => array( 'slug' => 'tema', 'with_front' => false ),
+      'rewrite' => array( 
+        'slug' => 'tema', 
+        'with_front' => false 
+      ),
       'show_in_nav_menus' => true,
       'show_in_rest' => true,
       'show_admin_column' => true,
-      'hierarchical' => true
+      'hierarchical' => false
     )
   );
 
@@ -674,3 +677,136 @@ function get_primary_category($post_id, $custom_tax){
 	
 	return $categories;
 }
+
+/****************************************************************
+*                               *
+*                      DOUBLE TERM TAX TREE                     *
+*                               *
+****************************************************************/
+
+function perspectivas_terms(
+      $post_types = array( 'post' ),
+      $first      = 'category',
+      $second     = 'post_tag'
+    )
+  {
+    $query = new WP_Query(
+        array (
+            'numberposts'      => -1,
+            'suppress_filters' => TRUE,
+            'posts_per_page'   => -1,
+            'post_type'        => $post_types,
+            'tax_query'        => array (
+                'relation' => 'AND',
+                array(
+                    'taxonomy' => $first,
+                    'field'    => 'id',
+                    'terms'    => get_terms( $first, array( 'fields' => 'ids' ) )
+                ),
+                array(
+                    'taxonomy' => $second,
+                    'field'    => 'id',
+                    'terms'    => get_terms( $second, array( 'fields' => 'ids' ) )
+                ),
+            ),
+        )
+    );
+
+    if ( empty ( $query->posts ) )
+        return;
+
+    $result_list = array();
+    $output      = '<ul>';
+
+    foreach ( $query->posts as $post )
+    {
+        $first_terms  = get_the_term_list( $post->ID, $first, '', '|' );
+        $second_terms = get_the_term_list( $post->ID, $second, '', '|' );
+
+        $f_term_array = explode( '|', $first_terms );
+        $s_term_array = explode( '|', $second_terms );
+
+        foreach ( $f_term_array as $f_term )
+        {
+            if ( ! isset ( $result_list[ $f_term ] ) )
+                $result_list[ $f_term ] = array();
+
+            $result_list[ $f_term ] = array_merge( $result_list[ $f_term ], $s_term_array );
+        }
+    }
+
+    foreach ( $result_list as $k => $v )
+    {
+        $result_list[ $k ] = array_unique( $v );
+        $output           .= "\n<li class='li-1st-lvl'>$k\n\t<ul>\n\t\t<li>"
+            . join( "</li>\n\t\t<li>", array_unique( $v ) )
+            . "</li>\n\t</ul>\n</li>";
+    }
+
+    $output .= '</ul>';
+
+    return $result_list;
+  }
+function noticias_terms(
+      $post_types = array( 'post' ),
+      $first      = 'category',
+      $second     = 'post_tag'
+    )
+  {
+    $query = new WP_Query(
+        array (
+            'numberposts'      => -1,
+            'suppress_filters' => TRUE,
+            'posts_per_page'   => -1,
+            'post_type'        => $post_types,
+            'tax_query'        => array (
+                'relation' => 'AND',
+                array(
+                    'taxonomy' => $first,
+                    'field'    => 'id',
+                    'terms'    => get_terms( $first, array( 'fields' => 'ids' ) )
+                ),
+                array(
+                    'taxonomy' => $second,
+                    'field'    => 'id',
+                    'terms'    => get_terms( $second, array( 'fields' => 'ids' ) )
+                ),
+            ),
+        )
+    );
+
+    if ( empty ( $query->posts ) )
+        return;
+
+    $result_list = array();
+    $output      = '<ul>';
+
+    foreach ( $query->posts as $post )
+    {
+        $first_terms  = get_the_term_list( $post->ID, $first, '', '|' );
+        $second_terms = get_the_term_list( $post->ID, $second, '', '|' );
+
+        $f_term_array = explode( '|', $first_terms );
+        $s_term_array = explode( '|', $second_terms );
+
+        foreach ( $f_term_array as $f_term )
+        {
+            if ( ! isset ( $result_list[ $f_term ] ) )
+                $result_list[ $f_term ] = array();
+
+            $result_list[ $f_term ] = array_merge( $result_list[ $f_term ], $s_term_array );
+        }
+    }
+
+    foreach ( $result_list as $k => $v )
+    {
+        $result_list[ $k ] = array_unique( $v );
+        $output           .= "\n<li class='li-1st-lvl'>$k\n\t<ul>\n\t\t<li>"
+            . join( "</li>\n\t\t<li>", array_unique( $v ) )
+            . "</li>\n\t</ul>\n</li>";
+    }
+
+    $output .= '</ul>';
+
+    return $result_list;
+  }

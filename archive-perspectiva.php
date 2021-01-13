@@ -9,10 +9,8 @@
 
 get_header();
 
-// Obtener el color de la taxonomia
-global $wp_query;
-$taxonomy_object = $wp_query->get_queried_object();
-// $category_name = get_color_taxonomy($taxonomy_object);
+// global $wp_query;
+// $taxonomy_object = $wp_query->get_queried_object();
 
 $category = get_category( $taxonomy_object );
 $category_name = $category->name;
@@ -47,32 +45,43 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 						<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
 					</div>
 				</div>
+				
 				<div class="col">
 					<?php
+					$data = perspectivas_terms( 'perspectiva', 'columnista', 'columna' );
+					// echo "<pre>";
+					// print_r($data);
+					// echo "</pre>";
+
+					echo "<ul id='term-list-filter' class='nav nav-pills justify-content-center'>";
+					foreach ($data as $key => $valor) {
+						echo "<li class='nav-item mr-2 lead'>" . $key . "</li>";
+					}
+					echo "</ul>";
+
 					// Columnas
-					if (!empty(get_query_var('cat'))){
-						$taxonomy_term = get_query_var('cat');
+					if (!empty(get_query_var('columnista'))){
+						$taxonomy_term = get_query_var('columnista');
 						$taxonomy_name = $taxonomy_object->taxonomy;
 						$args = array(
 							'suppress_filters' => true,
-							'post_type' => 'post',
+							'post_type' => 'perspectiva',
 							'posts_per_page' => 13,
 							'post_status' => array(
 								'publish',
 							),
-							'cat' => $taxonomy_term,
+							'columnista' => $taxonomy_term,
 							'orderby' => 'date',
 							'order' => 'DESC',
 							'paged' => $paged
 						);
 					// Columnista
-					}else if ($taxonomy_object->taxonomy == "theme" || "post_tag"){
+					}else if ($taxonomy_object->taxonomy == "columna"){
 						$taxonomy_term = $taxonomy_object->name;
 						$taxonomy_name = $taxonomy_object->taxonomy;
-
 						$args = array(
 							'suppress_filters' => true,
-							'post_type' => 'post',
+							'post_type' => 'perspectiva',
 							'posts_per_page' => 13,
 							'tax_query' => array(
 							array(
@@ -89,19 +98,19 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 							'paged' => $paged
 						);
 					}else{
-						$args = array();
+						$args = array(
+							'post_type' => 'perspectiva',
+							'posts_per_page' => 13,
+						);
 					}
-
 					$output = 'objects';
-
-					$the_query = new WP_Query( $args, $output );
-
+					$the_query = new WP_Query( $args );
 					if ( $the_query->have_posts() ) :
 						?>
 						<div id="ajax-posts" class="row category">
 							<?php
 							while ( $the_query->have_posts() ) : $the_query->the_post();
-								get_template_part( 'template-parts/content', 'content' );
+								get_template_part( 'template-parts/content', 'perspectiva' );
 							endwhile;
 							?>
 						</div>

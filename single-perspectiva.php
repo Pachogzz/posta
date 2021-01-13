@@ -8,18 +8,17 @@
  */
 get_header();
 //Obtiener información de los temas asociado a la nota
-$themes = get_the_terms(get_the_ID(), 'theme'); 
-
-$categoria = get_primary_category(get_the_ID(), 'category');
+$columna = get_category(get_the_ID(), 'columna'); 
+$columnista = get_category(get_the_ID(), 'columnista');
 //obtiene la categoria principal seleccionado  con el yoast
-if($categoria){
-	$category_name = $categoria->name;
-	$category_id = $categoria->term_id;
+if($columnista){
+	$category_name = $columnista->name;
+	$category_id = $columnista->term_id;
 }
 //obtiene la categoria  seleccionado 
 if(empty($category_name)){
-	$category_name = $categoria[0]->name;
-	$category_id = $categoria[0]->term_id;
+	$category_name = $columnista[0]->name;
+	$category_id = $columnista[0]->term_id;
 }
 
 // Script que muestra 
@@ -129,11 +128,11 @@ $GLOBALS['gallery']=  $gallery;
 						?>
 					</h4> -->
 					<!-- Nombre del tema -->
-					<?php if($themes){
+					<?php if($columna){
 						echo "Temas: ";
-							for ($i=0; $i<count($themes) ; $i++) {
-								$theme_link  = get_category_link($themes[$i]->term_id);
-								echo $theme_name = '<h6 class="tema-de-nota text-primary mt-3"><a href="'.esc_url($theme_link).'">'.$themes[$i]->name.'</a></h6>';
+							for ($i=0; $i<count($columna) ; $i++) {
+								$theme_link  = get_category_link($columna[$i]->term_id);
+								echo $theme_name = '<h6 class="tema-de-nota text-primary mt-3"><a href="'.esc_url($theme_link).'">'.$columna[$i]->name.'</a></h6>';
 							}
 						}?>
 					<!-- Extracto -->
@@ -211,16 +210,16 @@ $GLOBALS['gallery']=  $gallery;
 		<!-- NOTAS RELACIONADAS -->
 		<?php
 
-		if($themes){
-			for ($i=0; $i<count($themes) ; $i++) { 
-				$slug = $themes[$i]->slug;
+		if($columna){
+			for ($i=0; $i<count($columna) ; $i++) { 
+				$slug = $columna[$i]->slug;
 				if($slug == 'con-tacones-entre-legos' || $slug == 'yo-que-voy-a-saber' || $slug == 'desenfoque' ){
-					$category_name = $themes[$i]->name;
-					$category_link  = get_category_link($themes[$i]->term_id);
-					$category_description  = category_description($themes[$i]->term_id);
+					$category_name = $columna[$i]->name;
+					$category_link  = get_category_link($columna[$i]->term_id);
+					$category_description  = category_description($columna[$i]->term_id);
 					
-					$taxonomy_name = $themes[$i]->taxonomy;
-					$taxonomy_term = $themes[$i]->name;
+					$taxonomy_name = $columna[$i]->taxonomy;
+					$taxonomy_term = $columna[$i]->name;
 
 					$tema_principal= true;
 				}

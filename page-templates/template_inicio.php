@@ -42,6 +42,8 @@ if( have_rows('contenido_de_inicio')){
 		} elseif (get_sub_field('tipo_block')) {
 			echo get_sub_field('tipo_block');
 			get_template_part( 'template-parts/content', get_sub_field('tipo_block'));
+		} elseif (get_sub_field('carrusel_perspectivas')){
+			get_template_part( 'template-parts/content', 'bloque-perspectiva');
 		}
 
 		// Bloque para colocar el script de la publicidad

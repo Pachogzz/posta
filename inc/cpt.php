@@ -1,8 +1,68 @@
-<?php 
-/*
-* Creating a function to create our CPTs
+<?php  
+/* Hook into the 'init' action so that the function
+* Containing our post type registration is not 
+* unnecessarily executed. 
 */
  
+add_action( 'init', 'taxonomy_columna', 0 );
+function taxonomy_columna() {
+    $labels = array(
+        'name'              => __( 'Columnas', 'Taxonomy general name' ),
+        'singular_name'     => __( 'Columna', 'Taxonomy singular name' ),
+        'search_items'      => __( 'Buscar Columnas' ),
+        'all_items'         => __( 'Todas las Columnas' ),
+        'parent_item'       => __( 'Columna padre' ),
+        'parent_item_colon' => __( 'Columna padre:' ),
+        'edit_item'         => __( 'Editar Columna' ), 
+        'update_item'       => __( 'Actualizar Columna' ),
+        'add_new_item'      => __( 'Agregar Columna' ),
+        'new_item_name'     => __( 'Nuevo nombre de Columna' ),
+        'menu_name'         => __( 'Columnas' ),
+    );    
+    register_taxonomy(
+        'columna',
+        array('perspectiva'), 
+            array(
+                'hierarchical'        => false,
+                'labels'              => $labels,
+                'show_ui'             => true,
+                'show_in_rest'        => true,
+                'show_admin_column'   => true,
+                'query_var'           => true,
+                'rewrite'             => array( 'slug' => 'columna', 'with_front' => true ),
+    ));
+    flush_rewrite_rules();
+}
+
+add_action( 'init', 'taxonomy_columnista', 1 );
+function taxonomy_columnista() {
+    $labels = array(
+        'name'              => __( 'Columnistas', 'Taxonomy general name' ),
+        'singular_name'     => __( 'Columnista', 'Taxonomy singular name' ),
+        'search_items'      => __( 'Buscar Columnistas' ),
+        'all_items'         => __( 'Todas las Columnistas' ),
+        'parent_item'       => __( 'Columnista padre' ),
+        'parent_item_colon' => __( 'Columnista padre:' ),
+        'edit_item'         => __( 'Editar Columnista' ), 
+        'update_item'       => __( 'Actualizar Columnista' ),
+        'add_new_item'      => __( 'Agregar Columnista' ),
+        'new_item_name'     => __( 'Nuevo nombre de Columnista' ),
+        'menu_name'         => __( 'Columnistas' ),
+    );    
+    register_taxonomy( 'columnista', array('perspectiva'), 
+            array(
+                'hierarchical'        => true,
+                'labels'              => $labels,
+                'show_ui'             => true,
+                'show_in_rest'        => true,
+                'show_admin_column'   => true,
+                'query_var'           => true,
+                'rewrite'             => array( 'slug' => 'columnista', 'with_front' => true ),
+    ));
+    flush_rewrite_rules();
+}
+
+add_action( 'init', 'custom_post_type', 0 ); 
 function custom_post_type() {
     $labelsp = array(
         'name'                => __( 'Perspectivas', 'Post Type General Name', 'postamx' ),
@@ -25,6 +85,7 @@ function custom_post_type() {
         'labels'              => $labelsp,
         'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields', ),
         'taxonomies'          => array( 'columna', 'columnistas' ),
+        'rewrite'             => array( 'slug' => 'perspectiva', 'with_front' => true ),
         'hierarchical'        => false,
         'public'              => true,
         'show_ui'             => true,
@@ -41,7 +102,8 @@ function custom_post_type() {
         'show_in_rest'        => true,
         'query_var'           => true,
     );    
-    register_post_type( 'perspectiva', $argsp ); 
+    register_post_type( 'perspectiva', $argsp );
+    flush_rewrite_rules();
 
     $labelsf = array(
         'name'                => __( 'Fuentes', 'Post Type General Name', 'postamx' ),
@@ -81,81 +143,17 @@ function custom_post_type() {
         'query_var'           => true,
     );    
     // Registering your Custom Post Type
-    register_post_type( 'fuente', $argsf ); 
+    register_post_type( 'fuente', $argsf );
 }
- 
-/* Hook into the 'init' action so that the function
-* Containing our post type registration is not 
-* unnecessarily executed. 
-*/
-add_action( 'init', 'custom_post_type', 0 );
- 
-function taxonomy_columna() {
-    // Add new taxonomy, make it hierarchical like categories
-    //first do the translations part for GUI
-    $labels = array(
-        'name'              => __( 'Columnas', 'Taxonomy general name' ),
-        'singular_name'     => __( 'Columna', 'Taxonomy singular name' ),
-        'search_items'      => __( 'Buscar Columnas' ),
-        'all_items'         => __( 'Todas las Columnas' ),
-        'parent_item'       => __( 'Columna padre' ),
-        'parent_item_colon' => __( 'Columna padre:' ),
-        'edit_item'         => __( 'Editar Columna' ), 
-        'update_item'       => __( 'Actualizar Columna' ),
-        'add_new_item'      => __( 'Agregar Columna' ),
-        'new_item_name'     => __( 'Nuevo nombre de Columna' ),
-        'menu_name'         => __( 'Columnas' ),
-    );    
-    // Now register the taxonomy
-    register_taxonomy(
-        'columna',
-        array('perspectiva'), 
-            array(
-                'hierarchical' => true,
-                'labels' => $labels,
-                'show_ui' => true,
-                'show_in_rest' => true,
-                'show_admin_column' => true,
-                'query_var' => true,
-                'rewrite' => array( 
-                    'slug' => 'columna' 
-                ),
-    ));
-}
-//hook into the init action and call create_book_taxonomies when it fires
-add_action( 'init', 'taxonomy_columna', 0 );
 
-function taxonomy_columnista() {
-    // Add new taxonomy, make it hierarchical like categories
-    //first do the translations part for GUI
-    $labels = array(
-        'name'              => __( 'Columnistas', 'Taxonomy general name' ),
-        'singular_name'     => __( 'Columnista', 'Taxonomy singular name' ),
-        'search_items'      => __( 'Buscar Columnistas' ),
-        'all_items'         => __( 'Todas las Columnistas' ),
-        'parent_item'       => __( 'Columnista padre' ),
-        'parent_item_colon' => __( 'Columnista padre:' ),
-        'edit_item'         => __( 'Editar Columnista' ), 
-        'update_item'       => __( 'Actualizar Columnista' ),
-        'add_new_item'      => __( 'Agregar Columnista' ),
-        'new_item_name'     => __( 'Nuevo nombre de Columnista' ),
-        'menu_name'         => __( 'Columnistas' ),
-    );    
-    // Now register the taxonomy
-    register_taxonomy(
-        'columnista',
-        array('perspectiva'), 
-            array(
-                'hierarchical' => true,
-                'labels' => $labels,
-                'show_ui' => true,
-                'show_in_rest' => true,
-                'show_admin_column' => true,
-                'query_var' => true,
-                'rewrite' => array( 
-                    'slug' => 'columnista' 
-                ),
-    ));
-}
-//hook into the init action and call create_book_taxonomies when it fires
-add_action( 'init', 'taxonomy_columnista', 1 );
+// add_filter('post_type_link', 'projectcategory_permalink_structure', 10, 4);
+// function projectcategory_permalink_structure($post_link, $post, $leavename, $sample) {
+//     if (false !== strpos($post_link, '%columnista%')) {
+//         $columnista_type_term = get_the_terms($post->ID, 'columnista');
+//         if (!empty($columnista_type_term))
+//             $post_link = str_replace('%columnista%', array_pop($columnista_type_term)->slug, $post_link);
+//         else
+//             $post_link = str_replace('%columnista%', 'uncategorized', $post_link);
+//     }
+//     return $post_link;
+// }

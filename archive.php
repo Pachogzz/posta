@@ -49,6 +49,16 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 				</div>
 				<div class="col">
 					<?php
+					$data = perspectivas_terms( 'post', 'category', 'post_tag' );
+					// echo "<pre>";
+					// print_r($data);
+					// echo "</pre>";
+
+					echo "<ul id='term-list-filter' class='nav nav-pills justify-content-center mb-6'>";
+					foreach ($data as $key => $valor) {
+						echo "<li class='nav-item mr-2 lead'>" . $key . "</li>";
+					}
+					echo "</ul>";
 					// Secciones
 					if (!empty(get_query_var('cat'))){
 						$taxonomy_term = get_query_var('cat');
