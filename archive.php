@@ -132,8 +132,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 			<div class="row">
 				<div class="col">
 					<div style="border: 1px dotted red;">
-						<?php if (function_exists ('adinserter')) echo adinserter (7); ?>
-						<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90"> -->
+						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90">
 						<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
 					</div>
 				</div>

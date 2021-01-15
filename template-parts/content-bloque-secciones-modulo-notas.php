@@ -205,8 +205,7 @@
 			<!-- PUBLICIDAD -->
 			<div style="border: 1px dotted red;">
 				<div class="modulo-publicidad mx-auto mt-6" style="width: 302px;">
-					<?php if (function_exists ('adinserter')) echo adinserter (9); ?>
-					<!-- <img class="img-fluid" src="https://via.placeholder.com/300x250?text=box%20banner"> -->
+					<img class="img-fluid" src="https://via.placeholder.com/300x250?text=box%20banner">
 					<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
 				</div>
 			</div>

@@ -11,25 +11,18 @@ get_header();
 $categoria = get_the_category(get_the_ID(), 'category');
 // $themes = get_the_terms(get_the_ID(), 'theme'); 
 
-echo "<hr><hr><hr><hr><pre>";
-print_r($categoria);
-echo "</pre><hr><hr><hr><hr>";
+// echo "<hr><pre>";
+// print_r($categoria);
+// echo "</pre><hr>";
 
-echo "<hr><hr><hr><hr>";
-global $post;
-// grab categories of current post
-$categories = get_the_category($post->ID);
-// define arguments of following listing function
-$args = array (
-    'child_of' => $categories[0], // current post's (first) category 
-    'title_li' => '' // disable display of outer list item
-);
-// list child categories
-wp_list_categories($args);
-echo "<hr><hr><hr><hr>";
+// $imagePosted = get_post(get_the_post_thumbnail_id());
+
+// echo "<hr><hr><hr><hr><pre>";
+// print_r($imagePosted);
+// echo "</pre><hr><hr><hr><hr>";
 
 //obtiene la categoria principal seleccionado  con el yoast
-if($categoria){
+if($categoria[0]){
 	$category_name = $categoria->name;
 	$category_id = $categoria->term_id;
 }
@@ -62,59 +55,7 @@ $GLOBALS['gallery']=  $gallery;
 			<div class="row">
 				<div class="col p-0">
 					<div class="contenedor-media contenedor-media-imagen-nota d-flex justify-content-center align-items-center" style="background-image: url(<?php echo $featured_img_url; ?>);">
-						<div>
-							<?php
-							if (!empty(get_field('content_type'))){
-								$content_type = get_field('content_type');
-								switch($content_type){
-									// Tipo de contenido: Video
-									case 'video':
-										if (!empty(get_field('video_jwplayer'))){
-											$video_iframe = get_field('video_jwplayer');
-											$url_imagen_video = get_field('url_imagen_video');
-											$video_html = '<div class="contenedor-media">'.$video_iframe.'</div>'; ?>
-											<i class="fas fa-play media_file_jw media-type-icon media-type-icon-lg media-type-icon-posta pl-1" 
-												data-titulo='<?php echo get_the_title(); ?>' 
-												data-video='<?php echo $video_iframe; ?>' 
-												data-img='<?php  echo $url_imagen_video?>' ></i>
-											<?php
-										}else{
-											if (!empty(get_field('video_youtube'))){
-												$video_iframe = get_field('video_youtube');
-												/*Autoplay Functionallity*/
-												if ( preg_match('/src="(.+?)"/', $video_iframe, $matches) ) {
-													// Video source URL
-													$src = $matches[1];
-													// Add option to hide controls, enable HD, and do autoplay -- depending on provider
-													$params = array(
-														'autoplay' => 1
-													);
-													$new_src = add_query_arg($params, $src);
-													$video_iframe = str_replace($src, $new_src, $video_iframe);
-													// add extra attributes to iframe html
-													$attributes = 'frameborder="0"';
-													$video_iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $video_iframe);
-												}
-												/*Autoplay Functionallity*/
-												$video_html = '<div class="contenedor-media">'.$video_iframe.'</div>'; ?>
-												<i class="fas fa-play media_file media-type-icon media-type-icon-lg media-type-icon-posta pl-1" data-titulo='<?php echo get_the_title(); ?>' data-media='<?php echo $video_html; ?>'></i>
-												<?php
-											}
-										}
-									break;
-									// Tipo de contenido: Audio
-									case 'audio':
-										if (!empty(get_field('audio_news'))){
-											$audio_iframe = get_field('audio_news');
-											$audio_html = '<div class="contenedor-media sound-iframe">'.$audio_iframe.'</div>'; ?>
-											<i class="fas fa-volume-up media_file media-type-icon media-type-icon-lg media-type-icon-posta" data-media='<?php echo $audio_html; ?>'></i>
-											<?php
-										}
-									break;
-								} // End of switch
-							} // End of if (content_type)
-							?>
-						</div>
+                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
 					</div>
 					<!-- Título de la nota -->
 					<h1 class="titulo-principal-nota mt-3 display-4 d-block bg-dark text-light text-center p-3">
@@ -141,20 +82,18 @@ $GLOBALS['gallery']=  $gallery;
 						?>
 					</p>
 					<!-- Fecha de publicación -->
-					<p class="fecha-publicacion"><small><?php echo get_the_date( 'l j F Y - g:i a' ); ?></small></p>
+					<p class="fecha-publicacion">
+						<small><?php echo get_the_date( 'l j F Y - g:i a' ); ?></small>
+					</p>
 					<!-- Nombre de la sección o categoría principal seleccionada -->
 					<!-- <h4 class="encabezado-titulo flecha">
-						</?php
-							echo $category_name;
-						?>
+						<//?php echo $category_name; ?>
 					</h4> -->
 					<!-- Nombre del tema -->
-					<?php if($themes){
+					<?php if($categoria){
 						echo "Temas: ";
-							for ($i=0; $i<count($themes) ; $i++) {
-								$theme_link  = get_category_link($themes[$i]->term_id);
-								echo $theme_name = '<h6 class="tema-de-nota text-primary mt-3"><a href="'.esc_url($theme_link).'">'.$themes[$i]->name.'</a></h6>';
-							}
+								$theme_link  = get_category_link($categoria[0]->term_id);
+								echo $theme_name = '<h2 class="tema-de-nota text-primary mt-3"><a href="'.esc_url($theme_link).'">'.$categoria[0]->name.'</a></h2>';
 						}?>
 					<!-- Extracto -->
 					<p class="lead extracto-de-nota mt-3"><?php echo get_the_excerpt() ?></p>
@@ -190,18 +129,6 @@ $GLOBALS['gallery']=  $gallery;
 
 				<!-- Sidebar -->
 				<div class="col-auto col-lg-4 mt-6 mt-lg-0 position-sticky" style="top: 20px;">
-					<!-- PUBLICIDAD -->
-					<div class="modulo-publicidad mx-auto" style="width: 302px; border:1px dotted red;">
-						<?php if (function_exists ('adinserter')) echo adinserter (1); ?>
-						<span>Publicidad</span>
-					</div>
-					<?php get_sidebar('sidebar-1') ?>
-					<!-- PUBLICIDAD -->
-					<div class="modulo-publicidad mx-auto mt-4" style="width: 302px; border:1px dotted red;">
-						<?php if (function_exists ('adinserter')) echo adinserter (4); ?>
-						<!-- <img class="img-fluid" src="https://via.placeholder.com/300x600?text=halfpage"> -->
-						<span>Publicidad</span>
-					</div>
 					<!-- HASHTAGS -->
 					<div class="contenedor-hashtags mt-6">
 						<?php
@@ -213,6 +140,17 @@ $GLOBALS['gallery']=  $gallery;
 							}
 						?>
 					</div>
+					<!-- PUBLICIDAD -->
+					<div class="modulo-publicidad border mx-auto" style="width: 302px;">
+						<img src="http://fakeimg.pl/300x600/333/ccc/?text=HalfPage" class="img-fluid d-block mb-0" alt="Publicidad...">
+						<span>Publicidad</span>
+					</div>
+					<?php get_sidebar('sidebar-1') ?>
+					<!-- PUBLICIDAD -->
+					<div class="modulo-publicidad border mx-auto mt-4" style="width: 302px;">
+						<img class="img-fluid" src="https://via.placeholder.com/300x600?text=halfpage">
+						<span>Publicidad</span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -221,9 +159,8 @@ $GLOBALS['gallery']=  $gallery;
 		<div class="container mt-8">
 			<div class="row">
 				<div class="col">
-					<div style="border:1px dotted red;">
-						<?php if (function_exists ('adinserter')) echo adinserter (6); ?>
-						<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90"> -->
+					<div class="border">
+						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90">
 						<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
 					</div>
 				</div>
@@ -231,37 +168,13 @@ $GLOBALS['gallery']=  $gallery;
 		</div>
 
 		<!-- NOTAS RELACIONADAS -->
-		<?php
-
-		if($themes){
-			for ($i=0; $i<count($themes) ; $i++) { 
-				$slug = $themes[$i]->slug;
-				if($slug == 'con-tacones-entre-legos' || $slug == 'yo-que-voy-a-saber' || $slug == 'desenfoque' ){
-					$category_name = $themes[$i]->name;
-					$category_link  = get_category_link($themes[$i]->term_id);
-					$category_description  = category_description($themes[$i]->term_id);
-					
-					$taxonomy_name = $themes[$i]->taxonomy;
-					$taxonomy_term = $themes[$i]->name;
-
-					$tema_principal= true;
-				}
-			}
-				
-		}else{
-			$category_link = get_category_link($category_id);
-			$category_description  = category_description($category_id);
-			$tema_principal= false;
-		}
-		
-		?>
 		<div class="container mt-7 mb-6 container-lg<<<">
 			<div class="row">
 				<div class="col">
 					<!-- ENCABEZADO DE CARRUSEL -->
 					<div class="encabezado">
 						<h3 class="encabezado-titulo">
-							Contenido relacionado en <a href="<?php echo esc_url($category_link); ?>"><?php echo $category_name;?></a>
+							<span class="d-inline-block bg-white text-dark px-2">Contenido relacionado en</span> <a class="text-white" href="<?php echo esc_url($category_link); ?>"><?php echo $category_name;?></a>
 						</h3>
 						<?php if(!empty($category_description)){ echo '<p class="encabezado-descripcion">'.$category_description.'</p>'; } ?>
 					</div>
@@ -272,41 +185,18 @@ $GLOBALS['gallery']=  $gallery;
 					<!-- CARRUSEL NOTAS RELACIONADAS -->
 					<div class="owl-carousel carrusel-tipo-tres">
 						<?php
-						if($tema_principal){
-							$args = array ( 
-								'suppress_filters' => true,
-								'post_type' => 'post', 
-								'post__not_in' => array(get_the_ID()),
-								'cat' => $category_id,
-								'posts_per_page' => 6,
-								'tax_query' => array(
-									array(
-										'taxonomy' => $taxonomy_name,
-										'field'    => 'name',
-										'terms'    => $taxonomy_term,
-									),
-								),
-								'post_status' => array(
-									'publish', 
-								),
-								'orderby' => 'date', 
-								'order' => 'DESC' 
-							);
-
-						}else{
-							$args = array(
-								'suppress_filters' => true,
-								'post_type' => 'post',
-								'post__not_in' => array(get_the_ID()),
-								'posts_per_page' => 6,
-								'post_status' => array(
-									'publish', 
-								),
-								'cat' => $category_id,
-								'orderby' => 'date',
-								'order' => 'DESC'
-							);
-						}
+						$args = array(
+							'suppress_filters' => true,
+							'post_type' => 'post',
+							'post__not_in' => array(get_the_ID()),
+							'posts_per_page' => 6,
+							'post_status' => array(
+								'publish', 
+							),
+							'cat' => $category_id,
+							'orderby' => 'date',
+							'order' => 'DESC'
+						);
 
 						$output = 'objects';
 						$the_query = new WP_Query( $args, $output );
@@ -314,91 +204,61 @@ $GLOBALS['gallery']=  $gallery;
 						if ( $the_query->have_posts() ) {
 							while ( $the_query->have_posts() ) {
 								$the_query->the_post();
+								$categoria = get_the_category(get_the_ID(), 'category');
+								$tax_color = get_term_meta( $categoria[0]->term_id, 'category_color', true );
+							    $show_time_ago = get_theme_mod('show_time_ago');
+							    switch ($show_time_ago == 1) {
+							        case '1':
+							            $haceTiempo = time_ago() . ' <i class="fas fa-clock"></i>';
+							        break;
+							        case '0':
+							            $haceTiempo = "";
+							        break;
+							    }
 								$featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '360x202');
 								if (empty($featured_img_url)){
 									$featured_img_url = get_theme_mod('default_news_image');
-								}?>
+								}
+								?>
 								<!-- Item (nota) dentro del carusel  -->
-								<div class="c-item">
+								<div class="c-item nota">
+			                        <div class="row meta">
+			                            <div class="col-12 col-md-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+			                                <a class="text-white" href="<?php echo $link; ?>">
+			                                    <small><?php echo $categoria[0]->name; ?></small>
+			                                </a>
+			                                <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+			                            </div>
+			                            <div class="col hora text-right">
+			                                <small><?php echo $haceTiempo; ?></small>
+			                            </div>
+			                        </div>
 									<!-- IMAGEN DE NOTA -->
+                        			<?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
 									<div class="contenedor-media d-flex justify-content-center align-items-center" style="background-image: url('<?php echo $featured_img_url; ?>');">
-										<!-- Icono de tipo de contenido -->
-										<div>
-											<?php
-											if (!empty(get_field('content_type'))){
-												$content_type = get_field('content_type');
-												switch($content_type){
-													// Tipo de contenido: Video
-													case 'video':
-														if (!empty(get_field('video_jwplayer'))){
-															$video_iframe = get_field('video_jwplayer');
-															$url_imagen_video = get_field('url_imagen_video');
-															$video_html = '<div class="contenedor-media">'.$video_iframe.'</div>'; ?>
-															<i class="fas fa-play media_file_jw media-type-icon media-type-icon-negro pl-1" 
-																data-titulo='<?php echo get_the_title(); ?>' 
-																data-video='<?php echo $video_iframe; ?>' 
-																data-img='<?php  echo $url_imagen_video?>' ></i>
-															<?php
-														}else{
-															if (!empty(get_field('video_youtube'))){
-																$video_iframe = get_field('video_youtube');
-																/*Autoplay Functionallity*/
-																if ( preg_match('/src="(.+?)"/', $video_iframe, $matches) ) {
-																	// Video source URL
-																	$src = $matches[1];
-																	// Add option to hide controls, enable HD, and do autoplay -- depending on provider
-																	$params = array(
-																		'autoplay' => 1
-																	);
-																	$new_src = add_query_arg($params, $src);
-																	$video_iframe = str_replace($src, $new_src, $video_iframe);
-																	// add extra attributes to iframe html
-																	$attributes = 'frameborder="0"';
-																	$video_iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $video_iframe);
-																}
-																/*Autoplay Functionallity*/
-																$video_html = '<div class="contenedor-media">'.$video_iframe.'</div>'; ?>
-																<i class="fas fa-play media_file media-type-icon media-type-icon-negro pl-1" data-titulo='<?php echo get_the_title(); ?>' data-media='<?php echo $video_html; ?>'></i>
-																<?php 
-															}
-														}	
-													break;
-													// Tipo de contenido: Audio
-													case 'audio':
-														if (!empty(get_field('audio_news'))){
-															$audio_iframe = get_field('audio_news');
-															$audio_html = '<div class="contenedor-media sound-iframe">'.$audio_iframe.'</div>'; ?>
-															<i class="fas fa-volume-up media_file media-type-icon media-type-icon-negro" data-media='<?php echo $audio_html; ?>'></i>
-															<?php
-														}
-													break;
-												} // End of switch
-											} // End of if (content_type)
-											?>
-										</div>
 									</div>
 									<!-- ENCABEZADO DE NOTA -->
 									<div class="encabezado-nota">
 										<!-- Título de nota -->
-										<h4 class="titulo-de-nota mt-2">
+										<h5 class="titulo-nota mt-2">
 											<a class="stretched-link" href="<?php the_permalink(); ?>" title="<?php echo the_title(); ?>"><?php echo esc_html(get_the_title()); ?></a>
-										</h4>
+										</h5>
 									</div>
 								</div>
 								<?php 
 							}
 						} ?>
 						<!-- Link ver más notas -->
-						<!-- <div class="c-item">
+						<div class="c-item">
 							<a class="item-ver-mas" href="</?php echo esc_url($category_link); ?>" title="Ver más noticias de </?php echo $category_name;?>">
 								<div class="contenedor-media">
 									<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center">
 										<p class="h5 m-0">Ver más noticias de</p>
-										<h4 class="encabezado-titulo flecha"></?php echo $category_name;?></h4>
+										<h4 class="encabezado-titulo flecha"><?php echo $category_name;?></h4>
 									</div>
 								</div>
 							</a>
-						</div> -->
+						</div>
 					</div>
 				</div>
 			</div>

@@ -320,7 +320,6 @@
       $nota_de_interes = $te_puede_interesar[$te_puede_interesar_counter]['nota_propuesta'];
 
       $shortcode_html = '';
-      // $shortcode_html .= '<h3 class="text-warning">'. print_r($nota_de_interes).'</h3>';
       $shortcode_html .= '<div class="nota-relacionada">
                             <div class="row">
                               <div class="col-12 position-relative py-3">

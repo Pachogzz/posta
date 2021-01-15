@@ -169,14 +169,13 @@ $GLOBALS['gallery']=  $gallery;
 				<div class="col-auto col-lg-4 mt-6 mt-lg-0 position-sticky" style="top: 20px;">
 					<!-- PUBLICIDAD -->
 					<div class="modulo-publicidad mx-auto" style="width: 302px; border:1px dotted red;">
-						<?php if (function_exists ('adinserter')) echo adinserter (1); ?>
+						<img src="http://fakeimg.pl/300x600/333/ccc/?text=HalfPage" class="img-fluid d-block mb-0" alt="Publicidad...">
 						<span>Publicidad</span>
 					</div>
 					<?php get_sidebar('sidebar-1') ?>
 					<!-- PUBLICIDAD -->
 					<div class="modulo-publicidad mx-auto mt-4" style="width: 302px; border:1px dotted red;">
-						<?php if (function_exists ('adinserter')) echo adinserter (4); ?>
-						<!-- <img class="img-fluid" src="https://via.placeholder.com/300x600?text=halfpage"> -->
+						<img class="img-fluid" src="https://via.placeholder.com/300x600?text=halfpage">
 						<span>Publicidad</span>
 					</div>
 					<!-- HASHTAGS -->
@@ -199,8 +198,7 @@ $GLOBALS['gallery']=  $gallery;
 			<div class="row">
 				<div class="col">
 					<div style="border:1px dotted red;">
-						<?php if (function_exists ('adinserter')) echo adinserter (6); ?>
-						<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90"> -->
+						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90">
 						<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
 					</div>
 				</div>
