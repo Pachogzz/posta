@@ -8,8 +8,11 @@
  */
 get_header();
 //Obtiener información de los temas asociado a la nota
-$themes = get_the_terms(get_the_ID(), 'theme'); 
-$categoria = get_primary_category(get_the_ID(), 'category');
+$categoria = get_the_category(get_the_ID(), 'category');
+// $themes = get_the_terms(get_the_ID(), 'theme'); 
+
+// print_r($categoria);
+
 //obtiene la categoria principal seleccionado  con el yoast
 if($categoria){
 	$category_name = $categoria->name;
