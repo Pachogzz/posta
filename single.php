@@ -11,7 +11,22 @@ get_header();
 $categoria = get_the_category(get_the_ID(), 'category');
 // $themes = get_the_terms(get_the_ID(), 'theme'); 
 
-// print_r($categoria);
+echo "<hr><hr><hr><hr><pre>";
+print_r($categoria);
+echo "</pre><hr><hr><hr><hr>";
+
+echo "<hr><hr><hr><hr>";
+global $post;
+// grab categories of current post
+$categories = get_the_category($post->ID);
+// define arguments of following listing function
+$args = array (
+    'child_of' => $categories[0], // current post's (first) category 
+    'title_li' => '' // disable display of outer list item
+);
+// list child categories
+wp_list_categories($args);
+echo "<hr><hr><hr><hr>";
 
 //obtiene la categoria principal seleccionado  con el yoast
 if($categoria){
@@ -188,8 +203,8 @@ $GLOBALS['gallery']=  $gallery;
 						<span>Publicidad</span>
 					</div>
 					<!-- HASHTAGS -->
-					<!-- <div class="contenedor-hashtags mt-6">
-						</?php
+					<div class="contenedor-hashtags mt-6">
+						<?php
 							$hashtags = get_the_tags();
 							if ($hashtags){
 								foreach($hashtags as $hashtag){
@@ -197,7 +212,7 @@ $GLOBALS['gallery']=  $gallery;
 								}
 							}
 						?>
-					</div> -->
+					</div>
 				</div>
 			</div>
 		</div>

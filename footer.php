@@ -107,18 +107,6 @@
 					
 					<div class="col-md col-xl-auto text-center px-5 mt-5 mt-md-0">
 						<?php
-						function my_nav_wrap() {
-							$wrap  = '<ul id="%1$s" class="%2$s">';
-							$wrap .= '%3$s';
-							$wrap .= '<li class="nav-item dropdown d-none">';
-							$wrap .= '<a href="#" class="nav-link link-more-menu d-flex align-items-center h-100" id="navbarDropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-							$wrap .= '<i class="fas fa-plus"></i>';
-							$wrap .= '</a>';
-							$wrap .= '<ul class="dropdown-menu dropdown-menu-right bg-dark<<" aria-labelledby="navbarDropdownMenu"></ul>';
-							$wrap .= '</li>';
-							$wrap .= '</ul>';
-						return $wrap;
-						}
 						wp_nav_menu( array(
 							'theme_location'    => 'menu-pie-de-pagina',
 							'container'         => 'div',
