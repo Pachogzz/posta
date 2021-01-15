@@ -15,13 +15,35 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '720x405');
 if (empty($featured_img_url)){
   $featured_img_url = get_theme_mod('default_news_image');
 }
-$themes = get_the_terms(get_the_ID(), 'theme');
 $sections = get_the_category(get_the_ID(), 'category');
+$themes = get_the_terms(get_the_ID(), 'post_tag');
+$queriedObjetc = get_queried_object();
 ?>
 
 <!-- Item (nota) dentro del grid  -->
 <div id="post-<?php the_ID(); ?>" class="bloque-nota-archivo col-md-6 col-lg-4 mb-5">
 	<!-- Post related themes -->
+	<?php 
+	echo "<pre>";
+	var_dump($queriedObjetc);
+	echo "</pre>";
+
+	echo $queriedObjetc->term_id;
+
+	echo "<br>";
+
+	$termchildren = get_term_children( $queriedObjetc->term_id, $queriedObjetc->taxonomy );
+
+	var_dump($termchildren);
+	// echo '<ul>';
+	// foreach ( $termchildren as $child ) {
+	//     $term = get_term_by( 'id', $child, $taxonomy_name );
+	//     echo '<li><a href="' . get_term_link( $child, $taxonomy_name ) . '">' . $term->name . '</a></li>';
+	// }
+	// echo '</ul>';
+	?> 
+
+	?>
 	<div class="d-block w-100 mb-0 meta">
 			<!-- Nombre del tema -->
 			<?php if(!empty($themes)){

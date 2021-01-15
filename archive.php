@@ -12,7 +12,6 @@ get_header();
 // Obtener el color de la taxonomia
 global $wp_query;
 $taxonomy_object = $wp_query->get_queried_object();
-// $category_name = get_color_taxonomy($taxonomy_object);
 
 $category = get_category( $taxonomy_object );
 $category_name = $category->name;
@@ -49,18 +48,9 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 				</div>
 				<div class="col">
 					<?php
-					$data = perspectivas_terms( 'post', 'category', 'post_tag' );
-					// echo "<pre>";
-					// print_r($data);
-					// echo "</pre>";
-
-					echo "<ul id='term-list-filter' class='nav nav-pills justify-content-center mb-6'>";
-					foreach ($data as $key => $valor) {
-						echo "<li class='nav-item mr-2 lead'>" . $key . "</li>";
-					}
-					echo "</ul>";
-					// Secciones
-					if (!empty(get_query_var('cat'))){
+					// if (!empty(get_query_var('cat'))){
+					if (is_tax()){
+						// $taxonomy_term = get_query_var('cat');
 						$taxonomy_term = get_query_var('cat');
 						$taxonomy_name = $taxonomy_object->taxonomy;
 						$args = array(
@@ -75,7 +65,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 							'order' => 'DESC',
 							'paged' => $paged
 						);
-					// Temas o hashtags
+					// Hashtags
 					}else if ($taxonomy_object->taxonomy == "theme" || "post_tag"){
 						$taxonomy_term = $taxonomy_object->name;
 						$taxonomy_name = $taxonomy_object->taxonomy;

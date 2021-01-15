@@ -458,32 +458,71 @@ function rename_default_taxonomy() {
 add_action( 'init', 'rename_default_taxonomy' );
 
 // Register taxonomy "Temas"
-add_action( 'init', 'create_theme_taxonomy' );
-function create_theme_taxonomy() {
+// add_action( 'init', 'create_theme_taxonomy' );
+// function create_theme_taxonomy() {
+//   $labels = array(
+//     'name'                       => 'Temas',
+//     'singular_name'              => 'Tema',
+//     'add_new_item'               => 'Agregar tema',
+//     'edit_item'                  => 'Editar tema',
+//     'view_item'                  => 'Ver tema',
+//     'search_items'               => 'Buscar temas',
+//     'not_found'                  => 'No se encontro el tema',
+//     'all_items'                  => 'Todos los temas',
+//     'menu_name'                  => 'Temas',
+//     'back_to_items'              => '← Volver a los temas',
+//     'update_item'                => 'Actualizar tema',
+//     'parent_item'                => 'Tema superior',
+//     'new_item_name'              => 'Nuevo tema'
+//   );
+  
+//   register_taxonomy(
+//     'theme',
+//     array( 'post' ),
+//     array(
+//       'labels' => $labels,
+//       'has_archive' => true,
+//       'rewrite' => array( 
+//         'slug' => 'tema', 
+//         'with_front' => false 
+//       ),
+//       'show_in_nav_menus' => true,
+//       'show_in_rest' => true,
+//       'show_admin_column' => true,
+//       'hierarchical' => false
+//     )
+//   );
+
+//   flush_rewrite_rules();
+// }
+
+// Register taxonomy "Temas"
+add_action( 'init', 'create_fuente_taxonomy' );
+function create_fuente_taxonomy() {
   $labels = array(
-    'name'                       => 'Temas',
-    'singular_name'              => 'Tema',
-    'add_new_item'               => 'Agregar tema',
-    'edit_item'                  => 'Editar tema',
-    'view_item'                  => 'Ver tema',
-    'search_items'               => 'Buscar temas',
-    'not_found'                  => 'No se encontro el tema',
-    'all_items'                  => 'Todos los temas',
-    'menu_name'                  => 'Temas',
-    'back_to_items'              => '← Volver a los temas',
-    'update_item'                => 'Actualizar tema',
-    'parent_item'                => 'Tema superior',
-    'new_item_name'              => 'Nuevo tema'
+    'name'                       => 'Fuentes',
+    'singular_name'              => 'Fuente',
+    'add_new_item'               => 'Agregar fuente',
+    'edit_item'                  => 'Editar fuente',
+    'view_item'                  => 'Ver fuente',
+    'search_items'               => 'Buscar fuentes',
+    'not_found'                  => 'No se encontro el fuente',
+    'all_items'                  => 'Todos los fuentes',
+    'menu_name'                  => 'Fuentes',
+    'back_to_items'              => '← Volver a los fuentes',
+    'update_item'                => 'Actualizar fuente',
+    'parent_item'                => 'Fuente superior',
+    'new_item_name'              => 'Nuevo fuente'
   );
   
   register_taxonomy(
-    'theme',
+    'fuente',
     array( 'post' ),
     array(
       'labels' => $labels,
       'has_archive' => true,
       'rewrite' => array( 
-        'slug' => 'tema', 
+        'slug' => 'fuente', 
         'with_front' => false 
       ),
       'show_in_nav_menus' => true,

@@ -24,6 +24,7 @@ function colorpicker_field_add_new_category( $taxonomy ) {
 add_action( 'category_add_form_fields', 'colorpicker_field_add_new_category' );  // Variable Hook Name
 add_action( 'post_tag_add_form_fields', 'colorpicker_field_add_new_category' );  // Variable Hook Name
 add_action( 'theme_add_form_fields', 'colorpicker_field_add_new_category' );  // Variable Hook Name
+add_action( 'fuente_add_form_fields', 'colorpicker_field_add_new_category' );  // Variable Hook Name
 /**
  * Add new colopicker field to "Edit Category" screen
  * - https://developer.wordpress.org/reference/hooks/taxonomy_add_form_fields/
@@ -48,6 +49,7 @@ function colorpicker_field_edit_category( $term ) {
 add_action( 'category_edit_form_fields', 'colorpicker_field_edit_category' );   // Variable Hook Name
 add_action( 'post_tag_edit_form_fields', 'colorpicker_field_edit_category' );   // Variable Hook Name
 add_action( 'theme_edit_form_fields', 'colorpicker_field_edit_category' );   // Variable Hook Name
+add_action( 'fuente_edit_form_fields', 'colorpicker_field_edit_category' );   // Variable Hook Name
 
 /**
  * Term Metadata - Save Created and Edited Term Metadata
@@ -69,9 +71,12 @@ function save_termmeta( $term_id ) {
 add_action( 'created_category', 'save_termmeta' );  // Variable Hook Name
 add_action( 'created_post_tag', 'save_termmeta' );  // Variable Hook Name
 add_action( 'created_theme', 'save_termmeta' );  // Variable Hook Name
+add_action( 'created_fuente', 'save_termmeta' );  // Variable Hook Name
+
 add_action( 'edited_category',  'save_termmeta' );  // Variable Hook Name
 add_action( 'edited_post_tag',  'save_termmeta' );  // Variable Hook Name
 add_action( 'edited_theme',  'save_termmeta' );  // Variable Hook Name
+add_action( 'edited_fuente',  'save_termmeta' );  // Variable Hook Name
 
 /**
  * Enqueue colorpicker styles and scripts.
@@ -103,7 +108,7 @@ add_action( 'admin_enqueue_scripts', 'category_colorpicker_enqueue' );
  */
 function colorpicker_init_inline() {
 
-    if( null !== ( $screen = get_current_screen() ) && 'edit-category' !== $screen->id && 'edit-post_tag' !== $screen->id && 'edit-theme' !== $screen->id ) {
+    if( null !== ( $screen = get_current_screen() ) && 'edit-category' !== $screen->id && 'edit-post_tag' !== $screen->id && 'edit-theme' !== $screen->id && 'edit-fuente' !== $screen->id ) {
         return;
     }
 
@@ -144,10 +149,17 @@ class cpt_tax_meta {
   * @since 1.0.0
  */
  public function init() {
+  // Txonomia Columnsta
    add_action( 'columnista_add_form_fields', array ( $this, 'add_category_image' ), 10, 2 );
    add_action( 'created_columnista', array ( $this, 'save_category_image' ), 10, 2 );
    add_action( 'columnista_edit_form_fields', array ( $this, 'update_category_image' ), 10, 2 );
    add_action( 'edited_columnista', array ( $this, 'updated_category_image' ), 10, 2 );
+  // Taxonoia Fuentes
+   add_action( 'fuente_add_form_fields', array ( $this, 'add_category_image' ), 10, 2 );
+   add_action( 'created_fuente', array ( $this, 'save_category_image' ), 10, 2 );
+   add_action( 'fuente_edit_form_fields', array ( $this, 'update_category_image' ), 10, 2 );
+   add_action( 'edited_fuente', array ( $this, 'updated_category_image' ), 10, 2 );
+   
    add_action( 'admin_enqueue_scripts', array( $this, 'load_media' ) );
    add_action( 'admin_footer', array ( $this, 'add_script' ) );
  }

@@ -32,8 +32,9 @@
         break;
 
         case 'tema':
-            $id = get_sub_field('elegir_tema');
-            $tipo = 'theme';
+            $subField = get_sub_field('elegir_tema');
+            $id = $subField[0];
+            $tipo = 'category';
         break;
 
         case 'hashtag':
@@ -50,6 +51,7 @@
 ?>
 <section class="bloque_notas--11_bb py-6" style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
     <div class="container">
+
         <!-- Desktop block -->
         <div class="d-none d-sm-none d-md-none d-lg-block">
             <div class="row">
