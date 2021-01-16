@@ -9,16 +9,13 @@
 
 get_header();
 
-// Obtener el color de la taxonomia
-// global $wp_query;
 $taxonomy_object = $wp_query->get_queried_object();
 
 $category = get_category( $taxonomy_object );
 $category_name = $category->name;
-$category_Id= $category->term_id;
 $category_description = $category->description;
+
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-$queriedObjetc = get_queried_object();
 ?>
 
 <div id="primary" class="content-area">
@@ -33,7 +30,7 @@ $queriedObjetc = get_queried_object();
 							<span class="nombre-sitio">POSTA</span>
 							<span class="nombre-taxonomia"><?php echo $category_name; ?></span>
 						</h2>
-						<p class="encabezado-descripcion"><?php echo $category_description; ?></p>
+						<!-- <p class="encabezado-descripcion"></?php echo $category_description; ?></p> -->
 					</div>
 				</div>
 			</div>
@@ -48,82 +45,71 @@ $queriedObjetc = get_queried_object();
 						<small>Publicidad</small>
 					</div>
 				</div>
+				
 				<div class="col">
-					<?php 
+					<?php
 					// Post related themes
-					$termchildren = get_term_children( $taxonomy_object->term_id, $taxonomy_object->taxonomy );
+					$cptTax = $category->taxonomies[0];
+					$terms = get_terms( array(
+					    'taxonomy' => $cptTax,
+					    'hide_empty' => false,
+					) );
+
+					echo "<pre>";
+					// print_r($cptTax);
+					print_r($terms);
+					echo "</pre>";
+
 					echo "<ul id='term-list-filter' class='nav nav-pills justify-content-center mb-6'>";
-					foreach ($termchildren as $child) {
-						$tax_color = get_term_meta( $child, 'category_color', true );
+					foreach ($terms as $term) {
+						$term_link = get_term_link( $term );
 						echo "<li class='nav-item mr-2 lead'>
-								<a href=". get_term_link($child) ." title='" . get_cat_name($child) . "' style='background-color:#" . $tax_color . "!important;'>" 
-									. get_cat_name($child) . 
-								"</a>
+								<a href=".$term_link." title='".$term->name."'>".$term->name."</a>
 							</li>";
 					}
 					echo "</ul>";
+					
+					// echo "<pre>";
+					// print_r($category);
+					// echo "</pre>";
 
-					// if (!empty(get_query_var('cat'))){
-					if (is_tax()){
-						// $taxonomy_term = get_query_var('cat');
-						$taxonomy_term = get_query_var('cat');
-						$taxonomy_name = $taxonomy_object->taxonomy;
-						$args = array(
-							'suppress_filters' => true,
-							'post_type' => 'post',
-							'posts_per_page' => 13,
-							'post_status' => array(
-								'publish',
-							),
-							'cat' => $taxonomy_term,
-							'orderby' => 'date',
-							'order' => 'DESC',
-							'paged' => $paged
-						);
-					// Hashtags
-					}else if ($taxonomy_object->taxonomy == "fuente" || "post_tag"){
-						$taxonomy_term = $taxonomy_object->name;
-						$taxonomy_name = $taxonomy_object->taxonomy;
+					// if (is_tax()) {
+					// 	echo "Es columna";
+					// 	die();
+					// }else{
+					// 	echo "No es columna";
+					// 	die();
+					// }
 
-						$args = array(
-							'suppress_filters' => true,
-							'post_type' => 'post',
-							'posts_per_page' => 13,
-							'tax_query' => array(
-							array(
-								'taxonomy' => $taxonomy_name,
-								'field'    => 'name',
-								'terms'    => $taxonomy_term,
-								),
-							),
-							'post_status' => array(
-								'publish',
-							),
-							'orderby' => 'date',
-							'order' => 'DESC',
-							'paged' => $paged
-						);
-					}else{
-						$args = array();
-					}
-
+					// Columnas
+					is_tax()){
+					$taxonomy_term = get_query_var('cat');
+					$taxonomy_name = $taxonomy_object->taxonomy;
+					$args = array(
+						'suppress_filters' => true,
+						'post_type' => 'post',
+						'posts_per_page' => 13,
+						'post_status' => array(
+							'publish',
+						),
+						'cat' => $taxonomy_term,
+						'orderby' => 'date',
+						'order' => 'DESC',
+						'paged' => $paged
+					);
 					$output = 'objects';
-
-					$the_query = new WP_Query( $args, $output );
-
+					$the_query = new WP_Query( $args );
 					if ( $the_query->have_posts() ) :
 						?>
 						<div id="ajax-posts" class="row category">
 							<?php
 							while ( $the_query->have_posts() ) : $the_query->the_post();
-								get_template_part( 'template-parts/content', 'content' );
+								get_template_part( 'template-parts/content', 'perspectiva' );
 							endwhile;
 							?>
 						</div>
 						<div class="paginacion mt-5">
-							<?php
-								echo pagination();
-							?>
+							<?php echo pagination(); ?>
 						</div>
 
 						<!-- Mensaje si no hay notas en la categoría -->
@@ -146,9 +132,9 @@ $queriedObjetc = get_queried_object();
 		<div class="container mt-8">
 			<div class="row">
 				<div class="col">
-					<div class="">
+					<div class="border modulo-publicidad">
 						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90">
-						<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
+						<small>Publicidad</small>
 					</div>
 				</div>
 			</div>

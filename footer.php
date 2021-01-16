@@ -245,11 +245,13 @@
 			jQuery('#mediaFileTypesModal iframe').attr("src", "");
 		});
 	</script>
-  <?php
+	<?php
 	$gallery = $GLOBALS['gallery'];
-    for ($i=1; $i<=count($gallery); $i++){ ?>
-      <script type="text/javascript">lightGallery(document.getElementById('lightgallery-<?php echo ($i); ?>'));</script>
-  <?php } 
-  	unset($GLOBALS['gallery']);?>
+    for ($i=1; $i<=count($gallery); $i++){ 
+	?>
+      <script type="text/javascript">
+      	lightGallery(document.getElementById('lightgallery-<?php echo ($i); ?>'));
+      </script>
+  	<?php } unset($GLOBALS['gallery']); ?>
 </body>
 </html>

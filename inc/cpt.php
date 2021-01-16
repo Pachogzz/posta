@@ -1,66 +1,8 @@
 <?php  
-/* Hook into the 'init' action so that the function
-* Containing our post type registration is not 
-* unnecessarily executed. 
+/*
+* Creating Custom Post Types needed and their taxonomies or terms
+* 
 */
- 
-// add_action( 'init', 'taxonomy_columna', 0 );
-// function taxonomy_columna() {
-//     $labels = array(
-//         'name'              => __( 'Columnas', 'Taxonomy general name' ),
-//         'singular_name'     => __( 'Columna', 'Taxonomy singular name' ),
-//         'search_items'      => __( 'Buscar Columnas' ),
-//         'all_items'         => __( 'Todas las Columnas' ),
-//         'parent_item'       => __( 'Columna padre' ),
-//         'parent_item_colon' => __( 'Columna padre:' ),
-//         'edit_item'         => __( 'Editar Columna' ), 
-//         'update_item'       => __( 'Actualizar Columna' ),
-//         'add_new_item'      => __( 'Agregar Columna' ),
-//         'new_item_name'     => __( 'Nuevo nombre de Columna' ),
-//         'menu_name'         => __( 'Columnas' ),
-//     );    
-//     register_taxonomy(
-//         'columna',
-//         array('perspectiva'), 
-//             array(
-//                 'hierarchical'        => false,
-//                 'labels'              => $labels,
-//                 'show_ui'             => true,
-//                 'show_in_rest'        => true,
-//                 'show_admin_column'   => true,
-//                 'query_var'           => true,
-//                 'rewrite'             => array( 'slug' => 'columna', 'with_front' => true ),
-//     ));
-//     flush_rewrite_rules();
-// }
-
-add_action( 'init', 'taxonomy_columnista', 1 );
-function taxonomy_columnista() {
-    $labels = array(
-        'name'              => __( 'Autores', 'Taxonomy general name' ),
-        'singular_name'     => __( 'Autor', 'Taxonomy singular name' ),
-        'search_items'      => __( 'Buscar Autores' ),
-        'all_items'         => __( 'Todas las Autores' ),
-        'parent_item'       => __( 'Autor padre' ),
-        'parent_item_colon' => __( 'Autor padre:' ),
-        'edit_item'         => __( 'Editar Autor' ), 
-        'update_item'       => __( 'Actualizar Autor' ),
-        'add_new_item'      => __( 'Agregar Autor' ),
-        'new_item_name'     => __( 'Nuevo nombre de Autor' ),
-        'menu_name'         => __( 'Autores' ),
-    );    
-    register_taxonomy( 'columnista', array('perspectiva'), 
-            array(
-                'hierarchical'        => true,
-                'labels'              => $labels,
-                'show_ui'             => true,
-                'show_in_rest'        => true,
-                'show_admin_column'   => true,
-                'query_var'           => true,
-                'rewrite'             => array( 'slug' => 'columnista', 'with_front' => true ),
-    ));
-    flush_rewrite_rules();
-}
 
 add_action( 'init', 'custom_post_type', 0 ); 
 function custom_post_type() {
@@ -84,7 +26,7 @@ function custom_post_type() {
         'description'         => __( '', 'postamx' ),
         'labels'              => $labelsp,
         'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields', ),
-        'taxonomies'          => array( 'columna', 'columnistas' ),
+        'taxonomies'          => array( 'columna', 'post_tag', 'fuente' ),
         'rewrite'             => array( 'slug' => 'perspectiva', 'with_front' => true ),
         'hierarchical'        => false,
         'public'              => true,
@@ -143,6 +85,36 @@ function custom_post_type() {
     // );    
     // register_post_type( 'fuente', $argsf );
     // flush_rewrite_rules();
+}
+ 
+add_action( 'init', 'taxonomy_columna', 0 );
+function taxonomy_columna() {
+    $labels = array(
+        'name'              => __( 'Columnas', 'Taxonomy general name' ),
+        'singular_name'     => __( 'Columna', 'Taxonomy singular name' ),
+        'search_items'      => __( 'Buscar Columnas' ),
+        'all_items'         => __( 'Todas las Columnas' ),
+        'parent_item'       => __( 'Columna padre' ),
+        'parent_item_colon' => __( 'Columna padre:' ),
+        'edit_item'         => __( 'Editar Columna' ), 
+        'update_item'       => __( 'Actualizar Columna' ),
+        'add_new_item'      => __( 'Agregar Columna' ),
+        'new_item_name'     => __( 'Nuevo nombre de Columna' ),
+        'menu_name'         => __( 'Columnas' ),
+    );    
+    register_taxonomy(
+        'columna',
+        array('perspectiva'), 
+            array(
+                'hierarchical'        => true,
+                'labels'              => $labels,
+                'show_ui'             => true,
+                'show_in_rest'        => true,
+                'show_admin_column'   => true,
+                'query_var'           => true,
+                'rewrite'             => array( 'slug' => 'columna', 'with_front' => true ),
+    ));
+    flush_rewrite_rules();
 }
 
 // add_filter('post_type_link', 'projectcategory_permalink_structure', 10, 4);

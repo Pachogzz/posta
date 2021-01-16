@@ -21,10 +21,11 @@ function colorpicker_field_add_new_category( $taxonomy ) {
     </div>
   <?php
 }
-add_action( 'category_add_form_fields', 'colorpicker_field_add_new_category' );  // Variable Hook Name
-add_action( 'post_tag_add_form_fields', 'colorpicker_field_add_new_category' );  // Variable Hook Name
-add_action( 'theme_add_form_fields', 'colorpicker_field_add_new_category' );  // Variable Hook Name
-add_action( 'fuente_add_form_fields', 'colorpicker_field_add_new_category' );  // Variable Hook Name
+add_action( 'category_add_form_fields', 'colorpicker_field_add_new_category' );
+add_action( 'post_tag_add_form_fields', 'colorpicker_field_add_new_category' );
+add_action( 'theme_add_form_fields', 'colorpicker_field_add_new_category' );
+add_action( 'fuente_add_form_fields', 'colorpicker_field_add_new_category' );
+// add_action( 'columna_add_form_fields', 'colorpicker_field_add_new_category' );
 /**
  * Add new colopicker field to "Edit Category" screen
  * - https://developer.wordpress.org/reference/hooks/taxonomy_add_form_fields/
@@ -46,10 +47,11 @@ function colorpicker_field_edit_category( $term ) {
     </tr>
   <?php
 }
-add_action( 'category_edit_form_fields', 'colorpicker_field_edit_category' );   // Variable Hook Name
-add_action( 'post_tag_edit_form_fields', 'colorpicker_field_edit_category' );   // Variable Hook Name
-add_action( 'theme_edit_form_fields', 'colorpicker_field_edit_category' );   // Variable Hook Name
-add_action( 'fuente_edit_form_fields', 'colorpicker_field_edit_category' );   // Variable Hook Name
+add_action( 'category_edit_form_fields', 'colorpicker_field_edit_category' );
+add_action( 'post_tag_edit_form_fields', 'colorpicker_field_edit_category' );
+add_action( 'theme_edit_form_fields', 'colorpicker_field_edit_category' );
+add_action( 'fuente_edit_form_fields', 'colorpicker_field_edit_category' );
+// add_action( 'columna_edit_form_fields', 'colorpicker_field_edit_category' );
 
 /**
  * Term Metadata - Save Created and Edited Term Metadata
@@ -68,15 +70,17 @@ function save_termmeta( $term_id ) {
         delete_term_meta( $term_id, 'category_color' );
     }
 }
-add_action( 'created_category', 'save_termmeta' );  // Variable Hook Name
-add_action( 'created_post_tag', 'save_termmeta' );  // Variable Hook Name
-add_action( 'created_theme', 'save_termmeta' );  // Variable Hook Name
-add_action( 'created_fuente', 'save_termmeta' );  // Variable Hook Name
+add_action( 'created_category', 'save_termmeta' );
+add_action( 'created_post_tag', 'save_termmeta' );
+add_action( 'created_theme', 'save_termmeta' );
+add_action( 'created_fuente', 'save_termmeta' );
+// add_action( 'created_columna', 'save_termmeta' );
 
-add_action( 'edited_category',  'save_termmeta' );  // Variable Hook Name
-add_action( 'edited_post_tag',  'save_termmeta' );  // Variable Hook Name
-add_action( 'edited_theme',  'save_termmeta' );  // Variable Hook Name
-add_action( 'edited_fuente',  'save_termmeta' );  // Variable Hook Name
+add_action( 'edited_category',  'save_termmeta' );
+add_action( 'edited_post_tag',  'save_termmeta' );
+add_action( 'edited_theme',  'save_termmeta' );
+add_action( 'edited_fuente',  'save_termmeta' );
+// add_action( 'edited_columna',  'save_termmeta' );
 
 /**
  * Enqueue colorpicker styles and scripts.

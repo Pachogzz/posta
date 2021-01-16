@@ -73,7 +73,7 @@
          $shortcode_html .= '<h4 class="encabezado-titulo mb-2">'.$gallery_title.'</h4>'; 
       }
       if(!empty($gallery_description)){
-        $shortcode_html .= '<p class="mb-0">'.$gallery_description.'</p>';
+        $shortcode_html .= '<p class_alias()="mb-0">'.$gallery_description.'</p>';
       }
 
       $shortcode_html .= '<div id="lightgallery-'.($gallery_title_counter+1).'" class="row galeria-contenido no-gutters mt-2">';

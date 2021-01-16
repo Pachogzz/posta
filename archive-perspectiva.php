@@ -9,12 +9,12 @@
 
 get_header();
 
-// global $wp_query;
-// $taxonomy_object = $wp_query->get_queried_object();
+$taxonomy_object = $wp_query->get_queried_object();
 
 $category = get_category( $taxonomy_object );
 $category_name = $category->name;
 $category_description = $category->description;
+
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 ?>
 
@@ -40,69 +40,52 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		<div class="container-fluid grid-notas px-6 mt-6">
 			<div class="row">
 				<div class="col-lg-auto px-0 d-none d-xl-block" style="max-width: 185px;">
-					<div style="border: 1px dotted red;">
+					<div class="border modulo-publicidad">
 						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600">
-						<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
+						<small>Publicidad</small>
 					</div>
 				</div>
 				
 				<div class="col">
 					<?php
-					$data = perspectivas_terms( 'perspectiva', 'columnista', 'columna' );
+					// Post related themes
+					$cptTax = $category->taxonomies[0];
+					$terms = get_terms( array(
+					    'taxonomy' => $cptTax,
+					    'hide_empty' => false,
+					) );
+
 					// echo "<pre>";
-					// print_r($data);
+					// // print_r($cptTax);
+					// print_r($terms);
 					// echo "</pre>";
 
-					echo "<ul id='term-list-filter' class='nav nav-pills justify-content-center'>";
-					foreach ($data as $key => $valor) {
-						echo "<li class='nav-item mr-2 lead'>" . $key . "</li>";
+					echo "<ul id='term-list-filter' class='nav nav-pills justify-content-center mb-6'>";
+					foreach ($terms as $term) {
+						$term_link = get_term_link( $term );
+						echo "<li class='nav-item mr-2 lead'>
+								<a href=".$term_link." title='".$term->name."'>".$term->name."</a>
+							</li>";
 					}
 					echo "</ul>";
+					
+					// echo "<pre>";
+					// print_r($category);
+					// echo "</pre>";
 
-					// Columnas
-					if (!empty(get_query_var('columnista'))){
-						$taxonomy_term = get_query_var('columnista');
-						$taxonomy_name = $taxonomy_object->taxonomy;
-						$args = array(
-							'suppress_filters' => true,
-							'post_type' => 'perspectiva',
-							'posts_per_page' => 13,
-							'post_status' => array(
-								'publish',
-							),
-							'columnista' => $taxonomy_term,
-							'orderby' => 'date',
-							'order' => 'DESC',
-							'paged' => $paged
-						);
-					// Columnista
-					}else if ($taxonomy_object->taxonomy == "columna"){
-						$taxonomy_term = $taxonomy_object->name;
-						$taxonomy_name = $taxonomy_object->taxonomy;
-						$args = array(
-							'suppress_filters' => true,
-							'post_type' => 'perspectiva',
-							'posts_per_page' => 13,
-							'tax_query' => array(
-							array(
-								'taxonomy' => $taxonomy_name,
-								'field'    => 'name',
-								'terms'    => $taxonomy_term,
-								),
-							),
-							'post_status' => array(
-								'publish',
-							),
-							'orderby' => 'date',
-							'order' => 'DESC',
-							'paged' => $paged
-						);
-					}else{
-						$args = array(
-							'post_type' => 'perspectiva',
-							'posts_per_page' => 13,
-						);
-					}
+					// if (is_tax()) {
+					// 	echo "Es columna";
+					// 	die();
+					// }else{
+					// 	echo "No es columna";
+					// 	die();
+					// }
+
+					// Todas las perspectivas
+					$args = array(
+						'post_type' => 'perspectiva',
+						'posts_per_page' => 13,
+					);
 					$output = 'objects';
 					$the_query = new WP_Query( $args );
 					if ( $the_query->have_posts() ) :
@@ -115,9 +98,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 							?>
 						</div>
 						<div class="paginacion mt-5">
-							<?php
-								echo pagination();
-							?>
+							<?php echo pagination(); ?>
 						</div>
 
 						<!-- Mensaje si no hay notas en la categoría -->
@@ -128,9 +109,9 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					?>
 				</div>
 				<div class="col-lg-auto px-0 d-none d-xl-block" style="max-width: 185px;">
-					<div style="border: 1px dotted red;">
+					<div class="border modulo-publicidad">
 						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600">
-						<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
+						<small>Publicidad</small>
 					</div>
 				</div>
 			</div>
@@ -140,9 +121,9 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		<div class="container mt-8">
 			<div class="row">
 				<div class="col">
-					<div style="border: 1px dotted red;">
+					<div class="border modulo-publicidad">
 						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90">
-						<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
+						<small>Publicidad</small>
 					</div>
 				</div>
 			</div>

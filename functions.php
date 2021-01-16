@@ -473,45 +473,6 @@ function rename_default_taxonomy() {
 add_action( 'init', 'rename_default_taxonomy' );
 
 // Register taxonomy "Temas"
-// add_action( 'init', 'create_theme_taxonomy' );
-// function create_theme_taxonomy() {
-//   $labels = array(
-//     'name'                       => 'Temas',
-//     'singular_name'              => 'Tema',
-//     'add_new_item'               => 'Agregar tema',
-//     'edit_item'                  => 'Editar tema',
-//     'view_item'                  => 'Ver tema',
-//     'search_items'               => 'Buscar temas',
-//     'not_found'                  => 'No se encontro el tema',
-//     'all_items'                  => 'Todos los temas',
-//     'menu_name'                  => 'Temas',
-//     'back_to_items'              => '← Volver a los temas',
-//     'update_item'                => 'Actualizar tema',
-//     'parent_item'                => 'Tema superior',
-//     'new_item_name'              => 'Nuevo tema'
-//   );
-  
-//   register_taxonomy(
-//     'theme',
-//     array( 'post' ),
-//     array(
-//       'labels' => $labels,
-//       'has_archive' => true,
-//       'rewrite' => array( 
-//         'slug' => 'tema', 
-//         'with_front' => false 
-//       ),
-//       'show_in_nav_menus' => true,
-//       'show_in_rest' => true,
-//       'show_admin_column' => true,
-//       'hierarchical' => false
-//     )
-//   );
-
-//   flush_rewrite_rules();
-// }
-
-// Register taxonomy "Temas"
 add_action( 'init', 'create_fuente_taxonomy' );
 function create_fuente_taxonomy() {
   $labels = array(
@@ -532,7 +493,7 @@ function create_fuente_taxonomy() {
   
   register_taxonomy(
     'fuente',
-    array( 'post' ),
+    array( 'post', 'perspectiva' ),
     array(
       'labels' => $labels,
       'has_archive' => true,
@@ -540,6 +501,7 @@ function create_fuente_taxonomy() {
         'slug' => 'fuente', 
         'with_front' => false 
       ),
+      'show_in_ui' => false,
       'show_in_nav_menus' => true,
       'show_in_rest' => true,
       'show_admin_column' => true,

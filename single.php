@@ -75,10 +75,18 @@ $GLOBALS['gallery']=  $gallery;
 
 					<!-- Autor de la nota -->
 					<p class="autor-de-nota">
-						Por
-						<?php global $post; $author_id = $post->post_author;
-							$author_name = get_the_author_meta( 'display_name', $author_id );
-							echo $author_name;
+						Por: 
+						<?php 
+						$fuente = get_field('fuente');
+						$fuenteLink = get_term_link($fuente->slug, 'fuente');
+						if (!empty($fuente)) {
+							echo "<a href=".$fuenteLink.">".$fuente->name."</a>";
+						}else{
+							echo "POSTA REDACCIÓN";
+						}
+						// global $post; $author_id = $post->post_author;
+						// $author_name = get_the_author_meta( 'display_name', $author_id );
+						// echo $author_name;
 						?>
 					</p>
 					<!-- Fecha de publicación -->

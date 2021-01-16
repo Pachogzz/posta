@@ -108,7 +108,7 @@
                 ?>
                     <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
                         <div class="row meta">
-                            <div class="col-12 col-md-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                            <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                                 <a class="text-white" href="<?php echo $link; ?>">
                                     <small><?php echo $categoria->name; ?></small>
                                 </a>
