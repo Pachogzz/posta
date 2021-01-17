@@ -669,7 +669,7 @@ transition: all 500ms ease; }
 /* Extra Small devices (portrait phones, 300px and up) */
 @media (min-width: 300px) {
   html::before{
-    /*content: "XS";
+    content: "XS";
     display: block;
     position: fixed;
     background-color: yellow;
@@ -678,12 +678,12 @@ transition: all 500ms ease; }
     bottom: 0;
     left: 0;
     padding: 10px;
-    z-index: 999;*/
+    z-index: 999;
   }
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
   html::before{
-    /*content: "SM";
+    content: "SM";
     display: block;
     position: fixed;
     background-color: yellow;
@@ -692,13 +692,13 @@ transition: all 500ms ease; }
     bottom: 0;
     left: 0;
     padding: 10px;
-    z-index: 999;*/
+    z-index: 999;
   }
 }
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   html::before{
-    /*content: "MD";
+    content: "MD";
     display: block;
     position: fixed;
     background-color: yellow;
@@ -707,13 +707,13 @@ transition: all 500ms ease; }
     bottom: 0;
     left: 0;
     padding: 10px;
-    z-index: 999;*/
+    z-index: 999;
   }
 }
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   html::before{
-    /*content: "LG";
+    content: "LG";
     display: block;
     position: fixed;
     background-color: yellow;
@@ -722,13 +722,13 @@ transition: all 500ms ease; }
     bottom: 0;
     left: 0;
     padding: 10px;
-    z-index: 999;*/
+    z-index: 999;
   }
 }
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   html::before{
-    /*content: "XL";
+    content: "XL";
     display: block;
     position: fixed;
     background-color: yellow;
@@ -737,6 +737,6 @@ transition: all 500ms ease; }
     bottom: 0;
     left: 0;
     padding: 10px;
-    z-index: 999;*/
+    z-index: 999;
   }
 }

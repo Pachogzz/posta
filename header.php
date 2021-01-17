@@ -47,9 +47,6 @@
 
 <body <?php body_class(); ?>>
 
-	<div id="fb-root"></div>
-	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v8.0&appId=1223449614698305" nonce="05RPmOoo"></script>
-
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Ir directamente al contenido ', 'postamx' ); ?></a>
 
 	<?php if ( has_nav_menu( 'menu-vertical-oculto' ) ): ?>
@@ -68,7 +65,7 @@
 						'walker'            => new WP_Bootstrap_Navwalker(),
 					) );
 				?>
-			<div class="d-block d-sm-none mt-6 px-4">
+			<div class="d-block d-sm-block d-md-none mt-6 px-4">
 				<?php get_search_form(); ?>
 			</div>
 		</div>
@@ -87,6 +84,60 @@
 
 			<div id="headerArrow" class="container-xl py-3">
 				<div class="row justify-content-between align-items-center">
+					<div class="d-block w-100 d-sm-block d-md-none">
+					<div class="row">
+						<div class="col-3 bg-warning">
+							<?php if ( has_nav_menu( 'menu-vertical-oculto' ) ): ?>
+							<span class="mt-6" id="openSideNav" onclick="openNav()">
+								<i class="fas fa-bars fa-2x text-white"></i>
+							</span>
+							<?php endif; ?>	
+						</div>
+						<div class="col-9 col-sm-5 bg-info">
+							<div class="row justify-content-between justify-content-md-center align-items-center">
+								<div class="col-12">
+									<div class="lista-iconos justify-content-center">
+										<?php if( get_theme_mod('social_media_link_fb') != '' ){ ?>
+											<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_fb'); ?>" target="_blank" id="fb">
+												<i class="fab fa-facebook-f"></i>
+											</a>
+										<?php } ?>
+										<?php if( get_theme_mod('social_media_link_tw') != '' ){ ?>
+											<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_tw'); ?>" target="_blank" id="tw">
+												<i class="fab fa-twitter"></i>
+											</a>
+										<?php } ?>
+										<?php if( get_theme_mod('social_media_link_in') != '' ){ ?>
+											<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_in'); ?>" target="_blank" id="in">
+												<i class="fab fa-instagram"></i>
+											</a>
+										<?php } ?>
+										<?php if( get_theme_mod('social_media_link_yt') != '' ){ ?>
+											<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_yt'); ?>" target="_blank" id="yt">
+												<i class="fab fa-youtube"></i>
+											</a>
+										<?php } ?>
+										<?php if( get_theme_mod('social_media_link_lin') != '' ){ ?>
+											<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_lin'); ?>" target="_blank" id="yt">
+												<i class="fab fa-linkedin"></i>
+											</a>
+										<?php } ?>
+										<?php if( get_theme_mod('social_media_link_tb') != '' ){ ?>
+											<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_tb'); ?>" target="_blank" id="yt">
+												<i class="fab fa-tumblr"></i>
+											</a>
+										<?php } ?>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-sm-4 bg-success">
+							<div class="fecha-sitio text-white mt-3">
+								<?php echo date_i18n( get_option('date_format') ); ?>
+							</div>
+						</div>
+					</div>
+					</div>
 					
 					<div class="col-md-1">
 						<?php if ( has_nav_menu( 'menu-vertical-oculto' ) ): ?>
@@ -160,7 +211,7 @@
 						<?php } ?>
 					</div>
 					<div class="col-md-3 offset-md-1">
-						<div class="d-none d-sm-block">
+						<div class="d-none d-sm-none d-md-block">
 						<?php get_search_form(); ?>
 						</div>
 						<!-- <a class="icono icono-blanco" href="#" data-toggle="modal" data-target="#searchModal"><i class="fas fa-search"></i></a> -->
