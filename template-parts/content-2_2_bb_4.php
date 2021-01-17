@@ -143,7 +143,7 @@
                     <div class="col-12 col-lg-6">
                     <div class="row inner-row align-self-stretch">
 
-                        <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 nota">
+                        <div id="post-<?php the_ID(); ?>" class="col-12 large nota">
                             <div class="row meta">
                                 <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                                     <a class="text-white" href="<?php echo $link; ?>">
