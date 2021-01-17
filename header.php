@@ -19,17 +19,16 @@
 	<meta name="description" content="SABER / ACTUAR">
 	<meta name="author" content="MINDS MX">
 
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Open+Sans:wght@400;700&family=Roboto+Slab:wght@700&family=Rubik:wght@400;500;700&display=swap" />
-	<link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Open+Sans:wght@400;700&family=Roboto+Slab:wght@700&family=Rubik:wght@400;500;700&display=swap" media="print" onload="this.media='all'" />
-
 	<!-- Bootstrap -->
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/assets/css/bootstrap-custom.min.css">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+ 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"> 
 	<!-- Owl Carousel -->
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/assets/css/owl.carousel.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/assets/css/owl.theme.default.min.css">
 	<!-- Fontawesome -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/assets/css/all.min.css">
+	<script src="https://kit.fontawesome.com/0f2dd2d9af.js" crossorigin="anonymous"></script>
 	<!-- Coverflow -->
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/assets/css/jquery-responsiveGallery.css">
 	<!-- Galería -->
@@ -43,20 +42,7 @@
 	<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5ff8b5b8aca127001328f8c7&product=inline-share-buttons" async="async"></script>
 
 	<!-- Ad Manager -->
-	<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
-	<script>
-		window.googletag = window.googletag || {cmd: []};
-		googletag.cmd.push(function() {
-			googletag.defineSlot('/130272121/home_resp_boxbanner_01', [300, 250], 'div-gpt-ad-1603322982156-0').addService(googletag.pubads());
-			googletag.pubads().enableSingleRequest();
-			googletag.pubads().collapseEmptyDivs();
-			googletag.enableServices();
-		});
-	</script>
-	<!--Integración del reproductor JW Player 2.0-->
-	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/jwplayer/jwplayer.js"></script>
-	<script src='https://cdn.jwplayer.com/libraries/2LuFt05J.js'></script>
-	<script>jwplayer.key='gUSA7bc0RGA/BmzlZln6KngeAc8tLUB0ZPYTUQ==';</script>
+	<!-- <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script> -->
 </head>
 
 <body <?php body_class(); ?>>
@@ -82,17 +68,19 @@
 						'walker'            => new WP_Bootstrap_Navwalker(),
 					) );
 				?>
+			<div class="d-block d-sm-none mt-6 px-4">
+				<?php get_search_form(); ?>
+			</div>
 		</div>
 	</div>
 	<?php endif; ?>
 
 	<div id="page" class="site d-flex flex-column justify-content-between">
-	<!-- <div id="page" class="site d-flex flex-column justify-content-between" style="height: 100vh;"> -->
 
 		<!-- Publicidad -->
-		<div class="container-fluid bg-white py-2">
+		<!-- <div class="container-fluid py-2">
 			<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/970x90?text=Superleaderboard">
-		</div>
+		</div> -->
 		
 		<!-- Encabezado -->
 		<header id="siteHEader" style="background-color: <?php echo get_theme_mod( 'header_bg_color' ); ?>;">
@@ -100,7 +88,6 @@
 			<div id="headerArrow" class="container-xl py-3">
 				<div class="row justify-content-between align-items-center">
 					
-					<!-- <div class="d-none d-xl-block col-xl-2"> -->
 					<div class="col-md-1">
 						<?php if ( has_nav_menu( 'menu-vertical-oculto' ) ): ?>
 						<span class="mt-6" id="openSideNav" onclick="openNav()">
@@ -173,8 +160,9 @@
 						<?php } ?>
 					</div>
 					<div class="col-md-3 offset-md-1">
+						<div class="d-none d-sm-block">
 						<?php get_search_form(); ?>
-						<!-- <//?php echo do_shotcode('wpbsearch'); ?> -->
+						</div>
 						<!-- <a class="icono icono-blanco" href="#" data-toggle="modal" data-target="#searchModal"><i class="fas fa-search"></i></a> -->
 					</div>
 				</div>

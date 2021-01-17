@@ -134,6 +134,12 @@
                     //unset($GLOBALS['carrusel_seccion']);
                 ?>
                 </div>
+                
+                <div class="col-12 text-right">
+                    <a class="btn btn-primary btn-lg" href="<?php echo $link; ?>">
+                        <span class="nombre-taxonomia font-weight-bold lead">Ver más contenido <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
             </div>
         </div>
         <!-- Desktop block -->

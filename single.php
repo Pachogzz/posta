@@ -66,10 +66,10 @@ $GLOBALS['gallery']=  $gallery;
 		</div>
 
 		<!-- NOTA -->
-		<div class="container mt-6 container-lg<<<">
+		<div class="container mt-1 p-6 bg-white container-lg<<<">
 			<div class="row justify-content-center align-items-start">
 				<!-- Contenido principal -->
-				<div class="col-lg px-4 pl-lg-3 pr-lg-6">
+				<div class="col-12 col-lg-8 px-4 pl-lg-3 pr-lg-6">
 					<!-- Share this -->
 					<div class="sharethis-inline-share-buttons mb-3"></div>
 
@@ -149,22 +149,22 @@ $GLOBALS['gallery']=  $gallery;
 						?>
 					</div>
 					<!-- PUBLICIDAD -->
-					<div class="modulo-publicidad border mx-auto" style="width: 302px;">
+					<!-- <div class="modulo-publicidad border mx-auto" style="width: 302px;">
 						<img src="http://fakeimg.pl/300x600/333/ccc/?text=HalfPage" class="img-fluid d-block mb-0" alt="Publicidad...">
 						<span>Publicidad</span>
-					</div>
+					</div> -->
 					<?php get_sidebar('sidebar-1') ?>
 					<!-- PUBLICIDAD -->
-					<div class="modulo-publicidad border mx-auto mt-4" style="width: 302px;">
+					<!-- <div class="modulo-publicidad border mx-auto mt-4" style="width: 302px;">
 						<img class="img-fluid" src="https://via.placeholder.com/300x600?text=halfpage">
 						<span>Publicidad</span>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
 
 		<!-- PUBLICIDAD -->
-		<div class="container mt-8">
+		<!-- <div class="container mt-8">
 			<div class="row">
 				<div class="col">
 					<div class="border">
@@ -173,7 +173,7 @@ $GLOBALS['gallery']=  $gallery;
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- NOTAS RELACIONADAS -->
 		<div class="container mt-7 mb-6 container-lg<<<">

@@ -86,7 +86,7 @@ switch ($show_time_ago == 1) {
     <div class="contenedor-media d-flex justify-content-center align-items-center" style="background-image: url( <?php echo $featured_img_url; ?> );">
     </div>
     <!-- ENCABEZADO DE NOTA -->
-    <div class="encabezado-nota mt-2">
+    <div class="encabezado-nota mt-4">
       <h5 class="titulo-de-nota">
         <a class="stretched-link" href="<?php the_permalink(); ?>" title="<?php echo esc_html(get_the_title()); ?>"><?php echo esc_html(get_the_title()); ?></a>
       </h5>

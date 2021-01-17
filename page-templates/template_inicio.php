@@ -6,7 +6,7 @@
 <?php // Template del Home page con contenido flexible ?>
 
 <?php 
-$cont_layout = 0; //Varible para ver el numero de layouts
+// $cont_layout = 0; //Varible para ver el numero de layouts
 
 if( have_rows('contenido_de_inicio')){
   	while ( have_rows('contenido_de_inicio')) {
@@ -46,10 +46,10 @@ if( have_rows('contenido_de_inicio')){
 		}
 
 		// Bloque para colocar el script de la publicidad
-		$cont_layout = $cont_layout +1;
+		// $cont_layout = $cont_layout +1;
 		if($cont_layout == 2){ ?>
 			<!-- PUBLICIDAD -->
-			<div class="modulo-publicidad my-6">
+			<!-- <div class="modulo-publicidad my-6">
 				<div class="container-fluid">
 					<div class="row"> 
 						<div class="col">
@@ -58,7 +58,7 @@ if( have_rows('contenido_de_inicio')){
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<?php 
 			$cont_layout = 0; 
 		}

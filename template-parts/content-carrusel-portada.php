@@ -10,6 +10,15 @@
  */
 $portada = get_sub_field('notas_portada');
 $estilo_carusel = get_sub_field('estilo_de_carusel');
+$show_time_ago = get_theme_mod('show_time_ago');
+switch ($show_time_ago == 1) {
+    case '1':
+        $haceTiempo = time_ago() . ' <i class="fas fa-clock"></i>';
+    break;
+    case '0':
+        $haceTiempo = "";
+    break;
+}
 switch ($estilo_carusel) {
     case 'estilo_de_carusel':
         $estilo_carusel = 'simple';
@@ -40,40 +49,13 @@ switch ($estilo_carusel) {
 				// De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
 				if ($mobile_browser > 0) {
 					//print 'is mobile';
-					if($tipo_de_carrusel_coleccion){
-						if($tipo_de_carrusel_coleccion == 'carrusel-tipo-uno'){
-							$featured_img_url = $featured_img_url_small_retina;
-						}elseif($tipo_de_carrusel_coleccion == 'carrusel-tipo-dos'){
-							$featured_img_url = $featured_img_url_small_retina;
-						}elseif($tipo_de_carrusel_coleccion == 'carrusel-tipo-tres'){
-							$featured_img_url = $featured_img_url_small_retina;
-						}
-						$tipo_de_carrusel = "";
-					}
+					$featured_img_url = $featured_img_url_small_retina;
 				}elseif ($tablet_browser > 0) {
 					//print 'is tablet';
-					if($tipo_de_carrusel_coleccion){
-						if($tipo_de_carrusel_coleccion == 'carrusel-tipo-uno'){
-							$featured_img_url = $featured_img_url_large;
-						}elseif($tipo_de_carrusel_coleccion == 'carrusel-tipo-dos'){
-							$featured_img_url = $featured_img_url_small_retina;
-						}elseif($tipo_de_carrusel_coleccion == 'carrusel-tipo-tres'){
-							$featured_img_url = $featured_img_url_small_retina;
-						}
-						$tipo_de_carrusel = "";
-					}
+					$featured_img_url = $featured_img_url_medium_retina;
 				}else {
 					//print 'is desktop';
-					if($tipo_de_carrusel_coleccion){
-						if($tipo_de_carrusel_coleccion == 'carrusel-tipo-uno'){
-							$featured_img_url = $featured_img_url_medium_retina;
-						}elseif($tipo_de_carrusel_coleccion == 'carrusel-tipo-dos'){
-							$featured_img_url = $featured_img_url_medium;
-						}elseif($tipo_de_carrusel_coleccion == 'carrusel-tipo-tres'){
-							$featured_img_url = $featured_img_url_small;
-						}
-						$tipo_de_carrusel = "";
-					}
+					$featured_img_url = $featured_img_url_large;
 				}
 				//obtiene obtiene la categoria principal
 				$categoria = get_primary_category(get_the_ID(), 'category');
@@ -89,8 +71,7 @@ switch ($estilo_carusel) {
 				}
 				$category_link = get_category_link($category_id);
 				$category_description  = category_description($category_id);
-    			// como extraer el color ?? ? ? 
-    			$tax_color = get_term_meta( $categoria, 'category_color', true );
+    			$tax_color = get_term_meta( $category_id, 'category_color', true );
 				?>
 				<div>
 					<!-- IMAGEN DE NOTA -->
@@ -102,72 +83,16 @@ switch ($estilo_carusel) {
 							<!-- <div class="row justify-content-center"> -->
 								<div class="col-md-12 col-lg-10 px-3 px-md-4">
 									<div class="w-100">
-										<pre class="text-white">
-										<?php 
+										<!-- <pre class="text-white">
+										<//?php 
 											print_r($categoria);
 											echo "<hr>";
 											echo $tax_color;
 										 ?>
-										</pre>
+										</pre> -->
 									</div>
 									<!-- Icono tipo de contenido -->
-									<div>
-										<?php
-										if (!empty(get_field('content_type'))){
-										$content_type = get_field('content_type');
-										switch($content_type){
-										// Tipo de contenido: Video
-										case 'video':
-										if (!empty(get_field('video_news'))){
-												$video_iframe = get_field('video_news');
-												/*Autoplay Functionallity*/
-												if ( preg_match('/src="(.+?)"/', $video_iframe, $matches) ) {
-													// Video source URL
-													$src = $matches[1];
-													// Add option to hide controls, enable HD, and do autoplay -- depending on provider
-													$params = array(
-													'autoplay' => 1
-													);
-													$new_src = add_query_arg($params, $src);
-													$video_iframe = str_replace($src, $new_src, $video_iframe);
-													// add extra attributes to iframe html
-													$attributes = 'frameborder="0"';
-													$video_iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $video_iframe);
-												}
-												/*Autoplay Functionallity*/
-												$video_html = '<div class="contenedor-media">'.$video_iframe.'</div>'; ?>
-												<i class="fas fa-play media_file media-type-icon media-type-icon-posta pl-1" data-media='<?php echo $video_html; ?>' data-toggle="tooltip" data-placement="left" title="Ver video"></i>
-										<?php }
-										break;
-										// Tipo de contenido: Video de Facebook
-										case 'facebook':
-											if (!empty(get_field('video_facebook_news'))){
-											$url_video = get_field('video_facebook_news');
-											$video_iframe = '<iframe src="https://www.facebook.com/plugins/video.php?href='.$url_video.'&mute=0" allow="encrypted-media" allowFullScreen="true">';
-											$video_html = '<div class="contenedor-media">'.$video_iframe.'</div>'; ?>
-											<i class="fas fa-play media_file media-type-icon media-type-icon-posta pl-1" data-media='<?php echo $video_html; ?>' data-toggle="tooltip" data-placement="top" title="Video"></i>
-										<?php }
-										break;
-										// Tipo de contenido: Gif
-										case 'gif':
-											if (!empty(get_field('gif_news'))){
-											$gif_url = get_field('gif_news');
-											$gif_html = '<div class="contenedor-media"><img class="contenedor-media-item" src="'.$gif_url.'"></div>'; ?>
-											<i class="fas fa-spinner media_file media-type-icon media-type-icon-posta" data-media='<?php echo $gif_html; ?>' data-toggle="tooltip" data-placement="top" title="Gif"></i>
-										<?php }
-										break;
-										// Tipo de contenido: Audio
-										case 'audio':
-											if (!empty(get_field('audio_news'))){
-											$audio_iframe = get_field('audio_news');
-											$audio_html = '<div class="contenedor-media sound-iframe">'.$audio_iframe.'</div>'; ?>
-											<i class="fas fa-volume-up media_file media-type-icon media-type-icon-posta" data-media='<?php echo $audio_html; ?>' data-toggle="tooltip" data-placement="top" title="Audio"></i>
-										<?php }
-										break;
-										} // End of switch
-										} // End of if (content_type)
-										?>
-									</div>
+									<?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
 									<!-- Título de nota -->
 									<div class="row mb-3 meta">
 			                            <div class="col-6 col-md-4 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
@@ -177,7 +102,7 @@ switch ($estilo_carusel) {
 			                                <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
 			                            </div>
 			                            <div class="col-6 col-md-4 hora text-white text-right">
-			                                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+			                                <small><?php echo $haceTiempo; ?></small>
 			                            </div>
 									</div>
 									<div class="clearfix"></div>

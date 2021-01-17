@@ -49,37 +49,20 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 				<div class="col">
 					<?php
 					// Post related themes
-					$cptTax = $category->taxonomies[0];
-					$terms = get_terms( array(
-					    'taxonomy' => $cptTax,
-					    'hide_empty' => false,
-					) );
+					// $cptTax = $category->taxonomies[0];
+					// $terms = get_terms( array(
+					//     'taxonomy' => $cptTax,
+					//     'hide_empty' => false,
+					// ) );
 
-					// echo "<pre>";
-					// // print_r($cptTax);
-					// print_r($terms);
-					// echo "</pre>";
-
-					echo "<ul id='term-list-filter' class='nav nav-pills justify-content-center mb-6'>";
-					foreach ($terms as $term) {
-						$term_link = get_term_link( $term );
-						echo "<li class='nav-item mr-2 lead'>
-								<a href=".$term_link." title='".$term->name."'>".$term->name."</a>
-							</li>";
-					}
-					echo "</ul>";
-					
-					// echo "<pre>";
-					// print_r($category);
-					// echo "</pre>";
-
-					// if (is_tax()) {
-					// 	echo "Es columna";
-					// 	die();
-					// }else{
-					// 	echo "No es columna";
-					// 	die();
+					// echo "<ul id='term-list-filter' class='nav nav-pills justify-content-center mb-6'>";
+					// foreach ($terms as $term) {
+					// 	$term_link = get_term_link( $term );
+					// 	echo "<li class='nav-item mr-2 lead'>
+					// 			<a href=".$term_link." title='".$term->name."'>".$term->name."</a>
+					// 		</li>";
 					// }
+					// echo "</ul>";
 
 					// Todas las perspectivas
 					$args = array(

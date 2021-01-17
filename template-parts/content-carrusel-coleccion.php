@@ -17,6 +17,15 @@ $imagen_de_fondo_coleccion = get_sub_field('imagen_de_fondo_coleccion');
 $color_de_fondo_coleccion = get_sub_field('color_de_fondo_coleccion');
 $color_de_texto_coleccion = get_sub_field('color_de_texto_coleccion');
 $mostrar_descripcion = get_sub_field('mostrar_descripcion');
+$show_time_ago = get_theme_mod('show_time_ago');
+switch ($show_time_ago == 1) {
+    case '1':
+        $haceTiempo = time_ago() . ' <i class="fas fa-clock"></i>';
+    break;
+    case '0':
+        $haceTiempo = "";
+    break;
+}
 
 if($titulo_del_carrusel){
 	$titulo ='<h2 class="encabezado-titulo"><span class="nombre-sitio">POSTA</span><span class="nombre-taxonomia">'.$titulo_del_carrusel.'</span></h2>';
@@ -101,21 +110,20 @@ if ( $notas_coleccion ) { ?>
 							}
 							$category_link = get_category_link($category_id);
 							$category_description  = category_description($category_id);
-			    			// como extraer el color ?? ? ? 
-			    			$tax_color = get_term_meta( $categoria, 'category_color', true );
+			    			$tax_color = get_term_meta( $category_id, 'category_color', true );
 							?>
 
 							<div class="c-item">
 								<div class="row mb-0 meta">
 									<!-- Sección de nota -->
-									<div class="col-6 categoria">
-										<a class="text-white" href="<?php echo $category_link; ?>" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+									<div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+										<a class="text-white" href="<?php echo $category_link; ?>">
 											<?php echo $category_name ?>
 										</a>
 			                            <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
 									</div>
 		                            <div class="col-6 hora text-right">
-		                                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+		                                <small><?php echo $haceTiempo; ?></small>
 		                            </div>
 								</div>
 								<div class="position-relative">

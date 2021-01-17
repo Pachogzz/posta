@@ -26,8 +26,11 @@ $category_description = category_description($category_id); // Descripción de l
 
 			<!-- ENCABEZADO DE CARRUSEL -->
 			<div class="encabezado">
-				<h2 class="encabezado-titulo flecha">
-					<a class="text-white" href="<?php echo esc_url($category_link); ?>"><?php echo esc_html($section_name->name);?></a>
+				<h2 class="encabezado-titulo">
+					<a class="text-white" href="<?php echo esc_url($category_link); ?>">
+						<span class="nombre-sitio">POSTA</span>
+						<span class="nombre-taxonomia"><?php echo esc_html($section_name->name);?></span>
+						</a>
 				</h2>
 				<?php if($mostrar_descripcion){ ?>
 					<p class="encabezado-descripcion"><?php echo strip_tags($category_description); ?></p>
@@ -63,8 +66,12 @@ $category_description = category_description($category_id); // Descripción de l
 					<a class="item-ver-mas" href="<?php echo esc_url($category_link); ?>" title="Ver más noticias de <?php echo $section_name->name;?>">
 						<div class="contenedor-media">
 							<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center">
-								<p class="h5 m-0">Ver más noticias de</p>
-								<h4 class="encabezado-titulo flecha"><?php echo esc_html($section_name->name);?></h4>
+								<p class="h5 mb-3">Ver más noticias de:</p>
+								<h4 class="encabezado-titulo">
+									<span class="bg-white text-dark p-3">
+										<?php echo esc_html($section_name->name);?>
+									</span>
+								</h4>
 							</div>
 						</div>
 					</a>

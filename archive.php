@@ -42,11 +42,11 @@ $queriedObjetc = get_queried_object();
 		<!-- GRID -->
 		<div class="container-fluid grid-notas px-6 mt-6">
 			<div class="row">
-				<div class="col-lg-auto px-0 d-none d-xl-block" style="max-width: 185px;">
-					<div class="border modulo-publicidad">
+				<div class="col-lg-1 px-0 d-none d-xl-block" style="max-width: 185px;">
+					<!-- <div class="border modulo-publicidad">
 						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600">
 						<small>Publicidad</small>
-					</div>
+					</div> -->
 				</div>
 				<div class="col">
 					<?php 
@@ -133,17 +133,17 @@ $queriedObjetc = get_queried_object();
 					endif;
 					?>
 				</div>
-				<div class="col-lg-auto px-0 d-none d-xl-block" style="max-width: 185px;">
-					<div class="border modulo-publicidad">
+				<div class="col-lg-1 px-0 d-none d-xl-block" style="max-width: 185px;">
+					<!-- <div class="border modulo-publicidad">
 						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600">
 						<small>Publicidad</small>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
 
 		<!-- PUBLICIDAD -->
-		<div class="container mt-8">
+		<!-- <div class="container mt-8">
 			<div class="row">
 				<div class="col">
 					<div class="">
@@ -152,7 +152,7 @@ $queriedObjetc = get_queried_object();
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 	</main><!-- #main -->
 </div><!-- #primary -->
