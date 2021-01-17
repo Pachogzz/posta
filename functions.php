@@ -833,3 +833,12 @@ function noticias_terms(
 
     return $result_list;
   }
+
+
+
+  //Estilos y JS para AnythingSlider
+function agregar_anythingslider_scripts(){
+  wp_enqueue_style( 'anythingslider', get_template_directory_uri() . '/assets/css/anythingslider.css',false, null, 'all');
+  wp_enqueue_script( 'anythingslider', get_template_directory_uri() . '/assets/js/jquery.anythingslider.min.js', array ( 'jquery' ), null, false); //footer
+}
+add_action( 'wp_enqueue_scripts', 'agregar_anythingslider_scripts' );
