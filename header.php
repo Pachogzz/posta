@@ -43,6 +43,38 @@
 
 	<!-- Ad Manager -->
 	<!-- <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script> -->
+
+	<style type="text/css">
+		.anythingSlider-default{
+			padding: 0px !important;
+		}
+	    .anythingWindow{
+	        border-top: 0px !important;
+	        border-bottom: 0px !important;
+	        border:0px !important;
+	        padding:0px !important;
+	        margin:0px !important;
+	    }
+	    #slider{
+	        width:1200px;
+	        margin:0px;
+	        border-top: 0px;
+	        border-bottom: 0px;
+	        border:0px !important;
+	        padding: 0px;
+	        height: 1200px;
+	    }
+	    #slider li{
+	        display:flex;
+	        height:1200px;
+	    }
+	    .anythingSlider-default .arrow a{
+	    	margin-left:-30px;
+	    }
+	    .anythingSlider-default .forward{
+	    	right:-29px;
+	    }
+	</style>
 </head>
 
 <body <?php body_class(); ?>>
