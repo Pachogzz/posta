@@ -40,9 +40,8 @@
 <section class="bloque_notas--2_2_bb_4 mb-6">
     <div class="container">
         <!-- Desktop block -->
-        <div class="d-none d-sm-none d-md-block">
+        <div class="d-none d-sm-none d-md-none">
             <div class="row">
-
                 <div class="col-12">
                     <div class="encabezado">
                          <h2 class="encabezado-titulo" style="background-color:<?php echo $color; ?>;">
@@ -60,30 +59,24 @@
                         <?php endif ?>
                     </div>
                 </div> 
-
-                <?php
-                            //para asignar el postthumbnail correcto
-                            require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
-                            
-                            $pos = 0;
+                <div class="col-12 col-lg-6">
+                    <div class="row h-100">
+                        <?php
+                            $ids = array();
+                            $i = 0;
                             $args = array (
                                 'post_type'      => 'post',
                                 'category'      => $categoria->term_id,
-                                'posts_per_page' => -1,
+                                'posts_per_page' => 1,
                                 'orderby'        => 'date',
                                 'order'          => 'DESC'
                             );
 
                             $the_query = new WP_Query( $args, 'objects');
-                            if ( $the_query->have_posts() ):
-                                
-                                ?>
-                                    <ul id="slider">
-                                <?php
-                                
+                            if ( $the_query->have_posts() ) :
                                 while ( $the_query->have_posts() ) :
                                     $the_query->the_post(); 
-                                    
+                                    require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
                                     // De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
                                     if ($mobile_browser > 0) {
                                         //print 'is mobile';
@@ -95,25 +88,7 @@
                                         //print 'is desktop';
                                         $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
                                     }
-
-                                    //Si pos llega a 8 le asigna el valor 1, si es menor lo sigue incrementando
-                                    if($pos >= 8){
-                                        $pos = 1;   
-                                    }else{
-                                        $pos++;
-                                    }
-
-                                    echo "<!-- ".$pos." -->";
-
-                                    if( $pos == 1 ){
-
-                ?>
-
-                <li class="row">
-
-                <div class="col-12 col-lg-6">
-                    <div class="row h-100">     
-
+                        ?>
                                     <div id="post-<?php the_ID(); ?>" class="col-12 nota large h-100">
                                         <div class="row meta">
                                             <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
@@ -133,152 +108,105 @@
                                             </div>
                                         </a>
                                     </div>
+                                    <?php
+                                    $ids[$i] = get_the_ID();
+                                    $i++;
+                                endwhile;
+                            endif;
+                            wp_reset_postdata();
+                        ?>
                     </div>
                 </div>
-
-                <?php 
-                    }elseif($pos == 2){
-                        ?>
-
-                    <div class="col-12 col-lg-6">
+                <div class="col-12 col-lg-6">
                     <div class="row inner-row align-self-stretch">
+                <?php
+                    $args = array (
+                        'post__not_in'      => $ids,
+                        'post_type'      => 'post',
+                        'category'      => $categoria->term_id,
+                        'posts_per_page' => 2,
+                        'orderby'        => 'date',
+                        'order'          => 'DESC'
+                    );
 
-                        <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 nota">
-                            <div class="row meta">
-                                <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                    <a class="text-white" href="<?php echo $link; ?>">
-                                        <small><?php echo $categoria->name; ?></small>
-                                    </a>
-                                    <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
-                                </div>
-                                <div class="col hora text-right">
-                                    <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
-                                </div>
+                    $the_query = new WP_Query( $args, 'objects');
+                    if ( $the_query->have_posts() ) :
+                        while ( $the_query->have_posts() ) :
+                            $the_query->the_post(); 
+                            require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
+                            // De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
+                            if ($mobile_browser > 0) {
+                                //print 'is mobile';
+                                $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '720x405');
+                            }elseif ($tablet_browser > 0) {
+                                //print 'is tablet';
+                                $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '1100x618');
+                            }else {
+                                //print 'is desktop';
+                                $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
+                            }
+                ?>
+                    <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 nota">
+                        <div class="row meta">
+                            <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                <a class="text-white" href="<?php echo $link; ?>">
+                                    <small><?php echo $categoria->name; ?></small>
+                                </a>
+                                <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                             </div>
-                            <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                <div class='imagen-nota-container'>
-                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                    <h5 class="titulo-nota"><?php the_title(); ?></h5>
-                                </div>
-                            </a>
-                        </div>
-
-
-                        <?php
-
-                    }elseif($pos == 3){
-
-                        ?>
-                        <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 nota">
-                            <div class="row meta">
-                                <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                    <a class="text-white" href="<?php echo $link; ?>">
-                                        <small><?php echo $categoria->name; ?></small>
-                                    </a>
-                                    <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
-                                </div>
-                                <div class="col hora text-right">
-                                    <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
-                                </div>
+                            <div class="col hora text-right">
+                                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
                             </div>
-                            <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                <div class='imagen-nota-container'>
-                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                    <h5 class="titulo-nota"><?php the_title(); ?></h5>
-                                </div>
-                            </a>
                         </div>
-                        <?php
-
-                    }elseif($pos == 4){ 
-                        //publicidad link estático
-                        ?>
-                        <div class="col-12 col-md-6 nota modulo-publicidad">
-                            <img src="http://fakeimg.pl/300x300/333/ccc/?text=BoxBanner" class="img-fluid d-block mb-0" alt="Publicidad...">
-                            <span>Publicidad</span>
-                        </div>
-                        
-                    </div><!-- /.col-12 -->
-                </div><!-- /.row .inner-row -->
-                        <?php
-
-                    }elseif($pos == 5){
-                        ?>
-                            <div class="col-12 mt-6">
-                                <div class="row align-self-stretch">
-                                    
-                                        <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
-                                            <div class="row meta">
-                                                <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                                    <a class="text-white" href="<?php echo $link; ?>">
-                                                        <small><?php echo $categoria->name; ?></small>
-                                                    </a>
-                                                    <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
-                                                </div>
-                                                <div class="col hora text-right">
-                                                    <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
-                                                </div>
-                                            </div>
-                                            <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                                <div class='imagen-nota-container'>
-                                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                                    <h5 class="titulo-nota"><?php the_title(); ?></h5>
-                                                </div>
-                                            </a>
-                                        </div>
-                                
-                            <?php
-                    }elseif($pos == 6){
-                        ?>
-                                        <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
-                                            <div class="row meta">
-                                                <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                                    <a class="text-white" href="<?php echo $link; ?>">
-                                                        <small><?php echo $categoria->name; ?></small>
-                                                    </a>
-                                                    <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
-                                                </div>
-                                                <div class="col hora text-right">
-                                                    <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
-                                                </div>
-                                            </div>
-                                            <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                                <div class='imagen-nota-container'>
-                                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                                    <h5 class="titulo-nota"><?php the_title(); ?></h5>
-                                                </div>
-                                            </a>
-                                        </div>
-                        <?php
-                    }elseif($pos == 7){
-
-                    ?>
-                        <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
-                            <div class="row meta">
-                                <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                    <a class="text-white" href="<?php echo $link; ?>">
-                                        <small><?php echo $categoria->name; ?></small>
-                                    </a>
-                                    <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
-                                </div>
-                                <div class="col hora text-right">
-                                    <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
-                                </div>
+                        <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                            <div class='imagen-nota-container'>
+                                <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                <h5 class="titulo-nota"><?php the_title(); ?></h5>
                             </div>
-                            <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                <div class='imagen-nota-container'>
-                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                    <h5 class="titulo-nota"><?php the_title(); ?></h5>
-                                </div>
-                            </a>
-                        </div>
+                        </a>
+                    </div>
+                <?php
+                        $ids[$i] = get_the_ID();
+                        $i++;
+                        endwhile;
+                    endif;
+                    wp_reset_postdata();
+                ?>
+                    <div class="col-12 col-md-6 nota modulo-publicidad">
+                        <img src="http://fakeimg.pl/300x300/333/ccc/?text=BoxBanner" class="img-fluid d-block mb-0" alt="Publicidad...">
+                        <span>Publicidad</span>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-6">
+                    <div class="row align-self-stretch">
+                        <?php
+                            $args = array (
+                                'post__not_in'      => $ids,
+                                'post_type'      => 'post',
+                                'category'      => $categoria->term_id,
+                                'posts_per_page' => 4,
+                                'orderby'        => 'date',
+                                'order'          => 'DESC'
+                            );
 
-                    <?php
-
-                    }elseif($pos == 8){
-
-                    ?>
-
+                            $the_query = new WP_Query( $args, 'objects');
+                            if ( $the_query->have_posts() ) :
+                                while ( $the_query->have_posts() ) :
+                                    $the_query->the_post(); 
+                                    require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
+                                    // De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
+                                    if ($mobile_browser > 0) {
+                                        //print 'is mobile';
+                                        $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '720x405');
+                                    }elseif ($tablet_browser > 0) {
+                                        //print 'is tablet';
+                                        $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '1100x618');
+                                    }else {
+                                        //print 'is desktop';
+                                        $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
+                                    }
+                        ?>
                             <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
                                 <div class="row meta">
                                     <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
@@ -298,41 +226,19 @@
                                     </div>
                                 </a>
                             </div>
-                    </div><!-- /.col-12 -->
-                </div><!-- /.row .align-self-stretch -->
-                    
-            </li>
-
-                    <?php
-
-                    }//termina elseif
-                    endwhile;
-                    ?>
-                        </ul><!-- /#slider -->
-                    <?php
-                    endif;
-
-                ?>
-
-            </div><!-- /.row -->
-        </div><!-- /.d-none .md-block -->
-    
-        <!-- Anythingslider -->
-        <script type="text/javascript">
-          jQuery('#slider').anythingSlider({
-            /*resizeContents      : false,*/
-            buildArrows         : true,
-            autoPlay            : false,
-            buildNavigation     : false,
-            buildStartStop      : false,
-            expand              : false
-          });
-        </script>
-
-        <!-- TERMINA Desktop block -->
+                        <?php
+                                endwhile;
+                            endif;
+                            wp_reset_postdata();
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Desktop block -->
 
         <!-- Movile slide -->
-        <div class="d-sm-block d-md-none">
+        <div class="d-sm-block d-md-block">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
