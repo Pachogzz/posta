@@ -256,7 +256,7 @@
 
   	<!-- Anythingslider -->
   	<script type="text/javascript">
-      $('#slider').anythingSlider({
+      jQuery('#slider').anythingSlider({
        	resizeContents      : false,
        	buildArrows         : true,
        	autoPlay            : false,
