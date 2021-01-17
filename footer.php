@@ -253,5 +253,16 @@
       	lightGallery(document.getElementById('lightgallery-<?php echo ($i); ?>'));
       </script>
   	<?php } unset($GLOBALS['gallery']); ?>
+
+  	<!-- Anythingslider -->
+  	<script type="text/javascript">
+      $('#slider').anythingSlider({
+       	resizeContents      : false,
+       	buildArrows         : true,
+       	autoPlay            : false,
+  		buildNavigation     : false,
+  		buildStartStop      : false,
+      });
+    </script>
 </body>
 </html>
