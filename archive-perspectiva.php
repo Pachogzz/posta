@@ -14,8 +14,8 @@ $taxonomy_object = $wp_query->get_queried_object();
 $category = get_category( $taxonomy_object );
 $category_name = $category->name;
 $category_description = $category->description;
-
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$queriedObjetc = get_queried_object();
 ?>
 
 <div id="primary" class="content-area">
@@ -30,7 +30,9 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 							<span class="nombre-sitio">POSTA</span>
 							<span class="nombre-taxonomia"><?php echo $category_name; ?></span>
 						</h2>
-						<!-- <p class="encabezado-descripcion"></?php echo $category_description; ?></p> -->
+						<?php if (!empty($category_description)): ?>
+						<p class="encabezado-descripcion"><?php echo $category_description; ?></p>
+						<?php endif ?>
 					</div>
 				</div>
 			</div>
@@ -56,10 +58,12 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					// ) );
 
 					// echo "<ul id='term-list-filter' class='nav nav-pills justify-content-center mb-6'>";
-					// foreach ($terms as $term) {
-					// 	$term_link = get_term_link( $term );
+					// foreach ($terms as $child) {
+					// 	$tax_color = get_term_meta( $child, 'category_color', true );
 					// 	echo "<li class='nav-item mr-2 lead'>
-					// 			<a href=".$term_link." title='".$term->name."'>".$term->name."</a>
+					// 			<a href=". get_term_link($child) ." title='" . get_cat_name($child) . "' style='background-color:#" . $tax_color . "!important;'>" 
+					// 				. $child->name . 
+					// 			"</a>
 					// 		</li>";
 					// }
 					// echo "</ul>";

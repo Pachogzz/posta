@@ -22,10 +22,10 @@ $categoria = get_the_category(get_the_ID(), 'category');
 // echo "</pre><hr><hr><hr><hr>";
 
 //obtiene la categoria principal seleccionado  con el yoast
-if($categoria[0]){
-	$category_name = $categoria->name;
-	$category_id = $categoria->term_id;
-}
+// if($categoria[0]){
+// 	$category_name = $categoria->name;
+// 	$category_id = $categoria->term_id;
+// }
 //obtiene la categoria  seleccionado 
 if(empty($category_name)){
 	$category_name = $categoria[0]->name;
@@ -102,9 +102,14 @@ $GLOBALS['gallery']=  $gallery;
 						echo "Temas: ";
 								$theme_link  = get_category_link($categoria[0]->term_id);
 								echo $theme_name = '<h2 class="tema-de-nota text-primary mt-3"><a href="'.esc_url($theme_link).'">'.$categoria[0]->name.'</a></h2>';
+						
+						if ( ! has_excerpt() ) {
+						    echo '<!-- . -->';
+						} else { ?>
+							<!-- Extracto -->
+							<p class="lead extracto-de-nota mt-3"><?php echo get_the_excerpt(); ?></p>
+						<?php }
 						}?>
-					<!-- Extracto -->
-					<p class="lead extracto-de-nota mt-3"><?php echo get_the_excerpt() ?></p>
 
 					<div class="separador"></div>
 
@@ -258,11 +263,11 @@ $GLOBALS['gallery']=  $gallery;
 						} ?>
 						<!-- Link ver más notas -->
 						<div class="c-item">
-							<a class="item-ver-mas" href="</?php echo esc_url($category_link); ?>" title="Ver más noticias de </?php echo $category_name;?>">
+							<a class="item-ver-mas" href="<?php echo esc_url($category_link); ?>" title="Ver más noticias de <?php echo $category_name;?>">
 								<div class="contenedor-media">
 									<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center">
 										<p class="h5 m-0">Ver más noticias de</p>
-										<h4 class="encabezado-titulo flecha"><?php echo $category_name;?></h4>
+										<!-- <h4 class="encabezado-titulo flecha"><?php echo $category_name;?></h4> -->
 									</div>
 								</div>
 							</a>

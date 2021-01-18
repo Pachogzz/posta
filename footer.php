@@ -254,7 +254,6 @@
       </script>
   	<?php } unset($GLOBALS['gallery']); ?>
 
-<<<<<<< HEAD
   	<!-- Anythingslider -->
   	<script type="text/javascript">
       jQuery('#slider').anythingSlider({
@@ -267,7 +266,5 @@
   		buildStartStop      : false,
       });
     </script>
-=======
->>>>>>> 2bf87eaeb39fe91c6c0e7e2da6a9d34c1bfb04e7
 </body>
 </html>

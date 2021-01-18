@@ -51,7 +51,7 @@
 <section class="bloque_notas--2_2_bb_4 py-6" style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
     <div class="container">
         <!-- Desktop block -->
-        <div class="d-none d-sm-none d-md-block">
+        <div class="d-none d-sm-none d-md-none d-lg-block">
             <div class="row">
 
                 <div class="col-12">
@@ -402,7 +402,7 @@
         <!-- TERMINA Desktop block -->
 
         <!-- Movile slide -->
-        <div class="d-sm-block d-md-none">
+        <div class="d-block d-sm-block d-md-block d-lg-none">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
@@ -416,7 +416,7 @@
                             </a>
                         </h2>
                         <?php if ($mostraDescr): ?>
-                            <p class="encabezado-descripcion"><?php echo strip_tags($descripcion); ?></p>
+                            <p class="encabezado-descripcion text-white"><?php echo strip_tags($descripcion); ?></p>
                         <?php endif ?>
                     </div>
                 </div>
@@ -477,9 +477,9 @@
                                 </div>
                             </a>
                             <!-- ICONOS COMPARTIR -->
-                            <div class="d-sm-none">
-                                <?php require get_template_directory() . '/inc/iconos-compartir.php'; ?>
-                            </div>
+                            <!-- <div class="d-sm-none">
+                                </?php require get_template_directory() . '/inc/iconos-compartir.php'; ?>
+                            </div> -->
                         </div>
                     <?php
                         endwhile;

@@ -39,7 +39,7 @@ switch ($show_time_ago == 1) {
 			// echo "</pre>";
 			// $columna = $columna[0];
 
-			echo "<div class='col-6 categoria'>";
+			echo "<div class='col-7 categoria'>";
 			// for ($i=0; $i<count($themes) ; $i++) {
 			// 	$theme_link  = get_category_link($themes[$i]->term_id);
 			// 	echo $theme_name = '
@@ -49,10 +49,15 @@ switch ($show_time_ago == 1) {
 			// 		<span class="side-triangle" style="background-color:#' . $tax_color . '!important;""></span>';
 			// }
 			$section_link  = get_category_link($columna[0]->term_id);
+			// echo $theme_name = '
+			// 	<a class="text-white p-0 mr-1" href="'.esc_url($section_link).'">
+			// 		<small>'.$columna[0]->name.'</small>
+			// 	</a>
+			// 	<span class="side-triangle"></span>';
 			echo $theme_name = '
-				<a class="text-white p-0 mr-1" href="'.esc_url($section_link).'">
+				<span class="holder text-white p-0 mr-1">
 					<small>'.$columna[0]->name.'</small>
-				</a>
+				</span>
 				<span class="side-triangle"></span>';
 			// for ($i=0; $i<count($columna) ; $i++) {
 			// 	$section_link  = get_category_link($columna[$i]->term_id);

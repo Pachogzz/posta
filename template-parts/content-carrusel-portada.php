@@ -56,7 +56,10 @@ switch ($estilo_carusel) {
 				}else {
 					//print 'is desktop';
 					$featured_img_url = $featured_img_url_large;
-				}
+				}                                   // Si no hay Imagen destacada hace fallback a la imagen definida en opciones del tema
+                if (empty($featured_img_url)){
+                    $featured_img_url = get_theme_mod('default_news_image');
+                }
 				//obtiene obtiene la categoria principal
 				$categoria = get_primary_category(get_the_ID(), 'category');
 				// categoria principal con el yoast
@@ -82,15 +85,6 @@ switch ($estilo_carusel) {
 							<div class="container row mx-auto">
 							<!-- <div class="row justify-content-center"> -->
 								<div class="col-md-12 col-lg-10 px-3 px-md-4">
-									<div class="w-100">
-										<!-- <pre class="text-white">
-										<//?php 
-											print_r($categoria);
-											echo "<hr>";
-											echo $tax_color;
-										 ?>
-										</pre> -->
-									</div>
 									<!-- Icono tipo de contenido -->
 									<?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
 									<!-- Título de nota -->

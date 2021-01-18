@@ -88,11 +88,11 @@ label { width: 100%; }
 
 /**/
 .archive .encabezado-titulo{ display: inline-block; padding: 10px; background: #f20e00; }
-.archive .encabezado-titulo .nombre-sitio{ display: inline-block; background-color: #fff; color: #1e1e1e; padding: 5px 10px; }
+.archive .encabezado-titulo .nombre-sitio{ display: inline-block; background-color: #1e1e1e; color: #fff; padding: 5px 10px; }
 .archive .encabezado-titulo .nombre-taxonomia{ display: inline-block; color: #fff; padding: 5px 10px; }
 
 .encabezado-titulo{ display: inline-block; padding: 10px; background: #f20e00; }
-.encabezado-titulo .nombre-sitio{ display: inline-block; background-color: #fff; color: #1e1e1e; padding: 5px 10px; }
+.encabezado-titulo .nombre-sitio{ display: inline-block; background-color: #1e1e1e; color: #fff; padding: 5px 10px; }
 .encabezado-titulo .nombre-taxonomia{ display: inline-block; color: #fff; padding: 5px 10px; }
 /**/
 
@@ -576,6 +576,7 @@ transition: all 500ms ease; }
 [class*="bloque_notas--"] .meta .categoria a:visited,
 .c-item .meta .categoria a,
 .c-item .meta .categoria a:visited,
+.archive [id*="post-"] .meta .categoria .holder,
 .archive [id*="post-"] .meta .categoria a,
 .archive [id*="post-"] .meta .categoria a:visited{ 
   display: block; 
@@ -630,10 +631,11 @@ transition: all 500ms ease; }
 
 /* Anything Slider Custom CSS */
 .anythingSlider{}
-.anythingSlider .arrow{}
-.anythingSlider .arrow a{}
 .anythingSlider .arrow{ font-family: "Font Awesome 5 Free"; font-style: normal; font-variant: normal; text-rendering: auto; line-height: 1; font-weight: 900; }
-.anythingSlider .arrow::before{ display: block; color: #fff; }
+.anythingSlider .arrow a{ background: none !important; }
+.anythingSlider .arrow::before{ display: block; color: #fff; font-size: 50px; }
+.anythingSlider .arrow.back {  }
+.anythingSlider .arrow.forward { right: 0; }
 .anythingSlider .arrow.back::before { content: "\f053" }
 .anythingSlider .arrow.forward::before{ content: "\f054"; }
 

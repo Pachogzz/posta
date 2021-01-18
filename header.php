@@ -173,7 +173,7 @@
 					
 					<div class="col-md-1 d-none d-sm-none d-md-block">
 						<?php if ( has_nav_menu( 'menu-vertical-oculto' ) ): ?>
-						<span class="mt-5" id="openSideNav" onclick="openNav()">
+						<span class="mt-3" id="openSideNav" onclick="openNav()">
 							<i class="fas fa-bars fa-2x text-white"></i>
 						</span>
 						<?php endif; ?>

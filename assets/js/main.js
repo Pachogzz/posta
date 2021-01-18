@@ -115,7 +115,7 @@ jQuery(document).ready(function() {
 	$( ".carrusel-portada-verticales .owl-stage .owl-item > div .contenedor-media" ).addClass('h-100');
 	$( ".carrusel-portada-verticales .owl-stage .owl-item > div .contenedor-media .link-a-nota" ).addClass('h-100');
 	
-	$( ".carrusel-portada-cuadricula .owl-stage .owl-item:not(.active)" ).remove();
+	// $( ".carrusel-portada-cuadricula .owl-stage .owl-item:not(.active)" ).remove();
 	$( ".carrusel-portada-cuadricula" ).parent().addClass('vh-70');
 	$( ".carrusel-portada-cuadricula" ).addClass('h-100');
 	$( ".carrusel-portada-cuadricula .owl-stage-outer" ).addClass('h-100');
@@ -130,6 +130,32 @@ jQuery(document).ready(function() {
 	$( ".carrusel-portada-cuadricula .owl-stage .owl-item > div .contenedor-media" ).addClass('h-100');
 	$( ".carrusel-portada-cuadricula .owl-stage .owl-item > div .contenedor-media .link-a-nota" ).addClass('h-100');
 	
+	if($(window).innerWidth() <= 768) {
+		$( ".carrusel-portada-verticales" ).parent().removeClass('vh-70');
+		$( ".carrusel-portada-verticales" ).removeClass('h-100');
+		$( ".carrusel-portada-verticales .owl-stage-outer" ).removeClass('h-100');
+		$( ".carrusel-portada-verticales .owl-stage" ).removeClass('h-100');
+		$( ".carrusel-portada-verticales .owl-stage .owl-item" ).removeClass('h-100');
+		$( ".carrusel-portada-verticales .owl-stage .owl-item > div" ).removeClass('h-100');
+		$( ".carrusel-portada-verticales .owl-stage .owl-item > div .contenedor-media" ).removeClass('h-100');
+		$( ".carrusel-portada-verticales .owl-stage .owl-item > div .contenedor-media .link-a-nota" ).removeClass('h-100');
+
+		$( ".carrusel-portada-cuadricula" ).parent().removeClass('vh-70');
+		$( ".carrusel-portada-cuadricula" ).removeClass('h-100');
+		$( ".carrusel-portada-cuadricula .owl-stage-outer" ).removeClass('h-100');
+		$( ".carrusel-portada-cuadricula .owl-stage" ).removeClass('row mx-0 h-100 w-100');
+
+		$( ".carrusel-portada-cuadricula .owl-stage > .owl-item.active" ).removeClass('h-100');
+		$( ".carrusel-portada-cuadricula .owl-stage .owl-item.active" ).removeClass('col-md-6 mx-0 px-0');
+		$( ".carrusel-portada-cuadricula .owl-stage > .owl-item.active ~ .owl-item.active" ).removeClass('h-50').addClass('h-100');
+		$( ".carrusel-portada-cuadricula .owl-stage .owl-item.active:nth-child(3)" ).removeClass('last');
+
+		$( ".carrusel-portada-cuadricula .owl-stage .owl-item > div" ).removeClass('mx-0 px-0 h-100');
+		$( ".carrusel-portada-cuadricula .owl-stage .owl-item > div .contenedor-media" ).removeClass('h-100');
+		$( ".carrusel-portada-cuadricula .owl-stage .owl-item > div .contenedor-media .link-a-nota" ).removeClass('h-100');
+	} else {
+	   // Something here
+	}
 });
 
 // ---------------------------------------------------------------
@@ -400,7 +426,14 @@ $('.carrusel-portada-cuadricula').owlCarousel({
 	margin: 0,
 	responsiveClass: true,
 	// autoplayTimeout: 8000,
-	items: 3
+	responsive: {
+		768: {
+			items: 1
+		},
+		992: {
+			items: 3,
+		}
+	}
 });
 $('.carrusel-opinion').owlCarousel({
 	mouseDrag: false,

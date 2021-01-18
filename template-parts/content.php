@@ -49,32 +49,22 @@ switch ($show_time_ago == 1) {
 			// $sections = $sections[0];
 			if(!empty($themes)){
 				echo "<div class='col-6 categoria' style='background-color:#" . $tax_color . "!important;'>";
-				// for ($i=0; $i<count($themes) ; $i++) {
-				// 	$theme_link  = get_category_link($themes[$i]->term_id);
-				// 	echo $theme_name = '
-				// 		<a class="text-white p-0 mr-1" href="'.esc_url($theme_link).'">
-				// 			<small>'.$themes[$i]->name.'</small>
-				// 		</a>
-				// 		<span class="side-triangle" style="background-color:#' . $tax_color . '!important;""></span>';
-				// }
 				$section_link  = get_category_link($sectionsChild);
 				echo $theme_name = '
 					<a class="text-white p-0 mr-1" href="'.esc_url($section_link).'">
 						<small>'.$sectionsName.'</small>
 					</a>
 					<span class="side-triangle" style="background-color:#' . $tax_color . '!important;"></span>';
-				// for ($i=0; $i<count($sections) ; $i++) {
-				// 	$section_link  = get_category_link($sections[$i]->term_id);
-				// 	echo $theme_name = '
-				// 		<a class="text-white p-0 mr-1" href="'.esc_url($section_link).'">
-				// 			<small>'.$sections[$i]->name.'</small>
-				// 		</a>
-				// 		<span class="side-triangle" style="background-color:#' . $tax_color . '!important;""></span>';
-				// }
 				echo "</div>";
 			} else {
-				// echo "<div class='categoria'>";
-				// echo "</div>";
+				echo "<div class='col-6 categoria' style='background-color:#" . $tax_color . "!important;'>";
+				$section_link  = get_category_link($sectionsChild);
+				echo $theme_name = '
+					<a class="text-white p-0 mr-1" href="'.esc_url($section_link).'">
+						<small>'.$sectionsName.'</small>
+					</a>
+					<span class="side-triangle" style="background-color:#' . $tax_color . '!important;"></span>';
+				echo "</div>";
 			}?>
             <div class="col hora text-right">
                 <small><?php echo $haceTiempo; ?></small>

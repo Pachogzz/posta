@@ -66,19 +66,24 @@ $GLOBALS['gallery']=  $gallery;
 		</div>
 
 		<!-- NOTA -->
-		<div class="container mt-6 container-lg<<<">
+		<div class="container p-6 bg-white">
 			<div class="row justify-content-center align-items-start">
 				<!-- Contenido principal -->
-				<div class="col-lg px-4 pl-lg-3 pr-lg-6">
+				<div class="col-12 col-lg-8 px-4 pl-lg-3 pr-lg-6">
 					<!-- Share this -->
 					<div class="sharethis-inline-share-buttons mb-3"></div>
 
 					<!-- Autor de la nota -->
 					<p class="autor-de-nota">
-						Por
-						<?php global $post; $author_id = $post->post_author;
-							$author_name = get_the_author_meta( 'display_name', $author_id );
-							echo $author_name;
+						Por: 
+						<?php 
+						$fuente = get_field('fuente');
+						$fuenteLink = get_term_link($fuente->slug, 'fuente');
+						if (!empty($fuente)) {
+							echo "<a href=".$fuenteLink.">".$fuente->name."</a>";
+						}else{
+							echo "POSTA REDACCIÓN";
+						}
 						?>
 					</p>
 					<!-- Fecha de publicación -->
@@ -141,16 +146,16 @@ $GLOBALS['gallery']=  $gallery;
 						?>
 					</div>
 					<!-- PUBLICIDAD -->
-					<div class="modulo-publicidad border mx-auto" style="width: 302px;">
+					<!-- <div class="modulo-publicidad border mx-auto" style="width: 302px;">
 						<img src="http://fakeimg.pl/300x600/333/ccc/?text=HalfPage" class="img-fluid d-block mb-0" alt="Publicidad...">
 						<span>Publicidad</span>
-					</div>
+					</div> -->
 					<?php get_sidebar('sidebar-1') ?>
 					<!-- PUBLICIDAD -->
-					<div class="modulo-publicidad border mx-auto mt-4" style="width: 302px;">
+					<!-- <div class="modulo-publicidad border mx-auto mt-4" style="width: 302px;">
 						<img class="img-fluid" src="https://via.placeholder.com/300x600?text=halfpage">
 						<span>Publicidad</span>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
@@ -159,7 +164,7 @@ $GLOBALS['gallery']=  $gallery;
 		<div class="container mt-8">
 			<div class="row">
 				<div class="col">
-					<div class="border">
+					<div class="">
 						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90">
 						<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
 					</div>
@@ -174,7 +179,7 @@ $GLOBALS['gallery']=  $gallery;
 					<!-- ENCABEZADO DE CARRUSEL -->
 					<div class="encabezado">
 						<h3 class="encabezado-titulo">
-							<span class="d-inline-block bg-white text-dark px-2">Contenido relacionado en</span> <a class="text-white" href="<?php echo esc_url($category_link); ?>"><?php echo $category_name;?></a>
+							<span class="d-inline-block bg-dark text-white px-2">Contenido relacionado</span> <a class="text-white" href="<?php echo esc_url($category_link); ?>"><?php echo $category_name;?></a>
 						</h3>
 						<?php if(!empty($category_description)){ echo '<p class="encabezado-descripcion">'.$category_description.'</p>'; } ?>
 					</div>
@@ -250,11 +255,11 @@ $GLOBALS['gallery']=  $gallery;
 						} ?>
 						<!-- Link ver más notas -->
 						<div class="c-item">
-							<a class="item-ver-mas" href="</?php echo esc_url($category_link); ?>" title="Ver más noticias de </?php echo $category_name;?>">
+							<a class="item-ver-mas h-100" href="</?php echo esc_url($category_link); ?>" title="Ver más noticias de </?php echo $category_name;?>">
 								<div class="contenedor-media">
 									<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center">
-										<p class="h5 m-0">Ver más noticias de</p>
-										<h4 class="encabezado-titulo flecha"><?php echo $category_name;?></h4>
+										<p class="h5 m-0">Ver más</p>
+										<!-- <h4 class="encabezado-titulo flecha"><?php echo $category_name;?></h4> -->
 									</div>
 								</div>
 							</a>
