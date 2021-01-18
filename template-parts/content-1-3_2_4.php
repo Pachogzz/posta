@@ -49,6 +49,7 @@
     $tax_color = get_term_meta( $categoria->term_id, 'category_color', true );
 
 ?>
+<!-- <?php echo basename(__FILE__) . '<br>'; ?> -->
 <section class="bloque_notas--1-3_2_4  py-6" style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
     <div class="container">
         <!-- Desktop block -->
@@ -72,12 +73,35 @@
                     </div>
                 </div>
                 
-                <div class="row align-self-stretch">
+
+
+                <style type="text/css">
+                    #slider_1_3_2_4{
+                        width:1200px;
+                        margin:0px;
+                        border-top: 0px;
+                        border-bottom: 0px;
+                        border:0px !important;
+                        padding: 0px;
+                        height: 1200px;
+                    }
+                    #slider_1_3_2_4 li{
+                        display:flex;
+                        height:1200px;
+                    }
+                </style>
+
+                <ul id="slider_1_3_2_4">
+                <!-- <div class="row align-self-stretch"> -->
                 <?php
+
+                    $cada8 = 0;
+
                     $args = array (
                         'post_type'      => 'post',
                         'category'      => $categoria->term_id,
-                        'posts_per_page' => 8,
+                        // 'posts_per_page' => 8,
+                        'posts_per_page' => -1,
                         'orderby'        => 'date',
                         'order'          => 'DESC'
                     );
@@ -102,7 +126,17 @@
                             if (empty($featured_img_url)){
                                 $featured_img_url = get_theme_mod('default_news_image');
                             }
+
+                            $cada8++;
+
+                            if($cada8 == 1){
+                                ?>
+                                <li class="row">
+                                <?php
+                            }
                 ?>
+                        
+                        
                             <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
                                 <div class="row meta">
                                     <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
@@ -123,14 +157,36 @@
                                     </div>
                                 </a>
                             </div>
+                        
                             <?php
+
+                            if($cada8 == 8){
+                                ?>
+                                </li>
+                                <?php
+                                $cada8 = 0;
+                            }
+
                         endwhile;
                     endif;
                     wp_reset_postdata();
                     //unset($GLOBALS['carrusel_seccion']);
                 ?>
-                </div>
-                
+                </ul>
+                </div><!-- /.row -->
+            
+            <!-- Anythingslider  -->
+            <script type="text/javascript">
+              jQuery('#slider_1_3_2_4').anythingSlider({
+                // resizeContents      : false,
+                buildArrows         : true,
+                autoPlay            : false,
+                buildNavigation     : false,
+                buildStartStop      : false,
+                expand              : false
+              });
+            </script>
+
                 <div class="col-12 text-right">
                     <a class="btn btn-primary btn-lg" href="<?php echo $link; ?>">
                         <span class="nombre-taxonomia font-weight-bold lead">Ver más contenido <i class="fas fa-arrow-right"></i></span>

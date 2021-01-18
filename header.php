@@ -55,7 +55,7 @@
 	        padding:0px !important;
 	        margin:0px !important;
 	    }
-	    #slider{
+	    /*#slider{
 	        width:1200px;
 	        margin:0px;
 	        border-top: 0px;
@@ -67,7 +67,7 @@
 	    #slider li{
 	        display:flex;
 	        height:1200px;
-	    }
+	    }*/
 	    .anythingSlider-default .arrow a{
 	    	margin-left:-30px;
 	    }

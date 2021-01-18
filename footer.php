@@ -254,15 +254,5 @@
       </script>
   	<?php } unset($GLOBALS['gallery']); ?>
 
-  	<!-- Anythingslider -->
-  	<script type="text/javascript">
-      jQuery('#slider').anythingSlider({
-       	resizeContents      : false,
-       	buildArrows         : true,
-       	autoPlay            : false,
-  		buildNavigation     : false,
-  		buildStartStop      : false,
-      });
-    </script>
 </body>
 </html>

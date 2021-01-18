@@ -1,6 +1,6 @@
 <?php 
 /**
- * Template part for displaying 10 notes and 1 half page banner
+ * Template part for displaying 7 notes two sizes no banner
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -49,11 +49,12 @@
     $tax_color = get_term_meta( $categoria->term_id, 'category_color', true );
 
 ?>
-<section class="bloque_notas--6_hp py-6" style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
+<section class="bloque_notas--2_bb_3_4_r py-6" style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
     <div class="container">
         <!-- Desktop block -->
         <div class="d-none d-sm-none d-md-none d-lg-block">
             <div class="row">
+                
                 <div class="col-12">
                     <div class="encabezado">
                          <h2 class="encabezado-titulo" style="background-color:<?php echo $color; ?>;">
@@ -72,16 +73,32 @@
                     </div>
                 </div> 
 
-                <div class="col-12 col-lg-9">
-                    <div class="row">
+                <style type="text/css">
+                    #slider_1_6_2_4{
+                        width:1200px;
+                        margin:0px;
+                        border-top: 0px;
+                        border-bottom: 0px;
+                        border:0px !important;
+                        padding: 0px;
+                        height: 1200px;
+                    }
+                    #slider_1_6_2_4 li{
+                        display:flex;
+                        height:1200px;
+                    }
+                </style>
+
+                <ul id="slider_1_6_2_4">
 
                         <?php
                             $ids = array();
                             $i = 0;
+                            $pos=0;
                             $args = array (
                                 'post_type'      => 'post',
                                 'category'      => $categoria->term_id,
-                                'posts_per_page' => 6,
+                                'posts_per_page' => 1,
                                 'orderby'        => 'date',
                                 'order'          => 'DESC'
                             );
@@ -106,10 +123,25 @@
                             if (empty($featured_img_url)){
                                 $featured_img_url = get_theme_mod('default_news_image');
                             }
+
+                            //Si pos llega a 8 le asigna el valor 1, si es menor lo sigue incrementando
+                            if($pos >= 8){
+                                $pos = 1;   
+                            }else{
+                                $pos++;
+                            }
+
+                            echo "<!-- ".$pos." -->";
+
+                            if($pos==1){
+
                         ?>
-                                    <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-4 nota">
+
+                <div class="col-12 col-lg-9">
+                    <div class="row h-100">
+                                    <div id="post-<?php the_ID(); ?>" class="col-12 nota large double">
                                         <div class="row meta">
-                                            <div class="col-12 col-md-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                            <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                                                 <a class="text-white" href="<?php echo $link; ?>">
                                                     <small><?php echo $categoria->name; ?></small>
                                                 </a>
@@ -119,10 +151,9 @@
                                                 <small><?php echo $haceTiempo; ?></small>
                                             </div>
                                         </div>
-                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
-                                        <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                            <div class='imagen-nota-container'>
-                                                <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                        <a class="h-100" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                            <div class='imagen-nota-container h-100'>
+                                                <div class="imagen-nota h-100" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
                                                 <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
                                             </div>
                                         </a>
@@ -136,16 +167,14 @@
                         ?>
                     </div>
                 </div>
-                <div class="col-12 col-lg-3 nota modulo-publicidad">
-                    <img src="http://fakeimg.pl/300x600/333/ccc/?text=HalfPage" class="img-fluid d-block mb-0" alt="Publicidad...">
-                    <span>Publicidad</span>
-                </div>
+                <div class="col-12 col-lg-3">
+                    <div class="row align-self-stretch">
                 <?php
                     $args = array (
                         'post__not_in'      => $ids,
                         'post_type'      => 'post',
                         'category'      => $categoria->term_id,
-                        'posts_per_page' => 4,
+                        'posts_per_page' => 2,
                         'orderby'        => 'date',
                         'order'          => 'DESC'
                     );
@@ -171,39 +200,105 @@
                                 $featured_img_url = get_theme_mod('default_news_image');
                             }
                 ?>
-                <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
-                    <div class="row meta">
-                        <div class="col-12 col-md-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                            <a class="text-white" href="<?php echo $link; ?>">
-                                <small style="background-color: <?php echo "#" . $tax_color; ?> !important;"><?php echo $categoria->name; ?></small>
-                            </a>
-                            <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                    <div id="post-<?php the_ID(); ?>" class="col-12 nota">
+                        <div class="row meta">
+                            <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                <a class="text-white" href="<?php echo $link; ?>">
+                                    <small><?php echo $categoria->name; ?></small>
+                                </a>
+                                <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                            </div>
+                            <div class="col hora text-right">
+                                <small><?php echo $haceTiempo; ?></small>
+                            </div>
                         </div>
-                        <div class="col hora text-right">
-                            <small><?php echo $haceTiempo; ?></small>
-                        </div>
-                    </div>
                         <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
-                    <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                        <div class='imagen-nota-container'>
-                            <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                            <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
-                        </div>
-                    </a>
-                </div>
+                        <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                            <div class='imagen-nota-container'>
+                                <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                            </div>
+                        </a>
+                    </div>
                 <?php
+                        $ids[$i] = get_the_ID();
+                        $i++;
                         endwhile;
                     endif;
                     wp_reset_postdata();
                 ?>
+                    </div>
+                </div>
+                <div class="col-12 mt-6">
+                    <div class="row align-self-stretch">
+                        <?php
+                            $args = array (
+                                'post__not_in'      => $ids,
+                                'post_type'      => 'post',
+                                'category'      => $categoria->term_id,
+                                'posts_per_page' => 4,
+                                'orderby'        => 'date',
+                                'order'          => 'DESC'
+                            );
+
+                            $the_query = new WP_Query( $args, 'objects');
+                            if ( $the_query->have_posts() ) :
+                                while ( $the_query->have_posts() ) :
+                                    $the_query->the_post(); 
+                                    require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
+                                    // De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
+                                    if ($mobile_browser > 0) {
+                                        //print 'is mobile';
+                                        $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '720x405');
+                                    }elseif ($tablet_browser > 0) {
+                                        //print 'is tablet';
+                                        $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '1100x618');
+                                    }else {
+                                        //print 'is desktop';
+                                        $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
+                                    }
+                            // Si no hay Imagen destacada hace fallback a la imagen definida en opciones del tema
+                            if (empty($featured_img_url)){
+                                $featured_img_url = get_theme_mod('default_news_image');
+                            }
+                        ?>
+                            <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
+                                <div class="row meta">
+                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                        <a class="text-white" href="<?php echo $link; ?>">
+                                            <small><?php echo $categoria->name; ?></small>
+                                        </a>
+                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                                    </div>
+                                    <div class="col hora text-right">
+                                        <small><?php echo $haceTiempo; ?></small>
+                                    </div>
+                                </div>
+                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
+                                <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                    <div class='imagen-nota-container'>
+                                        <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                        <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php
+                                endwhile;
+                            endif;
+                            wp_reset_postdata();
+                        ?>
+                    </div>
+                </div>
+                
+
+            </ul>
+
 
                 <div class="col-12 text-right">
                     <a class="btn btn-primary btn-lg" href="<?php echo $link; ?>">
                         <span class="nombre-taxonomia font-weight-bold lead">Ver más contenido <i class="fas fa-arrow-right"></i></span>
                     </a>
                 </div>
-
-
             </div>
         </div>
         <!-- Desktop block -->
@@ -263,7 +358,7 @@
                             <div class="row meta">
                                 <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                                     <a class="text-white" href="<?php echo $link; ?>">
-                                        <small style="background-color: <?php echo "#" . $tax_color; ?> !important;"><?php echo $categoria->name; ?></small>
+                                        <small><?php echo $categoria->name; ?></small>
                                     </a>
                                     <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                 </div>
@@ -290,13 +385,8 @@
                     ?>
                     </div>
                 </div>
-                <div class="col-12 nota modulo-publicidad">
-                    <img src="http://fakeimg.pl/300x600/333/ccc/?text=HalfPage" class="img-fluid d-block mb-0" alt="Publicidad...">
-                    <span>Publicidad</span>
-                </div>
             </div>
         </div>
         <!-- Movile slide -->
-
     </div>
 </section>
