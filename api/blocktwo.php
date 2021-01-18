@@ -42,6 +42,9 @@ add_action( 'rest_api_init', function () {
 
             $imagen = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' )[0];
 
+            $video = get_post_meta($post->ID, 'video_youtube', true);
+            $imagenVideo = wp_get_attachment_image_src(get_post_meta($post->ID, 'url_imagen_video', true), 'full')[0];
+
             if($imagen){
                 $imagen = $imagen;
             }else{
@@ -52,7 +55,9 @@ add_action( 'rest_api_init', function () {
             $dataPosts[$i]['titulo'] = $post->post_title;
             $dataPosts[$i]['imagen'] = $imagen;
             $dataPosts[$i]['fecha'] = timeDate($post->post_date);
-            $data[$i]['url'] = get_permalink($post->ID);
+            $dataPosts[$i]['url'] = get_permalink($post->ID);
+            $dataPosts[$i]['video'] = $video;
+            $dataPosts[$i]['imagenVideo'] = $imagenVideo;
 
             $i++;
         }

@@ -31,6 +31,9 @@ add_action( 'rest_api_init', function () {
         $term = get_term( get_option('b5_categoria'), 'category' );
         $color = get_term_meta( $term->term_id, 'category_color', true );
 
+        $video = get_post_meta($post->ID, 'video_youtube', true);
+        $imagenVideo = wp_get_attachment_image_src(get_post_meta($post->ID, 'url_imagen_video', true), 'full')[0];
+
         $category = array(
             'id' => $term->term_id,
             'nombre' => $term->name,
@@ -52,7 +55,9 @@ add_action( 'rest_api_init', function () {
             $dataPosts[$i]['titulo'] = $post->post_title;
             $dataPosts[$i]['imagen'] = $imagen;
             $dataPosts[$i]['fecha'] = timeDate($post->post_date);
-            $data[$i]['url'] = get_permalink($post->ID);
+            $dataPosts[$i]['url'] = get_permalink($post->ID);
+            $dataPosts[$i]['video'] = $video;
+            $dataPosts[$i]['imagenVideo'] = $imagenVideo;
 
             $i++;
         }
