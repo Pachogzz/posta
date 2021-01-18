@@ -32,6 +32,7 @@ function add_custom_fields() {
 
         $video = get_post_meta($object['id'], 'video_youtube', true);
         $imagenVideo = wp_get_attachment_image_src(get_post_meta($object['id'], 'url_imagen_video', true), 'full')[0];
+        $audio = get_post_meta($object['id'], 'audio_news', true);
 
 
 		$datos = array(
@@ -42,6 +43,7 @@ function add_custom_fields() {
             'color' => $color,
             'video' => $video,
             'imagenVideo' => $imagenVideo,
+            'audio' => $audio,
 		);
 
 		return $datos;
