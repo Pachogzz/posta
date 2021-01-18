@@ -96,7 +96,7 @@ label { width: 100%; }
 .encabezado-titulo .nombre-taxonomia{ display: inline-block; color: #fff; padding: 5px 10px; }
 /**/
 
-.encabezado-descripcion { line-height: 1.2; color: #5e5e5e; margin-bottom: .5rem; }
+.encabezado-descripcion { font-size: 1.25rem; font-weight: 400; line-height: 1.2; color: #5e5e5e; margin-bottom: .5rem; }
 
 /*.encabezado-titulo a, .titulo-de-nota a { color: #1e1e1e; }*/
 .encabezado-titulo a, .titulo-de-nota a { color: #fff; }
@@ -485,7 +485,7 @@ footer a, footer a:hover { color: #fff; }
 #siteHEader::after{ content: ""; display: block; position: absolute; width: 350px; bottom: -30px; left: 50%; margin-left: -175px; border-top: 30px solid #f20e00; border-left: 175px solid transparent; border-right: 175px solid transparent; z-index: 9; }
 
 /* Side Navigation */
-#openSideNav{ display: inline-block; position: absolute; top: 50%; margin-top: -5% !important; cursor: pointer; z-index: 999;
+#openSideNav{ display: inline-block; cursor: pointer; z-index: 999;
 -webkit-transition: all 500ms ease;
 -moz-transition: all 500ms ease;
 -ms-transition: all 500ms ease;
@@ -508,7 +508,7 @@ transition: all 500ms ease; }
 }
 .outerNav { display:none; position:absolute; left:0; top:0; width:100%; height:100%; overflow:hidden; background-color: rgba(0,0,0,.5); z-index: 9999; -webkit-transition: all 350ms ease-in-out !important; -moz-transition: all 350ms ease-in-out !important; -ms-transition: all 350ms ease-in-out !important; -o-transition: all 350ms ease-in-out !important; transition: all 350ms ease-in-out !important; }
 
-/* Home blocks */
+/* Bloques de contenido */
 [class*="bloque_notas--"]{
   background-position: center center;
   background-size: cover;
@@ -628,6 +628,15 @@ transition: all 500ms ease; }
 [class*="bloque_notas--"] .nota .imagen-nota-container{ -webkit-transition: all 500ms ease; -moz-transition: all 500ms ease; -ms-transition: all 500ms ease; -o-transition: all 500ms ease; transition: all 500ms ease; }
 [class*="bloque_notas--"] .nota .imagen-nota-container:hover{ opacity: .75; -webkit-transition: all 500ms ease; -moz-transition: all 500ms ease; -ms-transition: all 500ms ease; -o-transition: all 500ms ease; transition: all 500ms ease; }
 
+/* Anything Slider Custom CSS */
+.anythingSlider{}
+.anythingSlider .arrow{}
+.anythingSlider .arrow a{}
+.anythingSlider .arrow{ font-family: "Font Awesome 5 Free"; font-style: normal; font-variant: normal; text-rendering: auto; line-height: 1; font-weight: 900; }
+.anythingSlider .arrow::before{ display: block; color: #fff; }
+.anythingSlider .arrow.back::before { content: "\f053" }
+.anythingSlider .arrow.forward::before{ content: "\f054"; }
+
 /* Search form */
 .search-form{ position: relative; }
 .search-form .search-field{}
@@ -638,20 +647,6 @@ transition: all 500ms ease; }
 /*Single Notas*/
 .titulo-principal-nota{ position: relative; width: 80%; margin: -60px auto 0 !important; }
 .titulo-principal-nota::after{ content: ""; display: block; position: absolute; bottom:-30px; left: 50%; margin-left: -50px; border-top: 30px solid #1e1e1e; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: none; }
-
-/* Bloques de contenido */
-  /* 2_bb_4_4 */
-  .bloque_notas--2_bb_4_4 .nota:first-child{  }
-
-  /* 2_hp_3_4 */
-  .bloque_notas--2_hp_3_4 .inner-row .nota:nth-child(1){  }
-
-  /* 2_2_bb_4 */
-  .bloque_notas--2_2_bb_4 .inner-row .nota:nth-child(1){  }
-
-  /* billb_1_2_4 */
-  .bloque_notas--billb_1_2_4 .nota:nth-child(3){  }
-  .bloque_notas--billb_1_2_4 .nota:nth-child(4){  }
 
 /* CSS classes Extensions */
 .vh-50{ height: 50vh !important; }
@@ -681,7 +676,7 @@ transition: all 500ms ease; }
     z-index: 999;
   }
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
+@media (min-width: 667px) {
   html::before{
     content: "SM";
     display: block;
@@ -693,6 +688,13 @@ transition: all 500ms ease; }
     left: 0;
     padding: 10px;
     z-index: 999;
+  }
+  .logotipo-sitio img{
+    max-height: 100px;
+    width: auto;
+  }
+  .logotipo-sitio h4{
+    font-size: 1.2rem;
   }
 }
 /* Medium devices (tablets, 768px and up) */
