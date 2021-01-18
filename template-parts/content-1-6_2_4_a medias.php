@@ -1,6 +1,6 @@
 <?php 
 /**
- * Template part for displaying 5 notes two sizes no banner
+ * Template part for displaying 7 notes two sizes no banner
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -49,7 +49,8 @@
     $tax_color = get_term_meta( $categoria->term_id, 'category_color', true );
 
 ?>
-<section class="bloque_notas--1-8_4 py-6" style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
+<!-- <?php echo basename(__FILE__); ?> -->
+<section class="bloque_notas--2_bb_3_4_r py-6" style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
     <div class="container">
         <!-- Desktop block -->
         <div class="d-none d-sm-none d-md-none d-lg-block">
@@ -73,179 +74,250 @@
                     </div>
                 </div> 
 
-                <style type="text/css">
-                    #slider_1_8_4{
-                        width:1200px;
-                        margin:0px;
-                        border-top: 0px;
-                        border-bottom: 0px;
-                        border:0px !important;
-                        padding: 0px;
-                        height: 1200px;
-                    }
-                    #slider_1_8_4 li{
-                        display:flex;
-                        height:1200px;
-                    }
-                </style>
+                        <?php
 
-                <ul id="slider_1_3_2_4">
+                            $ids = array();
+                            $pos = 0;
+                            $args = array (
+                                'post_type'      => 'post',
+                                'cat'      => $categoria->term_id,
+                                'posts_per_page' => -1,
+                                'orderby'        => 'date',
+                                'order'          => 'DESC'
+                            );
 
-                <?php
-                    $ids = array();
-                    $i = 0;
-                    $pos = 0;
-                    $args = array (
-                        'post_type'      => 'post',
-                        'cat'      => $categoria->term_id,
-                        'posts_per_page' => -1,
-                        'orderby'        => 'date',
-                        'order'          => 'DESC'
-                    );
+                            $the_query = new WP_Query( $args );
+                            if ( $the_query->have_posts() ) :
 
-                    $the_query = new WP_Query( $args, 'objects');
-                    if ( $the_query->have_posts() ) :
-                        while ( $the_query->have_posts() ) :
-                            $the_query->the_post(); 
-                            require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
-                            // De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
-                            if ($mobile_browser > 0) {
-                                //print 'is mobile';
-                                $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '720x405');
-                            }elseif ($tablet_browser > 0) {
-                                //print 'is tablet';
-                                $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '1100x618');
-                            }else {
-                                //print 'is desktop';
-                                $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
-                            }
+                            ?>
+
+                            <style type="text/css">
+                                #slider_1_6_2_4{
+                                    width:1200px;
+                                    margin:0px;
+                                    border-top: 0px;
+                                    border-bottom: 0px;
+                                    border:0px !important;
+                                    padding: 0px;
+                                    height: 1200px;
+                                }
+                                #slider_1_6_2_4 li{
+                                    display:flex;
+                                    height:1200px;
+                                }
+                            </style>
+
+                            <ul id="slider_1_6_2_4">
+
+                            <?php
+                                while ( $the_query->have_posts() ) :
+                                    $the_query->the_post(); 
+                                    require get_template_directory() . '/inc/detect_mobile_desktop.php'; 
+                                    // De acuerdo al dispositivo y espacio del contenedor de la Imagen destacada ponemos la medida más adecuada
+                                    if ($mobile_browser > 0) {
+                                        //print 'is mobile';
+                                        $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '720x405');
+                                    }elseif ($tablet_browser > 0) {
+                                        //print 'is tablet';
+                                        $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '1100x618');
+                                    }else {
+                                        //print 'is desktop';
+                                        $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
+                                    }
                             // Si no hay Imagen destacada hace fallback a la imagen definida en opciones del tema
                             if (empty($featured_img_url)){
                                 $featured_img_url = get_theme_mod('default_news_image');
                             }
 
-                            $pos++;
+                            //Si pos llega a 8 le asigna el valor 1, si es menor lo sigue incrementando
+                            if($pos >= 8){
+                                $pos = 1;   
+                            }else{
+                                $pos++;
+                            }
+
+                            echo "<!-- ".$pos." -->";
 
                             if($pos == 1){
-                                
-                ?>
-                
+
+                        ?>
                 <li>
-
-                            <div id="post-<?php the_ID(); ?>" class="col-12 nota large doble">
-                                <div class="row meta">
-                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                        <a class="text-white" href="<?php echo $link; ?>">
-                                            <small><?php echo $categoria->name; ?></small>
-                                        </a>
-                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
-                                    </div>
-                                    <div class="col hora text-right">
-                                        <small><?php echo $haceTiempo; ?></small>
-                                    </div>
-                                </div>
-                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
-                                <a class="" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                    <div class='imagen-nota-container '>
-                                        <div class="imagen-nota " style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                        <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
-                                    </div>
-                                </a>
-                            </div>
-
-                <?php
-                }elseif( $pos == 2 ){
-                ?>
-                            
-                <div class="col-12 mt-2">
-                    <div class="row align-self-stretch">
-                            <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
-                                <div class="row meta">
-                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                        <a class="text-white" href="<?php echo $link; ?>">
-                                            <small><?php echo $categoria->name; ?></small>
-                                        </a>
-                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
-                                    </div>
-                                    <div class="col hora text-right">
-                                        <small><?php echo $haceTiempo; ?></small>
-                                    </div>
-                                </div>
-                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
-                                <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                    <div class='imagen-nota-container'>
-                                        <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                        <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
-                                    </div>
-                                </a>
-                            </div>
-
-                <?php
-                }elseif( $pos == 3 || $pos == 4 ){
-                ?>
-
-                            <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
-                                <div class="row meta">
-                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                        <a class="text-white" href="<?php echo $link; ?>">
-                                            <small><?php echo $categoria->name; ?></small>
-                                        </a>
-                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
-                                    </div>
-                                    <div class="col hora text-right">
-                                        <small><?php echo $haceTiempo; ?></small>
-                                    </div>
-                                </div>
-                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
-                                <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                    <div class='imagen-nota-container'>
-                                        <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                        <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
-                                    </div>
-                                </a>
-                            </div>
-
-                <?php 
-                }elseif( $pos == 5 ){
-                ?>
-
-                        <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
-                                <div class="row meta">
-                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                        <a class="text-white" href="<?php echo $link; ?>">
-                                            <small><?php echo $categoria->name; ?></small>
-                                        </a>
-                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
-                                    </div>
-                                    <div class="col hora text-right">
-                                        <small><?php echo $haceTiempo; ?></small>
-                                    </div>
-                                </div>
-                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
-                                <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                    <div class='imagen-nota-container'>
-                                        <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                        <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
-                                    </div>
-                                </a>
-                            </div>
+                <div class="col-12 col-lg-9">
+                    <div class="row h-100">
                         
-                    </div> <!-- /.row .align-self-stretch -->
-                </div> <!-- /.col-12 .mt-2 -->
+                        <div id="post-<?php the_ID(); ?>" class="col-12 nota large double">
+                            <div class="row meta">
+                                <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                    <a class="text-white" href="<?php echo $link; ?>">
+                                        <small><?php echo $categoria->name; ?></small>
+                                    </a>
+                                    <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                                </div>
+                                <div class="col hora text-right">
+                                    <small><?php echo $haceTiempo; ?></small>
+                                </div>
+                            </div>
+                            <a class="h-100" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                <div class='imagen-nota-container h-100'>
+                                    <div class="imagen-nota h-100" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                    <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                </div>
+                            </a>
+                        </div>
+                                    
+                    </div>
+                </div>
+                
+                <?php
+                }elseif($pos == 2){
+                ?>
+
+                <div class="col-12 col-lg-3">
+                    <div class="row align-self-stretch">
+
+                        <div id="post-<?php the_ID(); ?>" class="col-12 nota">
+                            <div class="row meta">
+                                <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                    <a class="text-white" href="<?php echo $link; ?>">
+                                        <small><?php echo $categoria->name; ?></small>
+                                    </a>
+                                    <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                                </div>
+                                <div class="col hora text-right">
+                                    <small><?php echo $haceTiempo; ?></small>
+                                </div>
+                            </div>
+                            <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
+                            <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                <div class='imagen-nota-container'>
+                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                    <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                </div>
+                            </a>
+                        </div>
+
+                <?php
+                }elseif($pos == 3){
+                ?>
+
+                        <div id="post-<?php the_ID(); ?>" class="col-12 nota">
+                            <div class="row meta">
+                                <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                    <a class="text-white" href="<?php echo $link; ?>">
+                                        <small><?php echo $categoria->name; ?></small>
+                                    </a>
+                                    <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                                </div>
+                                <div class="col hora text-right">
+                                    <small><?php echo $haceTiempo; ?></small>
+                                </div>
+                            </div>
+                            <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
+                            <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                <div class='imagen-nota-container'>
+                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                    <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div> <!-- /.row -->
+                </div> <!-- /.col-12 -->
+
+                <?php
+                }elseif($pos == 4){
+                ?>
+
+                <div class="col-12 mt-6">
+                    <div class="row align-self-stretch">
+                        
+                            <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
+                                <div class="row meta">
+                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                        <a class="text-white" href="<?php echo $link; ?>">
+                                            <small><?php echo $categoria->name; ?></small>
+                                        </a>
+                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                                    </div>
+                                    <div class="col hora text-right">
+                                        <small><?php echo $haceTiempo; ?></small>
+                                    </div>
+                                </div>
+                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
+                                <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                    <div class='imagen-nota-container'>
+                                        <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                        <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                    </div>
+                                </a>
+                            </div>
+                   
+
+                <?php
+                }elseif( $pos == 5 || $pos == 6 || $pos == 7 ){
+                ?>
+
+                            <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
+                                <div class="row meta">
+                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                        <a class="text-white" href="<?php echo $link; ?>">
+                                            <small><?php echo $categoria->name; ?></small>
+                                        </a>
+                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                                    </div>
+                                    <div class="col hora text-right">
+                                        <small><?php echo $haceTiempo; ?></small>
+                                    </div>
+                                </div>
+                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
+                                <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                    <div class='imagen-nota-container'>
+                                        <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                        <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                    </div>
+                                </a>
+                            </div>
+
+                <?php
+                }elseif( $pos == 8 ){
+                ?>
+
+                            <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
+                                <div class="row meta">
+                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                                        <a class="text-white" href="<?php echo $link; ?>">
+                                            <small><?php echo $categoria->name; ?></small>
+                                        </a>
+                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                                    </div>
+                                    <div class="col hora text-right">
+                                        <small><?php echo $haceTiempo; ?></small>
+                                    </div>
+                                </div>
+                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
+                                <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                    <div class='imagen-nota-container'>
+                                        <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                        <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                    </div>
+                                </a>
+                            </div>
+
+                     </div> <!--/.row .align-self-stretch -->
+                </div> <!-- /.col-12 -->
 
                 </li>
-
+                
                 <?php
                 }
                 endwhile;
                 endif;
                 ?>
-
+                
                 </ul>
 
                 <!-- Anythingslider  -->
                 <script type="text/javascript">
-                  jQuery('#slider_1_8_4').anythingSlider({
+                  jQuery('#slider_1_6_2_4').anythingSlider({
                     // resizeContents      : false,
                     buildArrows         : true,
                     autoPlay            : false,
@@ -255,6 +327,7 @@
                   });
                 </script>
 
+                
                 <div class="col-12 text-right">
                     <a class="btn btn-primary btn-lg" href="<?php echo $link; ?>">
                         <span class="nombre-taxonomia font-weight-bold lead">Ver más contenido <i class="fas fa-arrow-right"></i></span>
@@ -262,7 +335,7 @@
                 </div>
 
             </div> <!-- /.row -->
-        </div> <!-- /.d-none .d-sm-none .d-md-none .d-lg-block -->
+        </div> <!-- /.d-none -->
         <!-- Desktop block -->
 
         <!-- Movile slide -->
@@ -331,7 +404,7 @@
                         <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
                             <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                 <div class='imagen-nota-container'>
-                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"> </div>
+                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
                                     <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
                                 </div>
                             </a>

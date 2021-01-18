@@ -12,18 +12,6 @@
     $tipoTitulo = get_sub_field('titulo_de_seccion');
     $tituloPerso = get_sub_field('titulo_personalizado');
     $mostraDescr = get_sub_field('mostrar_descripcion');
-    $colorFondo = get_sub_field('color_de_fondo_seccion');
-    $imagenFondo = get_sub_field('imagen_de_fondo_seccion');
-    $colorTexto = get_sub_field('color_de_texto_seccion');
-    $show_time_ago = get_theme_mod('show_time_ago');
-    switch ($show_time_ago == 1) {
-        case '1':
-            $haceTiempo = time_ago() . ' <i class="fas fa-clock"></i>';
-        break;
-        case '0':
-            $haceTiempo = "";
-        break;
-    }
 
     switch ($tipo) {
         case 'seccion':
@@ -32,9 +20,8 @@
         break;
 
         case 'tema':
-            $subField = get_sub_field('elegir_tema');
-            $id = $subField[0];
-            $tipo = 'category';
+            $id = get_sub_field('elegir_tema');
+            $tipo = 'theme';
         break;
 
         case 'hashtag':
@@ -49,10 +36,10 @@
     $tax_color = get_term_meta( $categoria->term_id, 'category_color', true );
 
 ?>
-<section class="bloque_notas--2_bb_3_4_r py-6" style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
+<section class="bloque_notas--2_bb_3_4_r mb-6">
     <div class="container">
         <!-- Desktop block -->
-        <div class="d-none d-sm-none d-md-none d-lg-block">
+        <div class="d-none d-sm-none d-md-block">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
@@ -67,7 +54,7 @@
                             </a>
                         </h2>
                         <?php if ($mostraDescr): ?>
-                            <p class="encabezado-descripcion <?php echo $colorTexto; ?>"><?php echo strip_tags($descripcion); ?></p>
+                            <p class="encabezado-descripcion"><?php echo strip_tags($descripcion); ?></p>
                         <?php endif ?>
                     </div>
                 </div> 
@@ -78,7 +65,7 @@
                             $i = 0;
                             $args = array (
                                 'post_type'      => 'post',
-                                'category'      => $categoria->term_id,
+                                'cat'      => $categoria->term_id,
                                 'posts_per_page' => 1,
                                 'orderby'        => 'date',
                                 'order'          => 'DESC'
@@ -100,10 +87,6 @@
                                         //print 'is desktop';
                                         $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
                                     }
-                            // Si no hay Imagen destacada hace fallback a la imagen definida en opciones del tema
-                            if (empty($featured_img_url)){
-                                $featured_img_url = get_theme_mod('default_news_image');
-                            }
                         ?>
                                     <div id="post-<?php the_ID(); ?>" class="col-12 nota large double">
                                         <div class="row meta">
@@ -114,13 +97,13 @@
                                                 <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                             </div>
                                             <div class="col hora text-right">
-                                                <small><?php echo $haceTiempo; ?></small>
+                                                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
                                             </div>
                                         </div>
                                         <a class="h-100" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                             <div class='imagen-nota-container h-100'>
                                                 <div class="imagen-nota h-100" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                                <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                                <h5 class="titulo-nota"><?php the_title(); ?></h5>
                                             </div>
                                         </a>
                                     </div>
@@ -139,7 +122,7 @@
                     $args = array (
                         'post__not_in'      => $ids,
                         'post_type'      => 'post',
-                        'category'      => $categoria->term_id,
+                        'cat'      => $categoria->term_id,
                         'posts_per_page' => 2,
                         'orderby'        => 'date',
                         'order'          => 'DESC'
@@ -161,10 +144,6 @@
                                 //print 'is desktop';
                                 $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
                             }
-                            // Si no hay Imagen destacada hace fallback a la imagen definida en opciones del tema
-                            if (empty($featured_img_url)){
-                                $featured_img_url = get_theme_mod('default_news_image');
-                            }
                 ?>
                     <div id="post-<?php the_ID(); ?>" class="col-12 nota">
                         <div class="row meta">
@@ -175,14 +154,13 @@
                                 <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                             </div>
                             <div class="col hora text-right">
-                                <small><?php echo $haceTiempo; ?></small>
+                                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
                             </div>
                         </div>
-                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
                         <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                             <div class='imagen-nota-container'>
                                 <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                <h5 class="titulo-nota"><?php the_title(); ?></h5>
                             </div>
                         </a>
                     </div>
@@ -201,7 +179,7 @@
                             $args = array (
                                 'post__not_in'      => $ids,
                                 'post_type'      => 'post',
-                                'category'      => $categoria->term_id,
+                                'cat'      => $categoria->term_id,
                                 'posts_per_page' => 4,
                                 'orderby'        => 'date',
                                 'order'          => 'DESC'
@@ -223,10 +201,6 @@
                                         //print 'is desktop';
                                         $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
                                     }
-                            // Si no hay Imagen destacada hace fallback a la imagen definida en opciones del tema
-                            if (empty($featured_img_url)){
-                                $featured_img_url = get_theme_mod('default_news_image');
-                            }
                         ?>
                             <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
                                 <div class="row meta">
@@ -237,14 +211,13 @@
                                         <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                     </div>
                                     <div class="col hora text-right">
-                                        <small><?php echo $haceTiempo; ?></small>
+                                        <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
                                     </div>
                                 </div>
-                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
                                 <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                     <div class='imagen-nota-container'>
                                         <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                        <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                        <h5 class="titulo-nota"><?php the_title(); ?></h5>
                                     </div>
                                 </a>
                             </div>
@@ -255,18 +228,12 @@
                         ?>
                     </div>
                 </div>
-                
-                <div class="col-12 text-right">
-                    <a class="btn btn-primary btn-lg" href="<?php echo $link; ?>">
-                        <span class="nombre-taxonomia font-weight-bold lead">Ver más contenido <i class="fas fa-arrow-right"></i></span>
-                    </a>
-                </div>
             </div>
         </div>
         <!-- Desktop block -->
 
         <!-- Movile slide -->
-        <div class="d-sm-block d-md-block d-lg-none">
+        <div class="d-sm-block d-md-none">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
@@ -280,7 +247,7 @@
                             </a>
                         </h2>
                         <?php if ($mostraDescr): ?>
-                            <p class="encabezado-descripcion <?php echo $colorTexto; ?>"><?php echo strip_tags($descripcion); ?></p>
+                            <p class="encabezado-descripcion"><?php echo strip_tags($descripcion); ?></p>
                         <?php endif ?>
                     </div>
                 </div>
@@ -289,7 +256,7 @@
                     <?php
                         $args = array (
                             'post_type'      => 'post',
-                            'category'      => $categoria->term_id,
+                            'cat'      => $categoria->term_id,
                             'posts_per_page' => 6,
                             'orderby'        => 'date',
                             'order'          => 'DESC'
@@ -311,10 +278,6 @@
                                     //print 'is desktop';
                                     $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '3840x2160');
                                 }
-                            // Si no hay Imagen destacada hace fallback a la imagen definida en opciones del tema
-                            if (empty($featured_img_url)){
-                                $featured_img_url = get_theme_mod('default_news_image');
-                            }
                     ?>
                         <div id="post-<?php the_ID(); ?>" class="nota large">
                             <div class="row meta">
@@ -325,14 +288,68 @@
                                     <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                 </div>
                                 <div class="col hora text-right">
-                                    <small><?php echo $haceTiempo; ?></small>
+                                    <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
                                 </div>
                             </div>
-                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
                             <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                 <div class='imagen-nota-container'>
-                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                    <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                    <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');">
+                                        <div>
+                                            <?php
+                                            if (!empty(get_field('content_type'))){
+                                                $content_type = get_field('content_type');
+                                                switch($content_type){
+                                                    // Tipo de contenido: Video
+                                                    case 'video':
+                                                        if (!empty(get_field('video_jwplayer'))){
+                                                            $video_iframe = get_field('video_jwplayer');
+                                                            $url_imagen_video = get_field('url_imagen_video');
+                                                            $video_html = '<div class="contenedor-media">'.$video_iframe.'</div>'; ?>
+                                                            <i class="fas fa-play media_file_jw media-type-icon media-type-icon-negro pl-1" 
+                                                                data-titulo='<?php echo get_the_title(); ?>' 
+                                                                data-video='<?php echo $video_iframe; ?>' 
+                                                                data-img='<?php  echo $url_imagen_video?>' ></i>
+                                                            <?php
+                                                        }else{
+                                                            if (!empty(get_field('video_youtube'))){
+                                                                $video_iframe = get_field('video_youtube');
+                                                                /*Autoplay Functionallity*/
+                                                                if ( preg_match('/src="(.+?)"/', $video_iframe, $matches) ) {
+                                                                    // Video source URL
+                                                                    $src = $matches[1];
+                                                                    // Add option to hide controls, enable HD, and do autoplay -- depending on provider
+                                                                    $params = array(
+                                                                        'autoplay' => 1
+                                                                    );
+                                                                    $new_src = add_query_arg($params, $src);
+                                                                    $video_iframe = str_replace($src, $new_src, $video_iframe);
+                                                                    // add extra attributes to iframe html
+                                                                    $attributes = 'frameborder="0"';
+                                                                    $video_iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $video_iframe);
+                                                                }
+                                                                /*Autoplay Functionallity*/
+                                                                $video_html = '<div class="contenedor-media">'.$video_iframe.'</div>'; ?>
+                                                                <i class="fas fa-play media_file media-type-icon media-type-icon-negro pl-1" data-titulo='<?php echo get_the_title(); ?>' data-media='<?php echo $video_html; ?>'></i>
+                                                                <?php 
+                                                            }
+                                                        }   
+                                                    break;
+                                                    // Tipo de contenido: Audio
+                                                    case 'audio':
+                                                        if (!empty(get_field('audio_news'))){
+                                                            $audio_iframe = get_field('audio_news');
+                                                            $audio_html = '<div class="contenedor-media sound-iframe">'.$audio_iframe.'</div>'; ?>
+                                                            <i class="fas fa-volume-up media_file media-type-icon media-type-icon-negro" data-media='<?php echo $audio_html; ?>'></i>
+                                                            <?php
+                                                        }
+                                                    break;
+                                                } // End of switch
+                                            } // End of if (content_type)
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <!-- <img src="<?php echo $featured_img_url; ?>" class="img-fluid d-block imagen-nota" alt="<?php the_title(); ?>"> -->
+                                    <h5 class="titulo-nota"><?php the_title(); ?></h5>
                                 </div>
                             </a>
                             <!-- ICONOS COMPARTIR -->

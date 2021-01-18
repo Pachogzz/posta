@@ -88,7 +88,22 @@
                             if ( $the_query->have_posts() ):
                                 
                                 ?>
-                                    <ul id="slider">
+                                    <style type="text/css">
+                                        #slider_2_2_bb_4{
+                                            width:1200px;
+                                            margin:0px;
+                                            border-top: 0px;
+                                            border-bottom: 0px;
+                                            border:0px !important;
+                                            padding: 0px;
+                                            height: 1200px;
+                                        }
+                                        #slider_2_2_bb_4 li{
+                                            display:flex;
+                                            height:1200px;
+                                        }
+                                    </style>
+                                    <ul id="slider_2_2_bb_4">
                                 <?php
                                 
                                 while ( $the_query->have_posts() ) :
@@ -372,10 +387,10 @@
             </div><!-- /.row -->
         </div><!-- /.d-none .md-block -->
     
-        <!-- Anythingslider -->
+        <!-- Anythingslider  -->
         <script type="text/javascript">
-          jQuery('#slider').anythingSlider({
-            /*resizeContents      : false,*/
+          jQuery('#slider_2_2_bb_4').anythingSlider({
+            // resizeContents      : false,
             buildArrows         : true,
             autoPlay            : false,
             buildNavigation     : false,
