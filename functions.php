@@ -623,6 +623,26 @@ add_action('manage_posts_custom_column', 'post_custom_column_views',10,2);
 /*     */
 
 /****************************************************************
+*                               *
+*          GET POST CHILD CATEGORIES GLOBAL FUCNTION            *
+*                               *
+****************************************************************/
+if ( ! function_exists( 'post_child_category' ) )
+{
+    function post_child_category( $id = null )
+    {
+        if ( $id = null )
+        return false;
+        $categories = get_the_category( $id );
+        if ( count($categories) > 0 ) {
+            return $categories[count($categories)-1];
+        } else {
+            return false;
+        }
+    }
+}
+
+/****************************************************************
 *																*
 *                           PAGINATION                         *
 *																*

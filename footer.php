@@ -258,7 +258,9 @@
   	<script type="text/javascript">
       jQuery('#slider').anythingSlider({
        	resizeContents      : false,
-       	buildArrows         : true,
+       	enableArrows		: true, 
+       	forwardText			: "Next",
+       	backText			: "Prev",
        	autoPlay            : false,
   		buildNavigation     : false,
   		buildStartStop      : false,

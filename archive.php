@@ -33,7 +33,7 @@ $queriedObjetc = get_queried_object();
 							<span class="nombre-sitio">POSTA</span>
 							<span class="nombre-taxonomia"><?php echo $category_name; ?></span>
 						</h2>
-						<p class="encabezado-descripcion"><?php echo $category_description; ?></p>
+						<p class="encabezado-descripcion text-white mt-3"><?php echo $category_description; ?></p>
 					</div>
 				</div>
 			</div>
@@ -50,7 +50,7 @@ $queriedObjetc = get_queried_object();
 				</div>
 				<div class="col">
 					<?php 
-					// Post related themes
+					// Section related themes on archive ( childs )
 					$termchildren = get_term_children( $taxonomy_object->term_id, $taxonomy_object->taxonomy );
 					echo "<ul id='term-list-filter' class='nav nav-pills justify-content-center mb-6'>";
 					foreach ($termchildren as $child) {
@@ -62,6 +62,24 @@ $queriedObjetc = get_queried_object();
 							</li>";
 					}
 					echo "</ul>";
+
+					// Themes related parent/childs on archive ( parent/childs )
+					// $ancestorOfChildID = get_ancestors( $taxonomy_object->term_id, $taxonomy_object->taxonomy );
+					// $ancestorArray = get_term($ancestorOfChildID[0], $taxonomy_object->taxonomy);
+					// $ancestorChilds = get_term_children( $ancestorArray->term_id, $ancestorArray->taxonomy );
+					// $taxQueriedObject = get_queried_object();
+					// echo "<ul id='term-list-filter' class='nav nav-pills justify-content-center mb-6'>";
+					// foreach ($ancestorChilds as $child) {
+					// 	if ( $taxQueriedObject->term_id != $child ) {
+					// 		$tax_color = get_term_meta( $child, 'category_color', true );
+					// 		echo "<li class='nav-item mr-2 lead'>
+					// 				<a href=". get_term_link($child) ." title='" . get_cat_name($child) . "' style='background-color:#" . $tax_color . "!important;'>" 
+					// 					. get_cat_name($child) . 
+					// 				"</a>
+					// 			</li>";
+					// 	}
+					// }
+					// echo "</ul>";
 
 					// if (!empty(get_query_var('cat'))){
 					if (is_tax()){
