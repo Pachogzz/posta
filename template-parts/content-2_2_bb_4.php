@@ -80,7 +80,7 @@
                             $args = array (
                                 'post_type'      => 'post',
                                 'cat'      => $categoria->term_id,
-                                'posts_per_page' => -1,
+                                'posts_per_page' => 23,
                                 'orderby'        => 'date',
                                 'order'          => 'DESC'
                             );

@@ -20,10 +20,10 @@ get_header();
 				<!-- Título de página -->
 		        <div class="row">
 		          <div class="col text-center">
-		            <h2>
+		            <h2 class="text-white">
 		              <?php
 							// translators: %s: search query.
-							printf( esc_html__( 'Lista de resultados para: %s', 'postamx' ), '<br><span class="texto-amarillo">' . get_search_query() . '</span>' );
+							printf( esc_html__( 'Lista de resultados para: %s', 'postamx' ), '<br><span class="text-light font-weight-bold">' . get_search_query() . '</span>' );
 						?>
 		            </h2>
 		          </div>
