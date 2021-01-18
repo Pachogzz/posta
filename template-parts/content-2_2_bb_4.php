@@ -395,7 +395,8 @@
             autoPlay            : false,
             buildNavigation     : false,
             buildStartStop      : false,
-            expand              : false
+            expand              : false,
+            hashTags            : false
           });
         </script>
 
