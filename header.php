@@ -117,68 +117,68 @@
 			<div id="headerArrow" class="container-xl py-3">
 				<div class="row justify-content-between align-items-center">
 					<div class="d-block w-100 d-sm-block d-md-none">
-					<div class="row">
-						<div class="col-3 bg-warning">
-							<?php if ( has_nav_menu( 'menu-vertical-oculto' ) ): ?>
-							<span class="mt-6" id="openSideNav" onclick="openNav()">
-								<i class="fas fa-bars fa-2x text-white"></i>
-							</span>
-							<?php endif; ?>	
-						</div>
-						<div class="col-9 col-sm-5 bg-info">
-							<div class="row justify-content-between justify-content-md-center align-items-center">
-								<div class="col-12">
-									<div class="lista-iconos justify-content-center">
-										<?php if( get_theme_mod('social_media_link_fb') != '' ){ ?>
-											<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_fb'); ?>" target="_blank" id="fb">
-												<i class="fab fa-facebook-f"></i>
-											</a>
-										<?php } ?>
-										<?php if( get_theme_mod('social_media_link_tw') != '' ){ ?>
-											<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_tw'); ?>" target="_blank" id="tw">
-												<i class="fab fa-twitter"></i>
-											</a>
-										<?php } ?>
-										<?php if( get_theme_mod('social_media_link_in') != '' ){ ?>
-											<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_in'); ?>" target="_blank" id="in">
-												<i class="fab fa-instagram"></i>
-											</a>
-										<?php } ?>
-										<?php if( get_theme_mod('social_media_link_yt') != '' ){ ?>
-											<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_yt'); ?>" target="_blank" id="yt">
-												<i class="fab fa-youtube"></i>
-											</a>
-										<?php } ?>
-										<?php if( get_theme_mod('social_media_link_lin') != '' ){ ?>
-											<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_lin'); ?>" target="_blank" id="yt">
-												<i class="fab fa-linkedin"></i>
-											</a>
-										<?php } ?>
-										<?php if( get_theme_mod('social_media_link_tb') != '' ){ ?>
-											<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_tb'); ?>" target="_blank" id="yt">
-												<i class="fab fa-tumblr"></i>
-											</a>
-										<?php } ?>
+						<div class="row">
+							<div class="col-3 order-1">
+								<?php if ( has_nav_menu( 'menu-vertical-oculto' ) ): ?>
+								<span class="" id="openSideNav" onclick="openNav()">
+									<i class="fas fa-bars fa-2x text-white"></i>
+								</span>
+								<?php endif; ?>	
+							</div>
+							<div class="col-12 col-sm-5 order-sm-3">
+								<div class="row justify-content-between justify-content-md-center align-items-center">
+									<div class="col-12">
+										<div class="lista-iconos justify-content-center">
+											<?php if( get_theme_mod('social_media_link_fb') != '' ){ ?>
+												<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_fb'); ?>" target="_blank" id="fb">
+													<i class="fab fa-facebook-f"></i>
+												</a>
+											<?php } ?>
+											<?php if( get_theme_mod('social_media_link_tw') != '' ){ ?>
+												<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_tw'); ?>" target="_blank" id="tw">
+													<i class="fab fa-twitter"></i>
+												</a>
+											<?php } ?>
+											<?php if( get_theme_mod('social_media_link_in') != '' ){ ?>
+												<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_in'); ?>" target="_blank" id="in">
+													<i class="fab fa-instagram"></i>
+												</a>
+											<?php } ?>
+											<?php if( get_theme_mod('social_media_link_yt') != '' ){ ?>
+												<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_yt'); ?>" target="_blank" id="yt">
+													<i class="fab fa-youtube"></i>
+												</a>
+											<?php } ?>
+											<?php if( get_theme_mod('social_media_link_lin') != '' ){ ?>
+												<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_lin'); ?>" target="_blank" id="yt">
+													<i class="fab fa-linkedin"></i>
+												</a>
+											<?php } ?>
+											<?php if( get_theme_mod('social_media_link_tb') != '' ){ ?>
+												<a class="icono icono-blanco" href="<?php echo get_theme_mod('social_media_link_tb'); ?>" target="_blank" id="yt">
+													<i class="fab fa-tumblr"></i>
+												</a>
+											<?php } ?>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-12 col-sm-4 bg-success">
-							<div class="fecha-sitio text-white mt-3">
-								<?php echo date_i18n( get_option('date_format') ); ?>
+							<div class="col-9 col-sm-4 order-sm-2">
+								<div class="fecha-sitio text-white mt-2">
+									<?php echo date_i18n( get_option('date_format') ); ?>
+								</div>
 							</div>
 						</div>
 					</div>
-					</div>
 					
-					<div class="col-md-1">
+					<div class="col-md-1 d-none d-sm-none d-md-block">
 						<?php if ( has_nav_menu( 'menu-vertical-oculto' ) ): ?>
-						<span class="mt-6" id="openSideNav" onclick="openNav()">
+						<span class="mt-5" id="openSideNav" onclick="openNav()">
 							<i class="fas fa-bars fa-2x text-white"></i>
 						</span>
 						<?php endif; ?>
 					</div>
-					<div class="col-md-3 align-items-center">
+					<div class="col-md-3 d-none d-sm-none d-md-block">
 						<div class="row justify-content-between justify-content-md-center align-items-center">
 							<div class="col-auto col-md-12">
 								<div class="lista-iconos justify-content-center">
@@ -242,11 +242,11 @@
 								<span class="h4 d-block text-light text-center"><?php bloginfo( 'description' ); ?></span>
 						<?php } ?>
 					</div>
-					<div class="col-md-3 offset-md-1">
-						<div class="d-none d-sm-none d-md-block">
-						<?php get_search_form(); ?>
-						</div>
-						<!-- <a class="icono icono-blanco" href="#" data-toggle="modal" data-target="#searchModal"><i class="fas fa-search"></i></a> -->
+					<div class="col-md-3 offset-md-1 d-none d-sm-none d-md-block">
+						<!-- <div class="d-none d-sm-none d-md-block"> -->
+							<?php get_search_form(); ?>
+							<!-- <a class="icono icono-blanco" href="#" data-toggle="modal" data-target="#searchModal"><i class="fas fa-search"></i></a> -->
+						<!-- </div> -->
 					</div>
 				</div>
 			</div>
