@@ -56,7 +56,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
-                         <h2 class="encabezado-titulo" style="background-color:<?php echo $color; ?>;">
+                         <h2 class="encabezado-titulo" style="background-color:<?php echo $color; ?>;" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                             <a href="<?php echo $link; ?>">
                                 <span class="nombre-sitio">POSTA</span>
                                 <?php if($tipoTitulo == 'por_defecto'): ?>
@@ -193,7 +193,7 @@
                 </div>
                 
                 <div class="col-12 text-right">
-                    <a class="btn btn-primary btn-lg" href="<?php echo $link; ?>">
+                    <a class="btn btn-primary btn-lg" href="<?php echo $link; ?>" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                         <span class="nombre-taxonomia font-weight-bold lead">Ver más contenido <i class="fas fa-arrow-right"></i></span>
                     </a>
                 </div>
@@ -206,7 +206,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
-                        <h2 class="encabezado-titulo" style="background-color:<?php echo $color; ?>;">
+                        <h2 class="encabezado-titulo" style="background-color:<?php echo $color; ?>;" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                             <a href="<?php echo $link; ?>">
                                 <?php if($tipoTitulo == 'por_defecto'): ?>
                                     <span class="nombre-taxonomia"><?php echo $categoria->name;?></span>

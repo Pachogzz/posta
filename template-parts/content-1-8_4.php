@@ -7,7 +7,6 @@
  * @package postamx
  * 
  */
-    $color = get_sub_field('color_del_titulo');
     $tipo = get_sub_field('tipo');
     $tipoTitulo = get_sub_field('titulo_de_seccion');
     $tituloPerso = get_sub_field('titulo_personalizado');
@@ -57,7 +56,7 @@
                 
                 <div class="col-12">
                     <div class="encabezado">
-                         <h2 class="encabezado-titulo" style="background-color:<?php echo $color; ?>;">
+                         <h2 class="encabezado-titulo" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                             <a href="<?php echo $link; ?>">
                                 <span class="nombre-sitio">POSTA</span>
                                 <?php if($tipoTitulo == 'por_defecto'): ?>
@@ -134,11 +133,15 @@
 
                             <div id="post-<?php the_ID(); ?>" class="col-12 nota large doble">
                                 <div class="row meta">
-                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                        <a class="text-white" href="<?php echo $link; ?>">
-                                            <small><?php echo $categoria->name; ?></small>
+                                    <?php 
+                                        $child_category = post_child_category(get_the_ID());
+                                        $subTax_color = get_term_meta( $child_category->term_id, 'category_color', true );
+                                    ?>
+                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $subTax_color; ?> !important;">
+                                        <a class="text-white" href="<?php echo get_category_link($child_category->cat_ID); ?>" title="<?php echo $child_category->cat_name;?>">
+                                            <small><?php echo $child_category->cat_name; ?></small>
                                         </a>
-                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                                        <span class="side-triangle" style="background-color: <?php echo "#" . $subTax_color; ?> !important;"></span>
                                     </div>
                                     <div class="col hora text-right">
                                         <small><?php echo $haceTiempo; ?></small>
@@ -161,11 +164,15 @@
                     <div class="row align-self-stretch">
                             <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
                                 <div class="row meta">
-                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                        <a class="text-white" href="<?php echo $link; ?>">
-                                            <small><?php echo $categoria->name; ?></small>
+                                    <?php 
+                                        $child_category = post_child_category(get_the_ID());
+                                        $subTax_color = get_term_meta( $child_category->term_id, 'category_color', true );
+                                    ?>
+                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $subTax_color; ?> !important;">
+                                        <a class="text-white" href="<?php echo get_category_link($child_category->cat_ID); ?>" title="<?php echo $child_category->cat_name;?>">
+                                            <small><?php echo $child_category->cat_name; ?></small>
                                         </a>
-                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                                        <span class="side-triangle" style="background-color: <?php echo "#" . $subTax_color; ?> !important;"></span>
                                     </div>
                                     <div class="col hora text-right">
                                         <small><?php echo $haceTiempo; ?></small>
@@ -186,11 +193,15 @@
 
                             <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
                                 <div class="row meta">
-                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                        <a class="text-white" href="<?php echo $link; ?>">
-                                            <small><?php echo $categoria->name; ?></small>
+                                    <?php 
+                                        $child_category = post_child_category(get_the_ID());
+                                        $subTax_color = get_term_meta( $child_category->term_id, 'category_color', true );
+                                    ?>
+                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $subTax_color; ?> !important;">
+                                        <a class="text-white" href="<?php echo get_category_link($child_category->cat_ID); ?>" title="<?php echo $child_category->cat_name;?>">
+                                            <small><?php echo $child_category->cat_name; ?></small>
                                         </a>
-                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                                        <span class="side-triangle" style="background-color: <?php echo "#" . $subTax_color; ?> !important;"></span>
                                     </div>
                                     <div class="col hora text-right">
                                         <small><?php echo $haceTiempo; ?></small>
@@ -211,11 +222,15 @@
 
                         <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
                                 <div class="row meta">
-                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                        <a class="text-white" href="<?php echo $link; ?>">
-                                            <small><?php echo $categoria->name; ?></small>
+                                    <?php 
+                                        $child_category = post_child_category(get_the_ID());
+                                        $subTax_color = get_term_meta( $child_category->term_id, 'category_color', true );
+                                    ?>
+                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $subTax_color; ?> !important;">
+                                        <a class="text-white" href="<?php echo get_category_link($child_category->cat_ID); ?>" title="<?php echo $child_category->cat_name;?>">
+                                            <small><?php echo $child_category->cat_name; ?></small>
                                         </a>
-                                        <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                                        <span class="side-triangle" style="background-color: <?php echo "#" . $subTax_color; ?> !important;"></span>
                                     </div>
                                     <div class="col hora text-right">
                                         <small><?php echo $haceTiempo; ?></small>
@@ -256,7 +271,7 @@
                 </script>
 
                 <div class="col-12 text-right">
-                    <a class="btn btn-primary btn-lg" href="<?php echo $link; ?>">
+                    <a class="btn btn-primary btn-lg" href="<?php echo $link; ?>" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                         <span class="nombre-taxonomia font-weight-bold lead">Ver más contenido <i class="fas fa-arrow-right"></i></span>
                     </a>
                 </div>
@@ -270,7 +285,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
-                        <h2 class="encabezado-titulo" style="background-color:<?php echo $color; ?>;">
+                        <h2 class="encabezado-titulo" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                             <a href="<?php echo $link; ?>">
                                 <?php if($tipoTitulo == 'por_defecto'): ?>
                                     <span class="nombre-taxonomia"><?php echo $categoria->name;?></span>
@@ -289,7 +304,7 @@
                     <?php
                         $args = array (
                             'post_type'      => 'post',
-                            'category'      => $categoria->term_id,
+                            'cat'      => $categoria->term_id,
                             'posts_per_page' => 6,
                             'orderby'        => 'date',
                             'order'          => 'DESC'
@@ -318,11 +333,15 @@
                     ?>
                         <div id="post-<?php the_ID(); ?>" class="nota large">
                             <div class="row meta">
-                                <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-                                    <a class="text-white" href="<?php echo $link; ?>">
-                                        <small><?php echo $categoria->name; ?></small>
+                                <?php 
+                                    $child_category = post_child_category(get_the_ID());
+                                    $subTax_color = get_term_meta( $child_category->term_id, 'category_color', true );
+                                ?>
+                                <div class="col-6 categoria" style="background-color: <?php echo "#" . $subTax_color; ?> !important;">
+                                    <a class="text-white" href="<?php echo get_category_link($child_category->cat_ID); ?>" title="<?php echo $child_category->cat_name;?>">
+                                        <small><?php echo $child_category->cat_name; ?></small>
                                     </a>
-                                    <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
+                                    <span class="side-triangle" style="background-color: <?php echo "#" . $subTax_color; ?> !important;"></span>
                                 </div>
                                 <div class="col hora text-right">
                                     <small><?php echo $haceTiempo; ?></small>

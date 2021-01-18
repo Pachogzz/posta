@@ -14,6 +14,7 @@ $taxonomy_object = $wp_query->get_queried_object();
 $category = get_category( $taxonomy_object );
 $category_name = $category->name;
 $category_description = $category->description;
+$tax_color = get_term_meta( $category->term_id, 'category_color', true );
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $queriedObjetc = get_queried_object();
 ?>
@@ -26,7 +27,7 @@ $queriedObjetc = get_queried_object();
 			<div class="row">
 				<div class="col">
 					<div class="encabezado text-center m-0">
-						<h2 class="encabezado-titulo">
+						<h2 class="encabezado-titulo" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
 							<span class="nombre-sitio">POSTA</span>
 							<span class="nombre-taxonomia"><?php echo $category_name; ?></span>
 						</h2>

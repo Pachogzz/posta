@@ -31,8 +31,9 @@
         break;
 
         case 'tema':
-            $id = get_sub_field('elegir_tema');
-            $tipo = 'theme';
+            $subField = get_sub_field('elegir_tema');
+            $id = $subField[0];
+            $tipo = 'category';
         break;
 
         case 'hashtag':
