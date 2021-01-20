@@ -9,6 +9,8 @@ add_action( 'rest_api_init', function () {
 
     function blockTwo() {
 
+        header("Access-Control-Allow-Origin: *");
+
         $args = array(
             'category'   => get_option('b2_categoria'),
             'post_type'      => 'post',

@@ -9,6 +9,8 @@ add_action( 'rest_api_init', function () {
 
     function blockThree() {
 
+        header("Access-Control-Allow-Origin: *");
+
         $args = array(
             'category'   => get_option('b3_categoria'),
             'post_type'      => 'post',

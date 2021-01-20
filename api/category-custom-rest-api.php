@@ -16,6 +16,8 @@ function add_custom_fields_category() {
 
     function get_custom_fields_category($object){
 
+        header("Access-Control-Allow-Origin: *");
+
         $color = get_term_meta( $object['id'], 'category_color', true );
 
 

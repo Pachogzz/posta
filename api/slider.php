@@ -9,6 +9,8 @@ add_action( 'rest_api_init', function () {
 
     function notas_slider() {
 
+        header("Access-Control-Allow-Origin: *");
+
         $args = array(
             'include'   => get_option('slider_nota'),
             'post_type'      => 'post',

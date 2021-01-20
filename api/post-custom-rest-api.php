@@ -19,6 +19,8 @@ function add_custom_fields() {
 
 	function get_custom_fields($object){
 
+        header("Access-Control-Allow-Origin: *");
+
 		$imagen = wp_get_attachment_image_src( get_post_thumbnail_id( $object['id'] ), 'full' )[0];
         
         $term = get_term( $object['categories'], 'category' );
