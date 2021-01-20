@@ -13,6 +13,7 @@
 *																*
 ****************************************************************/
 
+
 if ( ! function_exists( 'posta_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
