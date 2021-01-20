@@ -698,6 +698,21 @@ require_once 'api/category-custom-rest-api.php';
 require_once 'api/functions-api.php';
 
 
+add_action('init', 'handle_preflight');
+function handle_preflight() {
+    $origin = get_http_origin();
+    if ($origin === 'https://yourfrontenddomain') {
+        header("Access-Control-Allow-Origin: " . HEADLESS_FRONTEND_URL);
+        header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
+        header("Access-Control-Allow-Credentials: true");
+        header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
+        if ('OPTIONS' == $_SERVER['REQUEST_METHOD']) {
+            status_header(200);
+            exit();
+        }
+    }
+}
+
 
 /****************************************************************
 *																*
