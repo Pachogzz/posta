@@ -698,21 +698,6 @@ require_once 'api/category-custom-rest-api.php';
 require_once 'api/functions-api.php';
 
 
-function  my_customize_rest_cors () {
-  remove_filter ( 'rest_pre_serve_request' , 'rest_send_cors_headers' );
-  add_filter ( 'rest_pre_serve_request' , function ( $valor ) {
-    encabezado ( 'Access-Control-Allow-Origin: *' );
-    encabezado ( 'Access-Control-Allow-Methods: GET' );
-    encabezado ( 'Access-Control-Allow-Credentials: true' );
-    header ( 'Access-Control-Expose-Headers: Link' , falso );
-    header( 'Access-Control-Allow-Headers: X-Requested-With' );
-
-    return  $valor ;
-  });
-}
-
-add_action ( 'rest_api_init' , 'my_customize_rest_cors' , 15 );
-
 
 /****************************************************************
 *																*
