@@ -1,7 +1,5 @@
 <?php 
 
-header("Access-Control-Allow-Origin: *");
-
 add_action( 'rest_api_init', 'add_custom_fields' );
 function add_custom_fields() {
 
