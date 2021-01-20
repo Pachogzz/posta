@@ -1,4 +1,7 @@
 <?php
+
+header("Access-Control-Allow-Origin: *");
+
 add_action( 'rest_api_init', function () {
     
     register_rest_route( 'api', '/blockfive', array(
@@ -8,8 +11,6 @@ add_action( 'rest_api_init', function () {
 
 
     function blockFive() {
-
-        header("Access-Control-Allow-Origin: *");
 
         $args = array(
             'category'   => get_option('b5_categoria'),
