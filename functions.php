@@ -719,6 +719,7 @@ require_once 'api/blockfour.php';
 require_once 'api/blockfive.php';
 require_once 'api/post-custom-rest-api.php';
 require_once 'api/category-custom-rest-api.php';
+require_once 'api/menu.php';
 require_once 'api/functions-api.php';
 
 /****************************************************************
