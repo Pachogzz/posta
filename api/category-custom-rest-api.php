@@ -1,8 +1,9 @@
 <?php 
 
+header("Access-Control-Allow-Origin: *");
+
 add_action( 'rest_api_init', 'add_custom_fields_category' );
 function add_custom_fields_category() {
-    
 
     register_rest_field(
         'category', 
