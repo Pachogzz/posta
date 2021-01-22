@@ -13,6 +13,29 @@
 *																*
 ****************************************************************/
 
+function my_customize_rest_cors() {
+  remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
+  add_filter( 'rest_pre_serve_request', function( $value ) {
+    header( 'Access-Control-Allow-Origin: *' );
+    header( 'Access-Control-Allow-Methods: GET,HEAD,OPTIONS,POST,PUT' );
+    header( 'Access-Control-Allow-Credentials: true' );
+    header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization' );
+    header( 'Access-Control-Expose-Headers: Link', false );
+    return $value;
+  } );
+}
+add_action( 'rest_api_init', 'my_customize_rest_cors', 15 );
+
+function add_cors_http_header(){
+    header("Access-Control-Allow-Origin: *");
+    header( 'Access-Control-Allow-Origin: *' );
+    header( 'Access-Control-Allow-Methods: GET,HEAD,OPTIONS,POST,PUT' );
+    header( 'Access-Control-Allow-Credentials: true' );
+    header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization' );
+    header( 'Access-Control-Expose-Headers: Link', false );
+}
+add_action('init','add_cors_http_header');
+
 
 if ( ! function_exists( 'posta_setup' ) ) :
 	/**
@@ -697,23 +720,6 @@ require_once 'api/blockfive.php';
 require_once 'api/post-custom-rest-api.php';
 require_once 'api/category-custom-rest-api.php';
 require_once 'api/functions-api.php';
-
-
-add_action('init', 'handle_preflight');
-function handle_preflight() {
-    $origin = get_http_origin();
-    if ($origin === 'https://yourfrontenddomain') {
-        header("Access-Control-Allow-Origin: " . HEADLESS_FRONTEND_URL);
-        header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
-        header("Access-Control-Allow-Credentials: true");
-        header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
-        if ('OPTIONS' == $_SERVER['REQUEST_METHOD']) {
-            status_header(200);
-            exit();
-        }
-    }
-}
-
 
 /****************************************************************
 *																*
