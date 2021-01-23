@@ -3,7 +3,7 @@
 /* Template del Home page con contenido flexible */
 
 get_header();
-$cont_layout = 0; //Varible para ver el numero de layouts
+// $cont_layout = 0; //Varible para ver el numero de layouts
 
 if( have_rows('contenido_de_inicio')){
   	while ( have_rows('contenido_de_inicio')) {
@@ -37,17 +37,17 @@ if( have_rows('contenido_de_inicio')){
 		} elseif (get_row_layout() == 'carrusel_seccion'){
 			 get_template_part('template-parts/content', 'carrusel-seccion'); 
 		} elseif (get_sub_field('tipo_block')) {
-			echo "<span class='text-white'><small>".get_sub_field('tipo_block')."</small></span>";
+			// echo "<span class='text-white'><small>".get_sub_field('tipo_block')."</small></span>";
 			get_template_part( 'template-parts/content', get_sub_field('tipo_block'));
 		} elseif (get_sub_field('carrusel_perspectivas')){
 			get_template_part( 'template-parts/content', 'bloque-perspectiva');
 		}
 
 		// Bloque para colocar el script de la publicidad
-		$cont_layout = $cont_layout +1;
-		if($cont_layout == 2){ ?>
+		// $cont_layout = $cont_layout +1;
+		// if($cont_layout == 2){ ?>
 			<!-- PUBLICIDAD -->
-			<div class="modulo-publicidad my-6">
+			<!-- <div class="modulo-publicidad my-6">
 				<div class="container-fluid">
 					<div class="row"> 
 						<div class="col">
@@ -56,10 +56,10 @@ if( have_rows('contenido_de_inicio')){
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<?php 
-			$cont_layout = 0; 
-		}
+			// $cont_layout = 0; 
+		// }
   	}
 }	
 

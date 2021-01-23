@@ -17,6 +17,10 @@ if (empty($featured_img_url)){
 }
 
 $columna = wp_get_post_terms( $post->ID, 'columna', array( 'fields' => 'all' ) );
+$columna_link = get_term_link( $columna[0]->slug, 'columna');
+$fuente = get_field('fuente');
+$fuenteLink = get_term_link($fuente->slug, 'fuente');
+// $fuente_img = get_term_meta( $fuente->term_id, 'category-image-id', true );
 
 $show_time_ago = get_theme_mod('show_time_ago');
 switch ($show_time_ago == 1) {
@@ -30,7 +34,11 @@ switch ($show_time_ago == 1) {
 ?>
 
 <!-- Item (nota) dentro del grid  -->
-<div id="post-<?php the_ID(); ?>" class="bloque-nota-archivo nota col-md-6 col-lg-4 mb-5">
+<div id="post-<?php the_ID(); ?>" class="bloque-nota-archivo bloque-nota-perspectiva nota col-md-6 col-lg-4 mb-5">
+	<div class="bloque-nota-inner-container h-100">
+    <!-- IMAGEN DE NOTA -->
+    <div class="contenedor-media d-flex justify-content-center align-items-center rounded-circle" style="background-image: url( <?php echo $featured_img_url; ?> );">
+    </div>
 	<div class="row mb-0 meta">
 			<!-- Nombre del tema -->
 			<?php 
@@ -39,7 +47,7 @@ switch ($show_time_ago == 1) {
 			// echo "</pre>";
 			// $columna = $columna[0];
 
-			echo "<div class='col-7 categoria'>";
+			echo "<div class='col-12 columna'>";
 			// for ($i=0; $i<count($themes) ; $i++) {
 			// 	$theme_link  = get_category_link($themes[$i]->term_id);
 			// 	echo $theme_name = '
@@ -55,10 +63,9 @@ switch ($show_time_ago == 1) {
 			// 	</a>
 			// 	<span class="side-triangle"></span>';
 			echo $theme_name = '
-				<span class="holder text-white p-0 mr-1">
-					<small>'.$columna[0]->name.'</small>
-				</span>
-				<span class="side-triangle"></span>';
+				<span class="text-white p-0 mr-1">'
+					.$columna[0]->name.
+				'</span>';
 			// for ($i=0; $i<count($columna) ; $i++) {
 			// 	$section_link  = get_category_link($columna[$i]->term_id);
 			// 	echo $theme_name = '
@@ -69,23 +76,38 @@ switch ($show_time_ago == 1) {
 			// }
 			echo "</div>";
 			?>
-            <div class="col hora text-right">
-                <small><?php echo $haceTiempo; ?></small>
+            <div class="col-12 columnista">
+            	<h6 class="py-3">
+				<?php 
+				if (!empty($fuente)) {
+					// echo "<a href=".$fuenteLink.">".$fuente->name."</a>";
+					echo $fuente->name;
+				}else{
+					echo "Posta Redacción";
+				}
+				?>
+				</h6>
             </div>
 	</div>
-<?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
-  <div class="position-relative bloque_notas--">
-    <!-- IMAGEN DE NOTA -->
-    <div class="contenedor-media d-flex justify-content-center align-items-center" style="background-image: url( <?php echo $featured_img_url; ?> );">
-    </div>
-    <!-- ENCABEZADO DE NOTA -->
-    <div class="encabezado-nota mt-2">
-      <h5 class="titulo-de-nota">
-        <a class="stretched-link" href="<?php the_permalink(); ?>" title="<?php echo esc_html(get_the_title()); ?>"><?php echo esc_html(get_the_title()); ?></a>
-      </h5>
-    </div>
-  </div>
+	<!-- </?php require get_template_directory() . '/template-parts/content-tipo.php'; ?> -->
+	<div class="position-relative bloque_notas--">
+		<!-- ENCABEZADO DE NOTA -->
+		<div class="encabezado-nota mt-2">
+		  <h4 class="titulo-de-nota">
+		    <a class="stretched-link" href="<?php the_permalink(); ?>" title="<?php echo esc_html(get_the_title()); ?>"><?php echo esc_html(get_the_title()); ?></a>
+		  </h4>
+		</div>
+		<!-- <div class="extracto-nota">
+			<?php 
+			if ( ! has_excerpt() ) {
+			    echo '<!-- . -->';
+			} else { ?>
+				Extracto
+				<p class="lead extracto-de-nota mt-3"><?php echo get_the_excerpt(); ?></p>
+			<?php } ?>
+		</div> -->
+	</div>
   <!-- ICONOS COMPARTIR -->
   <!-- </?php require get_template_directory() . '/inc/iconos-compartir.php'; ?> -->
-
+	</div>
 </div>

@@ -43,9 +43,9 @@ $queriedObjetc = get_queried_object();
 		<div class="container-fluid grid-notas px-6 mt-6">
 			<div class="row">
 				<div class="col-lg-auto px-0 d-none d-xl-block" style="max-width: 185px;">
-					<div class="border modulo-publicidad">
-						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600">
-						<small>Publicidad</small>
+					<div class=" modulo-publicidad">
+						<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600"> -->
+						<small><span class="text-dark">Publicidad</span></small>
 					</div>
 				</div>
 				
@@ -72,7 +72,7 @@ $queriedObjetc = get_queried_object();
 					// Todas las perspectivas
 					$args = array(
 						'post_type' => 'perspectiva',
-						'posts_per_page' => 13,
+						'posts_per_page' => 12,
 					);
 					$output = 'objects';
 					$the_query = new WP_Query( $args );
@@ -97,9 +97,9 @@ $queriedObjetc = get_queried_object();
 					?>
 				</div>
 				<div class="col-lg-auto px-0 d-none d-xl-block" style="max-width: 185px;">
-					<div class="border modulo-publicidad">
-						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600">
-						<small>Publicidad</small>
+					<div class=" modulo-publicidad">
+						<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600"> -->
+						<small><span class="text-dark">Publicidad</span></small>
 					</div>
 				</div>
 			</div>
@@ -109,10 +109,10 @@ $queriedObjetc = get_queried_object();
 		<div class="container mt-8">
 			<div class="row">
 				<div class="col">
-					<div class="border modulo-publicidad">
+					<!-- <div class="border modulo-publicidad">
 						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90">
 						<small>Publicidad</small>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

@@ -160,10 +160,23 @@ $GLOBALS['gallery']=  $gallery;
 					</div> -->
 					<?php get_sidebar('sidebar-1') ?>
 					<!-- PUBLICIDAD -->
-					<!-- <div class="modulo-publicidad border mx-auto mt-4" style="width: 302px;">
-						<img class="img-fluid" src="https://via.placeholder.com/300x600?text=halfpage">
+					<div class="modulo-publicidad mx-auto mt-4" style="width: 302px;">
+						<!-- /90573685/D-ArticleTop -->
+						<script>
+						  window.googletag = window.googletag || {cmd: []};
+						  googletag.cmd.push(function() {
+						    googletag.defineSlot('/90573685/D-ArticleTop', [[300, 250], [300, 600]], 'div-gpt-ad-1611098605381-0').addService(googletag.pubads());
+						    googletag.pubads().enableSingleRequest();
+						    googletag.enableServices();
+						  });
+						</script>
+						<div id='div-gpt-ad-1611098605381-0' class="mx-auto">
+						  <script>
+						    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1611098605381-0'); });
+						  </script>
+						</div>
 						<span>Publicidad</span>
-					</div> -->
+					</div>
 				</div>
 			</div>
 		</div>

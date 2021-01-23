@@ -36,10 +36,11 @@
     $tax_color = get_term_meta( $categoria->term_id, 'category_color', true );
 
 ?>
+
 <section class="bloque_notas--2_bb_3_4_r mb-6">
     <div class="container">
         <!-- Desktop block -->
-        <div class="d-none d-sm-none d-md-block">
+        <div class="d-none d-sm-none d-md-none d-lg-block">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
@@ -251,7 +252,7 @@
         <!-- Desktop block -->
 
         <!-- Movile slide -->
-        <div class="d-sm-block d-md-none">
+        <div class="d-block d-sm-block d-md-block d-lg-none">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
