@@ -81,10 +81,7 @@
                         'order'          => 'DESC'
                     );
 
-                    echo $categoria->term_id;
-                    die();
-
-                    $the_query = new WP_Query( $args, 'objects');
+                    $the_query = new WP_Query( $args );
                     if ( $the_query->have_posts() ) :
                         while ( $the_query->have_posts() ) :
                             $the_query->the_post(); 
@@ -147,7 +144,7 @@
         <!-- Desktop block -->
 
         <!-- Movile slide -->
-        <div class="d-sm-block d-md-block d-lg-none">
+        <div class="d-block d-sm-block d-md-block d-lg-none">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">

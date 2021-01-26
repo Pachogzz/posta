@@ -42,7 +42,8 @@
 	<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5ff8b5b8aca127001328f8c7&product=inline-share-buttons" async="async"></script>
 
 	<!-- Ad Manager -->
-	<!-- <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script> -->
+	<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+	<script async src="<?php bloginfo('template_url') ?>/assets/js/adds_units.js"></script>
 
 	<style type="text/css">
 		.anythingSlider-default{
@@ -107,9 +108,42 @@
 	<div id="page" class="site d-flex flex-column justify-content-between">
 
 		<!-- Publicidad -->
-		<!-- <div class="container-fluid py-2">
-			<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/970x90?text=Superleaderboard">
-		</div> -->
+		<div class="container text-center py-2">
+			<div id="overMenuDesktop" class="d-none d-sm-none d-md-none d-lg-block">
+				<script>
+				  window.googletag = window.googletag || {cmd: []};
+				  googletag.cmd.push(function() {
+				    googletag.defineSlot('/90573685/overmenu_desktop', [[970, 90], [970, 250], [728, 90]], 'div-gpt-ad-1610518689409-0').addService(googletag.pubads());
+				    googletag.pubads().enableSingleRequest();
+				    googletag.enableServices();
+				  });
+				</script>
+				<!-- /90573685/overmenu_desktop -->
+				<div id='div-gpt-ad-1610518689409-0' class="mx-auto">
+				  <script>
+				    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1610518689409-0'); });
+				  </script>
+				</div>
+				<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/970x90?text=SuperleaderboardDesktop"> -->
+			</div>
+			<div id="overMenuMobile" class="d-block d-sm-block d-md-block d-lg-none">
+				<script>
+				  window.googletag = window.googletag || {cmd: []};
+				  googletag.cmd.push(function() {
+				    googletag.defineSlot('/90573685/M320x50', [320, 50], 'div-gpt-ad-1611166209930-0').addService(googletag.pubads());
+				    googletag.pubads().enableSingleRequest();
+				    googletag.enableServices();
+				  });
+				</script>
+				<!-- /90573685/M320x50 -->
+				<div id='div-gpt-ad-1611166209930-0' class="mx-auto" style='width: 320px; height: 50px;'>
+				  <script>
+				    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1611166209930-0'); });
+				  </script>
+				</div>
+				<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/320x50?text=SuperleaderboardMobile"> -->
+			</div>
+		</div>
 		
 		<!-- Encabezado -->
 		<header id="siteHEader" style="background-color: <?php echo get_theme_mod( 'header_bg_color' ); ?>;">

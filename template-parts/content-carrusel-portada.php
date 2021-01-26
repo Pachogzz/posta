@@ -84,7 +84,7 @@ switch ($estilo_carusel) {
 						<div class="container-fluid encabezado-nota position-relative align-self-end py-6">
 							<div class="container row mx-auto">
 							<!-- <div class="row justify-content-center"> -->
-								<div class="col-md-12 col-lg-10 px-3 px-md-4">
+								<div class="col-lg-12 col-xl-10 px-1 px-md-2">
 									<!-- Icono tipo de contenido -->
 									<?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
 									<!-- Título de nota -->

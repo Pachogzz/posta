@@ -121,6 +121,29 @@ if(!empty($GLOBALS['carrusel_seccion'])){
 	$category_id = $tema->term_id;
 	$category_link = get_category_link($category_id); // Link de la sección
 }
+$cats = get_the_category();
+if( count($cats) > 0 ){
+	$cat_child = "";
+	$cat_termid = 0;
+	$cat_id = 0;
+	foreach( $cats as $val_cat ){
+		if( $val_cat->parent != 0 ){
+			$cat_child = $val_cat->name;
+			$cat_termid = $val_cat->term_id;
+			$cat_id = $val_cat->cat_id;
+			break;
+		}
+	}
+	if( $cat_child != "" ){
+		$name = $cat_child;
+		$category_link = get_category_link($cat_id);
+		$term_link = get_term_link( $cat_termid );
+		$cat_link = count($category_link) > 0 ? $category_link : $term_link;
+		//var_dump($cat_link);
+	}else{
+		$name = "Sin categoría";
+	}
+}
 ?>
 
 <div id="post-<?php the_ID(); ?>">
@@ -135,7 +158,7 @@ if(!empty($GLOBALS['carrusel_seccion'])){
                 <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
 			</div>
             <div class="col-6 hora text-right">
-                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+                <small><?php echo $haceTiempo; ?></small>
             </div>
 		</div>
 	<!-- IMAGEN DE NOTA -->

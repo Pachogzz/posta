@@ -17,6 +17,15 @@ $slider_type = get_sub_field('tipo_de_carrusel_seccion'); // Tipo de slider
 $GLOBALS['tipo_de_carrusel_2'] = $slider_type;
 $category_link = get_category_link($category_id); // Link de la sección
 $category_description = category_description($category_id); // Descripción de la sección*/
+$show_time_ago = get_theme_mod('show_time_ago');
+switch ($show_time_ago == 1) {
+    case '1':
+        $haceTiempo = time_ago() . ' <i class="fas fa-clock"></i>';
+    break;
+    case '0':
+        $haceTiempo = "";
+    break;
+}
 
 ?>
 <!-- Contenedor de carusel -->

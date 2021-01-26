@@ -28,7 +28,7 @@ switch ($show_time_ago == 1) {
 }
 
 if($titulo_del_carrusel){
-	$titulo ='<h2 class="encabezado-titulo"><span class="nombre-sitio">POSTA</span><span class="nombre-taxonomia">'.$titulo_del_carrusel.'</span></h2>';
+	$titulo ='<span class="nombre-sitio">POSTA</span><span class="nombre-taxonomia">'.$titulo_del_carrusel.'</span>';
 }
 if($mostrar_descripcion){
 	$descripcion_del_carrusel_coleccion = get_sub_field('descripcion_del_carrusel');
@@ -41,8 +41,10 @@ if ( $notas_coleccion ) { ?>
 				<div class="col">
 					<!-- ENCABEZADO DE CARRUSEL -->
 					<div class="encabezado">
-						<?php echo $titulo; ?>
-						<?php echo $descripcion_del_carrusel; ?>
+						<h2 class="encabezado-titulo">
+							<?php echo $titulo; ?>
+							<?php echo $descripcion_del_carrusel; ?>
+						</h2>
 					</div>
 					<!-- CARRUSEL COLECCIÓN -->
 					<div class="owl-carousel owl-<?php echo $tipo_de_carrusel_coleccion; ?> <?php echo $tipo_de_carrusel_coleccion; ?>">

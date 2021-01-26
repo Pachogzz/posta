@@ -54,7 +54,7 @@
         <!-- Desktop block -->
         <div class="d-none d-sm-none d-md-none d-lg-block">
             <div class="row">
-                <div class="col-12 px-0">
+                <div class="col-12">
                     <div class="encabezado">
                         <h2 class="encabezado-titulo" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                             <a href="<?php echo $link; ?>">
@@ -71,8 +71,6 @@
                         <?php endif ?>
                     </div>
                 </div>
-                
-
 
                 <style type="text/css">
                     #slider_1_3_2_4{
@@ -134,41 +132,38 @@
                                 <?php
                             }
                 ?>
-                        
-                        
-                            <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
-                                <div class="row meta">
-                                    <?php 
-                                        $child_category = post_child_category(get_the_ID());
-                                        $subTax_color = get_term_meta( $child_category->term_id, 'category_color', true );
-                                    ?>
-                                    <div class="col-6 categoria" style="background-color: <?php echo "#" . $subTax_color; ?> !important;">
-                                        <a class="text-white" href="<?php echo get_category_link($child_category->cat_ID); ?>" title="<?php echo $child_category->cat_name;?>">
-                                            <small><?php echo $child_category->cat_name; ?></small>
-                                        </a>
-                                        <span class="side-triangle" style="background-color: <?php echo "#" . $subTax_color; ?> !important;"></span>
-                                    </div>
-                                    <div class="col hora text-right">
-                                        <small><?php echo $haceTiempo; ?></small>
-                                    </div>
-                                </div>
-                                <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
-                                <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
-                                    <div class='imagen-nota-container'>
-                                        <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                        <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
-                                    </div>
+                    <div id="post-<?php the_ID(); ?>" class="col-12 col-md-6 col-lg-3 nota">
+                        <div class="row meta">
+                            <?php 
+                                $child_category = post_child_category(get_the_ID());
+                                $subTax_color = get_term_meta( $child_category->term_id, 'category_color', true );
+                            ?>
+                            <div class="col-6 categoria" style="background-color: <?php echo "#" . $subTax_color; ?> !important;">
+                                <a class="text-white" href="<?php echo get_category_link($child_category->cat_ID); ?>" title="<?php echo $child_category->cat_name;?>">
+                                    <small><?php echo $child_category->cat_name; ?></small>
                                 </a>
                             </div>
+                            <div class="col hora text-right">
+                                <small><?php echo $haceTiempo; ?></small>
+                            </div>
+                        </div>
+                        <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
+                        <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                            <div class='imagen-nota-container'>
+                                <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
+                                <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                            </div>
+                        </a>
+                    </div>
                         
-                            <?php
+                        <?php
 
-                            if($cada8 == 8){
-                                ?>
-                                </li>
-                                <?php
-                                $cada8 = 0;
-                            }
+                        if($cada8 == 8){
+                            ?>
+                            </li>
+                            <?php
+                            $cada8 = 0;
+                        }
 
                         endwhile;
                     endif;
@@ -176,20 +171,20 @@
                     //unset($GLOBALS['carrusel_seccion']);
                 ?>
                 </ul>
-                </div><!-- /.row -->
+            </div><!-- /.row -->
             
-            <!-- Anythingslider  -->
-            <script type="text/javascript">
-              jQuery('#slider_1_3_2_4').anythingSlider({
-                // resizeContents      : false,
-                buildArrows         : true,
-                autoPlay            : false,
-                buildNavigation     : false,
-                buildStartStop      : false,
-                expand              : false,
-                hashTags            : false
-              });
-            </script>
+                <!-- Anythingslider  -->
+                <script type="text/javascript">
+                  jQuery('#slider_1_3_2_4').anythingSlider({
+                    // resizeContents      : false,
+                    buildArrows         : true,
+                    autoPlay            : false,
+                    buildNavigation     : false,
+                    buildStartStop      : false,
+                    expand              : false,
+                    hashTags            : false
+                  });
+                </script>
 
                 <div class="col-12 text-right">
                     <a class="btn btn-lg" href="<?php echo $link; ?>" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
@@ -197,7 +192,6 @@
                     </a>
                 </div>
             </div>
-        </div>
         <!-- Desktop block -->
 
         <!-- Movile slide -->
@@ -207,6 +201,7 @@
                     <div class="encabezado">
                         <h2 class="encabezado-titulo" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                             <a href="<?php echo $link; ?>">
+                                <span class="nombre-sitio">POSTA</span>
                                 <?php if($tipoTitulo == 'por_defecto'): ?>
                                     <span class="nombre-taxonomia"><?php echo $categoria->name;?></span>
                                 <?php else: ?>

@@ -153,11 +153,6 @@ class cpt_tax_meta {
   * @since 1.0.0
  */
  public function init() {
-  // Txonomia Columnsta
-   add_action( 'columnista_add_form_fields', array ( $this, 'add_category_image' ), 10, 2 );
-   add_action( 'created_columnista', array ( $this, 'save_category_image' ), 10, 2 );
-   add_action( 'columnista_edit_form_fields', array ( $this, 'update_category_image' ), 10, 2 );
-   add_action( 'edited_columnista', array ( $this, 'updated_category_image' ), 10, 2 );
   // Taxonoia Fuentes
    add_action( 'fuente_add_form_fields', array ( $this, 'add_category_image' ), 10, 2 );
    add_action( 'created_fuente', array ( $this, 'save_category_image' ), 10, 2 );

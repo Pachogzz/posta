@@ -22,15 +22,15 @@ $categoria = get_the_category(get_the_ID(), 'category');
 // echo "</pre><hr><hr><hr><hr>";
 
 //obtiene la categoria principal seleccionado  con el yoast
-if($categoria[0]){
-	$category_name = $categoria->name;
-	$category_id = $categoria->term_id;
-}
-//obtiene la categoria  seleccionado 
-if(empty($category_name)){
-	$category_name = $categoria[0]->name;
-	$category_id = $categoria[0]->term_id;
-}
+// if($categoria[0]){
+// 	$category_name = $categoria->name;
+// 	$category_id = $categoria->term_id;
+// }
+// //obtiene la categoria  seleccionado 
+// if(empty($category_name)){
+// 	$category_name = $categoria[0]->name;
+// 	$category_id = $categoria[0]->term_id;
+// }
 
 // Script que muestra 
 if( function_exists('addPostViews') ) { 
@@ -42,6 +42,15 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '1920x1080');
 if (empty($featured_img_url)){
 	$featured_img_url = get_theme_mod('default_news_image');
 }
+
+$columna = wp_get_post_terms( $post->ID, 'columna', array( 'fields' => 'all' ) );
+$columna_link = get_term_link( $columna[0]->slug, 'columna');
+$section_link  = get_category_link($columna[0]->term_id);
+// echo "<span class='text-white'><pre>";
+// var_dump($columna);
+// echo "<hr>";
+// echo $columna[0]->name;
+// echo "</span></pre>";
 
 // Create shortcodes
 require get_template_directory() . '/inc/shortcodes.php';
@@ -80,7 +89,7 @@ $GLOBALS['gallery']=  $gallery;
 						$fuente = get_field('fuente');
 						$fuenteLink = get_term_link($fuente->slug, 'fuente');
 						if (!empty($fuente)) {
-							echo "<a href=".$fuenteLink.">".$fuente->name."</a>";
+							echo $fuente->name;
 						}else{
 							echo "POSTA REDACCIÓN";
 						}
@@ -91,9 +100,9 @@ $GLOBALS['gallery']=  $gallery;
 						<small><?php echo get_the_date( 'l j F Y - g:i a' ); ?></small>
 					</p>
 					<!-- Nombre de la sección o categoría principal seleccionada -->
-					<!-- <h4 class="encabezado-titulo flecha">
-						<//?php echo $category_name; ?>
-					</h4> -->
+					<h4 class="encabezado-titulo text-white">
+						<?php echo $columna[0]->name; ?>
+					</h4>
 					<!-- Nombre del tema -->
 					<?php if($categoria){
 						echo "Temas: ";
@@ -101,7 +110,13 @@ $GLOBALS['gallery']=  $gallery;
 								echo $theme_name = '<h2 class="tema-de-nota text-primary mt-3"><a href="'.esc_url($theme_link).'">'.$categoria[0]->name.'</a></h2>';
 						}?>
 					<!-- Extracto -->
-					<p class="lead extracto-de-nota mt-3"><?php echo get_the_excerpt() ?></p>
+					<?php 
+					if ( ! has_excerpt() ) {
+					    echo '<!-- . -->';
+					} else { ?>
+						<!-- Extracto -->
+						<p class="lead extracto-de-nota mt-3"><?php echo get_the_excerpt(); ?></p>
+					<?php } ?>
 
 					<div class="separador"></div>
 
@@ -161,7 +176,7 @@ $GLOBALS['gallery']=  $gallery;
 		</div>
 
 		<!-- PUBLICIDAD -->
-		<div class="container mt-8">
+		<!-- <div class="container mt-8">
 			<div class="row">
 				<div class="col">
 					<div class="">
@@ -170,7 +185,7 @@ $GLOBALS['gallery']=  $gallery;
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- NOTAS RELACIONADAS -->
 		<div class="container mt-7 mb-6 container-lg<<<">
