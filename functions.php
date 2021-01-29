@@ -707,10 +707,11 @@ function pagination() {
 *																*
 ****************************************************************/
 
-require_once 'categoriaprincipal.php';
+// require_once 'categoriaprincipal.php';
 require_once 'options/theme.php';
 
 // API
+require_once 'api/functions-api.php';
 require_once 'api/slider.php';
 require_once 'api/blockone.php';
 require_once 'api/blocktwo.php';
@@ -718,9 +719,9 @@ require_once 'api/blockthree.php';
 require_once 'api/blockfour.php';
 require_once 'api/blockfive.php';
 require_once 'api/post-custom-rest-api.php';
+require_once 'api/perspectiva-custom-rest-api.php';
 require_once 'api/category-custom-rest-api.php';
 require_once 'api/menu.php';
-require_once 'api/functions-api.php';
 
 /****************************************************************
 *																*
