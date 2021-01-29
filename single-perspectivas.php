@@ -17,21 +17,6 @@ $categoria = get_the_category(get_the_ID(), 'category');
 
 // $imagePosted = get_post(get_the_post_thumbnail_id());
 
-// echo "<hr><hr><hr><hr><pre>";
-// print_r($imagePosted);
-// echo "</pre><hr><hr><hr><hr>";
-
-//obtiene la categoria principal seleccionado  con el yoast
-// if($categoria[0]){
-// 	$category_name = $categoria->name;
-// 	$category_id = $categoria->term_id;
-// }
-// //obtiene la categoria  seleccionado 
-// if(empty($category_name)){
-// 	$category_name = $categoria[0]->name;
-// 	$category_id = $categoria[0]->term_id;
-// }
-
 // Script que muestra 
 if( function_exists('addPostViews') ) { 
 	addPostViews(get_the_ID()); 
@@ -44,12 +29,17 @@ if (empty($featured_img_url)){
 }
 
 $columna = wp_get_post_terms( $post->ID, 'columna', array( 'fields' => 'all' ) );
+$columna_ID = $columna[0]->term_id;
+$columna_name = $columna[0]->name;
 $columna_link = get_term_link( $columna[0]->slug, 'columna');
-$section_link  = get_category_link($columna[0]->term_id);
 // echo "<span class='text-white'><pre>";
 // var_dump($columna);
 // echo "<hr>";
-// echo $columna[0]->name;
+// echo $columna_ID;
+// echo "<hr>";
+// echo $columna_name;
+// echo "<hr>";
+// echo $columna_link;
 // echo "</span></pre>";
 
 // Create shortcodes
@@ -75,7 +65,7 @@ $GLOBALS['gallery']=  $gallery;
 		</div>
 
 		<!-- NOTA -->
-		<div class="container p-6 bg-white">
+		<div class="container mt-1 px-3 py-6 p-lg-6 bg-white">
 			<div class="row justify-content-center align-items-start">
 				<!-- Contenido principal -->
 				<div class="col-12 col-lg-8 px-4 pl-lg-3 pr-lg-6">
@@ -88,6 +78,7 @@ $GLOBALS['gallery']=  $gallery;
 						<?php 
 						$fuente = get_field('fuente');
 						$fuenteLink = get_term_link($fuente->slug, 'fuente');
+						// echo "<span class'text-info'><pre>".$fuente."</pre></span>";
 						if (!empty($fuente)) {
 							echo $fuente->name;
 						}else{
@@ -101,14 +92,15 @@ $GLOBALS['gallery']=  $gallery;
 					</p>
 					<!-- Nombre de la sección o categoría principal seleccionada -->
 					<h4 class="encabezado-titulo text-white">
-						<?php echo $columna[0]->name; ?>
+						<?php echo $columna_name; ?>
 					</h4>
 					<!-- Nombre del tema -->
-					<?php if($categoria){
-						echo "Temas: ";
-								$theme_link  = get_category_link($categoria[0]->term_id);
-								echo $theme_name = '<h2 class="tema-de-nota text-primary mt-3"><a href="'.esc_url($theme_link).'">'.$categoria[0]->name.'</a></h2>';
-						}?>
+					<?php 
+					// if($categoria){
+					// 	$theme_link  = get_category_link($categoria[0]->term_id);
+					// 		echo '<h2 class="tema-de-nota mt-3">Temas: <a class="font-weight-bolder" href="'.esc_url($theme_link).'">'.$categoria[0]->name.'</a></h2>';
+					// 	}
+					?>
 					<!-- Extracto -->
 					<?php 
 					if ( ! has_excerpt() ) {
@@ -188,15 +180,18 @@ $GLOBALS['gallery']=  $gallery;
 		</div> -->
 
 		<!-- NOTAS RELACIONADAS -->
-		<div class="container mt-7 mb-6 container-lg<<<">
+		<div class="container mt-7 mb-6 contenido-relacionado">
 			<div class="row">
 				<div class="col">
 					<!-- ENCABEZADO DE CARRUSEL -->
-					<div class="encabezado">
-						<h3 class="encabezado-titulo">
-							<span class="d-inline-block bg-dark text-white px-2">Contenido relacionado</span> <a class="text-white" href="<?php echo esc_url($category_link); ?>"><?php echo $category_name;?></a>
+					<div class="encabezado text-md-center text-lg-left">
+						<h3 class="encabezado-titulo text-sm-center">
+							<?php
+
+							 ?>
+							<span class="d-block d-lg-inline-block bg-dark text-light p-2 mb-2 mb-lg-0">Contenido relacionado en</span> 
+							<a class="text-white" href="<?php echo esc_url($columna_link); ?>"><?php echo $columna_name;?></a>
 						</h3>
-						<?php if(!empty($category_description)){ echo '<p class="encabezado-descripcion">'.$category_description.'</p>'; } ?>
 					</div>
 				</div>
 			</div>
@@ -207,25 +202,27 @@ $GLOBALS['gallery']=  $gallery;
 						<?php
 						$args = array(
 							'suppress_filters' => true,
-							'post_type' => 'post',
+							'post_type' => 'perspectivas',
 							'post__not_in' => array(get_the_ID()),
 							'posts_per_page' => 6,
+							'tax_query' => array(
+								'taxonomy' => 'columna',
+								'field' => 'slug',
+								'terms'    => $columna_name,
+							),
 							'post_status' => array(
 								'publish', 
 							),
-							'cat' => $category_id,
+							// 'cat' => $columna_ID,
 							'orderby' => 'date',
 							'order' => 'DESC'
 						);
-
-						$output = 'objects';
-						$the_query = new WP_Query( $args, $output );
+						$the_query = new WP_Query( $args );
 
 						if ( $the_query->have_posts() ) {
 							while ( $the_query->have_posts() ) {
 								$the_query->the_post();
-								$categoria = get_the_category(get_the_ID(), 'category');
-								$tax_color = get_term_meta( $categoria[0]->term_id, 'category_color', true );
+								$tax_color = get_term_meta( $columna_ID, 'category_color', true );
 							    $show_time_ago = get_theme_mod('show_time_ago');
 							    switch ($show_time_ago == 1) {
 							        case '1':
@@ -244,8 +241,8 @@ $GLOBALS['gallery']=  $gallery;
 								<div class="c-item nota">
 			                        <div class="row meta">
 			                            <div class="col-12 col-md-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-			                                <a class="text-white" href="<?php echo $link; ?>">
-			                                    <small><?php echo $categoria[0]->name; ?></small>
+			                                <a class="text-white" href="<?php echo $columna_link; ?>">
+			                                    <small><?php echo $columna_name; ?></small>
 			                                </a>
 			                                <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
 			                            </div>
@@ -269,12 +266,12 @@ $GLOBALS['gallery']=  $gallery;
 							}
 						} ?>
 						<!-- Link ver más notas -->
-						<div class="c-item">
-							<a class="item-ver-mas h-100" href="</?php echo esc_url($category_link); ?>" title="Ver más noticias de </?php echo $category_name;?>">
+						<div class="c-item my-5">
+							<a class="item-ver-mas h-100" href="<?php echo esc_url($columna_link); ?>" title="Ver más noticias de <?php echo $columna_name;?>">
 								<div class="contenedor-media">
 									<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center">
-										<p class="h5 m-0">Ver más</p>
-										<!-- <h4 class="encabezado-titulo flecha"><?php echo $category_name;?></h4> -->
+										<p class="h5 m-3">Ver más de</p>
+										<h4 class="encabezado-titulo text-white"><?php echo $columna_name;?></h4>
 									</div>
 								</div>
 							</a>

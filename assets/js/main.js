@@ -105,7 +105,7 @@ $(document).ready(function() {
  **/
 jQuery(document).ready(function() {
 	$( "#ajax-posts .bloque-nota-archivo" ).first().removeClass('col-md-6 col-lg-4').addClass('col-12');
-	$( ".post-type-archive-perspectiva #ajax-posts .bloque-nota-archivo" ).first().addClass('col-md-6 col-lg-4').removeClass('col-12');
+	$( ".post-type-archive-perspectivas #ajax-posts .bloque-nota-archivo" ).first().addClass('col-md-6 col-lg-4').removeClass('col-12');
 	$( ".carrusel-portada-verticales" ).parent().addClass('vh-70');
 	$( ".carrusel-portada-verticales" ).addClass('h-100');
 	$( ".carrusel-portada-verticales .owl-stage-outer" ).addClass('h-100');

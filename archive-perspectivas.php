@@ -71,8 +71,14 @@ $queriedObjetc = get_queried_object();
 
 					// Todas las perspectivas
 					$args = array(
-						'post_type' => 'perspectiva',
-						'posts_per_page' => 12,
+						'post_type' => 'perspectivas',
+						'posts_per_page' => 6,
+						'post_status' => array(
+							'publish',
+						),
+						'orderby' => 'date',
+						'order' => 'DESC',
+						'paged' => $paged
 					);
 					$output = 'objects';
 					$the_query = new WP_Query( $args );

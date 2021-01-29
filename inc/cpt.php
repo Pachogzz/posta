@@ -22,12 +22,12 @@ function custom_post_type() {
         'not_found_in_trash'  => __( 'No encontrado en la papelera', 'postamx' ),
     );
     $argsp = array(
-        'label'               => __( 'perspectiva', 'postamx' ),
+        'label'               => __( 'perspectivas', 'postamx' ),
         'description'         => __( '', 'postamx' ),
         'labels'              => $labelsp,
         'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields', ),
         'taxonomies'          => array( 'columna', 'post_tag', 'fuente' ),
-        'rewrite'             => array( 'slug' => 'perspectiva', 'with_front' => true ),
+        'rewrite'             => array( 'slug' => 'perspectivas', 'with_front' => true ),
         'hierarchical'        => false,
         'public'              => true,
         'show_ui'             => true,
@@ -44,47 +44,8 @@ function custom_post_type() {
         'show_in_rest'        => true,
         'query_var'           => true,
     );    
-    register_post_type( 'perspectiva', $argsp );
+    register_post_type( 'perspectivas', $argsp );
     flush_rewrite_rules();
-
-    // $labelsf = array(
-    //     'name'                => __( 'Fuentes', 'Post Type General Name', 'postamx' ),
-    //     'singular_name'       => __( 'Fuente', 'Post Type Singular Name', 'postamx' ),
-    //     'menu_name'           => __( 'Fuentes', 'postamx' ),
-    //     'parent_item_colon'   => __( 'Fuente padre', 'postamx' ),
-    //     'all_items'           => __( 'Todos los Fuentes', 'postamx' ),
-    //     'view_item'           => __( 'Ver Fuente', 'postamx' ),
-    //     'add_new_item'        => __( 'Agregar nuevo Fuente', 'postamx' ),
-    //     'add_new'             => __( 'Agregar nuevo', 'postamx' ),
-    //     'edit_item'           => __( 'Editar Fuente', 'postamx' ),
-    //     'update_item'         => __( 'Actualizar Fuente', 'postamx' ),
-    //     'search_items'        => __( 'Buscar Fuente', 'postamx' ),
-    //     'not_found'           => __( 'No encontrado', 'postamx' ),
-    //     'not_found_in_trash'  => __( 'No encontrado en la papelera', 'postamx' ),
-    // );
-    // $argsf = array(
-    //     'label'               => __( 'fuente', 'postamx' ),
-    //     'description'         => __( '', 'postamx' ),
-    //     'labels'              => $labelsf,
-    //     'supports'            => array( 'title', 'custom-fields', ),
-    //     'hierarchical'        => false,
-    //     'public'              => true,
-    //     'show_ui'             => true,
-    //     'show_in_menu'        => true,
-    //     'show_in_nav_menus'   => true,
-    //     'show_in_admin_bar'   => true,
-    //     'menu_position'       => 5,
-    //     'menu_icon'           => 'dashicons-format-chat',
-    //     'can_export'          => true,
-    //     'has_archive'         => true,
-    //     'exclude_from_search' => false,
-    //     'publicly_queryable'  => true,
-    //     'capability_type'     => 'post',
-    //     'show_in_rest'        => true,
-    //     'query_var'           => true,
-    // );    
-    // register_post_type( 'fuente', $argsf );
-    // flush_rewrite_rules();
 }
  
 add_action( 'init', 'taxonomy_columna', 0 );
@@ -104,7 +65,7 @@ function taxonomy_columna() {
     );    
     register_taxonomy(
         'columna',
-        array('perspectiva'), 
+        array('perspectivas'), 
             array(
                 'hierarchical'        => true,
                 'labels'              => $labels,
@@ -116,15 +77,3 @@ function taxonomy_columna() {
     ));
     flush_rewrite_rules();
 }
-
-// add_filter('post_type_link', 'projectcategory_permalink_structure', 10, 4);
-// function projectcategory_permalink_structure($post_link, $post, $leavename, $sample) {
-//     if (false !== strpos($post_link, '%columnista%')) {
-//         $columnista_type_term = get_the_terms($post->ID, 'columnista');
-//         if (!empty($columnista_type_term))
-//             $post_link = str_replace('%columnista%', array_pop($columnista_type_term)->slug, $post_link);
-//         else
-//             $post_link = str_replace('%columnista%', 'uncategorized', $post_link);
-//     }
-//     return $post_link;
-// }

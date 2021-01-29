@@ -275,7 +275,7 @@
 
       $shortcode_html = '';
       $shortcode_html .= '
-        <div class="cita my-5">
+        <div class="cita my-5 px-3 px-md-5 px-lg-6">
           <div class="row no-gutters">
             <div class="col-12 col-sm-auto">
               <div class="comillas"></div>
@@ -320,7 +320,7 @@
       $nota_de_interes = $te_puede_interesar[$te_puede_interesar_counter]['nota_propuesta'];
 
       $shortcode_html = '';
-      $shortcode_html .= '<div class="nota-relacionada">
+      $shortcode_html .= '<div class="nota-relacionada my-3 my-md-4 my-lg-5">
                             <div class="row">
                               <div class="col-12 position-relative py-3">
                                 <span class="d-inline-block text-white"><strong>Te puede interesar: </strong></span>

@@ -7,19 +7,17 @@
  * @package postamx
  */
 get_header();
-//Obtiener información de los temas asociado a la nota
+
+// Obtiener información de los temas asociado a la nota
 $categoria = get_the_category(get_the_ID(), 'category');
-// $themes = get_the_terms(get_the_ID(), 'theme'); 
 
-// echo "<hr><pre>";
+// Only for related notes
+$category_id = $categoria[0]->term_id;
+$category_name = $categoria[0]->name;
+
+// echo "<span class='text-white py-6'><pre>";
 // print_r($categoria);
-// echo "</pre><hr>";
-
-// $imagePosted = get_post(get_the_post_thumbnail_id());
-
-// echo "<hr><hr><hr><hr><pre>";
-// print_r($imagePosted);
-// echo "</pre><hr><hr><hr><hr>";
+// echo "</pre><span>";
 
 //obtiene la categoria principal seleccionado  con el yoast
 // if($categoria[0]){
@@ -27,10 +25,10 @@ $categoria = get_the_category(get_the_ID(), 'category');
 // 	$category_id = $categoria->term_id;
 // }
 //obtiene la categoria  seleccionado 
-if(empty($category_name)){
-	$category_name = $categoria[0]->name;
-	$category_id = $categoria[0]->term_id;
-}
+// if(empty($category_name)){
+// 	$category_name = $categoria[0]->name;
+// 	$category_id = $categoria[0]->term_id;
+// }
 
 // Script que muestra 
 if( function_exists('addPostViews') ) { 
@@ -66,7 +64,7 @@ $GLOBALS['gallery']=  $gallery;
 		</div>
 
 		<!-- NOTA -->
-		<div class="container mt-1 p-6 bg-white container-lg<<<">
+		<div class="container mt-1 px-3 py-6 p-lg-6 bg-white container-lg">
 			<div class="row justify-content-center align-items-start">
 				<!-- Contenido principal -->
 				<div class="col-12 col-lg-8 px-4 pl-lg-3 pr-lg-6">
@@ -98,18 +96,21 @@ $GLOBALS['gallery']=  $gallery;
 						<//?php echo $category_name; ?>
 					</h4> -->
 					<!-- Nombre del tema -->
-					<?php if($categoria){
-						echo "Temas: ";
-								$theme_link  = get_category_link($categoria[0]->term_id);
-								echo $theme_name = '<h2 class="tema-de-nota text-primary mt-3"><a href="'.esc_url($theme_link).'">'.$categoria[0]->name.'</a></h2>';
+					<?php
+						if (!empty($categoria[1])) {
+							$theme_link  = get_category_link($categoria[1]->term_id);
+							echo '<h2 class="tema-de-nota mt-3 pl-0">Temas: <a class="font-weight-bolder" href="'.esc_url($theme_link).'">'.$categoria[1]->name.'</a></h2>';
+						} else {
+							$theme_link  = get_category_link($categoria[0]->term_id);
+							echo '<h2 class="tema-de-nota mt-3 pl-0">Temas: <a class="font-weight-bolder" href="'.esc_url($theme_link).'">'.$categoria[0]->name.'</a></h2>';
+						}
 						
 						if ( ! has_excerpt() ) {
 						    echo '<!-- . -->';
 						} else { ?>
 							<!-- Extracto -->
 							<p class="lead extracto-de-nota mt-3"><?php echo get_the_excerpt(); ?></p>
-						<?php }
-						}?>
+						<?php } ?>
 
 					<div class="separador"></div>
 
@@ -194,15 +195,15 @@ $GLOBALS['gallery']=  $gallery;
 		</div> -->
 
 		<!-- NOTAS RELACIONADAS -->
-		<div class="container mt-7 mb-6 container-lg<<<">
+		<div class="container mt-7 mb-6 contenido-relacionado">
 			<div class="row">
 				<div class="col">
 					<!-- ENCABEZADO DE CARRUSEL -->
-					<div class="encabezado">
-						<h3 class="encabezado-titulo">
-							<span class="d-inline-block bg-white text-dark px-2">Contenido relacionado en</span> <a class="text-white" href="<?php echo esc_url($category_link); ?>"><?php echo $category_name;?></a>
+					<div class="encabezado text-md-center text-lg-left">
+						<h3 class="encabezado-titulo text-sm-center">
+							<span class="d-block d-lg-inline-block bg-dark text-light p-2 mb-2 mb-lg-0">Contenido relacionado en</span> 
+							<a class="text-white" href="<?php echo esc_url($category_link); ?>"><?php echo $category_name;?></a>
 						</h3>
-						<?php if(!empty($category_description)){ echo '<p class="encabezado-descripcion">'.$category_description.'</p>'; } ?>
 					</div>
 				</div>
 			</div>
@@ -224,8 +225,9 @@ $GLOBALS['gallery']=  $gallery;
 							'order' => 'DESC'
 						);
 
-						$output = 'objects';
-						$the_query = new WP_Query( $args, $output );
+						// $output = 'objects';
+						// $the_query = new WP_Query( $args, $output );
+						$the_query = new WP_Query( $args );
 
 						if ( $the_query->have_posts() ) {
 							while ( $the_query->have_posts() ) {
@@ -275,12 +277,12 @@ $GLOBALS['gallery']=  $gallery;
 							}
 						} ?>
 						<!-- Link ver más notas -->
-						<div class="c-item">
+						<div class="c-item my-5">
 							<a class="item-ver-mas" href="<?php echo esc_url($category_link); ?>" title="Ver más noticias de <?php echo $category_name;?>">
 								<div class="contenedor-media">
 									<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center">
-										<p class="h5 m-0">Ver más noticias de</p>
-										<!-- <h4 class="encabezado-titulo flecha"><?php echo $category_name;?></h4> -->
+										<p class="h5 m-3">Ver más noticias de</p>
+										<h4 class="encabezado-titulo text-white"><?php echo $category_name;?></h4>
 									</div>
 								</div>
 							</a>
