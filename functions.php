@@ -496,7 +496,7 @@ function rename_default_taxonomy() {
 }
 add_action( 'init', 'rename_default_taxonomy' );
 
-// Register taxonomy "Temas"
+// Register taxonomy "Fuentes"
 add_action( 'init', 'create_fuente_taxonomy' );
 function create_fuente_taxonomy() {
   $labels = array(
@@ -517,7 +517,7 @@ function create_fuente_taxonomy() {
   
   register_taxonomy(
     'fuente',
-    array( 'post', 'perspectiva' ),
+    array( 'post', 'perspectivas' ),
     array(
       'labels' => $labels,
       'has_archive' => true,

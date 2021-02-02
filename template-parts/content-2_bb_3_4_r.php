@@ -202,7 +202,21 @@
                     wp_reset_postdata();
                 ?>
                     <div class="col-12 col-md-6 nota modulo-publicidad">
-                        <img src="http://fakeimg.pl/300x300/333/ccc/?text=BoxBanner" class="img-fluid d-block mb-0" alt="Publicidad...">
+                        <script>
+                          window.googletag = window.googletag || {cmd: []};
+                          googletag.cmd.push(function() {
+                            googletag.defineSlot('/90573685/Boxbanner_home_4', [[300, 250], [300, 600]], 'div-gpt-ad-1610518078485-0').addService(googletag.pubads());
+                            googletag.pubads().enableSingleRequest();
+                            googletag.enableServices();
+                          });
+                        </script>
+
+                        <!-- /90573685/Boxbanner_home_4 -->
+                        <div id='div-gpt-ad-1610518078485-0'>
+                          <script>
+                            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1610518078485-0'); });
+                          </script>
+                        </div>
                         <span>Publicidad</span>
                     </div>
                     </div>
@@ -366,7 +380,21 @@
                     wp_reset_postdata();
                     ?>
                         <div class="col-12 nota modulo-publicidad">
-                            <img src="http://fakeimg.pl/300x300/333/ccc/?text=BoxBanner" class="img-fluid d-block mb-0" alt="Publicidad...">
+                            <script>
+                              window.googletag = window.googletag || {cmd: []};
+                              googletag.cmd.push(function() {
+                                googletag.defineSlot('/90573685/Boxbanner_home_4', [[300, 250], [300, 600]], 'div-gpt-ad-1610518078485-0').addService(googletag.pubads());
+                                googletag.pubads().enableSingleRequest();
+                                googletag.enableServices();
+                              });
+                            </script>
+
+                            <!-- /90573685/Boxbanner_home_4 -->
+                            <div id='div-gpt-ad-1610518078485-0'>
+                              <script>
+                                googletag.cmd.push(function() { googletag.display('div-gpt-ad-1610518078485-0'); });
+                              </script>
+                            </div>
                             <span>Publicidad</span>
                         </div>
                     </div>

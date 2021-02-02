@@ -12,10 +12,18 @@ get_header();
 $taxonomy_object = $wp_query->get_queried_object();
 
 $perspectiva = get_category( $taxonomy_object );
+$perspectiva_term = $perspectiva->taxonomy;
 $perspectiva_name = $perspectiva->name;
-// $perspectiva_description = $perspectiva->description;
+$perspectiva_description = $perspectiva->description;
 $tax_color = get_term_meta( $perspectiva->term_id, 'category_color', true );
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+// echo "<span class='text-white'><pre>";
+// print_r($perspectiva);
+// echo "<br>";
+// echo $perspectiva_term;
+// echo "</pre></span>";
+
 ?>
 
 <div id="primary" class="content-area">
@@ -30,9 +38,9 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 							<span class="nombre-sitio">POSTA</span>
 							<span class="nombre-taxonomia"><?php echo $perspectiva_name; ?></span>
 						</h2>
-						<!-- <?php //if (!empty($perspectiva_description)): ?> -->
-						<!-- <p class="encabezado-descripcion"><?php //echo $perspectiva_description; ?></p> -->
-						<!-- <?php //endif ?> -->
+						<?php if (!empty($perspectiva_description)): ?>
+						<p class="encabezado-descripcion"><?php echo $perspectiva_description; ?></p>
+						<?php endif ?>
 					</div>
 				</div>
 			</div>
@@ -54,6 +62,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					// Todas las perspectivas
 					$args = array(
 						'post_type' => 'perspectivas',
+						'columna' => $perspectiva_name,
 						'posts_per_page' => 9,
 						'post_status' => array(
 							'publish',
@@ -62,7 +71,6 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 						'order' => 'DESC',
 						'paged' => $paged
 					);
-					$output = 'objects';
 					$the_query = new WP_Query( $args );
 					if ( $the_query->have_posts() ) :
 						?>

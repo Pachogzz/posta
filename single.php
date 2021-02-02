@@ -14,21 +14,12 @@ $categoria = get_the_category(get_the_ID(), 'category');
 // Only for related notes
 $category_id = $categoria[0]->term_id;
 $category_name = $categoria[0]->name;
+$fuente = get_field('fuente');
+@$fuenteLink = get_term_link($fuente->slug, 'fuente');
 
 // echo "<span class='text-white py-6'><pre>";
 // print_r($categoria);
 // echo "</pre><span>";
-
-//obtiene la categoria principal seleccionado  con el yoast
-// if($categoria[0]){
-// 	$category_name = $categoria->name;
-// 	$category_id = $categoria->term_id;
-// }
-//obtiene la categoria  seleccionado 
-// if(empty($category_name)){
-// 	$category_name = $categoria[0]->name;
-// 	$category_id = $categoria[0]->term_id;
-// }
 
 // Script que muestra 
 if( function_exists('addPostViews') ) { 
@@ -56,7 +47,7 @@ $GLOBALS['gallery']=  $gallery;
                         <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
 					</div>
 					<!-- Título de la nota -->
-					<h1 class="titulo-principal-nota mt-3 display-4 d-block bg-dark text-light text-center p-3">
+					<h1 class="titulo-principal-nota mt-n2 mt-md-n6 display-4 d-block bg-dark text-light text-center p-3">
 						<?php echo get_the_title(); ?>
 					</h1>
 				</div>
@@ -64,7 +55,7 @@ $GLOBALS['gallery']=  $gallery;
 		</div>
 
 		<!-- NOTA -->
-		<div class="container mt-1 px-3 py-6 p-lg-6 bg-white container-lg">
+		<div class="container px-3 py-6 p-lg-6 bg-white container-lg">
 			<div class="row justify-content-center align-items-start">
 				<!-- Contenido principal -->
 				<div class="col-12 col-lg-8 px-4 pl-lg-3 pr-lg-6">
@@ -73,18 +64,12 @@ $GLOBALS['gallery']=  $gallery;
 
 					<!-- Autor de la nota -->
 					<p class="autor-de-nota">
-						Por: 
 						<?php 
-						$fuente = get_field('fuente');
-						$fuenteLink = get_term_link($fuente->slug, 'fuente');
 						if (!empty($fuente)) {
-							echo "<a href=".$fuenteLink.">".$fuente->name."</a>";
+							echo "Por: " . $fuente->name;
 						}else{
-							echo "POSTA REDACCIÓN";
+							echo "Por: POSTA REDACCIÓN";
 						}
-						// global $post; $author_id = $post->post_author;
-						// $author_name = get_the_author_meta( 'display_name', $author_id );
-						// echo $author_name;
 						?>
 					</p>
 					<!-- Fecha de publicación -->
@@ -99,10 +84,10 @@ $GLOBALS['gallery']=  $gallery;
 					<?php
 						if (!empty($categoria[1])) {
 							$theme_link  = get_category_link($categoria[1]->term_id);
-							echo '<h2 class="tema-de-nota mt-3 pl-0">Temas: <a class="font-weight-bolder" href="'.esc_url($theme_link).'">'.$categoria[1]->name.'</a></h2>';
+							echo '<h2 class="tema-de-nota pl-0">Temas: <a class="font-weight-bolder" href="'.esc_url($theme_link).'">'.$categoria[1]->name.'</a></h2>';
 						} else {
 							$theme_link  = get_category_link($categoria[0]->term_id);
-							echo '<h2 class="tema-de-nota mt-3 pl-0">Temas: <a class="font-weight-bolder" href="'.esc_url($theme_link).'">'.$categoria[0]->name.'</a></h2>';
+							echo '<h2 class="tema-de-nota pl-0">Temas: <a class="font-weight-bolder" href="'.esc_url($theme_link).'">'.$categoria[0]->name.'</a></h2>';
 						}
 						
 						if ( ! has_excerpt() ) {
