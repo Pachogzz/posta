@@ -34,6 +34,8 @@ function add_custom_fields() {
         $imagenVideo = wp_get_attachment_image_src(get_post_meta($object['id'], 'url_imagen_video', true), 'full')[0];
         $audio = get_post_meta($object['id'], 'audio_news', true);
 
+        $fuente = get_field('fuente', $object['id']);
+
 
 		$datos = array(
 			'imagen' => $imagen, 
@@ -45,6 +47,7 @@ function add_custom_fields() {
             'video' => $video,
             'imagenVideo' => $imagenVideo,
             'audio' => $audio,
+            'autor' => $fuente->name,
 		);
 
 		return $datos;

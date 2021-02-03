@@ -37,6 +37,8 @@ function add_custom_fields_perspectiva() {
         $autor = get_the_author_meta('first_name', $object['author']) . " " . get_the_author_meta('last_name', $object['author']);
         $foto = get_avatar_url($object['author'], ['size' => '150']);
 
+        $fuente = get_field('fuente', $object['id']);
+
 
         $datos = array(
             'imagen' => $imagen, 
@@ -49,7 +51,7 @@ function add_custom_fields_perspectiva() {
             'imagenVideo' => $imagenVideo,
             'audio' => $audio,
             'autor' => array(
-                'nombre' => $autor,
+                'nombre' => $fuente->name,
                 'foto' => $foto,
             ),
         );
