@@ -34,10 +34,14 @@ function add_custom_fields_perspectiva() {
         $imagenVideo = wp_get_attachment_image_src(get_post_meta($object['id'], 'url_imagen_video', true), 'full')[0];
         $audio = get_post_meta($object['id'], 'audio_news', true);
 
-        $autor = get_the_author_meta('first_name', $object['author']) . " " . get_the_author_meta('last_name', $object['author']);
-        $foto = get_avatar_url($object['author'], ['size' => '150']);
-
         $fuente = get_field('fuente', $object['id']);
+        $foto = wp_get_attachment_image_src(get_term_meta($fuente->term_id, 'imagen_de_perfil', true), 'full' )[0];
+
+        if ($foto) {
+            $foto = $foto;
+        } else {
+            $foto = get_site_url() . '/wp-content/themes/posta/assets/img/foto-sin-usuario.jpg';
+        }
 
 
         $datos = array(
