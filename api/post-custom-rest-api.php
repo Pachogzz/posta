@@ -37,7 +37,7 @@ function add_custom_fields() {
 
 		$datos = array(
 			'imagen' => $imagen, 
-			'fecha' => timeDate($object['date']),
+			'fecha' => fechaCorta($object['date']),
             'fechaLarga' => fecha($object['date']),
 			'title' => $object['title']['raw'],
             'categoria' => $term->name,
