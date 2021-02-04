@@ -34,10 +34,20 @@ function add_custom_fields() {
         $imagenVideo = wp_get_attachment_image_src(get_post_meta($object['id'], 'url_imagen_video', true), 'full')[0];
         $audio = get_post_meta($object['id'], 'audio_news', true);
 
+        $fuente = get_field('fuente', $object['id']);
+        $foto = wp_get_attachment_image_src(get_term_meta($fuente->term_id, 'imagen_de_perfil', true), 'full' )[0];
+
+        if ($foto) {
+            $foto = $foto;
+        } else {
+            $foto = get_site_url() . '/wp-content/themes/posta/assets/img/foto-sin-usuario.jpg';
+        }
+        
+
 
 		$datos = array(
 			'imagen' => $imagen, 
-			'fecha' => timeDate($object['date']),
+			'fecha' => fechaCorta($object['date']),
             'fechaLarga' => fecha($object['date']),
 			'title' => $object['title']['raw'],
             'categoria' => $term->name,
@@ -45,6 +55,10 @@ function add_custom_fields() {
             'video' => $video,
             'imagenVideo' => $imagenVideo,
             'audio' => $audio,
+            'autor' => array(
+                'nombre' => $fuente->name,
+                'foto' => $foto,
+            ),
 		);
 
 		return $datos;

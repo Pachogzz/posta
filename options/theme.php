@@ -48,7 +48,7 @@ function page() {
     settings_errors();
 
     $posts = get_posts( array(
-        'numberposts'    => 20,
+        'numberposts'    => 200,
         'post_type'      => 'post',
         'post_status'    => 'publish',
         'order'          => 'DESC',
@@ -85,7 +85,7 @@ function page() {
 
                             <div class="form-group">
                                 <label for="slider_categoria">Noticia 1</label>
-                                <select name="slider_nota[]">
+                                <select class="slider" name="slider_nota[]">
                                     <option value="">Selecciona noticia 1</option>
                                     <?php foreach($posts as $post): ?>
                                         <option value="<?php echo $post->ID; ?>" <?php selected(get_option('slider_nota')[0], $post->ID); ?>><?php echo $post->post_title; ?></option>
@@ -95,7 +95,7 @@ function page() {
 
                             <div class="form-group">
                                 <label for="slider_categoria">Noticia 2</label>
-                                <select name="slider_nota[]">
+                                <select class="slider" name="slider_nota[]">
                                     <option value="">Selecciona noticia 2</option>
                                     <?php foreach($posts as $post): ?>
                                         <option value="<?php echo $post->ID; ?>" <?php selected(get_option('slider_nota')[1], $post->ID); ?>><?php echo $post->post_title; ?></option>
@@ -105,7 +105,7 @@ function page() {
 
                             <div class="form-group">
                                 <label for="slider_categoria">Noticia 3</label>
-                                <select name="slider_nota[]">
+                                <select class="slider" name="slider_nota[]">
                                     <option value="">Selecciona noticia 3</option>
                                     <?php foreach($posts as $post): ?>
                                         <option value="<?php echo $post->ID; ?>" <?php selected(get_option('slider_nota')[2], $post->ID); ?>><?php echo $post->post_title; ?></option>
@@ -115,7 +115,7 @@ function page() {
 
                             <div class="form-group">
                                 <label for="slider_categoria">Noticia 4</label>
-                                <select name="slider_nota[]">
+                                <select class="slider" name="slider_nota[]">
                                     <option value="">Selecciona noticia 4</option>
                                     <?php foreach($posts as $post): ?>
                                         <option value="<?php echo $post->ID; ?>" <?php selected(get_option('slider_nota')[3], $post->ID); ?>><?php echo $post->post_title; ?></option>

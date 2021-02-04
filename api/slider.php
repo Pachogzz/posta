@@ -48,7 +48,7 @@ add_action( 'rest_api_init', function () {
             $data[$i]['categoria_id'] = $categoria->term_id;
             $data[$i]['color'] = $color;
             $data[$i]['imagen'] = $imagen;
-            $data[$i]['fecha'] = timeDate($post->post_date);
+            $data[$i]['fecha'] = fechaCorta($post->post_date);
             $data[$i]['url'] = get_permalink($post->ID);
             $data[$i]['video'] = $video;
             $data[$i]['imagenVideo'] = $imagenVideo;
