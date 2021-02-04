@@ -721,9 +721,9 @@ transition: all 500ms ease; }
 .bloque-nota-perspectiva .meta .columnista{}
 
 .content-perspectiva .contenedor-media{
-  width: 300px;
-  height: 300px;
-  margin-top: 100px;
+  width: 240px;
+  height: 240px;
+  margin-top: 50px;
 }
 
 /* Anything Slider Custom CSS */
@@ -958,6 +958,11 @@ transition: all 500ms ease; }
   .contenido-nota iframe{
     width: 500px;
   }
+  .content-perspectiva .contenedor-media{
+    width: 260px;
+    height: 260px;
+    margin-top: 80px;
+  }
 }
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
@@ -1002,6 +1007,11 @@ transition: all 500ms ease; }
   .contenido-nota iframe{
     width: inherit;
   }
+  .content-perspectiva .contenedor-media{
+    width: 300px;
+    height: 300px;
+    margin-top: 100px;
+  }
 }
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
@@ -1044,5 +1054,10 @@ transition: all 500ms ease; }
     transform: skew(-30deg, 0deg) !important;
   }
   .contenido-nota iframe{
+  }
+  .content-perspectiva .contenedor-media{
+    width: 300px;
+    height: 300px;
+    margin-top: 100px;
   }
 }

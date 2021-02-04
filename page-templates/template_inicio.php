@@ -54,7 +54,7 @@ if( have_rows('contenido_de_inicio')){
 							<script>
 							  window.googletag = window.googletag || {cmd: []};
 							  googletag.cmd.push(function() {
-							    googletag.defineSlot('/90573685/Leaderboard_home_728x90_970x90', [[970, 90], [728, 90]], 'div-gpt-ad-1610518252679-0').addService(googletag.pubads());
+							    googletag.defineSlot('/90573685/Leaderboard_home_728x90_970x90', [[970, 90], [728, 90], [640, 200]], 'div-gpt-ad-1610518252679-0').addService(googletag.pubads());
 							    googletag.pubads().enableSingleRequest();
 							    googletag.enableServices();
 							  });
@@ -65,8 +65,9 @@ if( have_rows('contenido_de_inicio')){
 							  <script>
 							    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1610518252679-0'); });
 							  </script>
+							</div>
 							<!-- <img class="img-fluid d-block mx-auto" src="http://fakeimg.pl/720x90/c00/FFF/?text=Leaderboard+Home+2" alt="Publicidad"> -->
-							<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
+							<!-- <div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div> -->
 						</div>
 					</div>
 				</div>
@@ -83,7 +84,7 @@ if( have_rows('contenido_de_inicio')){
 							<script>
 							  window.googletag = window.googletag || {cmd: []};
 							  googletag.cmd.push(function() {
-							    googletag.defineSlot('/90573685/leaderboard_home_2_728x90_970x90', [[728, 90], [970, 90]], 'div-gpt-ad-1610518319668-0').addService(googletag.pubads());
+							    googletag.defineSlot('/90573685/leaderboard_home_2_728x90_970x90', [[728, 90], [970, 90], [640, 200]], 'div-gpt-ad-1610518319668-0').addService(googletag.pubads());
 							    googletag.pubads().enableSingleRequest();
 							    googletag.enableServices();
 							  });
@@ -95,7 +96,7 @@ if( have_rows('contenido_de_inicio')){
 							    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1610518319668-0'); });
 							  </script>
 							</div>
-							<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
+							<!-- <div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div> -->
 						</div>
 					</div>
 				</div>
@@ -112,7 +113,7 @@ if( have_rows('contenido_de_inicio')){
 							<script>
 							  window.googletag = window.googletag || {cmd: []};
 							  googletag.cmd.push(function() {
-							    googletag.defineSlot('/90573685/Leaderboard_home_3', [[970, 90], [728, 90]], 'div-gpt-ad-1610518358790-0').addService(googletag.pubads());
+							    googletag.defineSlot('/90573685/Leaderboard_home_3', [[970, 90], [728, 90], [640, 200]], 'div-gpt-ad-1610518358790-0').addService(googletag.pubads());
 							    googletag.pubads().enableSingleRequest();
 							    googletag.enableServices();
 							  });
@@ -124,7 +125,7 @@ if( have_rows('contenido_de_inicio')){
 							    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1610518358790-0'); });
 							  </script>
 							</div>
-							<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
+							<!-- <div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div> -->
 						</div>
 					</div>
 				</div>
@@ -141,7 +142,7 @@ if( have_rows('contenido_de_inicio')){
 							<script>
 							  window.googletag = window.googletag || {cmd: []};
 							  googletag.cmd.push(function() {
-							    googletag.defineSlot('/90573685/Leaderboard_home_4_970x90_728x90', [[728, 90], [970, 90]], 'div-gpt-ad-1610518469085-0').addService(googletag.pubads());
+							    googletag.defineSlot('/90573685/Leaderboard_home_4_970x90_728x90', [[728, 90], [970, 90], [640, 200]], 'div-gpt-ad-1610518469085-0').addService(googletag.pubads());
 							    googletag.pubads().enableSingleRequest();
 							    googletag.enableServices();
 							  });
@@ -153,7 +154,7 @@ if( have_rows('contenido_de_inicio')){
 							    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1610518469085-0'); });
 							  </script>
 							</div>
-							<div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div>
+							<!-- <div class="text-center text-uppercase text-muted mt-1"><small>Publicidad</small></div> -->
 						</div>
 					</div>
 				</div>

@@ -100,7 +100,7 @@
 				<script>
 				  window.googletag = window.googletag || {cmd: []};
 				  googletag.cmd.push(function() {
-				    googletag.defineSlot('/90573685/overmenu_desktop', [[970, 90], [970, 250], [728, 90]], [640, 200], 'div-gpt-ad-1610518689409-0').addService(googletag.pubads());
+				    googletag.defineSlot('/90573685/overmenu_desktop', [[970, 90], [970, 250], [728, 90], [640, 200]], 'div-gpt-ad-1610518689409-0').addService(googletag.pubads());
 				    googletag.pubads().enableSingleRequest();
 				    googletag.enableServices();
 				  });

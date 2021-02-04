@@ -698,6 +698,7 @@ function pagination() {
 			</ul>
 		';
 	}
+	wp_reset_postdata();
 }
 
 
