@@ -1,2 +1,2 @@
-# posta
-Template Wordpress para medio digital POSTA
+# postamx
+Tema principal para el portal POSTA
