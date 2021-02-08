@@ -1,3 +1,4 @@
+
 <?php
 /**
  * The template for displaying all single posts
@@ -7,57 +8,55 @@
  * @package postamx
  */
 get_header();
-//Obtiener información de los temas asociado a la nota
-$categoria = get_the_category(get_the_ID(), 'category');
-// $themes = get_the_terms(get_the_ID(), 'theme'); 
-
-// echo "<hr><pre>";
-// print_r($categoria);
-// echo "</pre><hr>";
-
-// $imagePosted = get_post(get_the_post_thumbnail_id());
-
 // Script que muestra 
 if( function_exists('addPostViews') ) { 
 	addPostViews(get_the_ID()); 
-}
-
-// Imagen destacada
-$featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '1920x1080');
-if (empty($featured_img_url)){
-	$featured_img_url = get_theme_mod('default_news_image');
 }
 
 $columna = wp_get_post_terms( $post->ID, 'columna', array( 'fields' => 'all' ) );
 $columna_ID = $columna[0]->term_id;
 $columna_name = $columna[0]->name;
 $columna_link = get_term_link( $columna[0]->slug, 'columna');
-// echo "<span class='text-white'><pre>";
-// var_dump($columna);
-// echo "<hr>";
-// echo $columna_ID;
-// echo "<hr>";
-// echo $columna_name;
-// echo "<hr>";
-// echo $columna_link;
-// echo "</span></pre>";
+$fuente = get_field('fuente');
+@$fuenteLink = get_term_link($fuente->slug, 'fuente');
+
+$fuenteImage = get_field('imagen_de_perfil', $fuente);
+if (!empty($fuenteImage)){
+	$fuenteImage = get_field('imagen_de_perfil', $fuente);
+}else{
+	$fuenteImage = get_theme_mod('default_news_image');
+}
 
 // Create shortcodes
 require get_template_directory() . '/inc/shortcodes.php';
 $gallery = get_field('galeria_imagenes');
 $GLOBALS['gallery']=  $gallery;
 ?>
-<div id="primary" class="content-area">
+<div id="primary" class="content-area content-perspectiva">
 	<main id="main" class="site-main">
 		<!-- IMAGEN DE NOTA / ICONO DE TIPO DE CONTENIDO -->
 		<div class="container">
 			<div class="row">
-				<div class="col p-0">
-					<div class="contenedor-media contenedor-media-imagen-nota d-flex justify-content-center align-items-center" style="background-image: url(<?php echo $featured_img_url; ?>);">
+				<div class="col text-center p-0">
+					<div class="contenedor-media contenedor-media-imagen-nota d-flex justify-content-center align-items-center rounded-circle mb-n6" style="background-image: url(<?php echo $fuenteImage; ?>);">
                         <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
 					</div>
+					<!-- Nombre de la sección o categoría principal seleccionada -->
+					<h4 class="encabezado-titulo text-white">
+						<?php echo $columna_name; ?>
+					</h4>
 					<!-- Título de la nota -->
-					<h1 class="titulo-principal-nota mt-3 display-4 d-block bg-dark text-light text-center p-3">
+					<h1 class="titulo-principal-nota display-4 d-block bg-dark text-light text-center p-3 py-lg-4">
+						<!-- Autor de la nota -->
+						<p class="autor-de-nota mb-4">
+							<?php 
+							if (!empty($fuente)) {
+								echo "Por: " . $fuente->name;
+							}else{
+								echo "Por: POSTA REDACCIÓN";
+							}
+							?>
+						</p>
 						<?php echo get_the_title(); ?>
 					</h1>
 				</div>
@@ -65,49 +64,25 @@ $GLOBALS['gallery']=  $gallery;
 		</div>
 
 		<!-- NOTA -->
-		<div class="container mt-1 px-3 py-6 p-lg-6 bg-white">
+		<div class="container px-3 py-6 p-lg-6 bg-white">
 			<div class="row justify-content-center align-items-start">
 				<!-- Contenido principal -->
 				<div class="col-12 col-lg-8 px-4 pl-lg-3 pr-lg-6">
 					<!-- Share this -->
 					<div class="sharethis-inline-share-buttons mb-3"></div>
-
-					<!-- Autor de la nota -->
-					<p class="autor-de-nota">
-						Por: 
-						<?php 
-						$fuente = get_field('fuente');
-						$fuenteLink = get_term_link($fuente->slug, 'fuente');
-						// echo "<span class'text-info'><pre>".$fuente."</pre></span>";
-						if (!empty($fuente)) {
-							echo $fuente->name;
-						}else{
-							echo "POSTA REDACCIÓN";
-						}
-						?>
-					</p>
 					<!-- Fecha de publicación -->
 					<p class="fecha-publicacion">
 						<small><?php echo get_the_date( 'l j F Y - g:i a' ); ?></small>
 					</p>
-					<!-- Nombre de la sección o categoría principal seleccionada -->
-					<h4 class="encabezado-titulo text-white">
-						<?php echo $columna_name; ?>
-					</h4>
-					<!-- Nombre del tema -->
-					<?php 
-					// if($categoria){
-					// 	$theme_link  = get_category_link($categoria[0]->term_id);
-					// 		echo '<h2 class="tema-de-nota mt-3">Temas: <a class="font-weight-bolder" href="'.esc_url($theme_link).'">'.$categoria[0]->name.'</a></h2>';
-					// 	}
-					?>
 					<!-- Extracto -->
 					<?php 
 					if ( ! has_excerpt() ) {
 					    echo '<!-- . -->';
 					} else { ?>
 						<!-- Extracto -->
-						<p class="lead extracto-de-nota mt-3"><?php echo get_the_excerpt(); ?></p>
+						<p class="lead extracto-de-nota mt-3">
+							<?php echo get_the_excerpt(); ?>
+						</p>
 					<?php } ?>
 
 					<div class="separador"></div>
@@ -126,17 +101,8 @@ $GLOBALS['gallery']=  $gallery;
 					</div>
 
 					<div class="separador"></div>
-
-					<!-- Iconos de compartir -->
 					<!-- Share this -->
 					<div class="sharethis-inline-share-buttons mb-3"></div>
-					<!-- <h6 class="text-muted">COMPARTE ESTA HISTORIA</h6> -->
-					<!-- <div class="lista-iconos">
-						<i class="fas fa-share-alt icono icono-borde-posta mr-2"></i>
-						<a href="javascript:void(0)" class="btnsf icono icono-posta" data-title="<?php the_title(); ?>" data-excerpt="" data-link="<?php the_permalink(); ?>" data-img="<?php echo get_the_post_thumbnail_url(get_the_ID(),'full'); ?>"><i class="fab fa-facebook-f"></i></a>
-						<a href="javascript:void(0)" class="btnst icono icono-posta" data-title="<?php the_title(); ?>" data-link="<?php the_permalink(); ?>"><i class="fab fa-twitter"></i></a>
-						<a href="https://api.whatsapp.com/send?text=<?php the_permalink(); ?>" class="btnsw icono icono-posta" target="_blank"><i class="fab fa-whatsapp"></i></a>
-					</div> -->
 				</div>
 
 				<!-- Sidebar -->
@@ -180,15 +146,12 @@ $GLOBALS['gallery']=  $gallery;
 		</div> -->
 
 		<!-- NOTAS RELACIONADAS -->
-		<div class="container mt-7 mb-6 contenido-relacionado">
+		<div id="relatedContentPerspective" class="container mt-7 mb-6 contenido-relacionado perspectivas">
 			<div class="row">
 				<div class="col">
 					<!-- ENCABEZADO DE CARRUSEL -->
 					<div class="encabezado text-md-center text-lg-left">
 						<h3 class="encabezado-titulo text-sm-center">
-							<?php
-
-							 ?>
 							<span class="d-block d-lg-inline-block bg-dark text-light p-2 mb-2 mb-lg-0">Contenido relacionado en</span> 
 							<a class="text-white" href="<?php echo esc_url($columna_link); ?>"><?php echo $columna_name;?></a>
 						</h3>
@@ -213,7 +176,6 @@ $GLOBALS['gallery']=  $gallery;
 							'post_status' => array(
 								'publish', 
 							),
-							// 'cat' => $columna_ID,
 							'orderby' => 'date',
 							'order' => 'DESC'
 						);
@@ -226,38 +188,51 @@ $GLOBALS['gallery']=  $gallery;
 							    $show_time_ago = get_theme_mod('show_time_ago');
 							    switch ($show_time_ago == 1) {
 							        case '1':
-							            $haceTiempo = time_ago() . ' <i class="fas fa-clock"></i>';
+							            $haceTiempo = "<div class='col-12'><p><small>" . time_ago() . ' <i class="fas fa-clock"></i></small></p></div>';
 							        break;
 							        case '0':
 							            $haceTiempo = "";
 							        break;
 							    }
-								$featured_img_url = get_the_post_thumbnail_url(get_the_ID(), '360x202');
-								if (empty($featured_img_url)){
-									$featured_img_url = get_theme_mod('default_news_image');
-								}
-								?>
+									$fuenteImage = get_field('imagen_de_perfil', $fuente);
+									if (!empty($fuenteImage)){
+										$fuenteImage = get_field('imagen_de_perfil', $fuente);
+									}else{
+										$fuenteImage = get_theme_mod('default_news_image');
+									}
+						?>
 								<!-- Item (nota) dentro del carusel  -->
 								<div class="c-item nota">
-			                        <div class="row meta">
-			                            <div class="col-12 col-md-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-			                                <a class="text-white" href="<?php echo $columna_link; ?>">
-			                                    <small><?php echo $columna_name; ?></small>
-			                                </a>
-			                                <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
-			                            </div>
-			                            <div class="col hora text-right">
-			                                <small><?php echo $haceTiempo; ?></small>
-			                            </div>
-			                        </div>
 									<!-- IMAGEN DE NOTA -->
                         			<?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
-									<div class="contenedor-media d-flex justify-content-center align-items-center" style="background-image: url('<?php echo $featured_img_url; ?>');">
+									<div class="contenedor-media d-flex justify-content-center align-items-center rounded-circle mt-0 mb-n6" style="background-image: url('<?php echo $fuenteImage; ?>');">
+									</div>
+									<div class="row mb-0 meta text-center pt-4">
+										<div class="col-12 columna">
+											<!-- Nombre del tema -->
+												<span class="text-white p-0 mr-1">
+													<?php echo $columna_name; ?>
+												</span>
+										</div>
+							            <div class="col-12 columnista">
+							            	<h6 class="py-3">
+											<?php 
+											if (!empty($fuente)) {
+												// echo "Por: <a href=".$fuenteLink.">".$fuente->name."</a>";
+												echo "Por: " . $fuente->name;
+											}else{
+												echo "Por: POSTA REDACCIÓN";
+											}
+											?>
+											</h6>
+							            </div>
+							            <!-- PUBLICADO HACE... -->
+							            <?php echo $haceTiempo; ?>
 									</div>
 									<!-- ENCABEZADO DE NOTA -->
-									<div class="encabezado-nota">
+									<div class="encabezado-nota text-center">
 										<!-- Título de nota -->
-										<h5 class="titulo-nota mt-2">
+										<h5 class="titulo-nota font-weight-bolder">
 											<a class="stretched-link" href="<?php the_permalink(); ?>" title="<?php echo the_title(); ?>"><?php echo esc_html(get_the_title()); ?></a>
 										</h5>
 									</div>
@@ -266,16 +241,12 @@ $GLOBALS['gallery']=  $gallery;
 							}
 						} ?>
 						<!-- Link ver más notas -->
-						<div class="c-item my-5">
-							<a class="item-ver-mas h-100" href="<?php echo esc_url($columna_link); ?>" title="Ver más noticias de <?php echo $columna_name;?>">
-								<div class="contenedor-media">
-									<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center">
-										<p class="h5 m-3">Ver más de</p>
-										<h4 class="encabezado-titulo text-white"><?php echo $columna_name;?></h4>
-									</div>
-								</div>
+						<!-- <div class="c-item my-5">
+							<a class="item-ver-mas d-block h-100" href="<?php echo esc_url($columna_link); ?>" title="Ver más noticias de <?php echo $columna_name;?>">
+								<p class="h5 d-block w-100 text-center mb-3">Ver más de: </p>
+								<h4 class="encabezado-titulo d-inline-block mx-auto w-100 text-white"><?php echo $columna_name;?></h4>
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

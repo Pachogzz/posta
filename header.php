@@ -43,7 +43,7 @@
 
 	<!-- Ad Manager -->
 	<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
-	<script async src="<?php bloginfo('template_url') ?>/assets/js/adds_units.js"></script>
+	<!-- <script async src="<?php //bloginfo('template_url') ?>/assets/js/adds_units.js"></script> -->
 
 	<style type="text/css">
 		.anythingSlider-default{
@@ -56,19 +56,6 @@
 	        padding:0px !important;
 	        margin:0px !important;
 	    }
-	    /*#slider{
-	        width:1200px;
-	        margin:0px;
-	        border-top: 0px;
-	        border-bottom: 0px;
-	        border:0px !important;
-	        padding: 0px;
-	        height: 1200px;
-	    }
-	    #slider li{
-	        display:flex;
-	        height:1200px;
-	    }*/
 	    .anythingSlider-default .arrow a{
 	    	margin-left:-30px;
 	    }
@@ -113,7 +100,7 @@
 				<script>
 				  window.googletag = window.googletag || {cmd: []};
 				  googletag.cmd.push(function() {
-				    googletag.defineSlot('/90573685/overmenu_desktop', [[970, 90], [970, 250], [728, 90]], 'div-gpt-ad-1610518689409-0').addService(googletag.pubads());
+				    googletag.defineSlot('/90573685/overmenu_desktop', [[970, 90], [970, 250], [728, 90], [640, 200]], 'div-gpt-ad-1610518689409-0').addService(googletag.pubads());
 				    googletag.pubads().enableSingleRequest();
 				    googletag.enableServices();
 				  });

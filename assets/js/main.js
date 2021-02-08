@@ -106,6 +106,7 @@ $(document).ready(function() {
 jQuery(document).ready(function() {
 	$( "#ajax-posts .bloque-nota-archivo" ).first().removeClass('col-md-6 col-lg-4').addClass('col-12');
 	$( ".post-type-archive-perspectivas #ajax-posts .bloque-nota-archivo" ).first().addClass('col-md-6 col-lg-4').removeClass('col-12');
+	$( ".archive.tax-columna .bloque-nota-archivo" ).first().addClass('col-md-6 col-lg-4').removeClass('col-12');
 	$( ".carrusel-portada-verticales" ).parent().addClass('vh-70');
 	$( ".carrusel-portada-verticales" ).addClass('h-100');
 	$( ".carrusel-portada-verticales .owl-stage-outer" ).addClass('h-100');
@@ -129,6 +130,8 @@ jQuery(document).ready(function() {
 	$( ".carrusel-portada-cuadricula .owl-stage .owl-item > div" ).addClass('mx-0 px-0 h-100');
 	$( ".carrusel-portada-cuadricula .owl-stage .owl-item > div .contenedor-media" ).addClass('h-100');
 	$( ".carrusel-portada-cuadricula .owl-stage .owl-item > div .contenedor-media .link-a-nota" ).addClass('h-100');
+
+	$( ".carrusel-perspectiva .owl-item .c-item .bloque-nota-perspectiva" ).removeClass('col-md-6 col-lg-4').addClass('col-12 px-0');
 	
 	if($(window).innerWidth() <= 768) {
 		$( ".carrusel-portada-verticales" ).parent().removeClass('vh-70');
@@ -454,6 +457,30 @@ $('.carrusel-opinion').owlCarousel({
 		},
 		992: {
 			items: 4,
+			loop: false,
+			autoplay: false
+		}
+	}
+});
+$('.carrusel-perspectiva').owlCarousel({
+	mouseDrag: false,
+	loop: true,
+	dots: false,
+	nav: true,
+	navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
+	margin: 50,
+	responsiveClass: true,
+	autoplay: true,
+	autoplayTimeout: 10000,
+	responsive: {
+		0: {
+			items: 1
+		},
+		768: {
+			items: 2
+		},
+		992: {
+			items: 3,
 			loop: false,
 			autoplay: false
 		}
