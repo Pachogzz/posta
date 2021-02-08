@@ -122,6 +122,26 @@ function page() {
                                     <?php endforeach ?>
                                 </select>
                             </div>
+
+                            <div class="form-group">
+                                <label for="slider_categoria">Noticia 5</label>
+                                <select class="slider" name="slider_nota[]">
+                                    <option value="">Selecciona noticia 5</option>
+                                    <?php foreach($posts as $post): ?>
+                                        <option value="<?php echo $post->ID; ?>" <?php selected(get_option('slider_nota')[3], $post->ID); ?>><?php echo $post->post_title; ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="slider_categoria">Noticia 6</label>
+                                <select class="slider" name="slider_nota[]">
+                                    <option value="">Selecciona noticia 6</option>
+                                    <?php foreach($posts as $post): ?>
+                                        <option value="<?php echo $post->ID; ?>" <?php selected(get_option('slider_nota')[3], $post->ID); ?>><?php echo $post->post_title; ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                             
                         </div>
 
