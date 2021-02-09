@@ -30,7 +30,7 @@ function add_custom_fields() {
             $imagen = get_site_url() . '/wp-content/themes/posta/assets/img/sin-imagen.png'; 
         }
 
-        $video = get_post_meta($post->ID, 'video_youtube', true);
+        $video = get_post_meta($object['id'], 'video_youtube', true);
         $video = str_replace("https://www.youtube.com/watch?v=", "", $video);
 
         $imagenVideo = wp_get_attachment_image_src(get_post_meta($object['id'], 'url_imagen_video', true), 'full')[0];
