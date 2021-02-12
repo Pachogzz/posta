@@ -48,8 +48,8 @@
     $tax_color = get_term_meta( $categoria->term_id, 'category_color', true );
 
 ?>
-<section class="bloque_notas--2_bb_3_4_r py-6" style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
-    <div class="container">
+<section class="bloque_notas--2_bb_3_4_r" style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
+    <div class="container p-4 p-sm-6" style="background-color: <?php echo $colorFondo; ?> !important;">
         <!-- Desktop block -->
         <div class="d-none d-sm-none d-md-none d-lg-block">
             <div class="row">
@@ -124,7 +124,7 @@
                                         <a class="h-100" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                             <div class='imagen-nota-container h-100'>
                                                 <div class="imagen-nota h-100" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                                <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                                <h5 class="titulo-nota"><?php the_title(); ?></h5>
                                             </div>
                                         </a>
                                     </div>
@@ -187,10 +187,10 @@
                             </div>
                         </div>
                         <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
-                        <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                        <a class="<?php echo $colorTexto; ?>" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                             <div class='imagen-nota-container'>
                                 <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                <h5 class="titulo-nota"><?php the_title(); ?></h5>
                             </div>
                         </a>
                     </div>
@@ -271,10 +271,10 @@
                                     </div>
                                 </div>
                                 <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
-                                <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                <a class="<?php echo $colorTexto; ?>" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                     <div class='imagen-nota-container'>
                                         <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                        <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                        <h5 class="titulo-nota"><?php the_title(); ?></h5>
                                     </div>
                                 </a>
                             </div>
@@ -287,7 +287,7 @@
                 </div>
                 
                 <div class="col-12 text-right">
-                    <a class="btn btn-lg" href="<?php echo $link; ?>" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                    <a class="btn btn-lg <?php echo $colorTexto; ?>" href="<?php echo $link; ?>" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                         <span class="nombre-taxonomia font-weight-bold lead">Ver más contenido <i class="fas fa-arrow-right"></i></span>
                     </a>
                 </div>
@@ -296,12 +296,13 @@
         <!-- Desktop block -->
 
         <!-- Movile slide -->
-        <div class="d-sm-block d-md-block d-lg-none">
+        <div class="d-sm-block d-md-block d-lg-none movile">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
                         <h2 class="encabezado-titulo" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
                             <a href="<?php echo $link; ?>">
+                                <span class="nombre-sitio">POSTA</span>
                                 <?php if($tipoTitulo == 'por_defecto'): ?>
                                     <span class="nombre-taxonomia"><?php echo $categoria->name;?></span>
                                 <?php else: ?>
@@ -346,7 +347,7 @@
                                 $featured_img_url = get_theme_mod('default_news_image');
                             }
                     ?>
-                        <div id="post-<?php the_ID(); ?>" class="nota large">
+                        <div id="post-<?php the_ID(); ?>" class="nota">
                             <div class="row meta">
                                     <?php 
                                         $child_category = post_child_category(get_the_ID());
@@ -363,16 +364,16 @@
                                 </div>
                             </div>
                             <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
-                            <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                            <a class="<?php echo $colorTexto; ?>" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                 <div class='imagen-nota-container'>
                                     <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
-                                    <h5 class="titulo-nota <?php echo $colorTexto; ?>"><?php the_title(); ?></h5>
+                                    <h5 class="titulo-nota" style="border-left-color:<?php echo "#" . $subTax_color; ?> !important;"><?php the_title(); ?></h5>
                                 </div>
                             </a>
                             <!-- ICONOS COMPARTIR -->
-                            <div class="d-sm-none">
-                                <?php require get_template_directory() . '/inc/iconos-compartir.php'; ?>
-                            </div>
+                            <!-- <div class="d-sm-none">
+                                <?php // require get_template_directory() . '/inc/iconos-compartir.php'; ?>
+                            </div> -->
                         </div>
                     <?php
                         endwhile;

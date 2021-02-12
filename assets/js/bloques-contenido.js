@@ -2,7 +2,7 @@
 /*
  * Target first element of Archive page loop to change the classes
  **/
-jQuery(document).ready(function() {
+jQuery(document).ready(function() { 
 	// 2_bb_4_4
 	$( ".bloque_notas--2_bb_4_4 .nota:nth-child(1)" ).first().removeClass('col-lg-3').addClass('large');
 
@@ -17,14 +17,21 @@ jQuery(document).ready(function() {
 	$( ".bloque_notas--1-3_2_4 .nota:nth-child(1)" ).removeClass('col-lg-3').addClass('col-lg-9 large');
 	$( ".bloque_notas--1-3_2_4 .nota:nth-child(3)" ).removeClass('col-lg-3').addClass('col-lg-6 large');
 	$( ".bloque_notas--1-3_2_4 .nota:nth-child(4)" ).removeClass('col-lg-3').addClass('col-lg-6 large');
+	$( ".bloque_notas--1-3_2_4 .movile .nota:nth-child(1)" ).removeClass('col-lg-9 large').addClass('col-12 px-0');
+	$( ".bloque_notas--1-3_2_4 .movile .nota:nth-child(3)" ).removeClass('col-lg-6 large').addClass('col-12 px-0');
+	$( ".bloque_notas--1-3_2_4 .movile .nota:nth-child(4)" ).removeClass('col-lg-6 large').addClass('col-12 px-0');
 	
 	// 1_4_4
 	$( ".bloque_notas--1_4_4 .nota:nth-child(1)" ).removeClass('col-md-6 col-lg-3').addClass('large');
+	$( ".bloque_notas--1_4_4 .movile .nota:nth-child(1)" ).removeClass('large col-md-6 col-lg-3').addClass('col-12 px-0');
 
 	// 1_2_4
 	$( ".bloque_notas--1_2_4 .nota:nth-child(1)" ).removeClass('col-md-6 col-lg-3').addClass('large');
 	$( ".bloque_notas--1_2_4 .nota:nth-child(2)" ).removeClass('col-lg-3').addClass('col-lg-6 large');
 	$( ".bloque_notas--1_2_4 .nota:nth-child(3)" ).removeClass('col-lg-3').addClass('col-lg-6 large');
+	$( ".bloque_notas--1_2_4 .movile .nota:nth-child(1)" ).removeClass('large col-md-6 col-lg-3').addClass('col-12 px-0');
+	$( ".bloque_notas--1_2_4 .movile .nota:nth-child(2)" ).removeClass('col-lg-3 col-lg-6 large').addClass('col-12 px-0');
+	$( ".bloque_notas--1_2_4 .movile .nota:nth-child(3)" ).removeClass('col-lg-3 col-lg-6 large').addClass('col-12 px-0');
 
 	// 2_bb_3_4_x
 	$( ".bloque_notas--2_bb_3_4_r .nota" ).first().addClass('large');

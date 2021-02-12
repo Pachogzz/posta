@@ -47,7 +47,7 @@ $GLOBALS['gallery']=  $gallery;
                         <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
 					</div>
 					<!-- Título de la nota -->
-					<h1 class="titulo-principal-nota mt-n2 mt-md-n6 display-4 d-block bg-dark text-light text-center p-3">
+					<h1 class="titulo-principal-nota mt-n2 mt-md-n8 mb-md-n6 display-4 d-block bg-dark text-light text-center p-3">
 						<?php echo get_the_title(); ?>
 					</h1>
 				</div>
@@ -55,7 +55,7 @@ $GLOBALS['gallery']=  $gallery;
 		</div>
 
 		<!-- NOTA -->
-		<div class="container px-3 py-6 p-lg-6 bg-white container-lg">
+		<div class="container px-3 py-6 p-lg-6 pt-lg-9 bg-white container-lg">
 			<div class="row justify-content-center align-items-start">
 				<!-- Contenido principal -->
 				<div class="col-12 col-lg-8 px-4 pl-lg-3 pr-lg-6">
@@ -84,9 +84,13 @@ $GLOBALS['gallery']=  $gallery;
 					<?php
 						if (!empty($categoria[1])) {
 							$theme_link  = get_category_link($categoria[1]->term_id);
+							$theme_name = $categoria[1]->name;
+							$theme_id = $categoria[1]->term_id;
 							echo '<h2 class="tema-de-nota pl-0">Temas: <a class="font-weight-bolder" href="'.esc_url($theme_link).'">'.$categoria[1]->name.'</a></h2>';
 						} else {
 							$theme_link  = get_category_link($categoria[0]->term_id);
+							$theme_name = $categoria[0]->name;
+							$theme_id = $categoria[0]->term_id;
 							echo '<h2 class="tema-de-nota pl-0">Temas: <a class="font-weight-bolder" href="'.esc_url($theme_link).'">'.$categoria[0]->name.'</a></h2>';
 						}
 						
@@ -187,7 +191,7 @@ $GLOBALS['gallery']=  $gallery;
 					<div class="encabezado text-md-center text-lg-left">
 						<h3 class="encabezado-titulo text-sm-center">
 							<span class="d-block d-lg-inline-block bg-dark text-light p-2 mb-2 mb-lg-0">Contenido relacionado en</span> 
-							<a class="text-white" href="<?php echo esc_url($category_link); ?>"><?php echo $category_name;?></a>
+							<a class="text-white" href="<?php echo esc_url($theme_link); ?>"><?php echo $theme_name;?></a>
 						</h3>
 					</div>
 				</div>
@@ -205,13 +209,11 @@ $GLOBALS['gallery']=  $gallery;
 							'post_status' => array(
 								'publish', 
 							),
-							'cat' => $category_id,
+							'cat' => $theme_id,
 							'orderby' => 'date',
 							'order' => 'DESC'
 						);
 
-						// $output = 'objects';
-						// $the_query = new WP_Query( $args, $output );
 						$the_query = new WP_Query( $args );
 
 						if ( $the_query->have_posts() ) {
@@ -237,8 +239,8 @@ $GLOBALS['gallery']=  $gallery;
 								<div class="c-item nota">
 			                        <div class="row meta">
 			                            <div class="col-12 col-md-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
-			                                <a class="text-white" href="<?php echo $link; ?>">
-			                                    <small><?php echo $categoria[0]->name; ?></small>
+			                                <a class="text-white" href="<?php echo $theme_link; ?>">
+			                                    <small><?php echo $theme_name; ?></small>
 			                                </a>
 			                                <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
 			                            </div>
@@ -254,7 +256,7 @@ $GLOBALS['gallery']=  $gallery;
 									<div class="encabezado-nota">
 										<!-- Título de nota -->
 										<h5 class="titulo-nota mt-2">
-											<a class="stretched-link" href="<?php the_permalink(); ?>" title="<?php echo the_title(); ?>"><?php echo esc_html(get_the_title()); ?></a>
+											<a class="stretched-link font-weight-bolder" href="<?php the_permalink(); ?>" title="<?php echo the_title(); ?>"><?php echo esc_html(get_the_title()); ?></a>
 										</h5>
 									</div>
 								</div>
@@ -263,7 +265,7 @@ $GLOBALS['gallery']=  $gallery;
 						} ?>
 						<!-- Link ver más notas -->
 						<div class="c-item my-5">
-							<a class="item-ver-mas" href="<?php echo esc_url($category_link); ?>" title="Ver más noticias de <?php echo $category_name;?>">
+							<a class="item-ver-mas" href="<?php echo esc_url($theme_link); ?>" title="Ver más noticias de <?php echo $theme_name;?>">
 								<div class="contenedor-media">
 									<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center">
 										<p class="h5 m-3">Ver más noticias de</p>

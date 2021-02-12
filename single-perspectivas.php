@@ -42,11 +42,11 @@ $GLOBALS['gallery']=  $gallery;
                         <?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
 					</div>
 					<!-- Nombre de la sección o categoría principal seleccionada -->
-					<h4 class="encabezado-titulo text-white">
+					<h4 class="encabezado-titulo text-white mb-n4">
 						<?php echo $columna_name; ?>
 					</h4>
 					<!-- Título de la nota -->
-					<h1 class="titulo-principal-nota display-4 d-block bg-dark text-light text-center p-3 py-lg-4">
+					<h1 class="titulo-principal-nota display-4 d-block bg-dark text-light text-center p-3 pt-5 py-lg-4 pt-lg-6 mb-md-n6">
 						<!-- Autor de la nota -->
 						<p class="autor-de-nota mb-4">
 							<?php 
@@ -64,7 +64,7 @@ $GLOBALS['gallery']=  $gallery;
 		</div>
 
 		<!-- NOTA -->
-		<div class="container px-3 py-6 p-lg-6 bg-white">
+		<div class="container px-3 py-6 p-lg-6 pt-lg-9 bg-white">
 			<div class="row justify-content-center align-items-start">
 				<!-- Contenido principal -->
 				<div class="col-12 col-lg-8 px-4 pl-lg-3 pr-lg-6">
@@ -164,15 +164,11 @@ $GLOBALS['gallery']=  $gallery;
 					<div class="owl-carousel carrusel-tipo-tres">
 						<?php
 						$args = array(
-							'suppress_filters' => true,
+							// 'suppress_filters' => true,
 							'post_type' => 'perspectivas',
+							'columna' => $columna_name,
 							'post__not_in' => array(get_the_ID()),
 							'posts_per_page' => 6,
-							'tax_query' => array(
-								'taxonomy' => 'columna',
-								'field' => 'slug',
-								'terms'    => $columna_name,
-							),
 							'post_status' => array(
 								'publish', 
 							),

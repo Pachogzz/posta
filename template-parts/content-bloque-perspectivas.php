@@ -40,60 +40,44 @@ $mostrarExcerpt = get_sub_field('mostrar_excerpt_perspectivas');
 // echo "</pre></span>";
 
 ?>
-<section class="bloque_notas-- py-6" style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
-	<div class="container mt-6 container-lg">
+<section class="bloque_notas-- " style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
+	<div class="container p-4 p-sm-6" style="background-color: <?php echo $colorFondo; ?> !important;">
 		<div class="row">
 			<div class="col">
 
-				<div class="modulo-corchete-lg">
-					<!-- ENCABEZADO DE CARRUSEL -->
-					<div class="encabezado mb-5 mt-n3">
-						<h2 class="encabezado-titulo text-white">
-							<span class="nombre-sitio">POSTA</span>
-							<span class="nombre-taxonomia">PERSPECTIVAS</span>
-						</h2>
-						<?php echo $descripcionBloque; ?>
-					</div>
-					<!-- CARRUSEL OPINIÓN -->
-					<div class="owl-carousel owl-theme carrusel-perspectiva">
-		                <?php
-		                    $args = array (
-		                        'post_type'      => 'perspectivas',
-		                        'posts_per_page' => $numItems,
-		                        'orderby'        => 'date',
-		                        'order'          => 'DESC'
-		                    );
-		                    $the_query = new WP_Query( $args );
-							if ( $the_query->have_posts() ) :
-								while ( $the_query->have_posts() ) :
-									$the_query->the_post(); ?>
-									<div class="c-item">
-										<?php get_template_part( 'template-parts/content', 'perspectiva' ); ?>
-									</div>
-									<?php
-								endwhile;
-							endif;
-							wp_reset_postdata();
-							//unset($GLOBALS['carrusel_seccion']);
-						?>
-						<!-- Link ver más notas -->
-						<div class="c-item my-5" style="min-height: 275px;">
-							<a class="item-ver-mas my-10" href="<?php echo $postTypeLink; ?>" title="Ver más Perspectivas">
-								<div class="contenedor-media h-100">
-									<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center h-100">
-										<p class="h5 mb-3">Ver más:</p>
-										<h4 class="encabezado-titulo">
-											<span class="bg-white text-dark p-3">
-												Perspectivas
-											</span>
-										</h4>
-									</div>
-								</div>
-							</a>
-						</div>
-
-					</div>
+				<!-- ENCABEZADO DE CARRUSEL -->
+				<div class="encabezado mb-5 mt-n3">
+					<h2 class="encabezado-titulo">
+						<span class="nombre-sitio">POSTA</span>
+						<span class="nombre-taxonomia">PERSPECTIVAS</span>
+					</h2>
+					<?php echo $descripcionBloque; ?>
 				</div>
+				<!-- CARRUSEL OPINIÓN -->
+				<div class="owl-carousel owl-theme carrusel-perspectiva">
+	                <?php
+	                    $args = array (
+	                        'post_type'      => 'perspectivas',
+	                        'posts_per_page' => $numItems,
+	                        'orderby'        => 'date',
+	                        'order'          => 'DESC'
+	                    );
+	                    $the_query = new WP_Query( $args );
+						if ( $the_query->have_posts() ) :
+							while ( $the_query->have_posts() ) :
+								$the_query->the_post(); ?>
+								<div class="c-item">
+									<?php get_template_part( 'template-parts/content', 'perspectiva' ); ?>
+								</div>
+								<?php
+							endwhile;
+						endif;
+						wp_reset_postdata();
+						//unset($GLOBALS['carrusel_seccion']);
+					?>
+
+				</div>
+				<!-- Cierre de owl carrusel de perspectivas -->
 
 			</div>
 		</div>

@@ -79,23 +79,23 @@ switch ($estilo_carusel) {
 				<div>
 					<!-- IMAGEN DE NOTA -->
 					<div class="contenedor-media d-flex justify-content-center align-items-center" style="background-image: url( <?php echo get_the_post_thumbnail_url(get_the_ID(),'1920x1080'); ?> );">
+						<!-- Icono tipo de contenido -->
+						<?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
 						<a class="link-a-nota" href="<?php the_permalink(); ?>" title="<?php echo the_title(); ?>"></a>
 						<!-- ENCABEZADO NOTA -->
-						<div class="container-fluid encabezado-nota position-relative align-self-end py-6">
+						<div class="container-fluid encabezado-nota position-relative align-self-end pb-5">
 							<div class="container row mx-auto">
 							<!-- <div class="row justify-content-center"> -->
-								<div class="col-lg-12 col-xl-10 px-1 px-md-2">
-									<!-- Icono tipo de contenido -->
-									<?php require get_template_directory() . '/template-parts/content-tipo.php'; ?>
+								<div class="col-12 px-1 px-md-2">
 									<!-- Título de nota -->
-									<div class="row mb-3 meta">
-			                            <div class="col-6 col-md-4 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+									<div class="row mx-2 mb-3 meta">
+			                            <div class="col-6 categoria" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
 			                                <a class="text-white" href="<?php echo $category_link; ?>">
 			                                    <small><?php echo $category_name; ?></small>
 			                                </a>
 			                                <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
 			                            </div>
-			                            <div class="col-6 col-md-4 hora text-white text-right">
+			                            <div class="col-6 hora text-white text-right">
 			                                <small><?php echo $haceTiempo; ?></small>
 			                            </div>
 									</div>

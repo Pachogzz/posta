@@ -7,11 +7,22 @@
  * @package postamx
  * 
  */
-    $color = get_sub_field('color_del_titulo');
     $tipo = get_sub_field('tipo');
     $tipoTitulo = get_sub_field('titulo_de_seccion');
     $tituloPerso = get_sub_field('titulo_personalizado');
     $mostraDescr = get_sub_field('mostrar_descripcion');
+    $colorFondo = get_sub_field('color_de_fondo_seccion');
+    $imagenFondo = get_sub_field('imagen_de_fondo_seccion');
+    $colorTexto = get_sub_field('color_de_texto_seccion');
+    $show_time_ago = get_theme_mod('show_time_ago');
+    switch ($show_time_ago == 1) {
+        case '1':
+            $haceTiempo = time_ago() . ' <i class="fas fa-clock"></i>';
+        break;
+        case '0':
+            $haceTiempo = "";
+        break;
+    }
 
     switch ($tipo) {
         case 'seccion':
@@ -20,8 +31,9 @@
         break;
 
         case 'tema':
-            $id = get_sub_field('elegir_tema');
-            $tipo = 'theme';
+            $subField = get_sub_field('elegir_tema');
+            $id = $subField[0];
+            $tipo = 'category';
         break;
 
         case 'hashtag':
@@ -37,10 +49,10 @@
 
 ?>
 
-<section class="bloque_notas--2_2_bb_4 mb-6">
-    <div class="container">
+<section class="bloque_notas--2_2_bb_4" style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
+    <div class="container p-4 p-sm-6" style="background-color: <?php echo $colorFondo; ?> !important;">
         <!-- Desktop block -->
-        <div class="d-none d-sm-none d-md-none">
+        <div class="d-none d-sm-none d-md-none d-lg-block">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
@@ -98,10 +110,10 @@
                                                 <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                             </div>
                                             <div class="col hora text-right">
-                                                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+                                                <small><?php echo $haceTiempo; ?></small>
                                             </div>
                                         </div>
-                                        <a class="h-100" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                        <a class="h-100 <?php echo $colorTexto; ?>" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                             <div class='imagen-nota-container h-100'>
                                                 <div class="imagen-nota h-100" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
                                                 <h5 class="titulo-nota"><?php the_title(); ?></h5>
@@ -155,10 +167,10 @@
                                 <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                             </div>
                             <div class="col hora text-right">
-                                <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+                                <small><?php echo $haceTiempo; ?></small>
                             </div>
                         </div>
-                        <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                        <a class="<?php echo $colorTexto; ?>" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                             <div class='imagen-nota-container'>
                                 <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
                                 <h5 class="titulo-nota"><?php the_title(); ?></h5>
@@ -216,10 +228,10 @@
                                         <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                     </div>
                                     <div class="col hora text-right">
-                                        <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+                                        <small><?php echo $haceTiempo; ?></small>
                                     </div>
                                 </div>
-                                <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                                <a class="<?php echo $colorTexto; ?>" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                     <div class='imagen-nota-container'>
                                         <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');"></div>
                                         <h5 class="titulo-nota"><?php the_title(); ?></h5>
@@ -233,12 +245,18 @@
                         ?>
                     </div>
                 </div>
+                
+                <div class="col-12 text-right">
+                    <a class="btn btn-lg <?php echo $colorTexto; ?>" href="<?php echo $link; ?>" style="background-color: <?php echo "#" . $tax_color; ?> !important;">
+                        <span class="nombre-taxonomia font-weight-bold lead">Ver más contenido <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
             </div>
         </div>
         <!-- Desktop block -->
 
         <!-- Movile slide -->
-        <div class="d-sm-block d-md-block">
+        <div class="d-sm-block d-md-block d-lg-none movile">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">
@@ -293,10 +311,10 @@
                                     <span class="side-triangle" style="background-color: <?php echo "#" . $tax_color; ?> !important;"></span>
                                 </div>
                                 <div class="col hora text-right">
-                                    <small><?php echo time_ago(); ?> <i class="fas fa-clock"></i></small>
+                                    <small><?php echo $haceTiempo; ?></small>
                                 </div>
                             </div>
-                            <a href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
+                            <a class="<?php echo $colorTexto; ?>" href="<?php the_permalink(); ?>" alt="<?php the_title(); ?>">
                                 <div class='imagen-nota-container'>
                                     <div class="imagen-nota" style="background-image: url('<?php echo $featured_img_url; ?>');">
                                         <div>

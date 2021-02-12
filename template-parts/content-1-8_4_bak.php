@@ -202,7 +202,7 @@
         <!-- Desktop block -->
 
         <!-- Movile slide -->
-        <div class="d-sm-block d-md-block d-lg-none">
+        <div class="d-sm-block d-md-block d-lg-none movile">
             <div class="row">
                 <div class="col-12">
                     <div class="encabezado">

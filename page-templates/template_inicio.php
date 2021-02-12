@@ -42,7 +42,7 @@ if( have_rows('contenido_de_inicio')){
 		} elseif (get_row_layout() == 'bloque_de_perspectivas'){
 			get_template_part( 'template-parts/content', 'bloque-perspectivas');
 		}
-
+		
 		// Bloque para colocar el script de la publicidad
 		$cont_layout = $cont_layout +1;
 		if($cont_layout == 2){ ?>
