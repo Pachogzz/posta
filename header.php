@@ -63,6 +63,54 @@
 	    	right:-29px;
 	    }
 	</style>
+
+<!-- Begin comScore Tag -->
+<script>
+  var _comscore = _comscore || [];
+  _comscore.push({ c1: "2", c2: "19962896" });
+  (function() {
+    var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+    s.src = "https://sb.scorecardresearch.com/cs/19962896/beacon.js";
+    el.parentNode.insertBefore(s, el);
+  })();
+</script>
+<noscript>
+  <img src="https://sb.scorecardresearch.com/p?c1=2&amp;c2=19962896&amp;cv=3.6.0&amp;cj=1">
+</noscript>
+<!-- End comScore Tag -->
+<!-- Begin FBIA Tag -->
+<!-- <script>
+  var _comscore = _comscore || [];
+  _comscore.push({ c1: "2", c2: "619962896",
+    options: {
+    url_append: "comscorekw=fbia"
+    }
+  });
+  (function() {
+    var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+    s.src = "https://sb.scorecardresearch.com/cs/619962896/beacon.js";
+    el.parentNode.insertBefore(s, el);
+  })();
+</script>
+<noscript>
+  <img src="https://sb.scorecardresearch.com/p?c1=2&amp;c2=619962896&amp;cv=3.6.0&amp;cj=1&amp;comscorekw=fbia">
+ </noscript> -->
+<!-- End FBIA Tag -->
+<!-- Begin Google AMP Tag -->
+<!-- <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+<amp-analytics type="comscore" id="comscore">
+    <script type="application/json">
+        {
+            "vars": {
+                "c2": "19962896"
+            },
+            "extraUrlParams": {
+                "comscorekw": "amp"
+            }
+        }
+    </script>
+</amp-analytics> -->
+<!-- End Google AMP Tag -->
 </head>
 
 <body <?php body_class(); ?>>
