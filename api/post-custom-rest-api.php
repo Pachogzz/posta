@@ -19,7 +19,7 @@ function add_custom_fields() {
 
 	function get_custom_fields($object){
 
-		$imagen = wp_get_attachment_image_src( get_post_thumbnail_id( $object['id'] ), 'full' )[0];
+		$imagen = wp_get_attachment_image_src( get_post_thumbnail_id( $object['id'] ), array('500', '400') )[0];
         
         $term = get_term( $object['categories'], 'category' );
         $color = get_term_meta( $term->term_id, 'category_color', true );
@@ -31,6 +31,8 @@ function add_custom_fields() {
         }
 
         $video = get_post_meta($object['id'], 'video_youtube', true);
+        $video = str_replace("https://www.youtube.com/watch?v=", "", $video);
+
         $imagenVideo = wp_get_attachment_image_src(get_post_meta($object['id'], 'url_imagen_video', true), 'full')[0];
         $audio = get_post_meta($object['id'], 'audio_news', true);
 

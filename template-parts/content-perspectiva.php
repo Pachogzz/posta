@@ -32,8 +32,9 @@ switch ($show_time_ago == 1) {
         $haceTiempo = "";
     break;
 }
-?>
 
+?>
+<!-- <?php echo basename(__FILE__); ?> -->
 <!-- Item (nota) dentro del grid  -->
 <div id="post-<?php the_ID(); ?>" class="bloque-nota-archivo bloque-nota-perspectiva nota col-md-6 col-lg-4 mb-5">
 	<div class="bloque-nota-inner-container h-100">
@@ -42,36 +43,36 @@ switch ($show_time_ago == 1) {
 	    </div>
 		<div class="row mb-0 meta">
 			<div class="col-12 columna">
-			<!-- Nombre del tema -->
-			<?php 
-			// echo "<span class='text-white'><pre>";
-			// print_r($fuenteImage);
-			// echo "</pre></span>";
-			?>
+				<!-- Nombre del tema -->
+				<?php 
+				// echo "<span class='text-white'><pre>";
+				// print_r($fuenteImage);
+				// echo "</pre></span>";
+				?>
 				<span class="text-white p-0 mr-1">
 					<?php echo $columna_name; ?>
 				</span>
 			</div>
-	            <div class="col-12 columnista">
-	            	<h6 class="py-3">
-					<?php 
-					if (!empty($fuente)) {
-						// echo "Por: <a href=".$fuenteLink.">".$fuente->name."</a>";
-						echo "Por: " . $fuente->name;
-					}else{
-						echo "Por: POSTA REDACCIÓN";
-					}
-					?>
-					</h6>
-	            </div>
-	            <!-- PUBLICADO HACE... -->
-	            <?php echo $haceTiempo; ?>
+            <div class="col-12 columnista">
+            	<h6 class="py-3">
+				<?php 
+				if (!empty($fuente)) {
+					// echo "Por: <a href=".$fuenteLink.">".$fuente->name."</a>";
+					echo "Por: " . $fuente->name;
+				}else{
+					echo "Por: POSTA REDACCIÓN";
+				}
+				?>
+				</h6>
+            </div>
+            <!-- PUBLICADO HACE... -->
+            <?php echo $haceTiempo; ?>
 		</div>
 		<!-- </?php require get_template_directory() . '/template-parts/content-tipo.php'; ?> -->
 		<div class="position-relative bloque_notas--">
 			<!-- ENCABEZADO DE NOTA -->
 			<div class="encabezado-nota mt-2">
-			  <h4 class="titulo-de-nota">
+			  <h4 class="titulo-de-nota font-weight-bolder">
 			    <a class="stretched-link d-block" href="<?php the_permalink(); ?>" title="<?php echo esc_html(get_the_title()); ?>">
 			    	<?php echo esc_html(get_the_title()); ?>
 			    </a>
@@ -80,14 +81,14 @@ switch ($show_time_ago == 1) {
 			<!-- <div class="extracto-nota">
 				<?php 
 				if ( ! has_excerpt() ) {
-				    echo '<!-- . -->';
+				   // echo '<!-- . -->';
 				} else { ?>
 					Extracto
-					<p class="lead extracto-de-nota mt-3"><?php echo get_the_excerpt(); ?></p>
+					<p class="lead extracto-de-nota mt-3"><?php // echo get_the_excerpt(); ?></p>
 				<?php } ?>
 			</div> -->
 		</div>
 		<!-- ICONOS COMPARTIR -->
-		<!-- </?php require get_template_directory() . '/inc/iconos-compartir.php'; ?> -->
+		<!-- <?php // require get_template_directory() . '/inc/iconos-compartir.php'; ?> -->
 	</div>
 </div>

@@ -23,7 +23,7 @@
                     }
                     /*Autoplay Functionallity*/
                     $video_html = '<div class="contenedor-media">'.$video_iframe.'</div>'; ?>
-                    <i class="fas fa-play media_file media-type-icon media-type-icon-negro pl-1" data-titulo='<?php echo get_the_title(); ?>' data-media='<?php echo $video_html; ?>'></i>
+                    <i class="fab fa-youtube media_file media-type-icon media-type-icon-negro pl-1" data-titulo='<?php echo get_the_title(); ?>' data-media='<?php echo $video_html; ?>'></i>
                     <?php 
                 }
             break;
@@ -32,7 +32,7 @@
                 if (!empty(get_field('audio_news'))){
                     $audio_iframe = get_field('audio_news');
                     $audio_html = '<div class="contenedor-media sound-iframe">'.$audio_iframe.'</div>'; ?>
-                    <i class="fas fa-volume-up media_file media-type-icon media-type-icon-negro" data-media='<?php echo $audio_html; ?>'></i>
+                    <i class="fas fa-headphones-alt media_file media-type-icon media-type-icon-negro" data-media='<?php echo $audio_html; ?>'></i>
                     <?php
                 }
             break;

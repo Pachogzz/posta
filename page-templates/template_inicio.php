@@ -42,7 +42,7 @@ if( have_rows('contenido_de_inicio')){
 		} elseif (get_row_layout() == 'bloque_de_perspectivas'){
 			get_template_part( 'template-parts/content', 'bloque-perspectivas');
 		}
-
+		
 		// Bloque para colocar el script de la publicidad
 		$cont_layout = $cont_layout +1;
 		if($cont_layout == 2){ ?>
@@ -61,7 +61,7 @@ if( have_rows('contenido_de_inicio')){
 							</script>
 
 							<!-- /90573685/Leaderboard_home_728x90_970x90 -->
-							<div id='div-gpt-ad-1610518252679-0 text-center'>
+							<div id='div-gpt-ad-1610518252679-0'>
 							  <script>
 							    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1610518252679-0'); });
 							  </script>
@@ -91,7 +91,7 @@ if( have_rows('contenido_de_inicio')){
 							</script>
 
 							<!-- /90573685/leaderboard_home_2_728x90_970x90 -->
-							<div id='div-gpt-ad-1610518319668-0 text-center'>
+							<div id='div-gpt-ad-1610518319668-0'>
 							  <script>
 							    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1610518319668-0'); });
 							  </script>
@@ -120,7 +120,7 @@ if( have_rows('contenido_de_inicio')){
 							</script>
 
 							<!-- /90573685/Leaderboard_home_3 -->
-							<div id='div-gpt-ad-1610518358790-0 text-center'>
+							<div id='div-gpt-ad-1610518358790-0'>
 							  <script>
 							    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1610518358790-0'); });
 							  </script>
@@ -149,7 +149,7 @@ if( have_rows('contenido_de_inicio')){
 							</script>
 
 							<!-- /90573685/Leaderboard_home_4_970x90_728x90 -->
-							<div id='div-gpt-ad-1610518469085-0 text-center'>
+							<div id='div-gpt-ad-1610518469085-0'>
 							  <script>
 							    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1610518469085-0'); });
 							  </script>

@@ -17,7 +17,7 @@ $perspectiva_name = $perspectiva->name;
 $tax_color = get_term_meta( $perspectiva->term_id, 'category_color', true );
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 ?>
-
+<!-- <?php echo basename(__FILE__); ?> -->
 <div id="primary" class="content-area">
 	<main id="main" class="site-main pt-8 pb-4">
 
@@ -41,12 +41,12 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		<!-- GRID -->
 		<div class="container-fluid grid-notas px-6 mt-6">
 			<div class="row">
-				<div class="col-lg-auto px-0 d-none d-xl-block" style="max-width: 185px;">
+				<!-- <div class="col-lg-auto px-0 d-none d-xl-block" style="max-width: 185px;">
 					<div class=" modulo-publicidad">
-						<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600"> -->
+						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600">
 						<small><span class="text-dark">Publicidad</span></small>
 					</div>
-				</div>
+				</div> -->
 				
 				<div class="col">
 					<?php
@@ -62,7 +62,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 						'order' => 'DESC',
 						'paged' => $paged
 					);
-					$output = 'objects';
+
 					$the_query = new WP_Query( $args );
 					if ( $the_query->have_posts() ) :
 						?>
@@ -86,26 +86,27 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					endif;
 					?>
 				</div>
-				<div class="col-lg-auto px-0 d-none d-xl-block" style="max-width: 185px;">
+
+				<!-- <div class="col-lg-auto px-0 d-none d-xl-block" style="max-width: 185px;">
 					<div class=" modulo-publicidad">
-						<!-- <img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600"> -->
+						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/160x600">
 						<small><span class="text-dark">Publicidad</span></small>
+					</div>
+				</div> -->
+			</div> <!-- ./row -->
+		</div> <!-- ./container-fluid -->
+
+		<!-- PUBLICIDAD -->
+		<!-- <div class="container mt-8">
+			<div class="row">
+				<div class="col">
+					<div class="border modulo-publicidad">
+						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90">
+						<small>Publicidad</small>
 					</div>
 				</div>
 			</div>
-		</div>
-
-		<!-- PUBLICIDAD -->
-		<div class="container mt-8">
-			<div class="row">
-				<div class="col">
-					<!-- <div class="border modulo-publicidad">
-						<img class="img-fluid d-block mx-auto" src="https://via.placeholder.com/728x90">
-						<small>Publicidad</small>
-					</div> -->
-				</div>
-			</div>
-		</div>
+		</div> -->
 
 	</main><!-- #main -->
 </div><!-- #primary -->

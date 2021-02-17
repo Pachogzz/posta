@@ -218,7 +218,8 @@ $('.btnst').click(function() {
  **/
 $('.media_file').click(function() {
 	$('#media_container').html($(this).data('media'));
-	$('.titulo_yt').html($(this).data('titulo'));
+	// $('.titulo_yt').html($(this).data('titulo'));
+	$('.titulo_type').html($(this).data('titulo'));
 	$('#mediaFileTypesModal').modal('show');
 });
 
@@ -356,7 +357,7 @@ $('#term-list-filter .nav-item > a').addClass('badge badge-primary rounded-pill 
 $('.movile-slider').owlCarousel({
 	mouseDrag: true,
 	loop: true,
-	dots: true,
+	dots: false,
 	nav: true,
 	navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
 	margin: 30,

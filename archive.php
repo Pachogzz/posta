@@ -59,7 +59,7 @@ $queriedObjetc = get_queried_object();
 						echo "<ul id='term-list-filter' class='nav nav-pills justify-content-center mb-6'>";
 						foreach ($termchildren as $child) {
 							$tax_color = get_term_meta( $child, 'category_color', true );
-							echo "<li class='nav-item mr-2 lead'>
+							echo "<li class='nav-item mr-2 mb-2 lead'>
 									<a href=". get_term_link($child) ." title='" . get_cat_name($child) . "' style='background-color:#" . $tax_color . "!important;'>" 
 										. get_cat_name($child) . 
 									"</a>
@@ -74,7 +74,7 @@ $queriedObjetc = get_queried_object();
 						foreach ($ancestorChilds as $child) {
 							if ( $taxQueriedObject->term_id != $child ) {
 								$tax_color = get_term_meta( $child, 'category_color', true );
-								echo "<li class='nav-item mr-2 lead'>
+								echo "<li class='nav-item mr-2 mb-2 lead'>
 										<a href=". get_term_link($child) ." title='" . get_cat_name($child) . "' style='background-color:#" . $tax_color . "!important;'>" 
 											. get_cat_name($child) . 
 										"</a>

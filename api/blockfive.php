@@ -32,7 +32,9 @@ add_action( 'rest_api_init', function () {
         $color = get_term_meta( $term->term_id, 'category_color', true );
 
         $video = get_post_meta($post->ID, 'video_youtube', true);
-        $imagenVideo = wp_get_attachment_image_src(get_post_meta($post->ID, 'url_imagen_video', true), 'full')[0];
+        $video = str_replace("https://www.youtube.com/watch?v=", "", $video);
+        
+        $imagenVideo = wp_get_attachment_image_src(get_post_meta($post->ID, 'url_imagen_video', true), array('500', '400') )[0];
         $audio = get_post_meta($post->ID, 'audio_news', true);
 
         $category = array(

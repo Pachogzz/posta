@@ -26,68 +26,71 @@ switch ($show_time_ago == 1) {
         $haceTiempo = "";
     break;
 }
-
+$tax_color = get_term_meta( $category_id, 'category_color', true );
 ?>
+<!-- <?php echo basename(__FILE__); ?> -->
 <!-- Contenedor de carusel -->
-<div class="container mt-6 container-lg<<<">
-	<div class="row">
-		<div class="col">
+<section class="bloque_notas-- " style="background-image: url( <?php echo $imagenFondo; ?> ); background-color: <?php echo $colorFondo; ?> !important;">
+	<div class="container p-4 p-sm-6" style="background-color: <?php echo $colorFondo; ?> !important;">
+		<div class="row">
+			<div class="col">
 
-			<!-- ENCABEZADO DE CARRUSEL -->
-			<div class="encabezado">
-				<h2 class="encabezado-titulo">
-					<a class="text-white" href="<?php echo esc_url($category_link); ?>">
-						<span class="nombre-sitio">POSTA</span>
-						<span class="nombre-taxonomia"><?php echo esc_html($section_name->name);?></span>
+				<!-- ENCABEZADO DE CARRUSEL -->
+				<div class="encabezado">
+					<h2 class="encabezado-titulo" style="background-color: <?php echo "#". $tax_color; ?> !important;">
+						<a class="text-white" href="<?php echo esc_url($category_link); ?>">
+							<span class="nombre-sitio">POSTA</span>
+							<span class="nombre-taxonomia"><?php echo esc_html($section_name->name);?></span>
 						</a>
-				</h2>
-				<?php if($mostrar_descripcion){ ?>
-					<p class="encabezado-descripcion"><?php echo strip_tags($category_description); ?></p>
-				<?php } ?>
-			</div>
-
-			<!-- CARRUSEL COLECCIÓN -->
-			<div id="carousel-<?php echo $category_id; ?>" class="owl-carousel owl-<?php echo $slider_type; ?> <?php echo $slider_type; ?>">
-				<?php
-					$output = 'objects';
-					$args = array (
-						'post_type'      => 'post',
-						'cat'            => $category_id,
-						'posts_per_page' => 6,
-						'orderby'        => 'date',
-						'order'          => 'DESC'
-					);
-					$the_query = new WP_Query( $args, $output );
-					if ( $the_query->have_posts() ) :
-						while ( $the_query->have_posts() ) :
-							$the_query->the_post(); ?>
-							<div class="c-item">
-								<?php get_template_part( 'template-parts/content', 'home-categories' ); ?>
-							</div>
-							<?php
-						endwhile;
-					endif;
-					wp_reset_postdata();
-					//unset($GLOBALS['carrusel_seccion']);
-				?>
-				<!-- Link ver más notas -->
-				<div class="c-item">
-					<a class="item-ver-mas" href="<?php echo esc_url($category_link); ?>" title="Ver más noticias de <?php echo $section_name->name;?>">
-						<div class="contenedor-media">
-							<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center">
-								<p class="h5 mb-3">Ver más noticias de:</p>
-								<h4 class="encabezado-titulo">
-									<span class="bg-white text-dark p-3">
-										<?php echo esc_html($section_name->name);?>
-									</span>
-								</h4>
-							</div>
-						</div>
-					</a>
+					</h2>
+					<?php if($mostrar_descripcion){ ?>
+						<p class="encabezado-descripcion"><?php echo strip_tags($category_description); ?></p>
+					<?php } ?>
 				</div>
+
+				<!-- CARRUSEL COLECCIÓN -->
+				<div id="carousel-<?php echo $category_id; ?>" class="owl-carousel owl-<?php echo $slider_type; ?> <?php echo $slider_type; ?>">
+					<?php
+						$output = 'objects';
+						$args = array (
+							'post_type'      => 'post',
+							'cat'            => $category_id,
+							'posts_per_page' => 6,
+							'orderby'        => 'date',
+							'order'          => 'DESC'
+						);
+						$the_query = new WP_Query( $args, $output );
+						if ( $the_query->have_posts() ) :
+							while ( $the_query->have_posts() ) :
+								$the_query->the_post(); ?>
+								<div class="c-item">
+									<?php get_template_part( 'template-parts/content', 'home-categories' ); ?>
+								</div>
+								<?php
+							endwhile;
+						endif;
+						wp_reset_postdata();
+						//unset($GLOBALS['carrusel_seccion']);
+					?>
+					<!-- Link ver más notas -->
+					<div class="c-item">
+						<a class="item-ver-mas" href="<?php echo esc_url($category_link); ?>" title="Ver más noticias de <?php echo $section_name->name;?>">
+							<div class="contenedor-media">
+								<div class="contenedor-media-item d-flex flex-column justify-content-center align-items-center">
+									<p class="h5 mb-3">Ver más noticias de:</p>
+									<h4 class="encabezado-titulo">
+										<span class="bg-white text-dark p-3">
+											<?php echo esc_html($section_name->name);?>
+										</span>
+									</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				
 			</div>
-			
 		</div>
 	</div>
-</div>
+</section>
 <?php unset($GLOBALS['tipo_de_carrusel_2']); ?>
